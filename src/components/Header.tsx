@@ -3,9 +3,10 @@ import { ArrowUpRight, GitBranch, Menu, X } from 'lucide-react'
 import { BrandMark } from './BrandMark'
 
 const links = [
-  { href: '#projekte', label: 'Projekte' },
-  { href: '#denkweise', label: 'Denkweise' },
-  { href: '#mensch', label: 'Über mich' },
+  { href: '#nexus', label: 'Nexus' },
+  { href: '#cerebri', label: 'Cerebri' },
+  { href: '#stack', label: 'Stack' },
+  { href: '#arbeitsweise', label: 'Arbeitsweise' },
 ]
 
 export function Header() {
@@ -29,9 +30,7 @@ export function Header() {
       <nav className="navigation" aria-label="Hauptnavigation">
         <a href="#start" className="brand" aria-label="YoungJibbit95 – zum Anfang">
           <BrandMark />
-          <span>
-            YoungJibbit95<small>ENTWICKLER & NEUGIERIGER MENSCH</small>
-          </span>
+          <span>YoungJibbit95</span>
         </a>
         <div className="desktop-links">
           {links.map((link) => (

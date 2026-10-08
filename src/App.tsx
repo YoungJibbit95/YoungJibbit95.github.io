@@ -1,387 +1,349 @@
-import { useRef, useState } from 'react'
-import {
-  ArrowDown,
-  ArrowRight,
-  ArrowUpRight,
-  AudioLines,
-  Bug,
-  Check,
-  ChevronDown,
-  Gamepad2,
-  GitBranch,
-  Heart,
-  Network,
-  Sprout,
-  Telescope,
-} from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { BrandMark } from './components/BrandMark'
 import { Header } from './components/Header'
-import { Constellation } from './components/Constellation'
-import { ProjectVisual } from './components/ProjectVisual'
-import { NexusStory } from './components/NexusStory'
+import { AtlasGraphics } from './components/AtlasGraphics'
+import { SpaceBackdrop } from './components/SpaceBackdrop'
 import { MotionProvider, useMotion } from './components/MotionProvider'
-import { archiveProjects, featuredIds, getProject, projects, type ProjectId } from './data/projects'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
+const layers = [
+  { id: 'start', label: 'Überblick' },
+  { id: 'nexus', label: 'Nexus' },
+  { id: 'cerebri', label: 'Cerebri' },
+  { id: 'stack', label: 'Stack' },
+  { id: 'arbeitsweise', label: 'Arbeitsweise' },
+]
+const stack = [
+  { area: 'Oberflächen', tools: 'TypeScript · React', project: 'Nexus' },
+  { area: 'Desktop & Mobile', tools: 'Electron · Capacitor', project: 'Nexus Clients' },
+  { area: 'Planung', tools: 'Rust', project: 'Cerebri' },
+  { area: 'Engines & Spiele', tools: 'C++ · C# · Java', project: 'NovaCore · YjsE · Adventura' },
+  { area: 'Tools & Entwicklung', tools: 'Python · GitHub Actions', project: 'YJarvis · Releases' },
+]
 
-function Portfolio() {
+function Atlas() {
   const root = useRef<HTMLDivElement>(null)
-  const [selected, setSelected] = useState<ProjectId>('nexus')
+  const [active, setActive] = useState('start')
   const { mode, motion, setMode } = useMotion()
-  const project = getProject(selected)
-
+  useEffect(() => {
+    const visible = new Map<string, number>()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visible.set(entry.target.id, entry.intersectionRatio)
+          else visible.delete(entry.target.id)
+        })
+        const next = [...visible].sort((a, b) => b[1] - a[1])[0]
+        if (next) setActive(next[0])
+      },
+      { threshold: [0, 0.15, 0.35, 0.55, 0.75] },
+    )
+    root.current!.querySelectorAll('.atlas-layer').forEach((layer) => observer.observe(layer))
+    return () => observer.disconnect()
+  }, [])
   useGSAP(
     () => {
       if (motion !== 'full') return
-      gsap.from('.hero-copy > *', {
-        y: 24,
+      gsap.from('.atlas-intro-copy > *', {
+        y: 28,
         opacity: 0,
-        duration: 0.85,
-        stagger: 0.11,
+        duration: 0.9,
+        stagger: 0.1,
         ease: 'power3.out',
         clearProps: 'all',
       })
-      gsap.from('.constellation', {
+      gsap.utils.toArray<HTMLElement>('.atlas-layer:not(.atlas-intro)').forEach((layer, index) => {
+        const panel = layer.querySelector('.layer-panel')
+        const visual = layer.querySelector('.atlas-visual')
+        const elements = layer.querySelectorAll('[data-fly]')
+        const timeline = gsap.timeline({
+          scrollTrigger: { trigger: layer, start: 'top 90%', end: 'bottom 8%', scrub: 0.65 },
+        })
+        timeline.fromTo(
+          panel,
+          { y: 90, autoAlpha: 0, rotationX: 3, filter: 'blur(9px)' },
+          {
+            y: 0,
+            autoAlpha: 1,
+            rotationX: 0,
+            filter: 'blur(0px)',
+            duration: 0.22,
+            ease: 'power2.out',
+          },
+          0,
+        )
+        if (visual)
+          timeline.fromTo(
+            visual,
+            { x: index % 2 === 0 ? 90 : -90, rotationY: index % 2 === 0 ? -6 : 6 },
+            { x: 0, rotationY: 0, duration: 0.3, ease: 'power2.out' },
+            0,
+          )
+        if (elements.length)
+          timeline.from(
+            elements,
+            { y: 32, opacity: 0, stagger: 0.025, duration: 0.2, ease: 'power2.out' },
+            0.04,
+          )
+        timeline.to(
+          panel,
+          {
+            y: -70,
+            autoAlpha: 0,
+            rotationX: -2,
+            filter: 'blur(7px)',
+            duration: 0.14,
+            ease: 'power2.in',
+          },
+          0.86,
+        )
+      })
+      gsap.from('.intro-map-art', {
+        x: 40,
         opacity: 0,
-        scale: 0.96,
         duration: 1.2,
         delay: 0.15,
         ease: 'power3.out',
         clearProps: 'all',
       })
-      gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((element) => {
-        gsap.from(element, {
-          y: 25,
-          opacity: 0,
-          duration: 0.85,
-          ease: 'power3.out',
-          clearProps: 'all',
-          scrollTrigger: { trigger: element, start: 'top 92%', once: true },
-        })
+      gsap.from('.work-trace', {
+        strokeDashoffset: 1,
+        duration: 1.2,
+        stagger: 0.08,
+        ease: 'power2.inOut',
+        scrollTrigger: { trigger: '#arbeitsweise', start: 'top 80%', once: true },
       })
     },
     { scope: root, dependencies: [motion], revertOnUpdate: true },
   )
-
   return (
     <div ref={root}>
       <a className="skip-link" href="#inhalt">
         Zum Inhalt
       </a>
+      <SpaceBackdrop />
       <Header />
-      <main id="inhalt">
-        <section className="hero section-shell" id="start" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <div className="eyebrow">
-              <span className="signal-dot" /> PERSÖNLICHES PORTFOLIO / INDEPENDENT DEVELOPER
-            </div>
-            <h1 id="hero-title" aria-label="YoungJibbit95. Ich baue, um zu verstehen.">
-              <span className="hero-name">
-                YoungJibbit95<span className="name-period">.</span>
-              </span>
-              <span className="hero-statement">
-                Ich baue, um <em>zu verstehen.</em>
-              </span>
-            </h1>
-            <p className="hero-intro">
-              Ich denke gern in Systemen, finde gern Fehler und lerne, indem ich eigene Software
-              baue. Meine Projekte sind ein Stück von mir – und eine Menge offener Fragen.
-            </p>
-            <div className="hero-actions">
-              <a className="button button--primary" href="#projekte">
-                Meine Arbeit entdecken <ArrowUpRight size={19} />
-              </a>
-              <a className="button button--quiet" href="#mensch">
-                Der Mensch dahinter <ArrowDown size={18} />
-              </a>
-            </div>
-            <p className="hero-note">
-              WORKSPACES <span>·</span> PLANUNG <span>·</span> ENGINES <span>·</span> EXPERIMENTE
-            </p>
-            <div className="personal-margin-note" aria-hidden="true">
-              <svg viewBox="0 0 90 52">
-                <path d="M5 8Q23 45 79 30M65 24l15 6-12 8" />
-              </svg>
-              <span>
-                Code. Klang. Natur.<small>Auch mal lieber offline.</small>
-              </span>
-            </div>
-          </div>
-          <Constellation selected={selected} onSelect={setSelected} />
-          <a href="#projekte" className="hero-focus" aria-live="polite">
-            <span className="hero-focus-label">IM ORBIT</span>
-            <span>{project.name}</span>
-            <span className="hero-focus-description">{project.tagline}</span>
-            <ArrowRight size={18} />
+      <nav className="atlas-index" aria-label="Atlas-Ebenen">
+        {layers.map((layer, index) => (
+          <a
+            key={layer.id}
+            href={`#${layer.id}`}
+            aria-label={layer.label}
+            aria-current={active === layer.id ? 'location' : undefined}
+          >
+            <span aria-hidden="true">0{index}</span>
+            <span className="index-label">{layer.label}</span>
           </a>
-          <div className="hero-bottom">
-            <span>NEUGIER IST DER AUSGANGSPUNKT.</span>
-            <a href="#projekte">
-              WEITER ENTDECKEN <ArrowDown size={14} />
-            </a>
+        ))}
+      </nav>
+      <main id="inhalt">
+        <section className="atlas-layer atlas-intro" id="start" aria-labelledby="intro-title">
+          <div className="layer-panel section-shell">
+            <div className="atlas-intro-copy">
+              <span className="section-label">Entwicklerportfolio</span>
+              <h1 id="intro-title" aria-label="YoungJibbit95">
+                Young
+                <br />
+                <span>Jibbit95</span>
+              </h1>
+              <p>
+                Angefangen habe ich mit Webentwicklung, UI-Experimenten und kleineren Projekten. Mit
+                Nexus kamen größere Anwendungen dazu. Cerebri hat mich dann tiefer in Zeit und
+                Planung geführt.
+              </p>
+              <div className="plain-links">
+                <a href="#nexus">
+                  Atlas durchscrollen <ArrowDown size={18} />
+                </a>
+                <a
+                  href="https://github.com/YoungJibbit95"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub <ArrowUpRight size={18} />
+                </a>
+              </div>
+            </div>
+            <AtlasGraphics type="intro" />
           </div>
         </section>
-
-        <section className="work section-shell" id="projekte" aria-labelledby="work-title">
-          <div className="section-heading" data-reveal>
-            <div>
-              <span className="eyebrow section-number">01 / AUSGEWÄHLTE ARBEIT</span>
-              <h2 id="work-title">
-                Was ich baue.
-                <br />
-                <span className="muted-heading">Und was ich dabei lerne.</span>
-              </h2>
-            </div>
-            <p>
-              Meine Projekte sind die Orte, an denen ich Fragen stelle, Dinge ausprobiere und die
-              nächste Version besser mache.
-            </p>
-          </div>
-          <div className="project-tabs" aria-label="Projekt im Fokus">
-            {featuredIds.map((id) => (
-              <button key={id} onClick={() => setSelected(id)} aria-pressed={selected === id}>
-                <span className="tab-dot" />
-                {id === 'novacore'
-                  ? 'Engines & Welten'
-                  : getProject(id)
-                      .name.replace(' Ecosystem', '')
-                      .replace('Nexus Cerebri', 'Cerebri')}
-              </button>
-            ))}
-          </div>
-          <article
-            className={`project-feature project-feature--${selected}`}
-            aria-label="Projekt im Fokus"
-          >
-            <div className="project-feature-copy" aria-live="polite">
-              <div className="project-meta">
-                <span>{project.category}</span>
-                <span className="project-status">
-                  <span />
-                  {project.status}
-                </span>
-              </div>
-              <h3>{project.name}</h3>
-              <p className="project-tagline">{project.tagline}</p>
-              <p className="project-description">{project.description}</p>
-              <div className="project-question">
-                <Telescope size={18} strokeWidth={1.5} />
-                <p>{project.question}</p>
-              </div>
-              <ul className="stack-list" aria-label="Technologien">
-                {project.stack.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <div className="project-links">
-                {selected === 'nexus' && (
-                  <a className="case-study-link" href="#nexus-geschichte">
-                    Die Geschichte dahinter <ArrowRight size={17} />
-                  </a>
-                )}
-                <a href={project.repo} target="_blank" rel="noopener noreferrer">
-                  <GitBranch size={16} /> Repository <ArrowUpRight size={16} />
+        <section className="atlas-layer" id="nexus" aria-labelledby="nexus-title">
+          <div className="layer-panel section-shell">
+            <div className="layer-copy">
+              <span className="section-label">01 / Nexus Ecosystem</span>
+              <h2 id="nexus-title">Nexus.</h2>
+              <p className="layer-lead">Vom eigenen Workspace zu verbundenen Apps.</p>
+              <ol className="origin-list">
+                <li data-fly>
+                  <span>Ausgangspunkt</span>
+                  <p>
+                    Ich wollte einen eigenen Workspace für Notizen, Aufgaben und Dateien. Daraus ist
+                    Nexus entstanden.
+                  </p>
+                </li>
+                <li data-fly>
+                  <span>Entwicklung</span>
+                  <p>
+                    Aus dem Workspace ist nach und nach ein Ecosystem für Desktop und Mobile
+                    geworden. Das Projekt hat mich zu Themen geführt, die über die Oberfläche
+                    hinausgehen.
+                  </p>
+                </li>
+                <li data-fly>
+                  <span>Gemeinsame Grundlage</span>
+                  <p>
+                    Heute arbeite ich an vier verbundenen Clients. Eine gemeinsame Grundlage hält
+                    Darstellung, Bewegung und grundlegendes Verhalten zusammen.
+                  </p>
+                </li>
+              </ol>
+              <div className="plain-links">
+                <a
+                  href="https://github.com/YoungJibbit95/Nexus-Ecosystem"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Repository <ArrowUpRight size={16} />
                 </a>
-                {project.site && (
-                  <a href={project.site} target="_blank" rel="noopener noreferrer">
-                    Produktwebsite <ArrowUpRight size={16} />
-                  </a>
-                )}
+                <a href="https://nexusproject.dev" target="_blank" rel="noopener noreferrer">
+                  Produktwebsite <ArrowUpRight size={16} />
+                </a>
               </div>
             </div>
-            <ProjectVisual id={selected} />
-          </article>
-          <div className="project-collection" data-reveal>
-            <div className="collection-heading">
-              <h3>Weitere Welten, weitere Fragen.</h3>
-              <span className="eyebrow">DAS EXPERIMENT GEHT WEITER</span>
-            </div>
-            <div className="project-grid">
-              {projects
-                .filter((item) => ['nemisis', 'adventura', 'yjse'].includes(item.id))
-                .map((item, index) => (
-                  <a
-                    className="project-card"
-                    key={item.id}
-                    href={item.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="card-index">
-                      0{index + 1}
-                      <ArrowUpRight size={20} />
-                    </span>
-                    <h4>{item.name}</h4>
-                    <p>{item.tagline}</p>
-                    <span className="card-stack">{item.stack.join(' / ')}</span>
-                  </a>
-                ))}
-            </div>
+            <AtlasGraphics type="nexus" />
           </div>
-          <details className="project-archive">
-            <summary>
-              <span>Auch kleine Projekte waren ein Anfang.</span>
-              <span className="archive-label">
-                FRÜHE EXPERIMENTE <ChevronDown size={17} />
-              </span>
-            </summary>
-            <div>
-              {archiveProjects.map((item) => (
-                <a key={item.name} href={item.repo} target="_blank" rel="noopener noreferrer">
-                  <strong>{item.name}</strong>
-                  <span>{item.description}</span>
-                  <ArrowUpRight size={18} />
+        </section>
+        <section className="atlas-layer" id="cerebri" aria-labelledby="cerebri-title">
+          <div className="layer-panel section-shell">
+            <div className="layer-copy">
+              <span className="section-label">02 / Nexus Cerebri</span>
+              <h2 id="cerebri-title">Cerebri.</h2>
+              <p className="layer-lead">Die Planung hinter der Kalenderansicht.</p>
+              <ol className="origin-list">
+                <li data-fly>
+                  <span>Die Frage dahinter</span>
+                  <p>
+                    Beim Bauen von Planungsoberflächen wollte ich genauer verstehen, wie die
+                    Entscheidungen dahinter zustande kommen.
+                  </p>
+                </li>
+                <li data-fly>
+                  <span>Der Ansatz</span>
+                  <p>
+                    Daraus ist Cerebri geworden: Zeit, Regeln und bekannte Informationen werden so
+                    beschrieben, dass sich ein Vorschlag prüfen lässt.
+                  </p>
+                </li>
+                <li data-fly>
+                  <span>Aktueller Stand</span>
+                  <p>
+                    Ich entwickle die Grundlage in Rust und nutze sie als Lernprojekt. Eine spätere
+                    Einbindung in Nexus ist geplant.
+                  </p>
+                </li>
+              </ol>
+              <div className="plain-links">
+                <a
+                  href="https://github.com/YoungJibbit95/Nexus-Cerebri"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Repository <ArrowUpRight size={16} />
                 </a>
+              </div>
+            </div>
+            <AtlasGraphics type="cerebri" />
+          </div>
+        </section>
+        <section className="atlas-layer" id="stack" aria-labelledby="stack-title">
+          <div className="layer-panel section-shell stack-panel">
+            <div className="layer-copy">
+              <span className="section-label">03 / Tech-Stack</span>
+              <h2 id="stack-title">Mein Stack.</h2>
+              <p className="layer-lead">Die Werkzeuge richten sich nach dem Projekt.</p>
+              <p className="body-copy">
+                Ich arbeite mit unterschiedlichen Sprachen und Plattformen. Von Oberflächen und Apps
+                bis zu Planung, Engines und kleinen Tools.
+              </p>
+            </div>
+            <div className="stack-map atlas-visual">
+              {stack.map((item, index) => (
+                <div className={`stack-area stack-area--${index}`} key={item.area} data-fly>
+                  <span>{item.area}</span>
+                  <h3>{item.tools}</h3>
+                  <p>{item.project}</p>
+                </div>
               ))}
             </div>
-          </details>
-        </section>
-
-        <NexusStory />
-
-        <section className="thinking section-shell" id="denkweise" aria-labelledby="thinking-title">
-          <div className="thinking-intro" data-reveal>
-            <span className="eyebrow section-number">03 / MEINE DENKWEISE</span>
-            <h2 id="thinking-title">
-              Ich möchte verstehen,
-              <br />
-              <span className="gradient-text">warum es funktioniert.</span>
-            </h2>
-            <p>
-              Je größer meine Projekte werden, desto mehr interessiert mich, was um den Code herum
-              passiert. Die Struktur. Die Entscheidungen. Die Fehler, die man erst beim zweiten
-              Blick findet.
-            </p>
-            <div className="thinking-signature">
-              <Network size={18} />
-              <span>VERSTEHEN. PRÜFEN. VERBESSERN.</span>
-            </div>
-          </div>
-          <div className="principles" data-reveal>
-            {[
-              {
-                icon: Network,
-                title: 'Zusammenhänge sichtbar machen.',
-                text: 'Ich denke gern in Systemen. Architektur hilft mir zu verstehen, wie einzelne Teile ein Ganzes ergeben.',
-              },
-              {
-                icon: Bug,
-                title: 'Fehler finden. Lösungen bauen.',
-                text: 'Mich interessiert, warum etwas scheitert. Ich will Verhalten prüfen und Ursachen verstehen.',
-              },
-              {
-                icon: Check,
-                title: 'Entscheidungen nachvollziehbar halten.',
-                text: 'Wichtige Grenzen, Tests und Dokumentation helfen mir, meine Arbeit auch später noch zu verstehen.',
-              },
-            ].map((item, index) => (
-              <div className="principle" key={item.title}>
-                <span className="principle-number">0{index + 1}</span>
-                <item.icon size={22} strokeWidth={1.3} />
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </div>
-              </div>
-            ))}
-            <p className="ai-note">
-              Ich nutze KI-Agenten als Werkzeuge für Entwicklung, Tests und Analyse. Ihre Ergebnisse
-              müssen zur Architektur passen und überprüfbar bleiben.
-            </p>
           </div>
         </section>
-
-        <section className="person-section" id="mensch" aria-labelledby="person-title">
-          <div className="person-landscape" aria-hidden="true">
-            <svg viewBox="0 0 1400 500" preserveAspectRatio="none">
-              <path d="M0 425Q160 350 280 396T500 378T730 390T1000 372T1400 390" />
-              <path d="M0 455Q210 430 390 445T680 424T980 430T1400 438" />
-              <path d="M0 487Q200 456 440 478T850 471T1400 478" />
-              <path d="M820 415v-85m0 40q-36-15-46-41q42-4 46 41Zm0-16q33-18 43-48q-42 6-43 48Z" />
-            </svg>
-          </div>
-          <div className="section-shell person-inner">
-            <div className="person-copy" data-reveal>
-              <span className="eyebrow section-number">04 / DER MENSCH DAHINTER</span>
-              <h2 id="person-title">
-                Systeme im Kopf.
-                <br />
-                <span>Natur im Blick.</span>
-              </h2>
-              <p className="person-lead">Nicht alles passt in ein Repository.</p>
-              <p>
-                Ich bin wissbegierig, denke gern in Systemen und suche nach Lösungen. Vieles davon
-                landet in Software. Aber Musik, Gaming, Cannabisanbau und Zeit in der Natur gehören
-                genauso zu mir.
+        <section className="atlas-layer" id="arbeitsweise" aria-labelledby="working-title">
+          <div className="layer-panel section-shell">
+            <div className="layer-copy">
+              <span className="section-label">04 / Denk- und Arbeitsweise</span>
+              <h2 id="working-title">So arbeite ich.</h2>
+              <p className="layer-lead">Konkrete Projekte, nachvollziehbare Schritte.</p>
+              <p className="body-copy">
+                Ich denke gern in Systemen und suche nach Fehlern. Neue Themen erschließe ich mir
+                über eigene Projekte. Änderungen prüfe ich, wichtige Entscheidungen halte ich fest.
               </p>
-              <blockquote>
-                „So paradox es klingt: Wenn es nach mir ginge, würde ich Computer und Internet
-                wieder abschaffen. Obwohl genau das inzwischen mein größter Interessenbereich
-                geworden ist.“
-              </blockquote>
-              <p className="peace-note">
-                <Heart size={16} /> Ich mag die Natur. Und wünsche mir eine friedlichere Welt.
+              <p className="body-copy">
+                KI-Tools nutze ich für Code, Tests und Dokumentation. Die Ergebnisse prüfe ich wie
+                andere Änderungen auch.
               </p>
             </div>
-            <div className="interests" data-reveal>
-              <div className="interest">
-                <AudioLines size={23} />
-                <div>
-                  <span>01 / MUSIK</span>
-                  <h3>Eine andere Art von Verbindung.</h3>
-                </div>
-                <div className="mini-wave" aria-hidden="true">
-                  {Array.from({ length: 15 }, (_, index) => (
-                    <i key={index} style={{ height: `${7 + ((index * 7) % 21)}px` }} />
-                  ))}
-                </div>
-              </div>
-              <div className="interest">
-                <Gamepad2 size={23} />
-                <div>
-                  <span>02 / GAMING</span>
-                  <h3>In andere Welten eintauchen.</h3>
-                </div>
-              </div>
-              <div className="interest">
-                <Sprout size={23} />
-                <div>
-                  <span>03 / CANNABISANBAU & NATUR</span>
-                  <h3>Auch mal etwas wachsen lassen.</h3>
-                </div>
-              </div>
-              <div className="offline-mark">
-                <span className="signal-dot" />
-                <span>MANCHMAL LIEBER OFFLINE.</span>
-              </div>
-            </div>
+            <AtlasGraphics type="work" />
           </div>
         </section>
-
-        <section className="contact section-shell" aria-labelledby="contact-title" data-reveal>
-          <span className="eyebrow">DIE NÄCHSTE IDEE IST NOCH OFFEN.</span>
-          <h2 id="contact-title">Neugierig geworden?</h2>
-          <p>Meine Projekte, Entscheidungen und nächsten Schritte findest du auf GitHub.</p>
+      </main>
+      <footer className="atlas-footer section-shell" id="github">
+        <div>
           <a
-            className="button button--primary"
+            className="footer-github"
             href="https://github.com/YoungJibbit95"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <GitBranch size={18} /> Auf GitHub entdecken <ArrowUpRight size={18} />
+            YoungJibbit95 auf GitHub <ArrowUpRight size={22} />
           </a>
-        </section>
-      </main>
-      <footer className="footer section-shell">
-        <a className="footer-brand" href="#start">
-          <BrandMark />
-          <span>
-            YoungJibbit95<small>Aus Neugier wird Software.</small>
-          </span>
-        </a>
+          <p>
+            Weitere Projekte:{' '}
+            <a
+              href="https://github.com/YoungJibbit95/Novacore-Engine"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              NovaCore
+            </a>{' '}
+            ·{' '}
+            <a
+              href="https://github.com/YoungJibbit95/Nemisis"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Nemisis
+            </a>{' '}
+            ·{' '}
+            <a
+              href="https://github.com/YoungJibbit95/Adventura"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Adventura
+            </a>{' '}
+            ·{' '}
+            <a
+              href="https://github.com/YoungJibbit95/YJarvis"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              YJarvis
+            </a>
+          </p>
+        </div>
         <label className="motion-control">
           Bewegung{' '}
           <select value={mode} onChange={(event) => setMode(event.target.value as typeof mode)}>
@@ -391,18 +353,17 @@ function Portfolio() {
             <option value="off">Aus</option>
           </select>
         </label>
-        <a className="back-to-top" href="#start">
-          ZUM ANFANG <ArrowUpRight size={15} />
+        <a className="back-top" href="#start">
+          Nach oben <ArrowUpRight size={15} />
         </a>
       </footer>
     </div>
   )
 }
-
 export default function App() {
   return (
     <MotionProvider>
-      <Portfolio />
+      <Atlas />
     </MotionProvider>
   )
 }
