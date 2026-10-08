@@ -68,7 +68,7 @@ export function Constellation({
       data-motion-scene={motion}
     >
       <div className="scene-kicker">
-        <span className="signal-dot" /> MEIN KLEINES UNIVERSUM
+        <span className="signal-dot" /> WORAN ICH BAUE
       </div>
       <div className="scene-glow" aria-hidden="true" />
       <svg className="orbit-map" viewBox="0 0 600 600" aria-hidden="true">
@@ -80,9 +80,9 @@ export function Constellation({
           </linearGradient>
         </defs>
         <g className="orbit-guides" stroke={`url(#${gradient})`}>
-          <ellipse cx="300" cy="300" rx="271" ry="190" transform="rotate(-28 300 300)" />
-          <ellipse cx="300" cy="300" rx="273" ry="119" transform="rotate(28 300 300)" />
-          <ellipse cx="300" cy="300" rx="183" ry="263" transform="rotate(27 300 300)" />
+          <path d="M78 295C38 186 204 65 350 92S592 284 498 431S167 548 91 381" />
+          <path d="M111 174C243 85 451 143 522 319S402 555 252 485S101 301 167 218" />
+          <path d="M74 369C205 283 356 358 522 224" />
         </g>
         <g className="orbit-connections">
           {nodes.map((node) => (
@@ -111,8 +111,11 @@ export function Constellation({
       <div className="scene-core" aria-hidden="true">
         <div className="core-rings" />
         <BrandMark className="core-mark" />
-        <span>NEUGIER</span>
+        <span>IDEEN VERBINDEN</span>
       </div>
+      <span className="map-handwriting" aria-hidden="true">
+        immer eine neue Frage.
+      </span>
       <div className="scene-nodes">
         {nodes.map((node) => (
           <button
@@ -134,7 +137,7 @@ export function Constellation({
         ))}
       </div>
       <div className="scene-coordinate" aria-hidden="true">
-        <span>YJ / EXPLORATION</span>
+        <span>BUILD · BREAK · LEARN</span>
         <span>01 — ∞</span>
       </div>
       <p className="scene-caption">Wähle eine Welt. Entdecke die Idee dahinter.</p>

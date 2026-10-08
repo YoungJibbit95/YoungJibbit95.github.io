@@ -22,4 +22,12 @@ Jede Etappe endet mit einem verwendbaren Stand, einer Prüfung im Produktionsbui
 
 Die Projektkonstellation, ein gemeinsamer Projektfokus und schematische Darstellungen bilden die erste visuelle Grundlage. Der persönliche Bereich zeigt Musik, Gaming, Cannabisanbau, Natur und die eigene Spannung zwischen digitalem Interesse und dem Wunsch nach einer weniger digitalen Welt.
 
-Die erste Version enthält bewusst kurze, verständliche Projektgeschichten. Die ausführlichen Nexus- und Cerebri-Szenen werden in den nächsten Etappen ergänzt.
+Die erste Version enthält bewusst kurze, verständliche Projektgeschichten.
+
+## Release 0.2
+
+Der persönliche Einstieg stellt YoungJibbit95 und die Lust am Verstehen in den Mittelpunkt. Handschriftliche Randnotizen, eine offene Projektskizze und eine ruhigere Liste der weiteren Arbeiten geben dem Portfolio eine eigene visuelle Handschrift.
+
+Die Nexus-Geschichte erklärt in drei anwählbaren Kapiteln den ersten Gedanken, den Arbeitskontext und den gemeinsamen Runtime-Kern. Unveränderte Produktaufnahmen zeigen Nexus Main v6 Beta. Animationen zeichnen Zusammenhänge und öffnen die Architektur; reduzierte und ausgeschaltete Bewegung zeigen denselben Inhalt.
+
+Die ausführliche Cerebri-Szene folgt in Release 0.3.

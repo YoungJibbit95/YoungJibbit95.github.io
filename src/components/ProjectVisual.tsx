@@ -1,7 +1,13 @@
 import { AudioLines, Code2, FileText, Laptop, Monitor, ShieldCheck, Smartphone } from 'lucide-react'
 import type { ProjectId } from '../data/projects'
 
-export function ProjectVisual({ id }: { id: ProjectId }) {
+export function ProjectVisual({
+  id,
+  layout = 'overview',
+}: {
+  id: ProjectId
+  layout?: 'overview' | 'story'
+}) {
   if (id === 'nexus')
     return (
       <div
@@ -9,8 +15,19 @@ export function ProjectVisual({ id }: { id: ProjectId }) {
         aria-label="Vier Nexus-Clients teilen einen Runtime-Kern"
       >
         <div className="visual-label">VERBUNDEN DURCH EINEN GEMEINSAMEN KERN</div>
-        <svg className="nexus-wires" viewBox="0 0 600 360" aria-hidden="true">
-          <path d="M120 105Q240 105 300 196M480 105Q360 105 300 196M120 283Q240 283 300 196M480 283Q360 283 300 196" />
+        <svg
+          className="nexus-wires"
+          viewBox={layout === 'story' ? '0 0 600 420' : '0 0 600 360'}
+          preserveAspectRatio={layout === 'story' ? 'none' : 'xMidYMid meet'}
+          aria-hidden="true"
+        >
+          <path
+            d={
+              layout === 'story'
+                ? 'M135 105Q240 105 300 222M465 105Q360 105 300 222M135 338Q240 338 300 222M465 338Q360 338 300 222'
+                : 'M120 105Q240 105 300 196M480 105Q360 105 300 196M120 283Q240 283 300 196M480 283Q360 283 300 196'
+            }
+          />
         </svg>
         <div className="client client--main">
           <Monitor size={20} />

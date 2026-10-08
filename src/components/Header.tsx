@@ -30,7 +30,7 @@ export function Header() {
         <a href="#start" className="brand" aria-label="YoungJibbit95 – zum Anfang">
           <BrandMark />
           <span>
-            YoungJibbit95<small>INDEPENDENT DEVELOPER</small>
+            YoungJibbit95<small>ENTWICKLER & NEUGIERIGER MENSCH</small>
           </span>
         </a>
         <div className="desktop-links">

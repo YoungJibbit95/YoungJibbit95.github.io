@@ -21,6 +21,7 @@ import { BrandMark } from './components/BrandMark'
 import { Header } from './components/Header'
 import { Constellation } from './components/Constellation'
 import { ProjectVisual } from './components/ProjectVisual'
+import { NexusStory } from './components/NexusStory'
 import { MotionProvider, useMotion } from './components/MotionProvider'
 import { archiveProjects, featuredIds, getProject, projects, type ProjectId } from './data/projects'
 
@@ -75,20 +76,23 @@ function Portfolio() {
         <section className="hero section-shell" id="start" aria-labelledby="hero-title">
           <div className="hero-copy">
             <div className="eyebrow">
-              <span className="signal-dot" /> INDEPENDENT DEVELOPER · ALWAYS LEARNING
+              <span className="signal-dot" /> PERSÖNLICHES PORTFOLIO / INDEPENDENT DEVELOPER
             </div>
-            <h1 id="hero-title">
-              Aus Neugier
-              <br />
-              wird <span className="gradient-text">Software.</span>
+            <h1 id="hero-title" aria-label="YoungJibbit95. Ich baue, um zu verstehen.">
+              <span className="hero-name">
+                YoungJibbit95<span className="name-period">.</span>
+              </span>
+              <span className="hero-statement">
+                Ich baue, um <em>zu verstehen.</em>
+              </span>
             </h1>
             <p className="hero-intro">
-              Ich bin <strong>YoungJibbit95.</strong> Ich denke gern in Systemen, finde gern Fehler
-              und lerne, indem ich eigene Software baue.
+              Ich denke gern in Systemen, finde gern Fehler und lerne, indem ich eigene Software
+              baue. Meine Projekte sind ein Stück von mir – und eine Menge offener Fragen.
             </p>
             <div className="hero-actions">
               <a className="button button--primary" href="#projekte">
-                Meine Projekte <ArrowUpRight size={19} />
+                Meine Arbeit entdecken <ArrowUpRight size={19} />
               </a>
               <a className="button button--quiet" href="#mensch">
                 Der Mensch dahinter <ArrowDown size={18} />
@@ -97,6 +101,14 @@ function Portfolio() {
             <p className="hero-note">
               WORKSPACES <span>·</span> PLANUNG <span>·</span> ENGINES <span>·</span> EXPERIMENTE
             </p>
+            <div className="personal-margin-note" aria-hidden="true">
+              <svg viewBox="0 0 90 52">
+                <path d="M5 8Q23 45 79 30M65 24l15 6-12 8" />
+              </svg>
+              <span>
+                Code. Klang. Natur.<small>Auch mal lieber offline.</small>
+              </span>
+            </div>
           </div>
           <Constellation selected={selected} onSelect={setSelected} />
           <a href="#projekte" className="hero-focus" aria-live="polite">
@@ -116,11 +128,11 @@ function Portfolio() {
         <section className="work section-shell" id="projekte" aria-labelledby="work-title">
           <div className="section-heading" data-reveal>
             <div>
-              <span className="eyebrow section-number">01 / MEINE ARBEIT</span>
+              <span className="eyebrow section-number">01 / AUSGEWÄHLTE ARBEIT</span>
               <h2 id="work-title">
-                Ein Kopf.
+                Was ich baue.
                 <br />
-                <span className="muted-heading">Viele verbundene Welten.</span>
+                <span className="muted-heading">Und was ich dabei lerne.</span>
               </h2>
             </div>
             <p>
@@ -165,6 +177,11 @@ function Portfolio() {
                 ))}
               </ul>
               <div className="project-links">
+                {selected === 'nexus' && (
+                  <a className="case-study-link" href="#nexus-geschichte">
+                    Die Geschichte dahinter <ArrowRight size={17} />
+                  </a>
+                )}
                 <a href={project.repo} target="_blank" rel="noopener noreferrer">
                   <GitBranch size={16} /> Repository <ArrowUpRight size={16} />
                 </a>
@@ -197,7 +214,6 @@ function Portfolio() {
                       0{index + 1}
                       <ArrowUpRight size={20} />
                     </span>
-                    <span className="card-category">{item.category}</span>
                     <h4>{item.name}</h4>
                     <p>{item.tagline}</p>
                     <span className="card-stack">{item.stack.join(' / ')}</span>
@@ -224,9 +240,11 @@ function Portfolio() {
           </details>
         </section>
 
+        <NexusStory />
+
         <section className="thinking section-shell" id="denkweise" aria-labelledby="thinking-title">
           <div className="thinking-intro" data-reveal>
-            <span className="eyebrow section-number">02 / MEINE DENKWEISE</span>
+            <span className="eyebrow section-number">03 / MEINE DENKWEISE</span>
             <h2 id="thinking-title">
               Ich möchte verstehen,
               <br />
@@ -287,7 +305,7 @@ function Portfolio() {
           </div>
           <div className="section-shell person-inner">
             <div className="person-copy" data-reveal>
-              <span className="eyebrow section-number">03 / DER MENSCH DAHINTER</span>
+              <span className="eyebrow section-number">04 / DER MENSCH DAHINTER</span>
               <h2 id="person-title">
                 Systeme im Kopf.
                 <br />
