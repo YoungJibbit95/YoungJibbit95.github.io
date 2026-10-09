@@ -78,9 +78,10 @@ test('a manual gesture interrupts a running camera flight', async ({ page }, tes
   test.skip(testInfo.project.name !== 'desktop', 'Desktop interruption test')
   await page.goto('/')
   const canvas = await stage(page)
+  await page.getByRole('button', { name: /Signal Raumpunkt A/ }).click()
+  await canvas.scrollIntoViewIfNeeded()
   const box = await canvas.boundingBox()
   expect(box).not.toBeNull()
-  await page.getByRole('button', { name: /Signal Raumpunkt A/ }).click()
   await page.mouse.move(box!.x + box!.width * 0.65, box!.y + box!.height * 0.5)
   await page.mouse.down()
   await page.mouse.move(box!.x + box!.width * 0.79, box!.y + box!.height * 0.57, {
