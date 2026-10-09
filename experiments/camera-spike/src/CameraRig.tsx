@@ -136,9 +136,7 @@ export const CameraRig = forwardRef<CameraRigHandle, SceneProps>(function Camera
     const controls = controlsRef.current
     if (!controls) return
     const { x, y, z } = CAMERA_LIMITS.bounds
-    controls.setBoundary(
-      new Box3(new Vector3(x[0], y[0], z[0]), new Vector3(x[1], y[1], z[1])),
-    )
+    controls.setBoundary(new Box3(new Vector3(x[0], y[0], z[0]), new Vector3(x[1], y[1], z[1])))
     void controls.setLookAt(...DEFAULT_POSE.position, ...DEFAULT_POSE.target, false).then(emit)
 
     // The input event itself owns the camera now: do NOT stop() in controlstart.

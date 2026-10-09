@@ -184,7 +184,11 @@ export default function SpikeApp() {
               <button type="button" onClick={() => void rig.current?.back()} disabled={!canExplore}>
                 ↶ Zurück
               </button>
-              <button type="button" onClick={() => void rig.current?.reset()} disabled={!canExplore}>
+              <button
+                type="button"
+                onClick={() => void rig.current?.reset()}
+                disabled={!canExplore}
+              >
                 Übersicht
               </button>
               <button
@@ -253,7 +257,11 @@ export default function SpikeApp() {
               {compactPose(pose)}
             </output>
           </div>
-          <div className="alternative-controls" role="group" aria-label="Tastatur- und Touch-Alternative">
+          <div
+            className="alternative-controls"
+            role="group"
+            aria-label="Tastatur- und Touch-Alternative"
+          >
             <button
               disabled={!canExplore}
               aria-label="Kamera nach links bewegen"

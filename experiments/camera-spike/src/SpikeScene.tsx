@@ -111,10 +111,7 @@ function SpatialConstellation({ onFocus }: { onFocus: (id: PointId) => void }) {
   )
 }
 
-const SpikeScene = forwardRef<CameraRigHandle, SpikeSceneProps>(function SpikeScene(
-  props,
-  handle,
-) {
+const SpikeScene = forwardRef<CameraRigHandle, SpikeSceneProps>(function SpikeScene(props, handle) {
   const rig = useRef<CameraRigHandle>(null)
 
   useImperativeHandle(handle, () => ({

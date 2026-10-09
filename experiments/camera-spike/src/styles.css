@@ -231,7 +231,9 @@ a {
   border: 1px solid #40596b;
   min-height: 41px;
   padding: 8px 15px;
-  transition: border-color 130ms, background 130ms;
+  transition:
+    border-color 130ms,
+    background 130ms;
 }
 
 .stage-buttons button:hover:not(:disabled),

@@ -51,9 +51,7 @@ test('true pan, continuous dolly, focus and full-pose return', async ({ page }, 
   await page.screenshot({ path: testInfo.outputPath('g0-desktop-focused.png'), fullPage: true })
 
   await page.getByRole('button', { name: /Zurück/ }).click()
-  await expect
-    .poll(async () => (await pose(page)).target[0])
-    .toBeCloseTo(explored.target[0], 1)
+  await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(explored.target[0], 1)
   const restored = await pose(page)
   restored.position.forEach((coordinate, axis) => {
     expect(coordinate).toBeCloseTo(explored.position[axis], 1)
@@ -107,12 +105,20 @@ test('WebGL2 failure keeps readable, keyboard-operable HTML', async ({ page }) =
     })
   })
   await page.goto('/')
-  await expect(page.getByText('Die räumliche Ansicht ist nicht verfügbar.', { exact: false })).toBeVisible()
+  await expect(
+    page.getByText('Die räumliche Ansicht ist nicht verfügbar.', { exact: false }),
+  ).toBeVisible()
   await expect(page.getByRole('navigation', { name: 'Räumliche Ziele' })).toBeVisible()
   await page.getByRole('button', { name: /Signal Raumpunkt A/ }).focus()
   await page.keyboard.press('Enter')
-  await expect(page.getByRole('button', { name: /Signal Raumpunkt A/ })).toHaveAttribute('aria-pressed', 'true')
-  await expect(page.getByRole('link', { name: /Projekte entdecken/ })).toHaveAttribute('href', /github.com/)
+  await expect(page.getByRole('button', { name: /Signal Raumpunkt A/ })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await expect(page.getByRole('link', { name: /Projekte entdecken/ })).toHaveAttribute(
+    'href',
+    /github.com/,
+  )
 })
 
 test('no-JS fallback includes a title and direct project link', async ({ browser }) => {
@@ -120,7 +126,10 @@ test('no-JS fallback includes a title and direct project link', async ({ browser
   const page = await context.newPage()
   await page.goto('http://127.0.0.1:4174/')
   await expect(page.getByRole('heading', { name: /YoungJibbit95/ })).toBeVisible()
-  await expect(page.getByRole('link', { name: 'Projekte auf GitHub' })).toHaveAttribute('href', /github.com/)
+  await expect(page.getByRole('link', { name: 'Projekte auf GitHub' })).toHaveAttribute(
+    'href',
+    /github.com/,
+  )
   await context.close()
 })
 
