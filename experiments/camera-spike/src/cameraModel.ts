@@ -37,7 +37,8 @@ export const FOCUS_POINTS: readonly PointDefinition[] = [
     kind: 'Raumpunkt A',
     position: [-8, 1, -6],
     focusPose: { position: [-5.8, 4.2, 2.5], target: [-8, 1, -6], fov: 52, zoom: 1 },
-    explanation: 'Der Blick folgt einem Punkt in echter Tiefe – nicht einem vergrößerten HTML-Element.',
+    explanation:
+      'Der Blick folgt einem Punkt in echter Tiefe – nicht einem vergrößerten HTML-Element.',
   },
   {
     id: 'atlas',
