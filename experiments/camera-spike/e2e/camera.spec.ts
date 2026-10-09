@@ -293,7 +293,9 @@ test('Back restores saved selection and complete pose', async ({ page }, testInf
   await page.getByRole('button', { name: /Signal Raumpunkt A/ }).click()
   await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(-8, 1)
   await page.getByRole('button', { name: /Kern Raumpunkt C/ }).click()
-  const saved = JSON.parse((await page.getByTestId('saved-pose').textContent()) ?? 'null') as Pose
+  const saved = JSON.parse(
+    (await page.getByTestId('saved-pose').textContent()) ?? 'null',
+  ) as Pose
   expect(saved).not.toBeNull()
   await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(8, 1)
   await page.getByRole('button', { name: /Zurück/ }).click()
