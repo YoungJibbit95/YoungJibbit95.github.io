@@ -228,8 +228,7 @@ test('two-finger touch pinch changes actual 3D camera distance', async ({ page }
     await page.waitForTimeout(50)
   }
   await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
-  const length = (p: Pose) =>
-    Math.hypot(...p.position.map((value, axis) => value - p.target[axis]))
+  const length = (p: Pose) => Math.hypot(...p.position.map((value, axis) => value - p.target[axis]))
   await expect
     .poll(async () => Math.abs(length(await pose(page)) - length(before)))
     .toBeGreaterThan(0.25)
@@ -238,8 +237,7 @@ test('two-finger touch pinch changes actual 3D camera distance', async ({ page }
   )
   const afterPinch = await pose(page)
   const scrollBeforeTruck = await page.evaluate(() => window.scrollY)
-  const truck = (shift: number) =>
-    pair(40).map((finger) => ({ ...finger, x: finger.x + shift }))
+  const truck = (shift: number) => pair(40).map((finger) => ({ ...finger, x: finger.x + shift }))
   await client.send('Input.dispatchTouchEvent', {
     type: 'touchStart',
     touchPoints: truck(0),
