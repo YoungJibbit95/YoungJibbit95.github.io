@@ -1,0 +1,44 @@
+name: G0 one-time spike dependency lock and formatter
+
+on:
+  push:
+    branches:
+      - feat/living-atlas-v3
+
+permissions:
+  contents: write
+
+jobs:
+  lock-and-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/living-atlas-v3
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Root dependency baseline
+        run: npm ci
+      - name: Prettier spike source separately
+        run: |
+          npx prettier --write experiments/camera-spike .github/workflows/g0-camera-spike.yml .github/workflows/g0-lock-format.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u -- experiments/camera-spike .github/workflows/g0-camera-spike.yml .github/workflows/g0-lock-format.yml
+          git diff --cached --quiet || git commit -m 'style(g0): format isolated R3F spike sources'
+      - name: Resolve and validate isolated dependency graph
+        working-directory: experiments/camera-spike
+        run: |
+          npm install --package-lock-only --no-audit --no-fund
+          npm ci --no-audit --no-fund
+      - name: Lock dependencies in a dedicated commit
+        run: |
+          git add -- experiments/camera-spike/package-lock.json
+          git diff --cached --quiet || git commit -m 'build(g0): pin reproducible R3F spike dependencies'
+      - name: Confirm repository formatting and publish changes
+        run: |
+          npm run format:check
+          git push origin HEAD:feat/living-atlas-v3
