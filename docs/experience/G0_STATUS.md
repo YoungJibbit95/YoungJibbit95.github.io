@@ -20,10 +20,9 @@ Stand: 09.10.2026 · Branch `feat/living-atlas-v3` · [Draft-PR #1](https://gith
 
 **Letzter gemeinsam abgeschlossener grüner Quellcode-Stand vor diesem Berichtscommit:** [`255587d2`](https://github.com/YoungJibbit95/YoungJibbit95.github.io/commit/255587d2f366fac9bd147752127601cdc471ff9e).
 
-| Pipeline | Run | Tatsächliches Resultat |
-| --- | --- | --- |
-| Website-Root | [37947749214](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37947749214) | **Erfolgreich:** `npm ci`, `format:check`, `build` (TypeScript + Vite + Prerender), Chromium/Playwright `npm test` **13/13 bestanden**, Axe eingeschlossen |
-| Isolierter Kamera-Spike | [37947749259](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37947749259) | **Erfolgreich:** `npm ci`, **6/6** Modelltests, Typecheck, Build, Playwright **14 bestanden / 6 gezielt wegen Desktop- und Mobile-Projekttrennung übersprungen**, Axe eingeschlossen |
+**Website-Root — [CI-Run 37947749214](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37947749214):** Erfolgreich: `npm ci`, `npm run format:check`, `npm run build` (TypeScript + Vite + Prerender), Chromium/Playwright `npm test` — **13 von 13 bestanden**, Axe eingeschlossen.
+
+**Kamera-Spike — [CI-Run 37947749259](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37947749259):** Erfolgreich: `npm ci`, **6 von 6** Modelltests, Typecheck, Build, Chromium/Playwright — **14 bestanden, 6 gezielte Desktop/Mobile-Projekt-Skips**, Axe eingeschlossen.
 
 **Gate-Regel:** Nach diesem Dokumentations-/Regressionstestcommit gelten die **neuen** GitHub-Checks auf dessen HEAD als maßgeblicher Freigabenachweis. Ein Lauf mit `action_required`, `in_progress` oder fehlgeschlagenen Tests ist **nicht** grün; der Draft-PR bleibt ohne Merge.
 

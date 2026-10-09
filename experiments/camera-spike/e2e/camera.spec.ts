@@ -286,9 +286,7 @@ test('right mouse orbit changes azimuth while retaining the target', async ({ pa
   ).toBeLessThan(0.2)
 })
 
-test('focus-to-focus Back restores the selected object and full saved pose', async ({
-  page,
-}, testInfo) => {
+test('Back restores saved selection and complete pose', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'Desktop selection-history regression')
   await page.goto('/')
   await stage(page)
