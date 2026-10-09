@@ -80,8 +80,10 @@ export function validatePose(pose: CameraPose): boolean {
   )
   return (
     values.every(Number.isFinite) &&
-    pose.fov >= 20 && pose.fov <= 90 &&
-    pose.zoom >= 0.25 && pose.zoom <= 4 &&
+    pose.fov >= 20 &&
+    pose.fov <= 90 &&
+    pose.zoom >= 0.25 &&
+    pose.zoom <= 4 &&
     squaredDistance >= CAMERA_LIMITS.minDistance ** 2 &&
     squaredDistance <= CAMERA_LIMITS.maxDistance ** 2
   )
