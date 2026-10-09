@@ -3,7 +3,10 @@ import { ArrowUpRight, GitBranch, Menu, X } from 'lucide-react'
 import { BrandMark } from './BrandMark'
 
 const links = [
+  { href: '#tech-orbit', label: 'Tech-Orbit' },
   { href: '#projekte', label: 'Projekte' },
+  { href: '#nexus-geschichte', label: 'Nexus' },
+  { href: '#cerebri-system', label: 'Cerebri' },
   { href: '#denkweise', label: 'Denkweise' },
   { href: '#mensch', label: 'Über mich' },
 ]

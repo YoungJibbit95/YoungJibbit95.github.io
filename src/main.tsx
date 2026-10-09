@@ -6,6 +6,9 @@ import '@fontsource/caveat/latin-400.css'
 import App from './App'
 import './styles.css'
 import './portfolio.css'
+import './cosmic-worlds.css'
+import './cosmic-deepdives.css'
+import './cosmic-detail-polish.css'
 
 const root = document.getElementById('root')!
 const app = (
