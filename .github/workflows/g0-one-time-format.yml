@@ -1,0 +1,51 @@
+name: G0 one-time Prettier correction
+
+on:
+  push:
+    branches:
+      - feat/living-atlas-v3
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/living-atlas-v3
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci
+      - name: Format the nine identified original ZIP files only
+        run: |
+          npx prettier --write \
+            metadata.json \
+            src/App.tsx \
+            src/components/CosmicDeepDives.tsx \
+            src/components/NexusStory.tsx \
+            src/components/StarfieldBackdrop.tsx \
+            src/components/TechSolarSystem.tsx \
+            src/cosmic-deepdives.css \
+            src/cosmic-worlds.css \
+            src/portfolio.css
+      - name: Make isolated formatting commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- metadata.json src/App.tsx src/components/CosmicDeepDives.tsx src/components/NexusStory.tsx src/components/StarfieldBackdrop.tsx src/components/TechSolarSystem.tsx src/cosmic-deepdives.css src/cosmic-worlds.css src/portfolio.css
+          git diff --cached --quiet || git commit -m 'style(g0): format nine original ZIP files with Prettier'
+      - name: Normalize G0 docs separately
+        run: |
+          npx prettier --write docs/experience/*.md .github/workflows/g0-one-time-format.yml
+          git add -- docs/experience/*.md .github/workflows/g0-one-time-format.yml
+          git diff --cached --quiet || git commit -m 'docs(g0): format milestone reports and storyboard'
+      - name: Verify formatting and push isolated commits
+        run: |
+          npm run format:check
+          git push origin HEAD:feat/living-atlas-v3
