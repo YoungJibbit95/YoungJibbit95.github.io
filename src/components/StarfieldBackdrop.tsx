@@ -238,7 +238,7 @@ export function StarfieldBackdrop() {
     const nebulae: NebulaCloud[] = [
       { x: 0.22, y: 0.28, rx: 420, ry: 230, rotation: -0.35, alpha: 0.13, layer: 1 },
       { x: 0.78, y: 0.36, rx: 480, ry: 260, rotation: 0.42, alpha: 0.11, layer: 2 },
-      { x: 0.48, y: 0.68, rx: 520, ry: 240, rotation: -0.18, alpha: 0.10, layer: 3 },
+      { x: 0.48, y: 0.68, rx: 520, ry: 240, rotation: -0.18, alpha: 0.1, layer: 3 },
       { x: 0.18, y: 0.82, rx: 360, ry: 190, rotation: 0.28, alpha: 0.09, layer: 1 },
     ]
 
@@ -253,7 +253,13 @@ export function StarfieldBackdrop() {
       active: false,
     }
 
-    const drawDiffractionStar = (cx: number, cy: number, r: number, color: string, alpha: number) => {
+    const drawDiffractionStar = (
+      cx: number,
+      cy: number,
+      r: number,
+      color: string,
+      alpha: number,
+    ) => {
       ctx.save()
       ctx.globalAlpha = alpha * 0.55
       ctx.strokeStyle = color
@@ -313,8 +319,8 @@ export function StarfieldBackdrop() {
       for (const neb of nebulae) {
         const nx = neb.x * width + pointerX * (neb.layer * 16)
         const ny =
-          (((neb.y * height - scrollY * 0.04 * neb.layer) % (height * 1.4)) + height * 1.4) %
-            (height * 1.4) -
+          ((((neb.y * height - scrollY * 0.04 * neb.layer) % (height * 1.4)) + height * 1.4) %
+            (height * 1.4)) -
           height * 0.2
         ctx.save()
         ctx.translate(nx, ny)
@@ -388,7 +394,7 @@ export function StarfieldBackdrop() {
         // Rising Forge Embers in the background
         for (let e = 0; e < 24; e++) {
           const ex = ((e * 97) % 600) - 300 + Math.sin(tick * 0.02 + e) * 18
-          const ey = 280 - (((tick * 0.7 + e * 45) % 560) + 560) % 560
+          const ey = 280 - ((((tick * 0.7 + e * 45) % 560) + 560) % 560)
           ctx.beginPath()
           ctx.arc(ex, ey, 1.5 + (e % 3), 0, Math.PI * 2)
           ctx.fillStyle = `rgba(${pr}, ${pg}, ${pb}, 0.28)`
@@ -492,12 +498,7 @@ export function StarfieldBackdrop() {
 
           const tailX = shootingStar.x - shootingStar.vx * 8
           const tailY = shootingStar.y - shootingStar.vy * 8
-          const meteorGrad = ctx.createLinearGradient(
-            shootingStar.x,
-            shootingStar.y,
-            tailX,
-            tailY,
-          )
+          const meteorGrad = ctx.createLinearGradient(shootingStar.x, shootingStar.y, tailX, tailY)
           meteorGrad.addColorStop(0, `rgba(255, 255, 255, ${meteorAlpha})`)
           meteorGrad.addColorStop(0.4, `rgba(${pr}, ${pg}, ${pb}, ${meteorAlpha * 0.6})`)
           meteorGrad.addColorStop(1, 'rgba(255, 255, 255, 0)')

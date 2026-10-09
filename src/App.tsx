@@ -488,10 +488,30 @@ function Portfolio() {
                   />
                 </svg>
                 {[
-                  { id: 'nexus' as ProjectId, x: 22, y: 46, starClass: 'Blauer Überriese · 4 Clients' },
-                  { id: 'cerebri' as ProjectId, x: 43, y: 30, starClass: 'Violetter Neutronenstern · Rust' },
-                  { id: 'novacore' as ProjectId, x: 65, y: 42, starClass: 'Doppelstern-Schmiede · C++23' },
-                  { id: 'jarvis' as ProjectId, x: 79, y: 62, starClass: 'Smaragd-Stern · Python & KI' },
+                  {
+                    id: 'nexus' as ProjectId,
+                    x: 22,
+                    y: 46,
+                    starClass: 'Blauer Überriese · 4 Clients',
+                  },
+                  {
+                    id: 'cerebri' as ProjectId,
+                    x: 43,
+                    y: 30,
+                    starClass: 'Violetter Neutronenstern · Rust',
+                  },
+                  {
+                    id: 'novacore' as ProjectId,
+                    x: 65,
+                    y: 42,
+                    starClass: 'Doppelstern-Schmiede · C++23',
+                  },
+                  {
+                    id: 'jarvis' as ProjectId,
+                    x: 79,
+                    y: 62,
+                    starClass: 'Smaragd-Stern · Python & KI',
+                  },
                 ].map((starItem) => {
                   const p = getProject(starItem.id)
                   const isCurrent = selected === starItem.id

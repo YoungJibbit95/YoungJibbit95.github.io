@@ -458,8 +458,7 @@ export function CerebriDeepDive() {
               type="button"
               className="chamber-step-btn"
               onClick={() => {
-                const prev =
-                  (activeHourIndex - 1 + WORMHOLE_HOURS.length) % WORMHOLE_HOURS.length
+                const prev = (activeHourIndex - 1 + WORMHOLE_HOURS.length) % WORMHOLE_HOURS.length
                 setSelectedHourId(WORMHOLE_HOURS[prev].id)
               }}
             >
@@ -644,7 +643,8 @@ const FORGE_STATIONS: ForgeStation[] = [
       'Strikte Trennung: Engine-Core vs. Game-Layer',
       'Modulare C++23 Architektur mit CMake',
     ],
-    codeSnippet: 'ecs.query<Transform, Velocity>().each([dt](auto& t, const auto& v) { t.pos += v.vel * dt; });',
+    codeSnippet:
+      'ecs.query<Transform, Velocity>().each([dt](auto& t, const auto& v) { t.pos += v.vel * dt; });',
     repoUrl: 'https://github.com/YoungJibbit95/Novacore-Engine',
     repoLabel: 'NovaCore Engine Repo',
   },
@@ -690,7 +690,8 @@ const FORGE_STATIONS: ForgeStation[] = [
       'Akkumulator-Schleife gegen Spiral-of-Death',
       'Präzise Interpolation für flüssige Darstellung',
     ],
-    codeSnippet: 'while (accumulator >= FIXED_DT) { simulate_step(FIXED_DT); accumulator -= FIXED_DT; }',
+    codeSnippet:
+      'while (accumulator >= FIXED_DT) { simulate_step(FIXED_DT); accumulator -= FIXED_DT; }',
     repoUrl: 'https://github.com/YoungJibbit95/Novacore-Engine',
     repoLabel: 'Simulations-Kern ansehen',
   },
@@ -703,7 +704,8 @@ const FORGE_STATIONS: ForgeStation[] = [
     mapX: 545,
     mapY: 228,
     iconType: 'workbench',
-    tagline: 'Die Werkbank, auf der die geschmiedete Engine im echten Spiel beweist, was sie trägt.',
+    tagline:
+      'Die Werkbank, auf der die geschmiedete Engine im echten Spiel beweist, was sie trägt.',
     description:
       'Eine Engine im luftleeren Raum bleibt Theorie. Auf der Werkbank rechts liegt Nemisis: mein spielbares First-Person-Shooter-Projekt, das Kamera, Movement, Trefferfeedback und Spielstatus direkt auf NovaCore erprobt.',
     forgeLore:
@@ -951,7 +953,9 @@ export function EnginesAndJarvisDeepDive() {
                 onClick={() => handleForgeObjectClick(station.id)}
               >
                 <Hammer size={14} />
-                <span>{station.objectName.replace('Der ', '').replace('Die ', '').replace('Das ', '')}</span>
+                <span>
+                  {station.objectName.replace('Der ', '').replace('Die ', '').replace('Das ', '')}
+                </span>
               </button>
             ))}
           </div>
@@ -975,7 +979,10 @@ export function EnginesAndJarvisDeepDive() {
         </div>
 
         {/* INTERACTIVE COZY FORGE WORKSHOP MAP + ZOOMED STATION VIEW */}
-        <div className={`forge-workshop-container ${isForgeZoomed ? 'is-station-zoomed' : ''}`} data-stage>
+        <div
+          className={`forge-workshop-container ${isForgeZoomed ? 'is-station-zoomed' : ''}`}
+          data-stage
+        >
           {/* COZY FORGE ROOM ILLUSTRATED MAP */}
           <div className="forge-room-map">
             <div className="forge-room-hud">
@@ -1008,7 +1015,16 @@ export function EnginesAndJarvisDeepDive() {
               </defs>
 
               {/* Cozy Stone Workshop Architecture & Starry Arch Window */}
-              <rect x="10" y="10" width="680" height="360" rx="22" fill="#100b0a" stroke="rgba(251, 146, 60, 0.28)" strokeWidth="2" />
+              <rect
+                x="10"
+                y="10"
+                width="680"
+                height="360"
+                rx="22"
+                fill="#100b0a"
+                stroke="rgba(251, 146, 60, 0.28)"
+                strokeWidth="2"
+              />
               {/* Warm Hearth Firelight Filling the Workshop */}
               <rect x="10" y="10" width="680" height="360" rx="22" fill="url(#hearthFireGlow)" />
               <rect x="10" y="10" width="680" height="360" rx="22" fill="url(#anvilSparkGlow)" />
@@ -1022,9 +1038,30 @@ export function EnginesAndJarvisDeepDive() {
               />
               <circle cx="325" cy="95" r="2.2" fill="#fff" />
               <circle cx="378" cy="76" r="1.8" fill="#93c5fd" />
-              <circle cx="355" cy="120" r="18" fill="none" stroke="rgba(103, 232, 249, 0.35)" strokeDasharray="3 4" />
-              <line x1="350" y1="30" x2="350" y2="185" stroke="rgba(251, 191, 36, 0.25)" strokeWidth="2" />
-              <line x1="275" y1="125" x2="425" y2="125" stroke="rgba(251, 191, 36, 0.25)" strokeWidth="2" />
+              <circle
+                cx="355"
+                cy="120"
+                r="18"
+                fill="none"
+                stroke="rgba(103, 232, 249, 0.35)"
+                strokeDasharray="3 4"
+              />
+              <line
+                x1="350"
+                y1="30"
+                x2="350"
+                y2="185"
+                stroke="rgba(251, 191, 36, 0.25)"
+                strokeWidth="2"
+              />
+              <line
+                x1="275"
+                y1="125"
+                x2="425"
+                y2="125"
+                stroke="rgba(251, 191, 36, 0.25)"
+                strokeWidth="2"
+              />
 
               {/* Workshop Stone Floor Perspective Grid & Molten Runic Channels */}
               <path
@@ -1049,14 +1086,8 @@ export function EnginesAndJarvisDeepDive() {
                   stroke="#fb923c"
                   strokeWidth="2"
                 />
-                <path
-                  d="M34 155 L34 82 A28 32 0 0 1 90 82 L90 155 Z"
-                  fill="#ea580c"
-                />
-                <path
-                  d="M44 155 L44 96 A18 22 0 0 1 80 96 L80 155 Z"
-                  fill="#fef08a"
-                />
+                <path d="M34 155 L34 82 A28 32 0 0 1 90 82 L90 155 Z" fill="#ea580c" />
+                <path d="M44 155 L44 96 A18 22 0 0 1 80 96 L80 155 Z" fill="#fef08a" />
               </g>
 
               {/* 2. TOP-LEFT: Mechanical Flywheel & Bellows (Takt-Schwungrad) */}
@@ -1078,7 +1109,16 @@ export function EnginesAndJarvisDeepDive() {
               {/* 3. CENTER: Iconic Runic Anvil (Der Sternen-Amboss) */}
               <g transform="translate(290, 205)">
                 {/* Wooden & Iron Base Block */}
-                <rect x="28" y="62" width="64" height="34" rx="4" fill="#3b2316" stroke="#d97706" strokeWidth="2" />
+                <rect
+                  x="28"
+                  y="62"
+                  width="64"
+                  height="34"
+                  rx="4"
+                  fill="#3b2316"
+                  stroke="#d97706"
+                  strokeWidth="2"
+                />
                 {/* Classic Anvil Body & Horn */}
                 <path
                   d="M5 32 L32 22 L98 22 L115 30 L92 44 L80 62 L40 62 L32 44 Z"
@@ -1089,23 +1129,70 @@ export function EnginesAndJarvisDeepDive() {
                 {/* Glowing Hot Ingot & Hammer on Top */}
                 <rect x="44" y="14" width="34" height="8" rx="3" fill="#fef08a" />
                 <line x1="65" y1="-16" x2="54" y2="14" stroke="#d97706" strokeWidth="4" />
-                <rect x="42" y="-22" width="24" height="11" rx="2" transform="rotate(-18 54 -16)" fill="#94a3b8" stroke="#fef08a" strokeWidth="1.5" />
+                <rect
+                  x="42"
+                  y="-22"
+                  width="24"
+                  height="11"
+                  rx="2"
+                  transform="rotate(-18 54 -16)"
+                  fill="#94a3b8"
+                  stroke="#fef08a"
+                  strokeWidth="1.5"
+                />
               </g>
 
               {/* 4. TOP-RIGHT: Crystal Shelf of Worlds (Adventura & YjsE) */}
               <g transform="translate(435, 76)">
-                <rect x="0" y="62" width="90" height="8" rx="3" fill="#78350f" stroke="#fbbf24" strokeWidth="1.5" />
-                <polygon points="24,62 14,34 26,16 38,34" fill="#38bdf8" stroke="#e0f2fe" strokeWidth="1.5" />
-                <polygon points="62,62 50,28 64,10 76,28" fill="#a855f7" stroke="#f3e8ff" strokeWidth="1.5" />
+                <rect
+                  x="0"
+                  y="62"
+                  width="90"
+                  height="8"
+                  rx="3"
+                  fill="#78350f"
+                  stroke="#fbbf24"
+                  strokeWidth="1.5"
+                />
+                <polygon
+                  points="24,62 14,34 26,16 38,34"
+                  fill="#38bdf8"
+                  stroke="#e0f2fe"
+                  strokeWidth="1.5"
+                />
+                <polygon
+                  points="62,62 50,28 64,10 76,28"
+                  fill="#a855f7"
+                  stroke="#f3e8ff"
+                  strokeWidth="1.5"
+                />
               </g>
 
               {/* 5. RIGHT: Tactical Arena Workbench (Nemisis) */}
               <g transform="translate(480, 185)">
-                <rect x="10" y="65" width="120" height="14" rx="3" fill="#451a03" stroke="#fb923c" strokeWidth="2" />
+                <rect
+                  x="10"
+                  y="65"
+                  width="120"
+                  height="14"
+                  rx="3"
+                  fill="#451a03"
+                  stroke="#fb923c"
+                  strokeWidth="2"
+                />
                 <rect x="22" y="79" width="12" height="36" fill="#29150c" />
                 <rect x="106" y="79" width="12" height="36" fill="#29150c" />
                 {/* Holographic FPS Arena Projection above Workbench */}
-                <ellipse cx="70" cy="52" rx="44" ry="14" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" strokeWidth="1.8" strokeDasharray="4 4" />
+                <ellipse
+                  cx="70"
+                  cy="52"
+                  rx="44"
+                  ry="14"
+                  fill="rgba(56, 189, 248, 0.2)"
+                  stroke="#38bdf8"
+                  strokeWidth="1.8"
+                  strokeDasharray="4 4"
+                />
                 <circle cx="70" cy="34" r="16" fill="none" stroke="#67e8f9" strokeWidth="1.8" />
                 <line x1="50" y1="34" x2="90" y2="34" stroke="#67e8f9" strokeWidth="1.4" />
                 <line x1="70" y1="14" x2="70" y2="54" stroke="#67e8f9" strokeWidth="1.4" />
@@ -1257,7 +1344,9 @@ export function EnginesAndJarvisDeepDive() {
           <p className="realm-lead">
             <strong>YJarvis</strong> verbindet lokale Sprachmodelle (Python, FastAPI, Ollama) mit
             einer Desktop-Oberfläche. Hier reist du durch ein{' '}
-            <strong>kosmisches Gehirn, dessen Windungen und Synapsen aus Spiralarmen bestehen</strong>
+            <strong>
+              kosmisches Gehirn, dessen Windungen und Synapsen aus Spiralarmen bestehen
+            </strong>
             . Klicke auf eine Gehirn-Region, um in ihre{' '}
             <strong>explodierte 3-Schichten-Kortex-Ansicht</strong> reinzuzoomen.
           </p>
@@ -1265,7 +1354,11 @@ export function EnginesAndJarvisDeepDive() {
 
         {/* Brain Region Selector Bar */}
         <div className="brain-galaxy-toolbar" data-stage>
-          <div className="brain-region-pills" role="tablist" aria-label="Gehirn-Bereiche von YJarvis">
+          <div
+            className="brain-region-pills"
+            role="tablist"
+            aria-label="Gehirn-Bereiche von YJarvis"
+          >
             {BRAIN_GALAXY_REGIONS.map((region, idx) => (
               <button
                 key={region.id}
@@ -1391,7 +1484,9 @@ export function EnginesAndJarvisDeepDive() {
                     <span className="synapse-pulse-halo" />
                     <span className="synapse-star-core" />
                     <span className="brain-node-label">
-                      <small>0{idx + 1} · {region.galaxyFeature.split('·')[0]}</small>
+                      <small>
+                        0{idx + 1} · {region.galaxyFeature.split('·')[0]}
+                      </small>
                       <strong>{region.regionName}</strong>
                     </span>
                   </button>
@@ -1420,10 +1515,7 @@ export function EnginesAndJarvisDeepDive() {
             {/* 3 Exploded Neural Cortex Strata */}
             <div className="exploded-cortex-layers">
               {activeBrain.explodedLayers.map((item, idx) => (
-                <div
-                  key={item.layer}
-                  className={`cortex-exploded-slice cortex-slice--${idx + 1}`}
-                >
+                <div key={item.layer} className={`cortex-exploded-slice cortex-slice--${idx + 1}`}>
                   <div className="slice-index-pill">{item.layer}</div>
                   <strong>{item.title}</strong>
                   <p>{item.detail}</p>
@@ -1440,7 +1532,8 @@ export function EnginesAndJarvisDeepDive() {
                 </span>
               </div>
               <code className="gate-sim-command">
-                ToolCall: workspace.organize_notes(directory=&quot;./projects/nexus&quot;, dry_run=false)
+                ToolCall: workspace.organize_notes(directory=&quot;./projects/nexus&quot;,
+                dry_run=false)
               </code>
               <div className="gate-sim-actions">
                 <button
@@ -1585,9 +1678,7 @@ export function WorkflowStepper() {
             <button
               type="button"
               onClick={() =>
-                setActiveStep(
-                  (s) => (s - 1 + WORKFLOW_STATIONS.length) % WORKFLOW_STATIONS.length,
-                )
+                setActiveStep((s) => (s - 1 + WORKFLOW_STATIONS.length) % WORKFLOW_STATIONS.length)
               }
             >
               ← Vorherige

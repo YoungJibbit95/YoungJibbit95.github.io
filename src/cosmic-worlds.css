@@ -165,7 +165,12 @@ button:hover:not(:disabled) {
   min-height: 600px;
   border-radius: 28px;
   background:
-    radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.16) 0%, rgba(56, 189, 248, 0.08) 38%, rgba(5, 9, 22, 0.97) 75%),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(251, 191, 36, 0.16) 0%,
+      rgba(56, 189, 248, 0.08) 38%,
+      rgba(5, 9, 22, 0.97) 75%
+    ),
     linear-gradient(180deg, rgba(9, 15, 34, 0.95), rgba(4, 7, 18, 0.99));
   border: 1px solid rgba(125, 227, 255, 0.3);
   box-shadow:
@@ -211,7 +216,13 @@ button:hover:not(:disabled) {
   width: 118px;
   height: 118px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 32%, #fffbeb 0%, #fde047 32%, #f59e0b 68%, #b45309 100%);
+  background: radial-gradient(
+    circle at 35% 32%,
+    #fffbeb 0%,
+    #fde047 32%,
+    #f59e0b 68%,
+    #b45309 100%
+  );
   box-shadow:
     0 0 48px rgba(251, 191, 36, 0.85),
     0 0 95px rgba(234, 88, 12, 0.5);
@@ -799,7 +810,13 @@ button:hover:not(:disabled) {
   width: 146px;
   height: 146px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 32%, #ffffff 0%, #bae6fd 28%, #38bdf8 65%, #0c4a6e 100%);
+  background: radial-gradient(
+    circle at 35% 32%,
+    #ffffff 0%,
+    #bae6fd 28%,
+    #38bdf8 65%,
+    #0c4a6e 100%
+  );
   border: 2px solid #ffffff !important;
   box-shadow:
     0 0 52px rgba(56, 189, 248, 0.8),
@@ -943,7 +960,11 @@ button:hover:not(:disabled) {
   position: relative;
   min-height: 360px;
   border-radius: 22px;
-  background: radial-gradient(ellipse at 50% 50%, rgba(56, 189, 248, 0.14), rgba(5, 9, 20, 0.96) 76%);
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(56, 189, 248, 0.14),
+    rgba(5, 9, 20, 0.96) 76%
+  );
   border: 1px solid rgba(148, 179, 255, 0.24);
   overflow: hidden;
 }

@@ -325,8 +325,9 @@ export function TechSolarSystem({ onSelectProject }: TechSolarSystemProps) {
         </h2>
         <p className="realm-lead">
           Im Zentrum brennt die <strong>System-Sonne der Neugier</strong>. Um sie kreisen sieben
-          spezialisierte Tech-Planeten auf drei Kepler-Bahnen. <strong>Klicke auf einen Planeten</strong>,
-          um direkt in seine Atmosphäre reinzuzoomen und seinen inneren Schichtenaufbau zu öffnen.
+          spezialisierte Tech-Planeten auf drei Kepler-Bahnen.{' '}
+          <strong>Klicke auf einen Planeten</strong>, um direkt in seine Atmosphäre reinzuzoomen und
+          seinen inneren Schichtenaufbau zu öffnen.
         </p>
       </div>
 
@@ -384,10 +385,7 @@ export function TechSolarSystem({ onSelectProject }: TechSolarSystemProps) {
       </div>
 
       {/* Stage 3: Interactive Solar System Map with Camera Zoom into Opened Planet */}
-      <div
-        className={`solar-map-container ${isPlanetOpened ? 'is-planet-zoomed' : ''}`}
-        data-stage
-      >
+      <div className={`solar-map-container ${isPlanetOpened ? 'is-planet-zoomed' : ''}`} data-stage>
         {/* OVERVIEW SOLAR SYSTEM ORRERY */}
         <div className="solar-stage solar-stage--realistic" aria-hidden={isPlanetOpened}>
           <div className="solar-stage-hud">
@@ -534,7 +532,9 @@ export function TechSolarSystem({ onSelectProject }: TechSolarSystemProps) {
                 {planet.hasPlanetaryRings && (
                   <span
                     className="planet-saturn-ring"
-                    style={{ transform: `translate(-50%, -50%) rotate(${planet.ringTiltDeg ?? 18}deg)` }}
+                    style={{
+                      transform: `translate(-50%, -50%) rotate(${planet.ringTiltDeg ?? 18}deg)`,
+                    }}
                   />
                 )}
                 <span
@@ -550,9 +550,7 @@ export function TechSolarSystem({ onSelectProject }: TechSolarSystemProps) {
 
                 <span className="planet-tag-card">
                   <span className="planet-tag-name">{planet.shortLabel}</span>
-                  <span className="planet-tag-meta">
-                    {planet.distanceAu} · Öffnen ↗
-                  </span>
+                  <span className="planet-tag-meta">{planet.distanceAu} · Öffnen ↗</span>
                 </span>
               </button>
             )
@@ -567,10 +565,7 @@ export function TechSolarSystem({ onSelectProject }: TechSolarSystemProps) {
                 className={`dock-planet-pill ${planet.id === activePlanet.id ? 'is-active' : ''}`}
                 onClick={() => handlePlanetClick(planet.id)}
               >
-                <span
-                  className="dock-planet-mini"
-                  style={{ background: planet.surfaceGradient }}
-                />
+                <span className="dock-planet-mini" style={{ background: planet.surfaceGradient }} />
                 <span>{planet.shortLabel}</span>
               </button>
             ))}

@@ -186,9 +186,9 @@ export function NexusStory() {
           <span className="handwritten">Mein langfristiges Experiment.</span>
           <p>
             In der <strong>Nexus-Spiralgalaxie</strong> markieren drei Pulsare die entscheidenden
-            Entwicklungsschritte: vom ersten Gedanken über den gemeinsamen Kontext bis zum
-            geteilten Runtime-Kern <code>@nexus/core</code>. Klicke auf einen Pulsar in der Galaxie,
-            um auf den echten rotierenden Neutronenstern und sein Info-Board reinzuzoomen.
+            Entwicklungsschritte: vom ersten Gedanken über den gemeinsamen Kontext bis zum geteilten
+            Runtime-Kern <code>@nexus/core</code>. Klicke auf einen Pulsar in der Galaxie, um auf
+            den echten rotierenden Neutronenstern und sein Info-Board reinzuzoomen.
           </p>
           <dl className="story-facts story-facts--centered">
             <div>
@@ -338,7 +338,9 @@ export function NexusStory() {
                 <span className="pulsar-marker-ring" />
                 <span className="pulsar-marker-core" />
                 <span className="pulsar-marker-tag">
-                  <strong>0{idx + 1} · {item.label}</strong>
+                  <strong>
+                    0{idx + 1} · {item.label}
+                  </strong>
                   <small>{item.pulsarCode}</small>
                 </span>
               </button>

@@ -1685,8 +1685,7 @@
     min-height: 540px;
     border: 1px solid #f6c16736;
     border-radius: 28px;
-    background:
-      radial-gradient(circle at 50% 50%, #3b2d1c45 0%, #10182bd9 58%, #090d1ae8 100%);
+    background: radial-gradient(circle at 50% 50%, #3b2d1c45 0%, #10182bd9 58%, #090d1ae8 100%);
     box-shadow: 0 28px 90px #00000055;
     overflow: hidden;
     isolation: isolate;
