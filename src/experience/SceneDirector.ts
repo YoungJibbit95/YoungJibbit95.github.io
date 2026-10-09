@@ -130,7 +130,25 @@ export class SceneDirector {
   /** Called on CameraControls rest/sleep, never on every frame. */
   rest(pose: CameraPose): void {
     const state = useExperienceStore.getState()
-    if (state.transition === 'transitioning' || state.transition === 'returning') return
+    if (state.transition === 'transitioning' || state.transition === 'returning') {
+      const expected = state.pose
+      const position = pose.position.map((value, axis) => Math.abs(value - expected.position[axis]))
+      const target = pose.target.map((value, axis) => Math.abs(value - expected.target[axis]))
+      const error = Math.max(
+        ...position,
+        ...target,
+        Math.abs(pose.fov - expected.fov),
+        Math.abs(pose.zoom - expected.zoom),
+      )
+      if (error > 0.05) return
+      // A canceled CameraControls promise can remain pending even after the
+      // actual camera arrives. Rest/sleep is an authoritative end-of-flight boundary.
+      this.sequence++
+      state.capturePose(pose)
+      state.setTransition(state.focusId ? 'focused' : 'idle')
+      if (this.started) this.persist(this.snapshot(pose), state.history)
+      return
+    }
     state.capturePose(pose)
     state.setTransition(state.focusId ? 'focused' : 'idle')
     if (this.started) this.persist(this.snapshot(pose), state.history)

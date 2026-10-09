@@ -135,7 +135,7 @@ test('system reduced motion, keyboard and forced WebGL fallback keep content', a
     'aria-pressed',
     'true',
   )
-  await page.getByRole('region', { name: /Räumlicher Atlas/ }).focus()
+  await page.getByTestId('atlas-stage').focus()
   await page.keyboard.press('ArrowRight')
   await expect(page.getByRole('link', { name: /Projekt auf GitHub/ }).first()).toBeVisible()
 })
