@@ -7,12 +7,14 @@
 - **Neun Prettier-Fehler:** Ausschließlich formatiert in [18873785](https://github.com/YoungJibbit95/YoungJibbit95.github.io/commit/1887378555c9e31d18ae51f210fb28c8ffa4e563).
 - **Temporäre Hilfsworkflows:** Wieder entfernt. Root- und G0-CI verwenden die bestehenden produktionsneutralen PR-Checks.
 
-## Reproduzierbare grüne Ausgangsläufe
+## Verifizierter grüner G0-Code-Stand
 
-- **Website-Root:** [Run 37947749214](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37947749214) auf `255587d2`: `npm ci`, Formatcheck, TypeScript-/Vite-/Prerender-Build, **13 Playwright einschließlich Axe bestanden**.
-- **3D-Kamera:** [Run 37947749259](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37947749259) auf `255587d2`: `npm ci`, **6 Unit-Tests**, Typecheck/Build, **14 Playwright bestanden und 6 absichtliche gerätespezifische Skips**, Axe.
-- **Bilder und Traces:** [Screenshot-Artefakt 11624087986](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37947749259/artifacts/11624087986): Desktop- und Mobile-Fokusbilder. Screenshots belegen Framing, nicht allein die Interaktionsfunktion.
-- **Abnahme des abschließenden Commits:** Nur zwei vollständig erfolgreich abgeschlossene GitHub-Actions-PR-Checks auf dem tatsächlichen Branch-HEAD zählen als G0 bestanden.
+- **Website-Root:** [Run 37951732950](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37951732950) auf `79ec6fbe`: `npm ci`, Formatcheck, TypeScript-/Vite-/Prerender-Build, **13 Playwright einschließlich Axe bestanden**.
+- **3D-Kamera:** [Run 37951732921](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37951732921) auf `79ec6fbe`: `npm ci`, **6 Unit-Tests**, Typecheck/Build, **16 Playwright bestanden und 8 absichtliche gerätespezifische Skips**, Axe.
+- **Bilder und Traces:** [Screenshot-Artefakt 11625819236](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37951732921/artifacts/11625819236): Desktop- und Mobile-Fokusbilder. Screenshots belegen Framing, nicht allein die Interaktionsfunktion.
+- **Endgültige Abnahme:** Der Code-Commit `79ec6fbe` ist grün. Nach diesem Dokumentationscommit müssen beide vollständigen PR-Checks auf dem neuen HEAD ebenfalls erfolgreich sein.
+
+- **Regression:** Separater Pose-/Selektions- und Touch-Scroll-Test; Desktop-Pan ist über die sichtbare Canvas synchronisiert. Keine Erhöhung von Pose-Toleranzen.
 
 ## Technische G0-Abnahmematrix
 
