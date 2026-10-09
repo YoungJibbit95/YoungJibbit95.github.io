@@ -90,17 +90,23 @@ export function NexusStory() {
   const root = useRef<HTMLDivElement>(null)
   const contentId = `nexus-story-${useId().replaceAll(':', '')}`
   const current = chapters[chapter]
+  const lastAnimatedChapter = useRef(chapter)
 
   useGSAP(
     () => {
       if (motion !== 'full') return
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: root.current!.querySelector('.story-body'),
-          start: 'top 82%',
-          once: true,
-        },
-      })
+      const chapterChanged = lastAnimatedChapter.current !== chapter
+      lastAnimatedChapter.current = chapter
+      const timeline = gsap.timeline(
+        chapterChanged
+          ? {}
+          : {
+              scrollTrigger: {
+                trigger: root.current!.querySelector('.story-body'),
+                start: 'top 82%',
+                once: true,
+              },
+      )
       timeline.from('.story-chapter-copy', {
         y: 13,
         opacity: 0,

@@ -14,4 +14,6 @@ export type SceneProps = {
   reducedMotion: boolean
   onPose: (pose: CameraPose) => void
   onSelection: (point: PointId | null) => void
+  onSavedPose: (pose: CameraPose | null) => void
+  onReady: () => void
 }

@@ -24,7 +24,7 @@ function vec3(v: Vector3): [number, number, number] {
  * Publish snapshots only at user/navigation boundaries, never on each RAF.
  */
 export const CameraRig = forwardRef<CameraRigHandle, SceneProps>(function CameraRig(
-  { reducedMotion, onPose, onSelection },
+  { reducedMotion, onPose, onSelection, onSavedPose, onReady },
   handle,
 ) {
   const controlsRef = useRef<CameraControlsImpl | null>(null)
@@ -35,6 +35,8 @@ export const CameraRig = forwardRef<CameraRigHandle, SceneProps>(function Camera
   const motionRef = useRef(reducedMotion)
   const poseCallbackRef = useRef(onPose)
   const selectionCallbackRef = useRef(onSelection)
+  const savedPoseCallbackRef = useRef(onSavedPose)
+  const readyCallbackRef = useRef(onReady)
 
   useEffect(() => {
     motionRef.current = reducedMotion
@@ -43,7 +45,9 @@ export const CameraRig = forwardRef<CameraRigHandle, SceneProps>(function Camera
   useEffect(() => {
     poseCallbackRef.current = onPose
     selectionCallbackRef.current = onSelection
-  }, [onPose, onSelection])
+    savedPoseCallbackRef.current = onSavedPose
+    readyCallbackRef.current = onReady
+  }, [onPose, onSelection, onSavedPose, onReady])
 
   function capture(): CameraPose | null {
     const controls = controlsRef.current
@@ -98,6 +102,7 @@ export const CameraRig = forwardRef<CameraRigHandle, SceneProps>(function Camera
       const origin = capture()
       if (!destination || !origin) return
       historyRef.current.push({ pose: origin, selection: selectionRef.current })
+      savedPoseCallbackRef.current(clonePose(origin))
       selectionRef.current = id
       selectionCallbackRef.current(id)
       await moveTo(destination)
@@ -105,6 +110,7 @@ export const CameraRig = forwardRef<CameraRigHandle, SceneProps>(function Camera
     back: async () => {
       const snapshot = historyRef.current.pop()
       if (!snapshot) return false
+      savedPoseCallbackRef.current(null)
       selectionRef.current = snapshot.selection
       selectionCallbackRef.current(snapshot.selection)
       await moveTo(snapshot.pose)
@@ -112,6 +118,7 @@ export const CameraRig = forwardRef<CameraRigHandle, SceneProps>(function Camera
     },
     reset: async () => {
       historyRef.current.clear()
+      savedPoseCallbackRef.current(null)
       selectionRef.current = null
       selectionCallbackRef.current(null)
       await moveTo(clonePose(DEFAULT_POSE))
@@ -137,7 +144,12 @@ export const CameraRig = forwardRef<CameraRigHandle, SceneProps>(function Camera
     if (!controls) return
     const { x, y, z } = CAMERA_LIMITS.bounds
     controls.setBoundary(new Box3(new Vector3(x[0], y[0], z[0]), new Vector3(x[1], y[1], z[1])))
-    void controls.setLookAt(...DEFAULT_POSE.position, ...DEFAULT_POSE.target, false).then(emit)
+    let active = true
+    void controls.setLookAt(...DEFAULT_POSE.position, ...DEFAULT_POSE.target, false).then(() => {
+      if (!active) return
+      emit()
+      readyCallbackRef.current()
+    })
 
     // The input event itself owns the camera now: do NOT stop() in controlstart.
     const onStart = () => tokenRef.current.cancel()
@@ -145,11 +157,14 @@ export const CameraRig = forwardRef<CameraRigHandle, SceneProps>(function Camera
     controls.addEventListener('controlstart', onStart)
     controls.addEventListener('controlend', onEnd)
     controls.addEventListener('rest', onEnd)
+    controls.addEventListener('sleep', onEnd)
     return () => {
+      active = false
       tokenRef.current.cancel()
       controls.removeEventListener('controlstart', onStart)
       controls.removeEventListener('controlend', onEnd)
       controls.removeEventListener('rest', onEnd)
+      controls.removeEventListener('sleep', onEnd)
     }
   }, [camera])
 

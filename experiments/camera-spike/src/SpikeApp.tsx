@@ -59,6 +59,8 @@ export default function SpikeApp() {
   const [selected, setSelected] = useState<PointId | null>(null)
   const [pose, setPose] = useState<CameraPose>(DEFAULT_POSE)
   const [failed, setFailed] = useState(false)
+  const [sceneReady, setSceneReady] = useState(false)
+  const [savedPose, setSavedPose] = useState<CameraPose | null>(null)
   const rig = useRef<CameraRigHandle>(null)
 
   useEffect(() => {
@@ -86,7 +88,8 @@ export default function SpikeApp() {
     return () => document.removeEventListener('keydown', backWithEscape)
   }, [])
 
-  const canExplore = ability === 'supported' && !failed
+  const renderScene = ability === 'supported' && !failed
+  const canExplore = renderScene && sceneReady
   const active = FOCUS_POINTS.find((point) => point.id === selected)
 
   function select(point: PointId) {
@@ -143,7 +146,7 @@ export default function SpikeApp() {
             aria-label="Dreidimensionalen Raum mit Pfeiltasten verschieben"
             onKeyDown={navigateStage}
           >
-            {canExplore ? (
+            {renderScene ? (
               <SceneErrorBoundary onError={() => setFailed(true)}>
                 <Suspense
                   fallback={
@@ -157,6 +160,8 @@ export default function SpikeApp() {
                     reducedMotion={reducedMotion}
                     onPose={setPose}
                     onSelection={setSelected}
+                    onSavedPose={setSavedPose}
+                    onReady={() => setSceneReady(true)}
                     onWebGLFailure={() => setFailed(true)}
                   />
                 </Suspense>
@@ -255,6 +260,9 @@ export default function SpikeApp() {
             <span className="eyebrow">ECHTE KAMERAPOSE</span>
             <output data-testid="camera-pose" aria-label="Aktuelle Kamerakoordinaten">
               {compactPose(pose)}
+            </output>
+            <output hidden aria-hidden="true" data-testid="saved-pose">
+              {savedPose ? compactPose(savedPose) : ''}
             </output>
           </div>
           <div

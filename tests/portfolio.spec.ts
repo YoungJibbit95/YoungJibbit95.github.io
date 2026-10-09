@@ -13,7 +13,7 @@ test('production HTML contains the portfolio without JavaScript', async ({ brows
     page.getByRole('heading', { level: 2, name: 'Systeme im Kopf. Natur im Blick.' }),
   ).toBeVisible()
   await expect(
-    page.locator('blockquote').filter({ hasText: 'Wenn es nach mir ginge' }),
+    page.locator('blockquote').filter({ hasText: 'Wenn es nach mir ginge' }).first(),
   ).toBeVisible()
   await context.close()
 })
@@ -130,6 +130,7 @@ test('chapter transitions settle and can be interrupted by disabling motion', as
     .getByRole('group', { name: 'Kapitel der Nexus-Geschichte' })
     .getByRole('button', { name: /Zusammenhang/ })
     .click()
+  await page.locator('.nexus-story .story-body').scrollIntoViewIfNeeded()
   await expect(page.locator('.story-media')).toHaveCSS('opacity', '1')
   await expect(page.locator('.context-node').first()).toHaveCSS('opacity', '1')
   await page

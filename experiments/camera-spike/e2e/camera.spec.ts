@@ -44,21 +44,15 @@ test('true pan, continuous dolly, focus and full-pose return', async ({ page }, 
   await expect
     .poll(async () => JSON.stringify((await pose(page)).position))
     .not.toEqual(JSON.stringify(afterPan.position))
-  // Let inertial dolly movement settle before recording the explorer pose.
-  await expect
-    .poll(async () => {
-      const first = await pose(page)
-      await page.waitForTimeout(120)
-      const second = await pose(page)
-      return Math.max(
-        ...first.position.map((value, axis) => Math.abs(value - second.position[axis])),
-        ...first.target.map((value, axis) => Math.abs(value - second.target[axis])),
-      )
-    })
-    .toBeLessThan(0.02)
-  const explored = await pose(page)
 
   await page.getByRole('button', { name: /Kern Raumpunkt C/ }).click()
+  // Compare Back with the actual CameraControls snapshot taken AT focus time,
+  // never a stale UI coordinate emitted during an in-flight dolly.
+  const explorerSnapshot = JSON.parse(
+    (await page.getByTestId('saved-pose').textContent()) ?? 'null',
+  ) as Pose
+  expect(explorerSnapshot).not.toBeNull()
+  expect(explorerSnapshot.position).not.toEqual(before.position)
   await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(8, 1)
   await page.screenshot({ path: testInfo.outputPath('g0-desktop-focused.png'), fullPage: true })
 
@@ -69,8 +63,8 @@ test('true pan, continuous dolly, focus and full-pose return', async ({ page }, 
     .poll(async () => {
       const restored = await pose(page)
       return Math.max(
-        ...restored.position.map((value, axis) => Math.abs(value - explored.position[axis])),
-        ...restored.target.map((value, axis) => Math.abs(value - explored.target[axis])),
+        ...restored.position.map((value, axis) => Math.abs(value - explorerSnapshot.position[axis])),
+        ...restored.target.map((value, axis) => Math.abs(value - explorerSnapshot.target[axis])),
       )
     })
     .toBeLessThan(0.05)
