@@ -87,6 +87,9 @@ test('a manual gesture interrupts a running camera flight', async ({ page }, tes
     steps: 9,
   })
   await page.mouse.up()
+  // CameraControls still damps the user's own drag after pointerup.
+  // Measure stability only after this gesture has settled, not mid-damping.
+  await page.waitForTimeout(1600)
   const afterGesture = await pose(page)
   await page.waitForTimeout(950)
   const final = await pose(page)
