@@ -31,4 +31,4 @@
 - **Client** `position [-12,5,11]`, `target [-10,2,-1]`: Perspektive wandert von der Architektur zu einer Produktoberfläche. Ein belegbares Beispielereignis signalisiert nur beteiligte Actors.
 - **Core** `position [1,5,8]`, `target [0,1,0]`: Der Kern wird verständlich. Pausierbarer Eventpfad, klare Quellen- und Demo-Grenzen, Rückflug zur Systempose bzw. zur Sternwarte.
 
-*Diese 9 Posen sind **Kamera-Storyboards**, noch keine implementierten Welten. G0 überprüft die Kamera-/Input-Grammatik anhand eines separaten räumlichen Prüfaufbaus.*
+_Diese 9 Posen sind **Kamera-Storyboards**, noch keine implementierten Welten. G0 überprüft die Kamera-/Input-Grammatik anhand eines separaten räumlichen Prüfaufbaus._
