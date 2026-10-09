@@ -8,6 +8,9 @@ export default defineConfig({
   use: {
     baseURL: 'http://127.0.0.1:4174',
     trace: 'retain-on-failure',
+    launchOptions: {
+      args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader'],
+    },
     screenshot: 'only-on-failure',
   },
   projects: [

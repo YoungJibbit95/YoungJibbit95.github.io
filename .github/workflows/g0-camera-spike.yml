@@ -1,0 +1,41 @@
+name: G0 camera spike verification
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  camera-spike:
+    if: github.head_ref == 'feat/living-atlas-v3'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: experiments/camera-spike
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: experiments/camera-spike/package-lock.json
+      - name: Reproducible dependencies
+        run: npm ci
+      - name: Model tests
+        run: npm run test:unit
+      - name: Typecheck and 3D browser build
+        run: npm run build
+      - name: Chromium software WebGL
+        run: npx playwright install --with-deps chromium
+      - name: Desktop, mobile, fallback and accessibility
+        run: npm run test:e2e
+      - name: Screenshots and traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g0-camera-browser-evidence
+          path: experiments/camera-spike/test-results/
+          retention-days: 14

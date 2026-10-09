@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import SpikeApp from './SpikeApp'
+import '@fontsource-variable/manrope/index.css'
 import './styles.css'
 
 const element = document.getElementById('root')
