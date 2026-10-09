@@ -24,6 +24,7 @@ test('true pan, continuous dolly, focus and full-pose return', async ({ page }, 
   page.on('pageerror', (error) => errors.push(error.message))
   await page.goto('/')
   const canvas = await stage(page)
+  await canvas.scrollIntoViewIfNeeded()
   const box = await canvas.boundingBox()
   expect(box).not.toBeNull()
   const before = await pose(page)
