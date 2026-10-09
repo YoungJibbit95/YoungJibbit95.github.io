@@ -63,7 +63,9 @@ test('true pan, continuous dolly, focus and full-pose return', async ({ page }, 
     .poll(async () => {
       const restored = await pose(page)
       return Math.max(
-        ...restored.position.map((value, axis) => Math.abs(value - explorerSnapshot.position[axis])),
+        ...restored.position.map((value, axis) =>
+          Math.abs(value - explorerSnapshot.position[axis]),
+        ),
         ...restored.target.map((value, axis) => Math.abs(value - explorerSnapshot.target[axis])),
       )
     })
