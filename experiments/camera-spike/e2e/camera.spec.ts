@@ -180,9 +180,7 @@ test('keyboard pan and Escape restore the saved real camera pose', async ({ page
     .getByRole('region', { name: 'Dreidimensionalen Raum mit Pfeiltasten verschieben' })
     .focus()
   await page.keyboard.press('ArrowLeft')
-  await expect
-    .poll(async () => (await pose(page)).target[0])
-    .not.toBeCloseTo(before.target[0], 1)
+  await expect.poll(async () => (await pose(page)).target[0]).not.toBeCloseTo(before.target[0], 1)
   await page.getByRole('button', { name: /Kern Raumpunkt C/ }).click()
   const snapshot = JSON.parse(
     (await page.getByTestId('saved-pose').textContent()) ?? 'null',
@@ -223,8 +221,7 @@ test('two-finger touch pinch changes actual 3D camera distance', async ({ page }
     await page.waitForTimeout(50)
   }
   await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
-  const length = (p: Pose) =>
-    Math.hypot(...p.position.map((value, axis) => value - p.target[axis]))
+  const length = (p: Pose) => Math.hypot(...p.position.map((value, axis) => value - p.target[axis]))
   await expect
     .poll(async () => Math.abs(length(await pose(page)) - length(before)))
     .toBeGreaterThan(0.25)
