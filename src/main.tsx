@@ -2,9 +2,10 @@ import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import '@fontsource-variable/manrope/wght.css'
 import '@fontsource/jetbrains-mono/latin-400.css'
+import '@fontsource/caveat/latin-400.css'
 import App from './App'
 import './styles.css'
-import './cosmos.css'
+import './portfolio.css'
 
 const root = document.getElementById('root')!
 const app = (
