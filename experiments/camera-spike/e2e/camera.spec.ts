@@ -228,14 +228,18 @@ test('two-finger touch pinch changes actual 3D camera distance', async ({ page }
     await page.waitForTimeout(50)
   }
   await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
-  const length = (p: Pose) => Math.hypot(...p.position.map((value, axis) => value - p.target[axis]))
+  const length = (p: Pose) =>
+    Math.hypot(...p.position.map((value, axis) => value - p.target[axis]))
   await expect
     .poll(async () => Math.abs(length(await pose(page)) - length(before)))
     .toBeGreaterThan(0.25)
-  expect(Math.abs((await page.evaluate(() => window.scrollY)) - scrollBeforePinch)).toBeLessThan(3)
+  expect(Math.abs((await page.evaluate(() => window.scrollY)) - scrollBeforePinch)).toBeLessThan(
+    3,
+  )
   const afterPinch = await pose(page)
   const scrollBeforeTruck = await page.evaluate(() => window.scrollY)
-  const truck = (shift: number) => pair(40).map((finger) => ({ ...finger, x: finger.x + shift }))
+  const truck = (shift: number) =>
+    pair(40).map((finger) => ({ ...finger, x: finger.x + shift }))
   await client.send('Input.dispatchTouchEvent', {
     type: 'touchStart',
     touchPoints: truck(0),
@@ -256,7 +260,9 @@ test('two-finger touch pinch changes actual 3D camera distance', async ({ page }
       )
     })
     .toBeGreaterThan(0.1)
-  expect(Math.abs((await page.evaluate(() => window.scrollY)) - scrollBeforeTruck)).toBeLessThan(3)
+  expect(Math.abs((await page.evaluate(() => window.scrollY)) - scrollBeforeTruck)).toBeLessThan(
+    3,
+  )
   await client.detach()
 })
 
@@ -293,7 +299,9 @@ test('Back restores saved selection and complete pose', async ({ page }, testInf
   await page.getByRole('button', { name: /Signal Raumpunkt A/ }).click()
   await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(-8, 1)
   await page.getByRole('button', { name: /Kern Raumpunkt C/ }).click()
-  const saved = JSON.parse((await page.getByTestId('saved-pose').textContent()) ?? 'null') as Pose
+  const saved = JSON.parse(
+    (await page.getByTestId('saved-pose').textContent()) ?? 'null',
+  ) as Pose
   expect(saved).not.toBeNull()
   await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(8, 1)
   await page.getByRole('button', { name: /Zurück/ }).click()
