@@ -232,9 +232,7 @@ test('two-finger touch pinch changes actual 3D camera distance', async ({ page }
   await expect
     .poll(async () => Math.abs(length(await pose(page)) - length(before)))
     .toBeGreaterThan(0.25)
-  expect(Math.abs((await page.evaluate(() => window.scrollY)) - scrollBeforePinch)).toBeLessThan(
-    3,
-  )
+  expect(Math.abs((await page.evaluate(() => window.scrollY)) - scrollBeforePinch)).toBeLessThan(3)
   const afterPinch = await pose(page)
   const scrollBeforeTruck = await page.evaluate(() => window.scrollY)
   const truck = (shift: number) => pair(40).map((finger) => ({ ...finger, x: finger.x + shift }))
@@ -258,9 +256,7 @@ test('two-finger touch pinch changes actual 3D camera distance', async ({ page }
       )
     })
     .toBeGreaterThan(0.1)
-  expect(Math.abs((await page.evaluate(() => window.scrollY)) - scrollBeforeTruck)).toBeLessThan(
-    3,
-  )
+  expect(Math.abs((await page.evaluate(() => window.scrollY)) - scrollBeforeTruck)).toBeLessThan(3)
   await client.detach()
 })
 
