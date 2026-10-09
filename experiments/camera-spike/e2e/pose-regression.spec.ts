@@ -32,9 +32,7 @@ test('Back restores previous selection and full camera pose', async ({ page }, t
       const positions = actual.position.map((value, axis) =>
         Math.abs(value - snapshot.position[axis]),
       )
-      const targets = actual.target.map((value, axis) =>
-        Math.abs(value - snapshot.target[axis]),
-      )
+      const targets = actual.target.map((value, axis) => Math.abs(value - snapshot.target[axis]))
       return Math.max(...positions, ...targets)
     })
     .toBeLessThan(0.05)
@@ -65,10 +63,7 @@ test('pinch and two-finger truck do not scroll the page', async ({ page }, testI
     { x: x - spread + offset, y, id: 1 },
     { x: x + spread + offset, y, id: 2 },
   ]
-  await client.send('Input.dispatchTouchEvent', {
-    type: 'touchStart',
-    touchPoints: points(35, 0),
-  })
+  await client.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: points(35, 0) })
   for (const spread of [45, 65, 85, 110]) {
     await client.send('Input.dispatchTouchEvent', {
       type: 'touchMove',
@@ -81,10 +76,7 @@ test('pinch and two-finger truck do not scroll the page', async ({ page }, testI
   expect(Math.abs(afterPinch - before)).toBeLessThan(3)
   const truckStart = await page.evaluate(() => window.scrollY)
   const targetBefore = (await pose(page)).target
-  await client.send('Input.dispatchTouchEvent', {
-    type: 'touchStart',
-    touchPoints: points(40, 0),
-  })
+  await client.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: points(40, 0) })
   for (const offset of [8, 16, 24, 32, 40]) {
     await client.send('Input.dispatchTouchEvent', {
       type: 'touchMove',
@@ -96,9 +88,7 @@ test('pinch and two-finger truck do not scroll the page', async ({ page }, testI
   await expect
     .poll(async () => {
       const after = await pose(page)
-      const deltas = after.target.map((value, axis) =>
-        Math.abs(value - targetBefore[axis]),
-      )
+      const deltas = after.target.map((value, axis) => Math.abs(value - targetBefore[axis]))
       return Math.max(...deltas)
     })
     .toBeGreaterThan(0.1)
