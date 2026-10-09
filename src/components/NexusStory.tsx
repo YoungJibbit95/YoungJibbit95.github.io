@@ -106,6 +106,7 @@ export function NexusStory() {
                 start: 'top 82%',
                 once: true,
               },
+            },
       )
       timeline.from('.story-chapter-copy', {
         y: 13,

@@ -159,6 +159,8 @@ const SpikeScene = forwardRef<CameraRigHandle, SpikeSceneProps>(function SpikeSc
           reducedMotion={props.reducedMotion}
           onPose={props.onPose}
           onSelection={props.onSelection}
+          onSavedPose={props.onSavedPose}
+          onReady={props.onReady}
         />
         <SpatialConstellation onFocus={(point) => void rig.current?.focus(point)} />
       </Canvas>
