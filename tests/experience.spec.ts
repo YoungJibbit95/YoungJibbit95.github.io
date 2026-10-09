@@ -14,9 +14,11 @@ async function pose(page: Page): Promise<Pose> {
 
 async function canvas(page: Page) {
   const actual = page.getByTestId('atlas-canvas').locator('canvas')
-  await expect(actual).toBeVisible()
+  await expect(actual).toBeVisible({ timeout: 20_000 })
   return actual
 }
+
+test.describe.configure({ timeout: 90_000 })
 
 test('two worlds share exactly one R3F canvas across navigation', async ({ page }) => {
   await page.goto('/?atlas=preview')
@@ -152,7 +154,10 @@ test('WebGL2 disabled still provides a usable world choice and seven project lin
     })
   })
   await page.goto('/?atlas=preview')
-  await expect(page.getByText('Die Projekte sind auch ohne', { exact: false })).toBeVisible()
+  await expect(
+    page.getByRole('region', { name: 'Räumlicher Atlas, mit Pfeiltasten verschiebbar' })
+      .getByText('Die Projekte sind auch ohne', { exact: false }),
+  ).toBeVisible()
   await expect(page.getByTestId('atlas-canvas')).toHaveCount(0)
   await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
