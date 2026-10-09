@@ -176,13 +176,17 @@ test('keyboard pan and Escape restore the saved real camera pose', async ({ page
   await stage(page)
   await expect(page.getByRole('button', { name: 'Übersicht' })).toBeEnabled()
   const before = await pose(page)
-  await page.getByRole('region', { name: 'Dreidimensionalen Raum mit Pfeiltasten verschieben' }).focus()
+  await page
+    .getByRole('region', { name: 'Dreidimensionalen Raum mit Pfeiltasten verschieben' })
+    .focus()
   await page.keyboard.press('ArrowLeft')
   await expect
     .poll(async () => (await pose(page)).target[0])
     .not.toBeCloseTo(before.target[0], 1)
   await page.getByRole('button', { name: /Kern Raumpunkt C/ }).click()
-  const snapshot = JSON.parse((await page.getByTestId('saved-pose').textContent()) ?? 'null') as Pose
+  const snapshot = JSON.parse(
+    (await page.getByTestId('saved-pose').textContent()) ?? 'null',
+  ) as Pose
   expect(snapshot).not.toBeNull()
   await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(8, 1)
   await page.keyboard.press('Escape')
