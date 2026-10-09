@@ -44,6 +44,18 @@ test('true pan, continuous dolly, focus and full-pose return', async ({ page }, 
   await expect
     .poll(async () => JSON.stringify((await pose(page)).position))
     .not.toEqual(JSON.stringify(afterPan.position))
+  // Let inertial dolly movement settle before recording the explorer pose.
+  await expect
+    .poll(async () => {
+      const first = await pose(page)
+      await page.waitForTimeout(120)
+      const second = await pose(page)
+      return Math.max(
+        ...first.position.map((value, axis) => Math.abs(value - second.position[axis])),
+        ...first.target.map((value, axis) => Math.abs(value - second.target[axis])),
+      )
+    })
+    .toBeLessThan(0.02)
   const explored = await pose(page)
 
   await page.getByRole('button', { name: /Kern Raumpunkt C/ }).click()
@@ -51,14 +63,17 @@ test('true pan, continuous dolly, focus and full-pose return', async ({ page }, 
   await page.screenshot({ path: testInfo.outputPath('g0-desktop-focused.png'), fullPage: true })
 
   await page.getByRole('button', { name: /Zurück/ }).click()
-  await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(explored.target[0], 1)
-  const restored = await pose(page)
-  restored.position.forEach((coordinate, axis) => {
-    expect(coordinate).toBeCloseTo(explored.position[axis], 1)
-  })
-  restored.target.forEach((coordinate, axis) => {
-    expect(coordinate).toBeCloseTo(explored.target[axis], 1)
-  })
+  // A target can arrive ahead of the damped position. Validate the complete
+  // six-coordinate pose after the flight actually finishes, not mid-flight.
+  await expect
+    .poll(async () => {
+      const restored = await pose(page)
+      return Math.max(
+        ...restored.position.map((value, axis) => Math.abs(value - explored.position[axis])),
+        ...restored.target.map((value, axis) => Math.abs(value - explored.target[axis])),
+      )
+    })
+    .toBeLessThan(0.05)
   expect(errors).toEqual([])
 })
 

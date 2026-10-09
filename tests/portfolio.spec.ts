@@ -12,7 +12,7 @@ test('production HTML contains the portfolio without JavaScript', async ({ brows
   await expect(
     page.getByRole('heading', { level: 2, name: 'Systeme im Kopf. Natur im Blick.' }),
   ).toBeVisible()
-  await expect(page.getByText('Wenn es nach mir ginge', { exact: false })).toBeVisible()
+  await expect(page.locator('blockquote').filter({ hasText: 'Wenn es nach mir ginge' })).toBeVisible()
   await context.close()
 })
 
@@ -123,6 +123,7 @@ test('the rendered page has no serious accessibility violations', async ({ page 
 
 test('chapter transitions settle and can be interrupted by disabling motion', async ({ page }) => {
   await page.goto('/#nexus-geschichte')
+  await page.locator('.nexus-story .story-body').scrollIntoViewIfNeeded()
   await page
     .getByRole('group', { name: 'Kapitel der Nexus-Geschichte' })
     .getByRole('button', { name: /Zusammenhang/ })
