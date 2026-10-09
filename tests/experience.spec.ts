@@ -158,9 +158,8 @@ test('WebGL2 disabled still provides a usable world choice and seven project lin
   await expect(
     page
       .getByRole('region', { name: 'Räumlicher Atlas, mit Pfeiltasten verschiebbar' })
-      .getByRole('status')
-      .getByText('Die Projekte sind auch ohne', { exact: false }),
-  ).toBeVisible({ timeout: 20_000 })
+      .getByRole('status'),
+  ).toContainText('Die Projekte sind auch ohne', { timeout: 20_000 })
   await expect(page.getByTestId('atlas-canvas')).toHaveCount(0)
   await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
