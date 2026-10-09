@@ -256,6 +256,8 @@ test('right mouse orbit changes azimuth while retaining the target', async ({ pa
   test.skip(testInfo.project.name !== 'desktop', 'Right mouse button requires a desktop')
   await page.goto('/')
   const canvas = await stage(page)
+  // The canvas starts partly below the fold at 720px; move it inside the viewport first.
+  await canvas.scrollIntoViewIfNeeded()
   const bounds = await canvas.boundingBox()
   expect(bounds).not.toBeNull()
   const before = await pose(page)
