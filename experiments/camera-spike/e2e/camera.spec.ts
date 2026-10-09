@@ -169,3 +169,59 @@ test('mobile stage, large DOM targets and screenshot', async ({ page }, testInfo
   )
   expect(hasOverflow).toBe(false)
 })
+
+test('keyboard pan and Escape restore the saved real camera pose', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'Desktop keyboard test')
+  await page.goto('/')
+  await stage(page)
+  await expect(page.getByRole('button', { name: 'Übersicht' })).toBeEnabled()
+  const before = await pose(page)
+  await page.getByRole('region', { name: 'Dreidimensionalen Raum mit Pfeiltasten verschieben' }).focus()
+  await page.keyboard.press('ArrowLeft')
+  await expect
+    .poll(async () => (await pose(page)).target[0])
+    .not.toBeCloseTo(before.target[0], 1)
+  await page.getByRole('button', { name: /Kern Raumpunkt C/ }).click()
+  const snapshot = JSON.parse((await page.getByTestId('saved-pose').textContent()) ?? 'null') as Pose
+  expect(snapshot).not.toBeNull()
+  await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(8, 1)
+  await page.keyboard.press('Escape')
+  await expect
+    .poll(async () => {
+      const actual = await pose(page)
+      return Math.max(
+        ...actual.position.map((value, axis) => Math.abs(value - snapshot.position[axis])),
+        ...actual.target.map((value, axis) => Math.abs(value - snapshot.target[axis])),
+      )
+    })
+    .toBeLessThan(0.05)
+})
+
+test('two-finger touch pinch changes actual 3D camera distance', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'Emulated multi-touch mobile test')
+  await page.goto('/')
+  const canvas = await stage(page)
+  await expect(page.getByRole('button', { name: 'Übersicht' })).toBeEnabled()
+  await canvas.scrollIntoViewIfNeeded()
+  const before = await pose(page)
+  const bounds = await canvas.boundingBox()
+  expect(bounds).not.toBeNull()
+  const cx = bounds!.x + bounds!.width * 0.5
+  const cy = bounds!.y + bounds!.height * 0.48
+  const client = await page.context().newCDPSession(page)
+  const pair = (distance: number) => [
+    { x: cx - distance, y: cy, id: 1 },
+    { x: cx + distance, y: cy, id: 2 },
+  ]
+  await client.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: pair(35) })
+  for (const spread of [45, 65, 85, 110]) {
+    await client.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: pair(spread) })
+    await page.waitForTimeout(50)
+  }
+  await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
+  const length = (p: Pose) =>
+    Math.hypot(...p.position.map((value, axis) => value - p.target[axis]))
+  await expect
+    .poll(async () => Math.abs(length(await pose(page)) - length(before)))
+    .toBeGreaterThan(0.25)
+})
