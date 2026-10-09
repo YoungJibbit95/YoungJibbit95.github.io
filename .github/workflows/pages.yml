@@ -27,6 +27,13 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      - name: Show exact G1 Prettier differences (read-only diagnostic)
+        run: |
+          for file in docs/experience/G1_ARCHITECTURE.md playwright.config.ts src/experience/CameraRig.tsx src/experience/experience.css src/experience/ExperienceRoot.tsx src/experience/SceneDirector.ts src/experience/SceneRegistry.ts src/experience/WorldCanvas.tsx src/experience/worlds/OriginPreview.tsx src/experience/worldTypes.ts src/store/worldHistory.ts tests/experience.spec.ts tests/experience.unit.test.ts; do
+            echo "G1-FORMAT-START:${file}"
+            npx prettier "${file}" | diff -u "${file}" - || true
+            echo "G1-FORMAT-END:${file}"
+          done
       - run: npm run format:check
       - run: npm run test:unit
       - run: npm run build
