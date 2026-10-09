@@ -225,4 +225,56 @@ test('two-finger touch pinch changes actual 3D camera distance', async ({ page }
   await expect
     .poll(async () => Math.abs(length(await pose(page)) - length(before)))
     .toBeGreaterThan(0.25)
+  const afterPinch = await pose(page)
+  const scrollBeforeTruck = await page.evaluate(() => window.scrollY)
+  const truck = (shift: number) =>
+    pair(40).map((finger) => ({ ...finger, x: finger.x + shift }))
+  await client.send('Input.dispatchTouchEvent', {
+    type: 'touchStart',
+    touchPoints: truck(0),
+  })
+  for (const offset of [8, 16, 24, 32, 40]) {
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: truck(offset),
+    })
+    await page.waitForTimeout(45)
+  }
+  await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
+  await expect
+    .poll(async () => {
+      const after = await pose(page)
+      return Math.max(
+        ...after.target.map((value, axis) => Math.abs(value - afterPinch.target[axis])),
+      )
+    })
+    .toBeGreaterThan(0.1)
+  expect(
+    Math.abs((await page.evaluate(() => window.scrollY)) - scrollBeforeTruck),
+  ).toBeLessThan(3)
+  await client.detach()
+})
+
+test('right mouse orbit changes azimuth while retaining the target', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'Right mouse button requires a desktop')
+  await page.goto('/')
+  const canvas = await stage(page)
+  const bounds = await canvas.boundingBox()
+  expect(bounds).not.toBeNull()
+  const before = await pose(page)
+  const x = bounds!.x + bounds!.width / 2
+  const y = bounds!.y + bounds!.height / 2
+  const azimuth = (value: Pose) =>
+    Math.atan2(value.position[0] - value.target[0], value.position[2] - value.target[2])
+  await page.mouse.move(x, y)
+  await page.mouse.down({ button: 'right' })
+  await page.mouse.move(x + 145, y + 55, { steps: 16 })
+  await page.mouse.up({ button: 'right' })
+  await expect
+    .poll(async () => Math.abs(azimuth(await pose(page)) - azimuth(before)))
+    .toBeGreaterThan(0.08)
+  const after = await pose(page)
+  expect(
+    Math.max(...after.target.map((value, axis) => Math.abs(value - before.target[axis]))),
+  ).toBeLessThan(0.2)
 })
