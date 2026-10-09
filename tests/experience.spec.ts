@@ -90,7 +90,9 @@ test('cross-world Back returns to the actual previous camera pose', async ({ pag
     .toBeLessThan(0.05)
 })
 
-test('rapid focus changes are interruptible and settle on the latest destination', async ({ page }) => {
+test('rapid focus changes are interruptible and settle on the latest destination', async ({
+  page,
+}) => {
   await page.goto('/?atlas=preview')
   await canvas(page)
   await page.getByRole('button', { name: /Das Signal Neugier/ }).click()

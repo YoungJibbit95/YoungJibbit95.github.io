@@ -132,7 +132,10 @@ export function clonePose(pose: CameraPose): CameraPose {
   }
 }
 
-export function defaultSnapshot(world: AvailableWorldId, focusId: string | null): NavigationSnapshot {
+export function defaultSnapshot(
+  world: AvailableWorldId,
+  focusId: string | null,
+): NavigationSnapshot {
   const focus = findHotspot(world, focusId)
   return {
     world,

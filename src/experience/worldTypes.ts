@@ -16,12 +16,7 @@ export type AvailableWorldId = Extract<WorldId, 'origin' | 'observatory'>
 export type Vec3 = readonly [number, number, number]
 export type MotionMode = 'full' | 'reduced' | 'off'
 export type TransitionPhase =
-  | 'idle'
-  | 'transitioning'
-  | 'focused'
-  | 'returning'
-  | 'interrupted'
-  | 'error'
+  'idle' | 'transitioning' | 'focused' | 'returning' | 'interrupted' | 'error'
 
 export interface CameraPose {
   position: Vec3

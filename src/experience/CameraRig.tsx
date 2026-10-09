@@ -55,11 +55,7 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
     perspective.updateProjectionMatrix()
     controls.normalizeRotations()
     invalidate()
-    await controls.setLookAt(
-      ...pose.position,
-      ...pose.target,
-      animate,
-    )
+    await controls.setLookAt(...pose.position, ...pose.target, animate)
     const complete = generation.current === token
     if (complete) invalidate()
     return complete
@@ -87,9 +83,7 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
     const controls = controlsRef.current
     if (!controls) return
     const { x, y, z } = bounds.box
-    controls.setBoundary(
-      new Box3(new Vector3(x[0], y[0], z[0]), new Vector3(x[1], y[1], z[1])),
-    )
+    controls.setBoundary(new Box3(new Vector3(x[0], y[0], z[0]), new Vector3(x[1], y[1], z[1])))
   }, [bounds])
 
   useEffect(() => {

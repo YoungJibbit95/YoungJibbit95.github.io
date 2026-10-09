@@ -21,7 +21,7 @@ The new shell is not a technical case study on the actual public site. Internal 
 - The single `WorldCanvas` mounts a persistent CameraRig and switches between two lazy scenes. No parallel Canvas, global canvas router, or world-spanning asset preload.
 - G0-derived CameraControls is the physical source of truth: live position, target, fov, zoom. Drag trucks, right-button drag orbits, wheel and pinch dolly, DOM focus choices fly to 3D coordinates.
 - The `SceneDirector` exclusively owns `idle`, `transitioning`, `focused`, `returning`, `interrupted`, and `error`. A new command cancels the old flight and invalidates its sequence. Store poses update at navigation boundaries and Controls rest/sleep, not on every frame.
-- At navigation, the actual current CameraControls pose and selection are written to the outgoing browser history entry *before* `pushState`. The new entry holds its own snapshot and bounded stack. `popstate` validates and restores it without adding another history entry. In-app Back delegates to browser history; direct-entry fallback returns to overview.
+- At navigation, the actual current CameraControls pose and selection are written to the outgoing browser history entry _before_ `pushState`. The new entry holds its own snapshot and bounded stack. `popstate` validates and restores it without adding another history entry. In-app Back delegates to browser history; direct-entry fallback returns to overview.
 - A non-passive wheel handler inside the canvas-owned stage prevents page scroll while camera zoom runs. Outside the stage, document scroll works normally. Touch-action none applies only to the stage. HTML controls and text inputs retain their default keyboard behavior.
 
 ## Rendering, fallbacks and performance

@@ -1,4 +1,9 @@
-import { clonePose, defaultSnapshot, findHotspot, isAvailableWorld } from '../experience/SceneRegistry'
+import {
+  clonePose,
+  defaultSnapshot,
+  findHotspot,
+  isAvailableWorld,
+} from '../experience/SceneRegistry'
 import type { CameraPose, NavigationSnapshot } from '../experience/worldTypes'
 
 export function copySnapshot(snapshot: NavigationSnapshot): NavigationSnapshot {

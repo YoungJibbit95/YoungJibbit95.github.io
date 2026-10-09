@@ -19,7 +19,10 @@ test('queries validate world and focus without breaking legacy hash links', () =
   assert.equal(parseWorldRoute('?atlas=preview&world=observatory&focus=nexus').focusId, 'nexus')
   assert.equal(parseWorldRoute('?atlas=preview&world=nexus&focus=core').world, 'origin')
   assert.equal(parseWorldRoute('?atlas=preview&world=observatory&focus=missing').focusId, null)
-  assert.equal(worldHref(defaultSnapshot('observatory', 'cerebri')), '/?atlas=preview&world=observatory&focus=cerebri')
+  assert.equal(
+    worldHref(defaultSnapshot('observatory', 'cerebri')),
+    '/?atlas=preview&world=observatory&focus=cerebri',
+  )
 })
 
 test('snapshots preserve camera and selection with defensive copying', () => {

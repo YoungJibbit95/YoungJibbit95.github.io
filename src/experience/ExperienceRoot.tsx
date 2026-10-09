@@ -87,7 +87,9 @@ export default function ExperienceRoot() {
 
   return (
     <main className="atlas-v3" data-testid="atlas-experience">
-      <a className="atlas-v3__skip" href="#atlas-projects">Direkt zu Projekten</a>
+      <a className="atlas-v3__skip" href="#atlas-projects">
+        Direkt zu Projekten
+      </a>
       <header className="atlas-v3__header">
         <a className="atlas-v3__brand" href="/" aria-label="YoungJibbit95 – klassische Ansicht">
           YoungJibbit95<span>.</span>
@@ -100,10 +102,12 @@ export default function ExperienceRoot() {
 
       <div className="atlas-v3__intro">
         <p className="atlas-v3__eyebrow">DIE WELT HINTER DEN IDEEN</p>
-        <h1>Ich baue, <em>um zu verstehen.</em></h1>
+        <h1>
+          Ich baue, <em>um zu verstehen.</em>
+        </h1>
         <p>
-          Es beginnt mit Neugier. Der Rest entsteht, wenn man Verbindungen
-          nicht nur sieht, sondern ihnen folgt.
+          Es beginnt mit Neugier. Der Rest entsteht, wenn man Verbindungen nicht nur sieht, sondern
+          ihnen folgt.
         </p>
       </div>
 
@@ -174,7 +178,11 @@ export default function ExperienceRoot() {
             </div>
 
             <div className="atlas-v3__controls" role="group" aria-label="Kamera und Verlauf">
-              <button type="button" onClick={() => director.back()} disabled={!history.length && !focusId && world === 'origin'}>
+              <button
+                type="button"
+                onClick={() => director.back()}
+                disabled={!history.length && !focusId && world === 'origin'}
+              >
                 ← Zurück
               </button>
               <button type="button" onClick={() => director.overview()}>

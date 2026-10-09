@@ -77,8 +77,7 @@ export class SceneDirector {
 
   private persist(snapshot: NavigationSnapshot, stack: NavigationSnapshot[]): void {
     const original = window.history.state
-    const existing: BrowserHistoryState =
-      original && typeof original === 'object' ? original : {}
+    const existing: BrowserHistoryState = original && typeof original === 'object' ? original : {}
     window.history.replaceState(
       {
         ...existing,

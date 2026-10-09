@@ -29,13 +29,7 @@ export default function OriginPreview({ onFocus, selectedId }: WorldSceneProps) 
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[distant, 3]} />
         </bufferGeometry>
-        <pointsMaterial
-          color="#9ebbd1"
-          size={0.09}
-          transparent
-          opacity={0.65}
-          depthWrite={false}
-        />
+        <pointsMaterial color="#9ebbd1" size={0.09} transparent opacity={0.65} depthWrite={false} />
       </points>
       <Line
         points={points.map((spot) => [...spot.position] as [number, number, number])}

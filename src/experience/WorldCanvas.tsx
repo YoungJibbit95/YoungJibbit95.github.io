@@ -4,11 +4,7 @@ import type { RefObject } from 'react'
 import { CameraRig } from './CameraRig'
 import { bindSpatialInput } from './InteractionRouter'
 import { getWorld } from './SceneRegistry'
-import type {
-  AvailableWorldId,
-  CameraBridge,
-  CameraPose,
-} from './worldTypes'
+import type { AvailableWorldId, CameraBridge, CameraPose } from './worldTypes'
 
 const Origin = lazy(() => getWorld('origin').loadScene())
 const Observatory = lazy(() => getWorld('observatory').loadScene())

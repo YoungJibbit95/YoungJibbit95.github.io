@@ -9,8 +9,7 @@
   overflow: clip;
   background:
     radial-gradient(ellipse at 62% 14%, rgba(48, 65, 104, 0.36), transparent 40%),
-    radial-gradient(ellipse at 12% 68%, rgba(23, 63, 76, 0.26), transparent 35%),
-    var(--atlas-ink);
+    radial-gradient(ellipse at 12% 68%, rgba(23, 63, 76, 0.26), transparent 35%), var(--atlas-ink);
   color: var(--atlas-paper);
   font-family: Manrope, 'Segoe UI', sans-serif;
   font-synthesis: none;
