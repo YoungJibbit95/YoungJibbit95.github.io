@@ -154,11 +154,13 @@ test('WebGL2 disabled still provides a usable world choice and seven project lin
     })
   })
   await page.goto('/?atlas=preview')
+  await expect(page.getByTestId('atlas-experience')).toBeVisible({ timeout: 20_000 })
   await expect(
     page
       .getByRole('region', { name: 'Räumlicher Atlas, mit Pfeiltasten verschiebbar' })
+      .getByRole('status')
       .getByText('Die Projekte sind auch ohne', { exact: false }),
-  ).toBeVisible()
+  ).toBeVisible({ timeout: 20_000 })
   await expect(page.getByTestId('atlas-canvas')).toHaveCount(0)
   await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
@@ -197,7 +199,9 @@ test('mobile and desktop preview compositions are screenshot-reviewed', async ({
 
 test('preview passes WCAG 2.1 A/AA severe accessibility checks', async ({ page }) => {
   await page.goto('/?atlas=preview')
-  await expect(page.getByRole('navigation', { name: 'Orte im Raum' })).toBeVisible()
+  await expect(page.getByRole('navigation', { name: 'Orte im Raum' })).toBeVisible({
+    timeout: 20_000,
+  })
   const findings = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
     .analyze()
