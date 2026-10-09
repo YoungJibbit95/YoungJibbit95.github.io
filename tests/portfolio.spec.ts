@@ -13,7 +13,7 @@ test('production HTML contains the portfolio without JavaScript', async ({ brows
     page.getByRole('heading', { level: 2, name: 'Systeme im Kopf. Natur im Blick.' }),
   ).toBeVisible()
   await expect(
-    page.locator('#mensch blockquote').filter({ hasText: 'Wenn es nach mir ginge' }),
+    page.locator('#mensch .person-copy blockquote').filter({ hasText: 'Wenn es nach mir ginge' }),
   ).toBeVisible()
   await context.close()
 })
