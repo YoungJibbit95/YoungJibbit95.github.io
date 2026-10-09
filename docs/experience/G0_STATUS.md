@@ -1,26 +1,19 @@
-# G0 — Zwischenstand
+# G0 — Nachweisbarer Arbeitsstand
 
-Stand: 2026-10-09.
+Stand: 2026-10-09 · Branch: `feat/living-atlas-v3` · Draft-PR [#1](https://github.com/YoungJibbit95/YoungJibbit95.github.io/pull/1).
 
-## Quelle
+## ZIP-Restore: bestanden
 
-- Source of Truth: Nutzer-ZIP (SHA-256 `b4aa73859c962ce907fa6eba4f71fca35acb40adb6d5c24677882c5800254f15`).
-- Der aktuelle `main` wird vor vollständiger ZIP- und CI-Prüfung nicht überschrieben.
+**Originalquelle:** Nutzer-Upload `youngjibbit95.github.io.zip`; gesamtes ZIP SHA-256: `b4aa73859c962ce907fa6eba4f71fca35acb40adb6d5c24677882c5800254f15`.
 
-## Im Feature-Branch
+**Unveränderlicher GitHub-Nachweis:** [Commit 93a581ee](https://github.com/YoungJibbit95/YoungJibbit95.github.io/commit/93a581ee02e45545070063c8b139ed553cbfd959). Die 43 ZIP-Dateien wurden durch Vergleich der Git-Blob-SHAs mit den vor Ort aus den ZIP-Bytes berechneten Git-Blob-SHAs überprüft: **43 von 43 identisch, null Unterschiede**. Das überprüfte Git-Tree enthält außerdem acht ergänzende Dateien (Dokumentation, Lockfile und Kamera-Modelltests). Einzelne Originaldatei-SHA-256 stehen in [ORIGINAL_ZIP_MANIFEST.sha256](./ORIGINAL_ZIP_MANIFEST.sha256). Formatierung späterer Commits verändert absichtlich einzelne Blob-SHAs, nicht den Nachweis dieses Ursprungszustands.
 
-- Historische, zum ZIP bytegleiche Quellen samt Nexus-Captures und v0.2-Lockfile.
-- Aus der ZIP: `GalaxyGuide.tsx`.
-- Isoliertes CameraModel mit Pose, Zoom, Return-Snapshot und Flight-Cancel-Token.
-- Sechs Unit-Tests bestanden lokal unter Node 22.
+**Kein erneuter ZIP-Import, kein Branch-Reset.** Die ehemals anderslautenden Statusangaben sind überholt.
 
-## Noch offen
+## Vorheriger CI-Befund
 
-- Vollständige ZIP-Migration: App, DeepDives, SolarSystem, Starfield, NexusStory und CSS.
-- R3F-Canvas und CameraRig vollständig in GitHub übernehmen.
-- Reproduzierbare `npm ci`-, Build-, Playwright- und Axe-Checks.
-- WebGL, Touch, Reduced Motion und Performance nachweisen.
+[GitHub Actions Run 37939388290](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/37939388290): `npm ci` erfolgreich; `npm run format:check` schlug an neun Originaldateien fehl. `npm run build`, Playwright und Axe wurden **übersprungen**, nicht bestanden. Die neun Formatfälle: `metadata.json`, `src/App.tsx`, `src/components/CosmicDeepDives.tsx`, `src/components/NexusStory.tsx`, `src/components/StarfieldBackdrop.tsx`, `src/components/TechSolarSystem.tsx`, `src/cosmic-deepdives.css`, `src/cosmic-worlds.css`, `src/portfolio.css`.
 
-**ZIP-Restore-Gate: offen. G0: nicht bestanden.**
+## G0-Gate
 
-Nächster Schritt: alle ZIP-Dateien exakt übertragen und Tests auf PR ausführen.
+**ZIP-Gate bestanden; technisches G0-Gate noch offen**, bis der isolierte 3D-Kameraspike mit Browser-Tests sowie Format, Typecheck, Build, Playwright/Axe reproduzierbar grün ist. `main` bleibt unverändert und der PR ein Draft. Nicht automatisch G1 starten.
