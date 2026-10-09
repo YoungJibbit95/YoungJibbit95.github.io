@@ -27,10 +27,6 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Show E2E Prettier diff (diagnostic only)
-        run: |
-          npx prettier experiments/camera-spike/e2e/pose-regression.spec.ts > /tmp/g0-expected.ts
-          diff -u experiments/camera-spike/e2e/pose-regression.spec.ts /tmp/g0-expected.ts || true
       - run: npm run format:check
       - run: npm run build
       - run: npx playwright install --with-deps chromium

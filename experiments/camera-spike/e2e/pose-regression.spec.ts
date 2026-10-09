@@ -39,12 +39,14 @@ test('Back restores previous selection and full camera pose', async ({ page }, t
   const result = await pose(page)
   expect(result.fov).toBe(snapshot.fov)
   expect(result.zoom).toBe(snapshot.zoom)
-  await expect(
-    page.getByRole('button', { name: /Signal Raumpunkt A/ }),
-  ).toHaveAttribute('aria-pressed', 'true')
-  await expect(
-    page.getByRole('button', { name: /Kern Raumpunkt C/ }),
-  ).toHaveAttribute('aria-pressed', 'false')
+  await expect(page.getByRole('button', { name: /Signal Raumpunkt A/ })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await expect(page.getByRole('button', { name: /Kern Raumpunkt C/ })).toHaveAttribute(
+    'aria-pressed',
+    'false',
+  )
 })
 
 test('pinch and two-finger truck do not scroll the page', async ({ page }, testInfo) => {
