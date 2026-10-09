@@ -155,7 +155,8 @@ test('WebGL2 disabled still provides a usable world choice and seven project lin
   })
   await page.goto('/?atlas=preview')
   await expect(
-    page.getByRole('region', { name: 'Räumlicher Atlas, mit Pfeiltasten verschiebbar' })
+    page
+      .getByRole('region', { name: 'Räumlicher Atlas, mit Pfeiltasten verschiebbar' })
       .getByText('Die Projekte sind auch ohne', { exact: false }),
   ).toBeVisible()
   await expect(page.getByTestId('atlas-canvas')).toHaveCount(0)
