@@ -94,9 +94,14 @@ export function NexusStory() {
 
   useGSAP(
     () => {
-      if (motion !== 'full') return
       const chapterChanged = lastAnimatedChapter.current !== chapter
       lastAnimatedChapter.current = chapter
+      if (motion !== 'full') {
+        gsap.set('.story-chapter-copy, .story-media, .context-node, .story-system .client', {
+          clearProps: 'opacity,transform',
+        })
+        return
+      }
       const timeline = gsap.timeline(
         chapterChanged
           ? {}
@@ -121,7 +126,6 @@ export function NexusStory() {
           y: 19,
           rotation: -0.7,
           scale: 0.97,
-          opacity: 0.4,
           duration: 0.7,
           ease: 'power3.out',
           clearProps: 'all',
@@ -133,7 +137,6 @@ export function NexusStory() {
         {
           y: 16,
           scale: 0.9,
-          opacity: 0,
           duration: 0.55,
           stagger: 0.12,
           clearProps: 'all',
@@ -219,7 +222,6 @@ export function NexusStory() {
         className="story-navigation story-navigation--centered"
         role="group"
         aria-label="Kapitel der Nexus-Geschichte"
-        data-stage
       >
         {chapters.map((item, index) => (
           <button

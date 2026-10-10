@@ -184,6 +184,7 @@ test('mobile and desktop preview compositions are screenshot-reviewed', async ({
     await canvas(page)
     await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
     await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
+    await expect(page.getByTestId('atlas-scene-ready')).toHaveText('observatory')
     await page.evaluate(() => document.fonts.ready)
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth,

@@ -6,7 +6,7 @@ import { moveWithKey, isFormTarget } from './InteractionRouter'
 import { effectiveMotion, webGLAvailable } from './MotionPolicy'
 import { SceneDirector } from './SceneDirector'
 import { availableWorlds, findHotspot, getWorld } from './SceneRegistry'
-import type { CameraBridge, CameraPose } from './worldTypes'
+import type { AvailableWorldId, CameraBridge, CameraPose } from './worldTypes'
 
 const WorldCanvas = lazy(() => import('./WorldCanvas'))
 
@@ -41,8 +41,13 @@ export default function ExperienceRoot() {
   const webgl = useExperienceStore((state) => state.webgl)
   const [systemReduced, setSystemReduced] = useState(false)
   const [forceReduced, setForceReduced] = useState(false)
+  const [renderedWorld, setRenderedWorld] = useState<AvailableWorldId | null>(null)
   const definition = getWorld(world)
   const focus = findHotspot(world, focusId)
+
+  useEffect(() => {
+    setRenderedWorld(null)
+  }, [world])
   const supported = webgl === 'ready'
 
   useEffect(() => {
@@ -161,6 +166,7 @@ export default function ExperienceRoot() {
                       onInterrupt={interrupt}
                       onFocus={select}
                       onFailure={fail}
+                      onSceneReady={setRenderedWorld}
                     />
                   </Suspense>
                 </SpaceBoundary>
@@ -250,6 +256,13 @@ export default function ExperienceRoot() {
               />
               Kamerafahrten reduzieren
             </label>
+            <output
+              className="atlas-v3__sr"
+              data-testid="atlas-scene-ready"
+              aria-hidden="true"
+            >
+              {renderedWorld === world ? renderedWorld : ''}
+            </output>
             <output className="atlas-v3__sr" data-testid="atlas-pose">
               {JSON.stringify(pose)}
             </output>

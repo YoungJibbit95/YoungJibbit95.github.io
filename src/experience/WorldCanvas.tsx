@@ -1,4 +1,4 @@
-import { Canvas, useThree } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import type { RefObject } from 'react'
 import { CameraRig } from './CameraRig'
@@ -18,6 +18,7 @@ interface CanvasProps {
   onInterrupt: () => void
   onFocus: (id: string) => void
   onFailure: () => void
+  onSceneReady: (world: AvailableWorldId) => void
 }
 
 function ContextGuard({ onFailure }: { onFailure: () => void }) {
@@ -30,6 +31,42 @@ function ContextGuard({ onFailure }: { onFailure: () => void }) {
     gl.domElement.addEventListener('webglcontextlost', lost)
     return () => gl.domElement.removeEventListener('webglcontextlost', lost)
   }, [gl, onFailure])
+  return null
+}
+
+/**
+ * Lazy scene completion must schedule a frame when using frameloop="demand".
+ * Report readiness only after the renderer has finished at least one frame
+ * with the newly committed scene. Browser pixel checks remain the visual gate.
+ */
+function SceneRenderReady({
+  world,
+  onReady,
+}: {
+  world: AvailableWorldId
+  onReady: (world: AvailableWorldId) => void
+}) {
+  const { gl, invalidate, size } = useThree()
+  const baselineFrame = useRef<number | null>(null)
+
+  useEffect(() => {
+    baselineFrame.current = gl.info.render.frame
+    invalidate()
+    return () => {
+      baselineFrame.current = null
+    }
+  }, [gl, invalidate, world, size.width, size.height])
+
+  useFrame((state) => {
+    const baseline = baselineFrame.current
+    if (baseline === null) return
+    if (state.gl.info.render.frame > baseline) {
+      baselineFrame.current = null
+      onReady(world)
+    } else {
+      state.invalidate()
+    }
+  })
   return null
 }
 
@@ -103,6 +140,7 @@ export default function WorldCanvas(props: CanvasProps) {
           ) : (
             <Observatory onFocus={onFocus} selectedId={selectedId} />
           )}
+          <SceneRenderReady key={world} world={world} onReady={props.onSceneReady} />
         </Suspense>
       </Canvas>
     </div>
