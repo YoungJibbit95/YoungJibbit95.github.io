@@ -38,7 +38,6 @@ Root tests, existing G0 tests, Registry/History unit checks and G1 Playwright (s
 
 G2 starts only after user acceptance of G1: replace the two prototype scenes with meaningful Origin and Observatory, seven verified nodes and responsive semantic zoom. G3 Nexus later; no G1 merge to `main` is authorized.
 
-
 ## G1 final recovery: rendering and motion stability
 
 ### Black desktop stage — reproduced and corrected

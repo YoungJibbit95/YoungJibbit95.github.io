@@ -28,7 +28,6 @@
 
 **Stop-Regel:** Kein Merge nach `main`, keine G1-Implementierung ohne ausdrückliche Freigabe. Die regulären CI-Jobs müssen auf dem abschließenden HEAD grün sein.
 
-
 ## G1 — Finaler visueller und technischer Nachweis
 
 - **Quelle:** Der G0-ZIP-Restore am Commit `93a581ee` bleibt nachvollziehbar; die G1-Preview ist opt-in, `main` unverändert.
