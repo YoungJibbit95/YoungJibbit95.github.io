@@ -8,6 +8,7 @@ import type { CameraBounds, CameraBridge, CameraPose } from './worldTypes'
 interface RigProps {
   bounds: CameraBounds
   initialPose: CameraPose
+  reducedMotion: boolean
   onReady: () => void
   onRest: (pose: CameraPose) => void
   onManualStart: () => void
@@ -17,7 +18,7 @@ const tuple = (value: Vector3): [number, number, number] => [value.x, value.y, v
 
 /** Ported from the proven G0 CameraRig. Physical CameraControls pose is authoritative. */
 export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
-  { bounds, initialPose, onReady, onRest, onManualStart },
+  { bounds, initialPose, reducedMotion, onReady, onRest, onManualStart },
   forwarded,
 ) {
   const controlsRef = useRef<CameraControlsImpl>(null)
@@ -67,13 +68,13 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
     moveTo,
     pan: async (horizontal, vertical) => {
       cancel()
-      await controlsRef.current?.truck(horizontal, vertical, true)
+      await controlsRef.current?.truck(horizontal, vertical, !reducedMotion)
       const current = capture()
       if (current) callbacks.current.onRest(current)
     },
     dolly: async (distance) => {
       cancel()
-      await controlsRef.current?.dolly(distance, true)
+      await controlsRef.current?.dolly(distance, !reducedMotion)
       const current = capture()
       if (current) callbacks.current.onRest(current)
     },
@@ -123,8 +124,8 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
       maxDistance={bounds.maxDistance}
       minPolarAngle={0.2}
       maxPolarAngle={Math.PI - 0.3}
-      smoothTime={0.65}
-      draggingSmoothTime={0.14}
+      smoothTime={reducedMotion ? 0.01 : 0.65}
+      draggingSmoothTime={reducedMotion ? 0.01 : 0.14}
       mouseButtons={{
         left: CameraControlsImpl.ACTION.TRUCK,
         right: CameraControlsImpl.ACTION.ROTATE,

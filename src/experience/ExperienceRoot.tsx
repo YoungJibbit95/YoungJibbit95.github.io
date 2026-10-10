@@ -161,6 +161,7 @@ export default function ExperienceRoot() {
                       world={world}
                       selectedId={focusId}
                       initialPose={pose}
+                      reducedMotion={motion !== 'full'}
                       onCamera={attach}
                       onRest={rest}
                       onInterrupt={interrupt}

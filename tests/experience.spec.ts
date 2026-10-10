@@ -140,6 +140,30 @@ test('system reduced motion, keyboard and forced WebGL fallback keep content', a
   await expect(page.getByRole('link', { name: /Projekt auf GitHub/ }).first()).toBeVisible()
 })
 
+
+test('reduced motion applies to programmatic zoom and keyboard pan', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/?atlas=preview')
+  await canvas(page)
+  await expect(page.getByTestId('atlas-scene-ready')).toHaveText('origin')
+  await expect(page.getByTestId('atlas-motion')).toHaveText('reduced')
+  const before = await pose(page)
+  await page.getByRole('button', { name: 'Hineinzoomen' }).click()
+  await expect
+    .poll(async () => {
+      const current = await pose(page)
+      return Math.hypot(...current.position.map((value, axis) => value - current.target[axis]))
+    })
+    .not.toBeCloseTo(
+      Math.hypot(...before.position.map((value, axis) => value - before.target[axis])),
+      1,
+    )
+  const afterZoom = await pose(page)
+  await page.getByTestId('atlas-stage').focus()
+  await page.keyboard.press('ArrowRight')
+  await expect.poll(async () => (await pose(page)).target[0]).not.toBeCloseTo(afterZoom.target[0], 1)
+})
+
 test('WebGL2 disabled still provides a usable world choice and seven project links', async ({
   page,
 }) => {

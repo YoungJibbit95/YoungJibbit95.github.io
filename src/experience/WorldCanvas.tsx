@@ -13,6 +13,7 @@ interface CanvasProps {
   world: AvailableWorldId
   selectedId: string | null
   initialPose: CameraPose
+  reducedMotion: boolean
   onCamera: (camera: CameraBridge | null) => void
   onRest: (pose: CameraPose) => void
   onInterrupt: () => void
@@ -73,6 +74,7 @@ function SceneRenderReady({
 function CameraHost({
   camera,
   initialPose,
+  reducedMotion,
   world,
   onCamera,
   onRest,
@@ -80,6 +82,7 @@ function CameraHost({
 }: {
   camera: RefObject<CameraBridge | null>
   initialPose: CameraPose
+  reducedMotion: boolean
   world: AvailableWorldId
   onCamera: CanvasProps['onCamera']
   onRest: CanvasProps['onRest']
@@ -91,6 +94,7 @@ function CameraHost({
       ref={camera}
       bounds={getWorld(world).bounds}
       initialPose={initialPose}
+      reducedMotion={reducedMotion}
       onReady={() => onCamera(camera.current)}
       onRest={onRest}
       onManualStart={onInterrupt}
@@ -129,6 +133,7 @@ export default function WorldCanvas(props: CanvasProps) {
         <CameraHost
           camera={camera}
           initialPose={props.initialPose}
+          reducedMotion={props.reducedMotion}
           world={world}
           onCamera={props.onCamera}
           onRest={props.onRest}
