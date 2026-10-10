@@ -27,3 +27,17 @@
 - **Visuelle Komposition:** Artefakt umfasst Desktop und emuliertes Mobile; drei Anker sind räumlich lesbar. Performance/FPS auf echter GPU und Safari/iOS/Android bleiben ausdrücklich ungemessen.
 
 **Stop-Regel:** Kein Merge nach `main`, keine G1-Implementierung ohne ausdrückliche Freigabe. Die regulären CI-Jobs müssen auf dem abschließenden HEAD grün sein.
+
+
+## G1 — Finaler visueller und technischer Nachweis
+
+- **Quelle:** Der G0-ZIP-Restore am Commit `93a581ee` bleibt nachvollziehbar; die G1-Preview ist opt-in, `main` unverändert.
+- **Schwarzer Desktop-Canvas behoben:** Der alte 1440px-Screenshot (CI `37959533980`) zeigte eine zu 99,31 % schwarze Observatory-Bühne im vergleichbaren inneren Ausschnitt. Neue Renderinvalidierung bei Lazy-Scene-Mount und Resize, Ready-Signal **nach fortgeschrittenem Renderer-Frame**.
+- **Pixel-Test statt DOM-Existenz:** `tests/experience.render.spec.ts` prüft 390/1440px für Origin und Observatory, mindestens 35 sichtbare farbige Pixel plus sechs Farbtöne aus einer auf 240 × 150 skalierten echten Canvas-Aufnahme; mehrfacher Weltwechsel, exakt ein Canvas und Context-Loss-Fallback. Dadurch wird ein schwarzes Bild auch bei bestehender Canvas-Node abgewiesen.
+- **Visuell geprüft:** 3 perspektivische Anker, Verbindungslinien, Grid und DOM-Steuerung auf Desktop/Mobile; [Screenshotartefakt](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38069277487/artifacts/11675719143).
+- **Nexus-GSAP:** Große Medien und Kontextknoten werden räumlich animiert, nicht halbtransparent stehen gelassen; interaktive Kapitelnavigation bleibt während Scroll-Reveals stabil. Motion-Off entfernt temporäre GSAP-Opacity/Transforms.
+- **Reduced Motion:** Der ursprüngliche Provider speichert `off` bereits in `localStorage`; kein reproduzierbarer Fachfehler der Zustandspersistenz. CI-Browserparallelität wegen SwiftShader/GSAP-CPU-Konflikt auf einen Worker reduziert; keine Test-/Timeout-Lockerung.
+- **Code-CI:** [Root 38069277487](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38069277487): erste vollständige Durchführung mit **4 Unit- und 30 Browser/Axe-Tests bestanden**, Format/Build/prerender grün. [G0 38069277355](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38069277355) grün.
+- **Erneut nachzuweisen:** Erfolgreicher CI-Status auf dem abschließenden Dokumentations-HEAD; der wiederholte Root-Job darf erst nach seiner Beendigung als Bestätigung zählen.
+- **Manuell offen:** iOS Safari, Android Chrome auf echter Hardware und FPS/Temperatur/GPU-Profiling; keine erfundenen Messwerte.
+- **Grenze:** Noch kein G2-/G3-Ausbau und kein Merge/Deploy. G2 benötigt danach die vollständige Original-/Observatory-Welt anstelle der beiden räumlichen Prüfstände.
