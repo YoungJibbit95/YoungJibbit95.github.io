@@ -256,11 +256,7 @@ export default function ExperienceRoot() {
               />
               Kamerafahrten reduzieren
             </label>
-            <output
-              className="atlas-v3__sr"
-              data-testid="atlas-scene-ready"
-              aria-hidden="true"
-            >
+            <output className="atlas-v3__sr" data-testid="atlas-scene-ready" aria-hidden="true">
               {renderedWorld === world ? renderedWorld : ''}
             </output>
             <output className="atlas-v3__sr" data-testid="atlas-pose">
