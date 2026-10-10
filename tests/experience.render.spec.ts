@@ -7,6 +7,15 @@ type World = 'origin' | 'observatory'
  * completely black desktop frame while the DOM world navigation looked healthy.
  * Inspect actual composited WebGL pixels without adding an image dependency.
  */
+async function readyCanvas(page: Page, world: World = 'origin') {
+  await expect(page.getByTestId('atlas-scene-ready')).toHaveText(world, {
+    timeout: 20_000,
+  })
+  const canvas = page.getByTestId('atlas-canvas').locator('canvas')
+  await expect(canvas).toBeVisible()
+  return canvas
+}
+
 async function spatialPixelEvidence(page: Page, canvas: Locator) {
   const png = await canvas.screenshot()
   return page.evaluate(async (base64) => {
@@ -73,8 +82,7 @@ test('two consecutive world changes render real frames in one persistent canvas'
 }) => {
   await page.goto('/?atlas=preview')
   const stage = page.getByTestId('atlas-canvas')
-  const canvas = stage.locator('canvas')
-  await expect(canvas).toBeVisible()
+  const canvas = await readyCanvas(page)
   for (const [button, world] of [
     ['Sternwarte', 'observatory'],
     ['Ursprung', 'origin'],
@@ -91,9 +99,7 @@ test('two consecutive world changes render real frames in one persistent canvas'
 
 test('lost WebGL context activates accessible HTML fallback', async ({ page }) => {
   await page.goto('/?atlas=preview')
-  const canvas = page.getByTestId('atlas-canvas').locator('canvas')
-  await expect(canvas).toBeVisible()
-  await expect(page.getByTestId('atlas-scene-ready')).toHaveText('origin')
+  const canvas = await readyCanvas(page)
   await canvas.evaluate((element) => {
     element.dispatchEvent(new Event('webglcontextlost', { cancelable: true }))
   })
