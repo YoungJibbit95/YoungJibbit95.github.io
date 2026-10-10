@@ -9,7 +9,10 @@ export function webGLAvailable(): boolean {
   try {
     const canvas = document.createElement('canvas')
     const context = canvas.getContext('webgl2')
-    return context !== null
+    if (!context) return false
+    // A capability probe must not retain an extra GPU context for the page.
+    context.getExtension('WEBGL_lose_context')?.loseContext()
+    return true
   } catch {
     return false
   }
