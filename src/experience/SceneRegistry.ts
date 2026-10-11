@@ -7,6 +7,7 @@ import {
   fitProjects,
 } from './observatory/camera'
 import { appendTokensToQuery, tokensFromQuery } from './observatory/routeState'
+import { experienceEntryPath } from './entryPath'
 import type {
   AvailableWorldId,
   CameraPose,
@@ -143,15 +144,11 @@ export function parseWorldRoute(search: string, compact = false): NavigationSnap
   return snapshot
 }
 
-export function worldHref(snapshot: NavigationSnapshot): string {
+export function worldHref(snapshot: NavigationSnapshot, pathname?: string): string {
   const query = new URLSearchParams({ atlas: 'preview', world: snapshot.world })
   if (snapshot.focusId) query.set('focus', snapshot.focusId)
   if (snapshot.world === 'observatory') appendTokensToQuery(query, snapshot.filters)
-  const entry =
-    typeof window !== 'undefined' && window.location.pathname.startsWith('/atlas/')
-      ? '/atlas/'
-      : '/'
-  return entry + '?' + query.toString()
+  return experienceEntryPath(pathname) + '?' + query.toString()
 }
 
 export function validateRegistry(): string[] {
