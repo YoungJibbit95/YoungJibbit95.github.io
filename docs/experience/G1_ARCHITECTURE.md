@@ -1,6 +1,6 @@
 # Living Atlas — G1 architecture and review
 
-Status: **G1 implementation and browser proof verified on code commit `351c6c13`; final documentation-HEAD CI pending**. The existing ZIP website and the G0 camera experiment remain preserved. This document describes the opt-in G1 architecture, not visitor-facing copy.
+Status: **G1 recovery implemented; final branch-HEAD CI and fresh screenshots required for gate acceptance**. The existing ZIP website and the G0 camera experiment remain preserved. This document describes the opt-in G1 architecture, not visitor-facing copy.
 
 ## Entry and SSR contract
 
@@ -58,7 +58,7 @@ The legacy `NexusStory` composed a scroll-activated initial GSAP timeline and ne
 
 ### CI evidence and limits
 
-- Root check [run 38069277487](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38069277487) on code commit `351c6c13`: `npm ci`, formatting, **4 unit tests**, TypeScript, Vite/prerender and **30 Chromium Playwright/Axe tests passed** on the initial attempt; a repetition of the job was requested to rule out a one-off success. Do not count an in-progress retry as green.
+- Historical [run 38069277487](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38069277487) passed 30 browser tests in its first attempt, but the overall rerun was cancelled. This run is **not** a final green G1 gate.
 - G0 check [run 38069277355](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38069277355): successful standalone camera model, build and browser/Axe regression path.
 - Screenshot artifact: [g1-preview-evidence](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38069277487/artifacts/11675719143). Screenshots show composition; mouse/touch/history assertions independently prove interactions.
 - The final **documentation commit** must itself have two fully completed successful checks before G1 is declared accepted. A GitHub Pages PR run skips the deployment job by design. `main` stays unchanged.
@@ -67,3 +67,28 @@ The legacy `NexusStory` composed a scroll-activated initial GSAP timeline and ne
 ### Art-direction handoff for G2 (not implemented during G1)
 
 The restored scenes are deliberately minimal greyboxes. The 1440px composition has a readable editorial hierarchy, three spatial anchors and controlled depth but still resembles a central canvas plus informational sidebar. G2 should let the room occupy most of the viewport, pull project navigation into a restrained overlay/compass, and make foreground/midground/background depth and occlusion part of the storytelling. Origin needs a curated wide composition with immediate camera freedom; Observatory needs an atlas larger than the screen with seven verified project nodes, semantic zoom and meaningful edges. Preserve direct project links and mobile readability. **No G2/G3 world content or assets were created in G1.**
+
+## G1 final recovery — deterministic repeated-world visual evidence
+
+### What the failing trace actually establishes
+
+[Root CI 38070923966](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38070923966) passed 30 of 31 browser tests. The sole persistent failure occurred in `two consecutive world changes render real frames in one persistent canvas`. The downloaded trace in artifact `11677251120` records these actions in order: Origin ready; navigation to Observatory; `atlas-scene-ready=observatory`; an attempted `locator.screenshot()`. The screenshot operation then remained pending at Playwright's *waiting for element to be stable* during implicit scroll-to-view. It had not returned an image when the pixel poll timed out.
+
+This trace demonstrates a screenshot/scroll synchronization failure, **not** a newly measured all-black WebGL frame. The actual old desktop black-frame issue was resolved earlier by `SceneRenderReady` and per-world demand-frame invalidation. Those renderer changes remain intact.
+
+### Exact correction and stronger test contract
+
+`tests/experience.render.spec.ts` now explicitly moves the stage into the viewport with `scrollIntoView({ behavior: 'instant', block: 'center' })` and verifies that its bounding rectangle is fully visible. During polling, `page.screenshot()` captures the viewport without triggering `locator.screenshot()` auto-scroll or element stability waiting. Pixel analysis crops **only the measured canvas rectangle**, excluding the outer edges and lower 80px caption region, then samples it at 240 × 150 pixels. It continues to require **more than 35 brightly colored pixels and more than six quantized shades**, so a blank or black stage still fails.
+
+The direct Origin and Observatory checks cover 390px and 1440px. Additional tests verify Origin → Observatory → Origin → Observatory in **the same Canvas**, Back/Forward history, Reduced Motion, viewport resizing, world navigation during a camera flight and WebGL context-loss fallback. Navigation and camera contracts are unchanged.
+
+The existing PR verification workflow now runs the full browser suite and then repeats the critical world-switch pixel test **three additional times with one Chromium/SwiftShader worker**. These stress runs use `--output=test-results/g1-stress` to avoid clearing the first suite's screenshot files before artifact upload. No timeouts or pixel thresholds were relaxed, and no additional rendering framework or world content was introduced.
+
+### Verified code evidence and final gate
+
+- On code commit [`7224ee72`](https://github.com/YoungJibbit95/YoungJibbit95.github.io/commit/7224ee72b04c5729cecb10c904834fc9c07c6b24), [Root run 38099225046](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38099225046) completed successfully: `npm ci`, Prettier, **4 unit tests**, TypeScript, Vite/prerender, **33/33 browser/axe tests**, and **3/3 additional stress repetitions**. The repeated Playwright invocation inadvertently cleared the shared `test-results/` output directory, preventing screenshot artifact publication.
+- On that same code SHA, [G0 camera run 38099225091](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38099225091) completed successfully, retaining its full camera, gesture and accessibility suite.
+- [`b83ba399`](https://github.com/YoungJibbit95/YoungJibbit95.github.io/commit/b83ba399150b85bfe67a56456750a0bdabff8beb) isolates the stress test's output folder, preserving first-suite screenshots for GitHub Actions artifact upload. Both normal workflows and screenshot availability must now be reconfirmed on the **final documentation HEAD** before G1 can be marked accepted.
+- Existing root `/` and hash anchors remain the ZIP-based portfolio, while `/?atlas=preview` remains opt-in. No `main` merge or deploy has occurred.
+
+Real iOS Safari/Android Chrome, GPU performance/FPS, thermal profiling and final G2 visual-world polish are still outside G1 acceptance. G2 may expand the two greybox states only after explicit approval.
