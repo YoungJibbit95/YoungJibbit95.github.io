@@ -1,11 +1,12 @@
 import { Line } from '@react-three/drei'
 import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { memo, useEffect, useMemo, useRef } from 'react'
-import { CatmullRomCurve3, Group, InstancedMesh, Mesh, Object3D, Vector3 } from 'three'
+import { CatmullRomCurve3, Color, Group, InstancedMesh, Mesh, Object3D, Vector3 } from 'three'
 import { useExperienceStore } from '../../store/experienceStore'
 import { useOriginSignal } from '../../store/originSignalStore'
 import type { WorldSceneProps } from '../worldTypes'
 import { landmarkPosition, originEdges, originLandmarks, signalResponse } from './originModel'
+import { OriginArchitecture } from './OriginArchitecture'
 
 const stars = Float32Array.from(
   Array.from({ length: 240 }, (_, index) => [
@@ -32,6 +33,7 @@ function Lamellae({ side, lit }: { side: -1 | 1; lit: boolean }) {
   const invalidate = useThree((state) => state.invalidate)
   useEffect(() => {
     const transform = new Object3D()
+    const shade = new Color()
     for (let index = 0; index < 42; index++) {
       const t = index / 41
       const waist = Math.sin(t * Math.PI)
@@ -42,9 +44,11 @@ function Lamellae({ side, lit }: { side: -1 | 1; lit: boolean }) {
         Math.sin(t * Math.PI * 1.3) * 2,
       )
       transform.rotation.set(0, (t - 0.5) * 1.45 * side, side * 0.03)
-      transform.scale.set(width, 0.36, 3.2 + waist * 2.5)
+      transform.scale.set(width, 0.5, 3.2 + waist * 2.5)
       transform.updateMatrix()
       fins.current?.setMatrixAt(index, transform.matrix)
+      shade.setScalar(0.62 + Math.sin(t * Math.PI) * 0.3 + (index % 5 === 0 ? 0.08 : 0))
+      fins.current?.setColorAt(index, shade)
       transform.position.x -= side * width * 0.47
       transform.scale.set(0.07, 0.39, 2.2 + waist * 3.6)
       transform.updateMatrix()
@@ -52,6 +56,7 @@ function Lamellae({ side, lit }: { side: -1 | 1; lit: boolean }) {
     }
     if (fins.current) {
       fins.current.instanceMatrix.needsUpdate = true
+      if (fins.current.instanceColor) fins.current.instanceColor.needsUpdate = true
       fins.current.computeBoundingSphere()
     }
     if (seams.current) {
@@ -65,9 +70,9 @@ function Lamellae({ side, lit }: { side: -1 | 1; lit: boolean }) {
       <instancedMesh ref={fins} args={[undefined, undefined, 42]}>
         <boxGeometry />
         <meshStandardMaterial
-          color={side === 1 ? '#a4b5bd' : '#738b9c'}
-          metalness={0.42}
-          roughness={0.34}
+          color={side === 1 ? '#d5d6d1' : '#a4adae'}
+          metalness={0.18}
+          roughness={0.55}
         />
       </instancedMesh>
       <instancedMesh ref={seams} args={[undefined, undefined, 42]}>
@@ -89,10 +94,11 @@ const QuietSpace = memo(function QuietSpace() {
     <>
       <color attach="background" args={['#070914']} />
       <fog attach="fog" args={['#070914', 115, 250]} />
-      <ambientLight intensity={0.8} color="#b7c9da" />
-      <directionalLight position={[-35, 48, 36]} intensity={3.8} color="#d5ecf4" />
-      <directionalLight position={[38, -9, -8]} intensity={2.8} color="#6e9cab" />
-      <directionalLight position={[-20, -14, -38]} intensity={2.4} color="#ac927c" />
+      <ambientLight intensity={0.38} color="#b7c9da" />
+      <directionalLight position={[-35, 48, 36]} intensity={4.8} color="#f5f2e9" />
+      <directionalLight position={[38, -9, -8]} intensity={1.2} color="#6e9cab" />
+      <directionalLight position={[-20, -14, -38]} intensity={2.4} color="#b9c7d1" />
+      <OriginArchitecture />
       <points>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[stars, 3]} />
@@ -236,7 +242,7 @@ export default function OriginWorld({ onFocus, selectedId }: WorldSceneProps) {
               [16, -19, 0],
               [16, -17, 0],
             ]}
-            color="#a891ff"
+            color="#78e8e8"
             lineWidth={1.5}
           />
         )}
@@ -264,7 +270,7 @@ export default function OriginWorld({ onFocus, selectedId }: WorldSceneProps) {
               [-3, -6, 0],
               [3, -6, 0],
             ]}
-            color="#a891ff"
+            color="#78e8e8"
             lineWidth={2}
           />
         )}

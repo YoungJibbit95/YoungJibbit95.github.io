@@ -32,6 +32,8 @@ html:has(.atlas-v3) {
 }
 .atlas-v3 button {
   cursor: pointer;
+  border-radius: 0;
+  box-shadow: none;
 }
 .atlas-v3 button:disabled {
   opacity: 0.38;
@@ -258,8 +260,10 @@ html:has(.atlas-v3) {
   font-size: 0.8rem !important;
   font-weight: 700 !important;
 }
-.atlas-v3__send:hover {
+.atlas-v3 .atlas-v3__send:hover:not(:disabled) {
   background: #b6f3ee;
+  color: var(--atlas-ink);
+  border-color: #b6f3ee;
 }
 .atlas-v3__reset {
   min-width: 48px;
@@ -269,7 +273,9 @@ html:has(.atlas-v3) {
   border: 1px solid var(--atlas-edge);
   font-size: 1.5rem !important;
 }
-.atlas-v3__reset:hover:not(:disabled) {
+.atlas-v3 .atlas-v3__reset:hover:not(:disabled) {
+  background: #18232a;
+  color: var(--atlas-paper);
   border-color: var(--atlas-cyan);
 }
 .atlas-v3__metaphor {
