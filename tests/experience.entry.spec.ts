@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
+import type { CameraPose } from '../src/experience/worldTypes'
 
 test.describe.configure({ timeout: 90_000 })
 
@@ -26,7 +27,17 @@ for (const width of [390, 1440]) {
     await expect(canvas).toHaveAttribute('data-entry-identity', 'same')
     await page.goBack()
     await expect(page.getByTestId('atlas-scene-ready')).toHaveText('origin')
-    await expect(page.getByTestId('atlas-pose')).toHaveText(moved!)
+    // CameraControls round-trips spherical coordinates; use the established full-pose precision.
+    const values = (pose: CameraPose) => [...pose.position, ...pose.target, pose.fov, pose.zoom]
+    const expected = values(JSON.parse(moved!) as CameraPose)
+    await expect
+      .poll(async () => {
+        const restored = values(
+          JSON.parse((await page.getByTestId('atlas-pose').textContent())!) as CameraPose,
+        )
+        return Math.max(...restored.map((value, index) => Math.abs(value - expected[index])))
+      })
+      .toBeLessThan(1e-7)
     expect(errors).toEqual([])
   })
 }
