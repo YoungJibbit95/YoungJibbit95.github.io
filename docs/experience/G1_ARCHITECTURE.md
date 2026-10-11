@@ -72,7 +72,7 @@ The restored scenes are deliberately minimal greyboxes. The 1440px composition h
 
 ### What the failing trace actually establishes
 
-[Root CI 38070923966](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38070923966) passed 30 of 31 browser tests. The sole persistent failure occurred in `two consecutive world changes render real frames in one persistent canvas`. The downloaded trace in artifact `11677251120` records these actions in order: Origin ready; navigation to Observatory; `atlas-scene-ready=observatory`; an attempted `locator.screenshot()`. The screenshot operation then remained pending at Playwright's *waiting for element to be stable* during implicit scroll-to-view. It had not returned an image when the pixel poll timed out.
+[Root CI 38070923966](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38070923966) passed 30 of 31 browser tests. The sole persistent failure occurred in `two consecutive world changes render real frames in one persistent canvas`. The downloaded trace in artifact `11677251120` records these actions in order: Origin ready; navigation to Observatory; `atlas-scene-ready=observatory`; an attempted `locator.screenshot()`. The screenshot operation then remained pending at Playwright's _waiting for element to be stable_ during implicit scroll-to-view. It had not returned an image when the pixel poll timed out.
 
 This trace demonstrates a screenshot/scroll synchronization failure, **not** a newly measured all-black WebGL frame. The actual old desktop black-frame issue was resolved earlier by `SceneRenderReady` and per-world demand-frame invalidation. Those renderer changes remain intact.
 

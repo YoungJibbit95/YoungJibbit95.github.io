@@ -27,10 +27,6 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Read-only G1 documentation formatting diff
-        run: |
-          npx prettier docs/experience/G1_ARCHITECTURE.md > /tmp/g1-format-expected.md
-          diff -u docs/experience/G1_ARCHITECTURE.md /tmp/g1-format-expected.md || true
       - run: npm run format:check
       - run: npm run test:unit
       - run: npm run build
