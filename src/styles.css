@@ -2486,3 +2486,9 @@
     }
   }
 }
+
+/* Skip layout of offscreen prerendered chapters while retaining semantic content. */
+.portfolio #inhalt > section:not(.hero) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1000px;
+}

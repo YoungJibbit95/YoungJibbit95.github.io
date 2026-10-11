@@ -1,0 +1,20 @@
+
+Running 13 tests using 1 worker
+
+(node:78860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\portfolio.spec.ts:4:1 › production HTML contains the portfolio without JavaScript (824ms)
+  ok  2 tests\portfolio.spec.ts:21:1 › project selection updates both entry point and project details (5.3s)
+  ok  3 tests\portfolio.spec.ts:39:1 › mobile menu supports keyboard dismissal and anchor navigation (3.4s)
+  ok  4 tests\portfolio.spec.ts:57:1 › system reduced motion and explicit opt-out remain usable (5.5s)
+  ok  5 tests\portfolio.spec.ts:71:3 › layout fits a 320px viewport (6.2s)
+  ok  6 tests\portfolio.spec.ts:71:3 › layout fits a 390px viewport (1.6s)
+  ok  7 tests\portfolio.spec.ts:71:3 › layout fits a 768px viewport (3.0s)
+  ok  8 tests\portfolio.spec.ts:71:3 › layout fits a 1024px viewport (2.6s)
+  ok  9 tests\portfolio.spec.ts:71:3 › layout fits a 1440px viewport (5.4s)
+  ok 10 tests\portfolio.spec.ts:117:1 › the rendered page has no serious accessibility violations (4.4s)
+  ok 11 tests\portfolio.spec.ts:126:1 › chapter transitions settle and can be interrupted by disabling motion (9.1s)
+  ok 12 tests\portfolio.spec.ts:148:1 › Nexus chapters show real captures and explain the shared core (12.4s)
+  ok 13 tests\portfolio.spec.ts:185:1 › Nexus chapter selection works with the keyboard and reduced motion (5.4s)
+
+  13 passed (1.1m)

@@ -1,0 +1,19 @@
+diff --git a/src/main.tsx b/src/main.tsx
+index d0c85c6..353b00f 100644
+--- a/src/main.tsx
++++ b/src/main.tsx
+@@ -14,6 +14,14 @@ import './experience/experience.css'
+ const root = document.getElementById('root')!
+ const preview = new URLSearchParams(location.search).get('atlas') === 'preview'
+ if (preview) {
++  // The requested 3D route is already known. Fetch its renderer and scene in
++  // parallel with the DOM experience instead of waiting for successive mounts.
++  // React.lazy still owns rendering, readiness and the existing error boundary.
++  void import('./experience/WorldCanvas').catch(() => {})
++  const startWorld = new URLSearchParams(location.search).get('world')
++  void import('./experience/SceneRegistry')
++    .then(({ getWorld }) => getWorld(startWorld === 'observatory' ? 'observatory' : 'origin').loadScene())
++    .catch(() => {})
+   // The preview has different markup. Do not hydrate/mount legacy animations first.
+   createRoot(root).render(
+     <StrictMode>

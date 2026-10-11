@@ -1,0 +1,20 @@
+diff --git a/src/main.tsx b/src/main.tsx
+index d0c85c6..a0fd90b 100644
+--- a/src/main.tsx
++++ b/src/main.tsx
+@@ -14,6 +14,15 @@ import './experience/experience.css'
+ const root = document.getElementById('root')!
+ const preview = new URLSearchParams(location.search).get('atlas') === 'preview'
+ if (preview) {
++  // Give the DOM shell its first paint, then fetch renderer and requested scene
++  // together. React.lazy still owns rendering, readiness and error handling.
++  requestAnimationFrame(() => requestAnimationFrame(() => {
++    void import('./experience/WorldCanvas').catch(() => {})
++    const startWorld = new URLSearchParams(location.search).get('world')
++    void import('./experience/SceneRegistry')
++      .then(({ getWorld }) => getWorld(startWorld === 'observatory' ? 'observatory' : 'origin').loadScene())
++      .catch(() => {})
++  }))
+   // The preview has different markup. Do not hydrate/mount legacy animations first.
+   createRoot(root).render(
+     <StrictMode>

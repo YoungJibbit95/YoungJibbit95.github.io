@@ -1,0 +1,902 @@
+[
+  {
+    "id": "deferred-identity-1",
+    "lighthouseVersion": "13.5.0",
+    "fetchTime": "2026-10-11T13:26:40.787Z",
+    "score": 0.35,
+    "metrics": {
+      "first-contentful-paint": 4402.08,
+      "largest-contentful-paint": 9542.928,
+      "total-blocking-time": 2065.384,
+      "cumulative-layout-shift": 0,
+      "speed-index": 5202.578074896166
+    },
+    "settings": {
+      "output": "json",
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": ["file_systems", "shader_cache", "service_workers", "cache_storage"],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "node",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": ["performance"],
+      "skipAudits": null
+    },
+    "warnings": [],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 2957.247999999944
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 1330.7719999999997
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 303.29600000000005
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 44.667999999999985
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 27.92
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 23.683999999999987
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 3.020000000000001
+      }
+    ],
+    "bootup": [
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "total": 2529.747999999959,
+        "scripting": 2504.303999999959,
+        "scriptParseCompile": 0.988
+      },
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "total": 1417.4839999999997,
+        "scripting": 3.5240000000000005,
+        "scriptParseCompile": 0.5680000000000001
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "total": 413.67200000000054,
+        "scripting": 398.75600000000054,
+        "scriptParseCompile": 0.74
+      },
+      {
+        "url": "Unattributable",
+        "total": 303.0280000000003,
+        "scripting": 42.16399999999998,
+        "scriptParseCompile": 0
+      }
+    ],
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "duration": 2119,
+        "startTime": 4126.464
+      },
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "duration": 584,
+        "startTime": 1364.232
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "duration": 290,
+        "startTime": 9618.928
+      },
+      {
+        "url": "Unattributable",
+        "duration": 84,
+        "startTime": 1948.232
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "duration": 83,
+        "startTime": 9908.928
+      },
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "duration": 81,
+        "startTime": 2032.232
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "duration": 76,
+        "startTime": 9542.928
+      }
+    ],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "transferSize": 145014,
+        "resourceSize": 144814,
+        "resourceType": "Document",
+        "rendererStartTime": 0,
+        "networkEndTime": 105.18299999833107
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "transferSize": 224386,
+        "resourceSize": 224180,
+        "resourceType": "Script",
+        "rendererStartTime": 124.91499999910593,
+        "networkEndTime": 205.4129999987781
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DgyY7DHD.css",
+        "transferSize": 127103,
+        "resourceSize": 126904,
+        "resourceType": "Stylesheet",
+        "rendererStartTime": 125.31599999591708,
+        "networkEndTime": 182.80499999970198
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
+        "transferSize": 25036,
+        "resourceSize": 24836,
+        "resourceType": "Font",
+        "rendererStartTime": 210.95499999821186,
+        "networkEndTime": 484.9589999951422
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+        "transferSize": 21368,
+        "resourceSize": 21168,
+        "resourceType": "Font",
+        "rendererStartTime": 215.03899999707937,
+        "networkEndTime": 486.7169999964535
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/caveat-latin-400-normal-D6LQsQ_v.woff2",
+        "transferSize": 49036,
+        "resourceSize": 48836,
+        "resourceType": "Font",
+        "rendererStartTime": 215.15699999779463,
+        "networkEndTime": 489.67799999564886
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/ExperienceRoot-nohx_SPY.js",
+        "transferSize": 15334,
+        "resourceSize": 15129,
+        "resourceType": "Script",
+        "rendererStartTime": 490.21299999952316,
+        "networkEndTime": 500.9669999964535
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/projects-BIOOSykV.js",
+        "transferSize": 7516,
+        "resourceSize": 7312,
+        "resourceType": "Script",
+        "rendererStartTime": 490.38199999928474,
+        "networkEndTime": 499.56899999827147
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/experienceStore-AJX4HHaF.js",
+        "transferSize": 3025,
+        "resourceSize": 2821,
+        "resourceType": "Script",
+        "rendererStartTime": 490.53099999949336,
+        "networkEndTime": 505.57699999958277
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/vanilla-DZJGj1NY.js",
+        "transferSize": 523,
+        "resourceSize": 320,
+        "resourceType": "Script",
+        "rendererStartTime": 490.6719999983907,
+        "networkEndTime": 507.7769999988377
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/SceneRegistry-B4tw40Q9.js",
+        "transferSize": 5042,
+        "resourceSize": 4838,
+        "resourceType": "Script",
+        "rendererStartTime": 490.8009999990463,
+        "networkEndTime": 505.1499999985099
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/InteractionRouter-Bf2ZvHcb.js",
+        "transferSize": 1035,
+        "resourceSize": 832,
+        "resourceType": "Script",
+        "rendererStartTime": 490.90399999544024,
+        "networkEndTime": 508.0619999989867
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/WorldCanvas-BIx8QADs.js",
+        "transferSize": 56219,
+        "resourceSize": 56014,
+        "resourceType": "Script",
+        "rendererStartTime": 615.9289999976754,
+        "networkEndTime": 629.3110000006855
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "transferSize": 863067,
+        "resourceSize": 862861,
+        "resourceType": "Script",
+        "rendererStartTime": 616.1089999973774,
+        "networkEndTime": 678.5789999961853
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/OriginWorld-HN5InMIh.js",
+        "transferSize": 8294,
+        "resourceSize": 8090,
+        "resourceType": "Script",
+        "rendererStartTime": 617.402999997139,
+        "networkEndTime": 628.6229999996722
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/Line-DRlP7UuT.js",
+        "transferSize": 19914,
+        "resourceSize": 19709,
+        "resourceType": "Script",
+        "rendererStartTime": 617.6459999978542,
+        "networkEndTime": 630.0919999964535
+      }
+    ]
+  },
+  {
+    "id": "deferred-identity-2",
+    "lighthouseVersion": "13.5.0",
+    "fetchTime": "2026-10-11T13:26:50.400Z",
+    "score": 0.34,
+    "metrics": {
+      "first-contentful-paint": 4068.3059999999996,
+      "largest-contentful-paint": 9674.112000000001,
+      "total-blocking-time": 3384,
+      "cumulative-layout-shift": 0,
+      "speed-index": 5256.66516592225
+    },
+    "settings": {
+      "output": "json",
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": ["file_systems", "shader_cache", "service_workers", "cache_storage"],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "node",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": ["performance"],
+      "skipAudits": null
+    },
+    "warnings": [],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 3934.9399999999537
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 1888.4
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 440.8960000000003
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 92.28800000000003
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 26.48
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 23.93599999999999
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 4.784
+      }
+    ],
+    "bootup": [
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "total": 3487.5239999999676,
+        "scripting": 3426.3479999999677,
+        "scriptParseCompile": 1.208
+      },
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "total": 1999.6639999999998,
+        "scripting": 3.3800000000000003,
+        "scriptParseCompile": 0.5800000000000001
+      },
+      {
+        "url": "Unattributable",
+        "total": 454.58000000000044,
+        "scripting": 79.16400000000004,
+        "scriptParseCompile": 0
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "total": 435.8440000000005,
+        "scripting": 418.40800000000047,
+        "scriptParseCompile": 2.012
+      }
+    ],
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "duration": 2955,
+        "startTime": 4391.3060000000005
+      },
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "duration": 648.0000000000002,
+        "startTime": 1452.153
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "duration": 305,
+        "startTime": 9877.612000000001
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "duration": 161,
+        "startTime": 4152.3060000000005
+      },
+      {
+        "url": "Unattributable",
+        "duration": 143,
+        "startTime": 2100.1530000000002
+      },
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "duration": 95,
+        "startTime": 2243.1530000000002
+      },
+      {
+        "url": "Unattributable",
+        "duration": 91,
+        "startTime": 1360.153
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "duration": 84,
+        "startTime": 4068.3060000000005
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "duration": 83,
+        "startTime": 10182.612000000001
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "duration": 81,
+        "startTime": 9796.612000000001
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "duration": 65,
+        "startTime": 4313.3060000000005
+      }
+    ],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "transferSize": 145014,
+        "resourceSize": 144814,
+        "resourceType": "Document",
+        "rendererStartTime": 0,
+        "networkEndTime": 90.0730000026524
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "transferSize": 224386,
+        "resourceSize": 224180,
+        "resourceType": "Script",
+        "rendererStartTime": 126.5380000025034,
+        "networkEndTime": 150.03100000321865
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DgyY7DHD.css",
+        "transferSize": 127103,
+        "resourceSize": 126904,
+        "resourceType": "Stylesheet",
+        "rendererStartTime": 126.84200000017881,
+        "networkEndTime": 140.9730000011623
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
+        "transferSize": 25036,
+        "resourceSize": 24836,
+        "resourceType": "Font",
+        "rendererStartTime": 180.90100000053644,
+        "networkEndTime": 482.1270000003278
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+        "transferSize": 21368,
+        "resourceSize": 21168,
+        "resourceType": "Font",
+        "rendererStartTime": 184.3559999987483,
+        "networkEndTime": 481.7880000025034
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/caveat-latin-400-normal-D6LQsQ_v.woff2",
+        "transferSize": 49036,
+        "resourceSize": 48836,
+        "resourceType": "Font",
+        "rendererStartTime": 184.50600000098348,
+        "networkEndTime": 484.71000000089407
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/ExperienceRoot-nohx_SPY.js",
+        "transferSize": 15334,
+        "resourceSize": 15129,
+        "resourceType": "Script",
+        "rendererStartTime": 616.1809999980032,
+        "networkEndTime": 627.7719999998808
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/projects-BIOOSykV.js",
+        "transferSize": 7516,
+        "resourceSize": 7312,
+        "resourceType": "Script",
+        "rendererStartTime": 616.4910000041127,
+        "networkEndTime": 631.0040000006557
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/experienceStore-AJX4HHaF.js",
+        "transferSize": 3025,
+        "resourceSize": 2821,
+        "resourceType": "Script",
+        "rendererStartTime": 616.7270000018179,
+        "networkEndTime": 630.8350000008941
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/vanilla-DZJGj1NY.js",
+        "transferSize": 523,
+        "resourceSize": 320,
+        "resourceType": "Script",
+        "rendererStartTime": 616.9490000009537,
+        "networkEndTime": 631.6770000010729
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/SceneRegistry-B4tw40Q9.js",
+        "transferSize": 5042,
+        "resourceSize": 4838,
+        "resourceType": "Script",
+        "rendererStartTime": 617.1460000015795,
+        "networkEndTime": 641.2019999995828
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/InteractionRouter-Bf2ZvHcb.js",
+        "transferSize": 1035,
+        "resourceSize": 832,
+        "resourceType": "Script",
+        "rendererStartTime": 617.3190000019968,
+        "networkEndTime": 634.4499999992549
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/WorldCanvas-BIx8QADs.js",
+        "transferSize": 56219,
+        "resourceSize": 56014,
+        "resourceType": "Script",
+        "rendererStartTime": 629.312000002712,
+        "networkEndTime": 660.8690000027418
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "transferSize": 863067,
+        "resourceSize": 862861,
+        "resourceType": "Script",
+        "rendererStartTime": 629.6459999978542,
+        "networkEndTime": 678.6860000006855
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/OriginWorld-HN5InMIh.js",
+        "transferSize": 8294,
+        "resourceSize": 8090,
+        "resourceType": "Script",
+        "rendererStartTime": 653.6930000036955,
+        "networkEndTime": 672.3850000016391
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/Line-DRlP7UuT.js",
+        "transferSize": 19914,
+        "resourceSize": 19709,
+        "resourceType": "Script",
+        "rendererStartTime": 654.0089999996126,
+        "networkEndTime": 671.7399999983609
+      }
+    ]
+  },
+  {
+    "id": "deferred-identity-3",
+    "lighthouseVersion": "13.5.0",
+    "fetchTime": "2026-10-11T13:27:00.053Z",
+    "score": 0.36,
+    "metrics": {
+      "first-contentful-paint": 6787.854000000001,
+      "largest-contentful-paint": 9517.472000000002,
+      "total-blocking-time": 1123.5000000000005,
+      "cumulative-layout-shift": 0.01458080194410693,
+      "speed-index": 6787.854000000001
+    },
+    "settings": {
+      "output": "json",
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": ["file_systems", "shader_cache", "service_workers", "cache_storage"],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "node",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": ["performance"],
+      "skipAudits": null
+    },
+    "warnings": [],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 2574.8679999999404
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 1336.4359999999997
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 366.98000000000116
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 41.33199999999998
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 30.951999999999998
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 21.871999999999975
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 3.0160000000000005
+      }
+    ],
+    "bootup": [
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "total": 2167.9999999999663,
+        "scripting": 2145.143999999966,
+        "scriptParseCompile": 1.208
+      },
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "total": 1426.8519999999996,
+        "scripting": 5.54,
+        "scriptParseCompile": 0.38
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "total": 389.2400000000003,
+        "scripting": 376.8640000000003,
+        "scriptParseCompile": 0.644
+      },
+      {
+        "url": "Unattributable",
+        "total": 364.332000000001,
+        "scripting": 40.352000000000025,
+        "scriptParseCompile": 0
+      }
+    ],
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "duration": 1774.000000000001,
+        "startTime": 4114.236
+      },
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "duration": 613,
+        "startTime": 1432.118
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "duration": 281,
+        "startTime": 9586.472000000002
+      },
+      {
+        "url": "Unattributable",
+        "duration": 87,
+        "startTime": 2045.118
+      },
+      {
+        "url": "Unattributable",
+        "duration": 74,
+        "startTime": 1357.118
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "duration": 72,
+        "startTime": 9867.472000000002
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "duration": 69,
+        "startTime": 9517.472000000002
+      },
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "duration": 62,
+        "startTime": 2132.118
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "duration": 51,
+        "startTime": 4058.236
+      }
+    ],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:4181/?atlas=preview",
+        "transferSize": 145014,
+        "resourceSize": 144814,
+        "resourceType": "Document",
+        "rendererStartTime": 0,
+        "networkEndTime": 74.17799999937415
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DZMPVnGu.js",
+        "transferSize": 224386,
+        "resourceSize": 224180,
+        "resourceType": "Script",
+        "rendererStartTime": 106.27100000157952,
+        "networkEndTime": 132.05900000035763
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/index-DgyY7DHD.css",
+        "transferSize": 127103,
+        "resourceSize": 126904,
+        "resourceType": "Stylesheet",
+        "rendererStartTime": 106.61700000241399,
+        "networkEndTime": 120.6600000038743
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
+        "transferSize": 25036,
+        "resourceSize": 24836,
+        "resourceType": "Font",
+        "rendererStartTime": 151.65500000491738,
+        "networkEndTime": 433.6760000027716
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+        "transferSize": 21368,
+        "resourceSize": 21168,
+        "resourceType": "Font",
+        "rendererStartTime": 154.91100000217557,
+        "networkEndTime": 433.3580000028014
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/caveat-latin-400-normal-D6LQsQ_v.woff2",
+        "transferSize": 49036,
+        "resourceSize": 48836,
+        "resourceType": "Font",
+        "rendererStartTime": 155.03900000452995,
+        "networkEndTime": 435.62400000169873
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/ExperienceRoot-nohx_SPY.js",
+        "transferSize": 15334,
+        "resourceSize": 15129,
+        "resourceType": "Script",
+        "rendererStartTime": 443.5870000049472,
+        "networkEndTime": 450.714000005275
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/projects-BIOOSykV.js",
+        "transferSize": 7516,
+        "resourceSize": 7312,
+        "resourceType": "Script",
+        "rendererStartTime": 443.82699999958277,
+        "networkEndTime": 450.54200000315905
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/experienceStore-AJX4HHaF.js",
+        "transferSize": 3025,
+        "resourceSize": 2821,
+        "resourceType": "Script",
+        "rendererStartTime": 443.99900000169873,
+        "networkEndTime": 452.89000000059605
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/vanilla-DZJGj1NY.js",
+        "transferSize": 523,
+        "resourceSize": 320,
+        "resourceType": "Script",
+        "rendererStartTime": 444.1460000053048,
+        "networkEndTime": 453.0250000022352
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/SceneRegistry-B4tw40Q9.js",
+        "transferSize": 5042,
+        "resourceSize": 4838,
+        "resourceType": "Script",
+        "rendererStartTime": 444.2940000034869,
+        "networkEndTime": 453.2600000053644
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/InteractionRouter-Bf2ZvHcb.js",
+        "transferSize": 1035,
+        "resourceSize": 832,
+        "resourceType": "Script",
+        "rendererStartTime": 444.4400000013411,
+        "networkEndTime": 453.61200000345707
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/WorldCanvas-BIx8QADs.js",
+        "transferSize": 56219,
+        "resourceSize": 56014,
+        "resourceType": "Script",
+        "rendererStartTime": 462.15900000557303,
+        "networkEndTime": 472.5080000013113
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/extends-D1yLTBku.js",
+        "transferSize": 863067,
+        "resourceSize": 862861,
+        "resourceType": "Script",
+        "rendererStartTime": 462.33000000566244,
+        "networkEndTime": 491.57500000298023
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/OriginWorld-HN5InMIh.js",
+        "transferSize": 8294,
+        "resourceSize": 8090,
+        "resourceType": "Script",
+        "rendererStartTime": 464.4290000014007,
+        "networkEndTime": 472.28900000452995
+      },
+      {
+        "url": "http://127.0.0.1:4181/assets/Line-DRlP7UuT.js",
+        "transferSize": 19914,
+        "resourceSize": 19709,
+        "resourceType": "Script",
+        "rendererStartTime": 464.64000000432134,
+        "networkEndTime": 472.652000002563
+      }
+    ]
+  }
+]

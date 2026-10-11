@@ -1,0 +1,1215 @@
+[
+  {
+    "run": 1,
+    "url": "http://127.0.0.1:4182/?atlas=preview",
+    "world": "origin",
+    "methodology": "CDP actual 4x CPU; 150ms latency; 1.6Mbps down; 750Kbps up; fresh Chromium SwiftShader. Ready timestamp is first committed render-ready marker; composited screenshot verifies actual 3D pixels after keyboard input. Not exact GPU presentation timestamp.",
+    "measurements": {
+      "longTasks": [
+        {
+          "start": 3253.800000000745,
+          "duration": 145
+        },
+        {
+          "start": 3416.699999999255,
+          "duration": 80
+        },
+        {
+          "start": 3932.89999999851,
+          "duration": 52
+        },
+        {
+          "start": 4042,
+          "duration": 261
+        },
+        {
+          "start": 9126.800000000745,
+          "duration": 171
+        },
+        {
+          "start": 9399,
+          "duration": 163
+        },
+        {
+          "start": 9839.699999999255,
+          "duration": 58
+        },
+        {
+          "start": 9898.199999999255,
+          "duration": 129
+        },
+        {
+          "start": 10329.39999999851,
+          "duration": 73
+        },
+        {
+          "start": 10460.800000000745,
+          "duration": 125
+        },
+        {
+          "start": 10589.39999999851,
+          "duration": 85
+        },
+        {
+          "start": 10676.89999999851,
+          "duration": 88
+        },
+        {
+          "start": 10907.5,
+          "duration": 163
+        },
+        {
+          "start": 11087.5,
+          "duration": 216
+        },
+        {
+          "start": 11305.099999997765,
+          "duration": 180
+        },
+        {
+          "start": 11507,
+          "duration": 53
+        },
+        {
+          "start": 11630.699999999255,
+          "duration": 71
+        },
+        {
+          "start": 11787.300000000745,
+          "duration": 107
+        },
+        {
+          "start": 11955.39999999851,
+          "duration": 95
+        },
+        {
+          "start": 12057.599999997765,
+          "duration": 92
+        },
+        {
+          "start": 12151.5,
+          "duration": 50
+        },
+        {
+          "start": 12216.300000000745,
+          "duration": 154
+        },
+        {
+          "start": 12387.599999997765,
+          "duration": 169
+        }
+      ],
+      "glCalls": [
+        {
+          "operation": "getContext:webgl2",
+          "start": 4242.300000000745,
+          "duration": 8.699999999254942,
+          "success": true
+        },
+        {
+          "operation": "getContext:webgl2",
+          "start": 9408,
+          "duration": 6.899999998509884,
+          "success": true
+        },
+        {
+          "operation": "compileShader",
+          "start": 9935.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9938.300000000745,
+          "duration": 0.09999999776482582
+        },
+        {
+          "operation": "linkProgram",
+          "start": 9938.39999999851,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9949.199999999255,
+          "duration": 0.19999999925494194
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9949.800000000745,
+          "duration": 0.19999999925494194
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9952.599999997765,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9966.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9968.599999997765,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 9968.800000000745,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9972,
+          "duration": 0.30000000074505806
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9972.39999999851,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9973,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9983.699999999255,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9984.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 9984.099999997765,
+          "duration": 0.20000000298023224
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9992.5,
+          "duration": 0.09999999776482582
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9992.699999999255,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9992.89999999851,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9999.89999999851,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10000.39999999851,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 10000.39999999851,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10005.099999997765,
+          "duration": 0.10000000149011612
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10005.300000000745,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10005.699999999255,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10012.800000000745,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10013.300000000745,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 10013.300000000745,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10018.300000000745,
+          "duration": 0.3999999985098839
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10018.699999999255,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10019.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10044.39999999851,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10046.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 10046.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10055.89999999851,
+          "duration": 0.19999999925494194
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10056.099999997765,
+          "duration": 0.20000000298023224
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10056.800000000745,
+          "duration": 0
+        }
+      ],
+      "ready": 10139.39999999851,
+      "cameraChanged": 12860.300000000745,
+      "beforePose": "{\"position\":[9,10.000000000000002,78],\"target\":[9,-5,-16],\"fov\":48,\"zoom\":1}",
+      "inputSent": 10153.800000000745,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:4182/assets/index-BfDoTPxC.js",
+          "startTime": 223.5,
+          "duration": 2915.89999999851,
+          "transferSize": 223962,
+          "encodedBodySize": 223662,
+          "decodedBodySize": 223662
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/index-Bg5vqATo.css",
+          "startTime": 224.59999999776483,
+          "duration": 1947.6000000014901,
+          "transferSize": 127301,
+          "encodedBodySize": 127001,
+          "decodedBodySize": 127001
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
+          "startTime": 2228.300000000745,
+          "duration": 630.1999999992549,
+          "transferSize": 25136,
+          "encodedBodySize": 24836,
+          "decodedBodySize": 24836
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+          "startTime": 2243,
+          "duration": 599.5,
+          "transferSize": 21468,
+          "encodedBodySize": 21168,
+          "decodedBodySize": 21168
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/caveat-latin-400-normal-D6LQsQ_v.woff2",
+          "startTime": 2243.300000000745,
+          "duration": 880.3999999985099,
+          "transferSize": 49136,
+          "encodedBodySize": 48836,
+          "decodedBodySize": 48836
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/ExperienceRoot-BFk-oU-H.js",
+          "startTime": 3438.599999997765,
+          "duration": 481.20000000298023,
+          "transferSize": 38124,
+          "encodedBodySize": 37824,
+          "decodedBodySize": 37824
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/projects-Dn169qyK.js",
+          "startTime": 3438.89999999851,
+          "duration": 309.69999999925494,
+          "transferSize": 7971,
+          "encodedBodySize": 7671,
+          "decodedBodySize": 7671
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/data-v8ottfKe.js",
+          "startTime": 3439.599999997765,
+          "duration": 325.4000000022352,
+          "transferSize": 8388,
+          "encodedBodySize": 8088,
+          "decodedBodySize": 8088
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/ExperienceRoot-DuR8T3hE.css",
+          "startTime": 3441.39999999851,
+          "duration": 307.4000000022352,
+          "transferSize": 7146,
+          "encodedBodySize": 6846,
+          "decodedBodySize": 6846
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/WorldCanvas-BAQZLD95.js",
+          "startTime": 4289.199999999255,
+          "duration": 736.3999999985099,
+          "transferSize": 56852,
+          "encodedBodySize": 56552,
+          "decodedBodySize": 56552
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/events-9ce18a08.esm-qpdhsGsW.js",
+          "startTime": 4290.800000000745,
+          "duration": 4806.5,
+          "transferSize": 862962,
+          "encodedBodySize": 862662,
+          "decodedBodySize": 862662
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/extends-CvVTau-c.js",
+          "startTime": 4291.5,
+          "duration": 174.09999999776483,
+          "transferSize": 531,
+          "encodedBodySize": 231,
+          "decodedBodySize": 231
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/OriginWorld-CY9gM24z.js",
+          "startTime": 9503.699999999255,
+          "duration": 293.19999999925494,
+          "transferSize": 27971,
+          "encodedBodySize": 27671,
+          "decodedBodySize": 27671
+        }
+      ]
+    },
+    "pixels": {
+      "lit": 840,
+      "shades": 69
+    },
+    "errors": []
+  },
+  {
+    "run": 2,
+    "url": "http://127.0.0.1:4182/?atlas=preview",
+    "world": "origin",
+    "methodology": "CDP actual 4x CPU; 150ms latency; 1.6Mbps down; 750Kbps up; fresh Chromium SwiftShader. Ready timestamp is first committed render-ready marker; composited screenshot verifies actual 3D pixels after keyboard input. Not exact GPU presentation timestamp.",
+    "measurements": {
+      "longTasks": [
+        {
+          "start": 3222.699999999255,
+          "duration": 149
+        },
+        {
+          "start": 3392.099999997765,
+          "duration": 79
+        },
+        {
+          "start": 3999.7999999970198,
+          "duration": 343
+        },
+        {
+          "start": 9218,
+          "duration": 158
+        },
+        {
+          "start": 9473.099999997765,
+          "duration": 142
+        },
+        {
+          "start": 9891.099999997765,
+          "duration": 78
+        },
+        {
+          "start": 9969.5,
+          "duration": 174
+        },
+        {
+          "start": 10155,
+          "duration": 100
+        },
+        {
+          "start": 10720.29999999702,
+          "duration": 84
+        },
+        {
+          "start": 10804.599999997765,
+          "duration": 85
+        },
+        {
+          "start": 10990.79999999702,
+          "duration": 119
+        },
+        {
+          "start": 11186.099999997765,
+          "duration": 97
+        },
+        {
+          "start": 11284.29999999702,
+          "duration": 77
+        },
+        {
+          "start": 11625,
+          "duration": 86
+        },
+        {
+          "start": 11790.5,
+          "duration": 72
+        },
+        {
+          "start": 11953,
+          "duration": 141
+        },
+        {
+          "start": 12109.699999999255,
+          "duration": 264
+        },
+        {
+          "start": 12669.599999997765,
+          "duration": 106
+        }
+      ],
+      "glCalls": [
+        {
+          "operation": "getContext:webgl2",
+          "start": 4180.5,
+          "duration": 8.599999997764826,
+          "success": true
+        },
+        {
+          "operation": "getContext:webgl2",
+          "start": 9481,
+          "duration": 6.599999997764826,
+          "success": true
+        },
+        {
+          "operation": "compileShader",
+          "start": 10026.599999997765,
+          "duration": 0.10000000149011612
+        },
+        {
+          "operation": "compileShader",
+          "start": 10033.29999999702,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 10033.5,
+          "duration": 0.09999999776482582
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10045.5,
+          "duration": 0.29999999701976776
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10046.199999999255,
+          "duration": 0.09999999776482582
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10048.79999999702,
+          "duration": 0.30000000074505806
+        },
+        {
+          "operation": "compileShader",
+          "start": 10062.599999997765,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10064.39999999851,
+          "duration": 0.10000000149011612
+        },
+        {
+          "operation": "linkProgram",
+          "start": 10064.599999997765,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10068.89999999851,
+          "duration": 0.19999999925494194
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10069.29999999702,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10069.699999999255,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10095.29999999702,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10095.699999999255,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 10095.699999999255,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10100.199999999255,
+          "duration": 0.3999999985098839
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10100.599999997765,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10101.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10110.29999999702,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10110.39999999851,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 10110.39999999851,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10116.599999997765,
+          "duration": 0.19999999925494194
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10116.79999999702,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10117,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10121.699999999255,
+          "duration": 0.09999999776482582
+        },
+        {
+          "operation": "compileShader",
+          "start": 10125,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 10125.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10132.29999999702,
+          "duration": 0.30000000074505806
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10132.599999997765,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10133,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10168.79999999702,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 10172.39999999851,
+          "duration": 0.19999999925494194
+        },
+        {
+          "operation": "linkProgram",
+          "start": 10172.599999997765,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10184.39999999851,
+          "duration": 0.19999999925494194
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10184.599999997765,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 10185.39999999851,
+          "duration": 0
+        }
+      ],
+      "ready": 10260,
+      "cameraChanged": 12769.5,
+      "beforePose": "{\"position\":[9,10.000000000000002,78],\"target\":[9,-5,-16],\"fov\":48,\"zoom\":1}",
+      "inputSent": 10289.39999999851,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:4182/assets/index-BfDoTPxC.js",
+          "startTime": 209.59999999776483,
+          "duration": 2940.699999999255,
+          "transferSize": 223962,
+          "encodedBodySize": 223662,
+          "decodedBodySize": 223662
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/index-Bg5vqATo.css",
+          "startTime": 211.5,
+          "duration": 1956.2999999970198,
+          "transferSize": 127301,
+          "encodedBodySize": 127001,
+          "decodedBodySize": 127001
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
+          "startTime": 2229.599999997765,
+          "duration": 623.1000000014901,
+          "transferSize": 25136,
+          "encodedBodySize": 24836,
+          "decodedBodySize": 24836
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+          "startTime": 2243,
+          "duration": 593.6999999992549,
+          "transferSize": 21468,
+          "encodedBodySize": 21168,
+          "decodedBodySize": 21168
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/caveat-latin-400-normal-D6LQsQ_v.woff2",
+          "startTime": 2243.599999997765,
+          "duration": 876.1999999992549,
+          "transferSize": 49136,
+          "encodedBodySize": 48836,
+          "decodedBodySize": 48836
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/ExperienceRoot-BFk-oU-H.js",
+          "startTime": 3417.699999999255,
+          "duration": 484.5,
+          "transferSize": 38124,
+          "encodedBodySize": 37824,
+          "decodedBodySize": 37824
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/projects-Dn169qyK.js",
+          "startTime": 3420.099999997765,
+          "duration": 325.69999999925494,
+          "transferSize": 7971,
+          "encodedBodySize": 7671,
+          "decodedBodySize": 7671
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/data-v8ottfKe.js",
+          "startTime": 3422.099999997765,
+          "duration": 323.9000000022352,
+          "transferSize": 8388,
+          "encodedBodySize": 8088,
+          "decodedBodySize": 8088
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/ExperienceRoot-DuR8T3hE.css",
+          "startTime": 3427.5,
+          "duration": 302.29999999701977,
+          "transferSize": 7146,
+          "encodedBodySize": 6846,
+          "decodedBodySize": 6846
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/WorldCanvas-BAQZLD95.js",
+          "startTime": 4331.199999999255,
+          "duration": 768.6999999992549,
+          "transferSize": 56852,
+          "encodedBodySize": 56552,
+          "decodedBodySize": 56552
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/events-9ce18a08.esm-qpdhsGsW.js",
+          "startTime": 4332.39999999851,
+          "duration": 4857,
+          "transferSize": 862962,
+          "encodedBodySize": 862662,
+          "decodedBodySize": 862662
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/extends-CvVTau-c.js",
+          "startTime": 4333.599999997765,
+          "duration": 177.60000000149012,
+          "transferSize": 531,
+          "encodedBodySize": 231,
+          "decodedBodySize": 231
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/OriginWorld-CY9gM24z.js",
+          "startTime": 9564.5,
+          "duration": 294.8999999985099,
+          "transferSize": 27971,
+          "encodedBodySize": 27671,
+          "decodedBodySize": 27671
+        }
+      ]
+    },
+    "pixels": {
+      "lit": 839,
+      "shades": 67
+    },
+    "errors": []
+  },
+  {
+    "run": 3,
+    "url": "http://127.0.0.1:4182/?atlas=preview",
+    "world": "origin",
+    "methodology": "CDP actual 4x CPU; 150ms latency; 1.6Mbps down; 750Kbps up; fresh Chromium SwiftShader. Ready timestamp is first committed render-ready marker; composited screenshot verifies actual 3D pixels after keyboard input. Not exact GPU presentation timestamp.",
+    "measurements": {
+      "longTasks": [
+        {
+          "start": 3154.39999999851,
+          "duration": 161
+        },
+        {
+          "start": 3340.099999997765,
+          "duration": 91
+        },
+        {
+          "start": 3950.2999999970198,
+          "duration": 175
+        },
+        {
+          "start": 4125.599999997765,
+          "duration": 112
+        },
+        {
+          "start": 9081,
+          "duration": 163
+        },
+        {
+          "start": 9332.599999997765,
+          "duration": 153
+        },
+        {
+          "start": 9800.29999999702,
+          "duration": 127
+        },
+        {
+          "start": 9938.39999999851,
+          "duration": 133
+        },
+        {
+          "start": 10251.39999999851,
+          "duration": 104
+        },
+        {
+          "start": 10510.699999999255,
+          "duration": 76
+        },
+        {
+          "start": 10662.79999999702,
+          "duration": 86
+        },
+        {
+          "start": 10749.5,
+          "duration": 99
+        },
+        {
+          "start": 10849.099999997765,
+          "duration": 50
+        },
+        {
+          "start": 10901.199999999255,
+          "duration": 77
+        },
+        {
+          "start": 10979.39999999851,
+          "duration": 75
+        },
+        {
+          "start": 11229.89999999851,
+          "duration": 67
+        },
+        {
+          "start": 11297.79999999702,
+          "duration": 92
+        },
+        {
+          "start": 11469.699999999255,
+          "duration": 89
+        },
+        {
+          "start": 11730.199999999255,
+          "duration": 242
+        },
+        {
+          "start": 11973.29999999702,
+          "duration": 140
+        },
+        {
+          "start": 12148.599999997765,
+          "duration": 75
+        },
+        {
+          "start": 12368.699999999255,
+          "duration": 71
+        },
+        {
+          "start": 12440.599999997765,
+          "duration": 84
+        }
+      ],
+      "glCalls": [
+        {
+          "operation": "getContext:webgl2",
+          "start": 4134.5,
+          "duration": 7.399999998509884,
+          "success": true
+        },
+        {
+          "operation": "getContext:webgl2",
+          "start": 9340.89999999851,
+          "duration": 6.899999998509884,
+          "success": true
+        },
+        {
+          "operation": "compileShader",
+          "start": 9837.29999999702,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9839.699999999255,
+          "duration": 0.09999999776482582
+        },
+        {
+          "operation": "linkProgram",
+          "start": 9839.89999999851,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9849.89999999851,
+          "duration": 0.6000000014901161
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9851,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9854.199999999255,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9868.39999999851,
+          "duration": 0.19999999925494194
+        },
+        {
+          "operation": "compileShader",
+          "start": 9870.79999999702,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 9871,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9874,
+          "duration": 0.19999999925494194
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9874.39999999851,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9875,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9888.5,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9889,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 9889.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9895.599999997765,
+          "duration": 0.10000000149011612
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9895.699999999255,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9895.89999999851,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9903.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9903.5,
+          "duration": 0.09999999776482582
+        },
+        {
+          "operation": "linkProgram",
+          "start": 9903.599999997765,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9907.099999997765,
+          "duration": 0.4000000022351742
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9907.5,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9907.89999999851,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9913.099999997765,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9913.39999999851,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 9913.39999999851,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9918.099999997765,
+          "duration": 0.5
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9918.599999997765,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9918.89999999851,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9954,
+          "duration": 0
+        },
+        {
+          "operation": "compileShader",
+          "start": 9957.199999999255,
+          "duration": 0
+        },
+        {
+          "operation": "linkProgram",
+          "start": 9957.199999999255,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9967.599999997765,
+          "duration": 0.30000000074505806
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9967.89999999851,
+          "duration": 0
+        },
+        {
+          "operation": "getProgramParameter",
+          "start": 9968.699999999255,
+          "duration": 0
+        }
+      ],
+      "ready": 10088.29999999702,
+      "cameraChanged": 12454,
+      "beforePose": "{\"position\":[9,10.000000000000002,78],\"target\":[9,-5,-16],\"fov\":48,\"zoom\":1}",
+      "inputSent": 10095.199999999255,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:4182/assets/index-BfDoTPxC.js",
+          "startTime": 204.89999999850988,
+          "duration": 2930.199999999255,
+          "transferSize": 223962,
+          "encodedBodySize": 223662,
+          "decodedBodySize": 223662
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/index-Bg5vqATo.css",
+          "startTime": 206,
+          "duration": 1962.5999999977648,
+          "transferSize": 127301,
+          "encodedBodySize": 127001,
+          "decodedBodySize": 127001
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
+          "startTime": 2228.599999997765,
+          "duration": 655.9000000022352,
+          "transferSize": 25136,
+          "encodedBodySize": 24836,
+          "decodedBodySize": 24836
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+          "startTime": 2242.699999999255,
+          "duration": 594.5999999977648,
+          "transferSize": 21468,
+          "encodedBodySize": 21168,
+          "decodedBodySize": 21168
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/caveat-latin-400-normal-D6LQsQ_v.woff2",
+          "startTime": 2243.2999999970198,
+          "duration": 891.6000000014901,
+          "transferSize": 49136,
+          "encodedBodySize": 48836,
+          "decodedBodySize": 48836
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/ExperienceRoot-BFk-oU-H.js",
+          "startTime": 3365.7999999970198,
+          "duration": 486.6000000014901,
+          "transferSize": 38124,
+          "encodedBodySize": 37824,
+          "decodedBodySize": 37824
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/projects-Dn169qyK.js",
+          "startTime": 3384.699999999255,
+          "duration": 313.8999999985099,
+          "transferSize": 7971,
+          "encodedBodySize": 7671,
+          "decodedBodySize": 7671
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/data-v8ottfKe.js",
+          "startTime": 3386.699999999255,
+          "duration": 328,
+          "transferSize": 8388,
+          "encodedBodySize": 8088,
+          "decodedBodySize": 8088
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/ExperienceRoot-DuR8T3hE.css",
+          "startTime": 3388.199999999255,
+          "duration": 294.80000000074506,
+          "transferSize": 7146,
+          "encodedBodySize": 6846,
+          "decodedBodySize": 6846
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/WorldCanvas-BAQZLD95.js",
+          "startTime": 4226.39999999851,
+          "duration": 751.8000000007451,
+          "transferSize": 56852,
+          "encodedBodySize": 56552,
+          "decodedBodySize": 56552
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/events-9ce18a08.esm-qpdhsGsW.js",
+          "startTime": 4228.099999997765,
+          "duration": 4821.300000000745,
+          "transferSize": 862962,
+          "encodedBodySize": 862662,
+          "decodedBodySize": 862662
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/extends-CvVTau-c.js",
+          "startTime": 4229.199999999255,
+          "duration": 184.39999999850988,
+          "transferSize": 531,
+          "encodedBodySize": 231,
+          "decodedBodySize": 231
+        },
+        {
+          "name": "http://127.0.0.1:4182/assets/OriginWorld-CY9gM24z.js",
+          "startTime": 9438.39999999851,
+          "duration": 297.8999999985099,
+          "transferSize": 27971,
+          "encodedBodySize": 27671,
+          "decodedBodySize": 27671
+        }
+      ]
+    },
+    "pixels": {
+      "lit": 840,
+      "shades": 67
+    },
+    "errors": []
+  }
+]
