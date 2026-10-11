@@ -138,6 +138,52 @@ test('two consecutive world changes render real frames in one persistent canvas'
   }
 })
 
+test('history, reduced motion and viewport resize preserve rendered worlds', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto('/?atlas=preview')
+  const stage = page.getByTestId('atlas-canvas')
+  const canvas = await readyCanvas(page)
+
+  async function checkVisible(world: World) {
+    await expect(page.getByTestId('atlas-scene-ready')).toHaveText(world)
+    await positionCanvasForEvidence(canvas)
+    await expect
+      .poll(async () => (await spatialPixelEvidence(page, canvas)).lit)
+      .toBeGreaterThan(35)
+    expect((await spatialPixelEvidence(page, canvas)).shades).toBeGreaterThan(6)
+    await expect(stage.locator('canvas')).toHaveCount(1)
+  }
+
+  await checkVisible('origin')
+  await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
+  await checkVisible('observatory')
+  await page.goBack()
+  await checkVisible('origin')
+  await page.goForward()
+  await checkVisible('observatory')
+  await page.setViewportSize({ width: 390, height: 844 })
+  await checkVisible('observatory')
+})
+
+test('interrupted camera flight leaves the destination world visibly rendered', async ({
+  page,
+}) => {
+  await page.goto('/?atlas=preview')
+  const canvas = await readyCanvas(page)
+  await page.getByRole('button', { name: /Das Signal Neugier/ }).click()
+  await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
+  await expect(page.getByTestId('atlas-scene-ready')).toHaveText('observatory')
+  await positionCanvasForEvidence(canvas)
+  await expect
+    .poll(async () => (await spatialPixelEvidence(page, canvas)).lit)
+    .toBeGreaterThan(35)
+  await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
+  await expect(page.getByTestId('atlas-canvas').locator('canvas')).toHaveCount(1)
+})
+
 test('lost WebGL context activates accessible HTML fallback', async ({ page }) => {
   await page.goto('/?atlas=preview')
   const canvas = await readyCanvas(page)
