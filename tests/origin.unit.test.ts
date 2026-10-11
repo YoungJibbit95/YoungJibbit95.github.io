@@ -43,5 +43,9 @@ test('Origin graph, geometry and focus anchors share valid positions within the 
     defaultSnapshot('origin', null).pose,
   )
   // A compact entry never changes the destination's semantic identity.
-  assert.deepEqual(defaultSnapshot('origin', 'signal', true), defaultSnapshot('origin', 'signal'))
+  assert.equal(defaultSnapshot('origin', 'signal', true).focusId, 'signal')
+  for (const node of originLandmarks) {
+    assert.deepEqual(defaultSnapshot('origin', node.id, true).pose, node.compactFocusPose)
+    assert.notDeepEqual(node.compactFocusPose, node.focusPose)
+  }
 })

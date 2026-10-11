@@ -9,6 +9,7 @@ export const originLandmarks: readonly WorldHotspot[] = [
     description: 'Du gibst den Impuls. Die Verbindung trägt ihn weiter.',
     position: [-28, -5, 8],
     focusPose: { position: [-22, 4, 34], target: [-28, -5, 8], fov: 48, zoom: 1 },
+    compactFocusPose: { position: [-21, 2, 41], target: [-28, -5, 8], fov: 48, zoom: 1 },
     evidenceStatus: 'illustrative',
   },
   {
@@ -18,6 +19,7 @@ export const originLandmarks: readonly WorldHotspot[] = [
     description: 'Der Impuls öffnet die Struktur. Aus einer Frage wird ein Weg.',
     position: [9, 2, -16],
     focusPose: { position: [25, 9, 19], target: [9, 2, -16], fov: 48, zoom: 1 },
+    compactFocusPose: { position: [26, 13, 84], target: [9, -5, -16], fov: 48, zoom: 1 },
     evidenceStatus: 'illustrative',
     destination: 'observatory',
   },
@@ -28,6 +30,7 @@ export const originLandmarks: readonly WorldHotspot[] = [
     description: 'Am Ende der Verbindung beginnt der Blick auf meine Projekte.',
     position: [60, 5, -76],
     focusPose: { position: [67, 9, -43], target: [60, 5, -76], fov: 48, zoom: 1 },
+    compactFocusPose: { position: [68, 13, -13], target: [60, 1, -76], fov: 48, zoom: 1 },
     evidenceStatus: 'illustrative',
     destination: 'observatory',
   },

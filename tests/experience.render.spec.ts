@@ -141,7 +141,7 @@ test('two consecutive world changes render real frames in one persistent canvas'
     ['Ursprung', 'origin'],
     ['Sternwarte', 'observatory'],
   ] as const) {
-    await page.getByRole('button', { name: button, exact: true }).click()
+    await page.getByRole('link', { name: button, exact: true }).click()
     await expect(page.getByTestId('atlas-scene-ready')).toHaveText(world)
     await positionCanvasForEvidence(canvas)
     await expect
@@ -169,7 +169,7 @@ test('history, reduced motion and viewport resize preserve rendered worlds', asy
   }
 
   await checkVisible('origin')
-  await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
+  await page.getByRole('link', { name: 'Sternwarte', exact: true }).click()
   await checkVisible('observatory')
   await page.goBack()
   await checkVisible('origin')
@@ -184,8 +184,8 @@ test('interrupted camera flight leaves the destination world visibly rendered', 
 }) => {
   await page.goto('/?atlas=preview')
   const canvas = await readyCanvas(page)
-  await page.getByRole('button', { name: /Das Signal Neugier/ }).click()
-  await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
+  await page.getByRole('link', { name: /Das Signal Neugier/ }).click()
+  await page.getByRole('link', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-scene-ready')).toHaveText('observatory')
   await positionCanvasForEvidence(canvas)
   await expect.poll(async () => (await spatialPixelEvidence(page, canvas)).lit).toBeGreaterThan(35)

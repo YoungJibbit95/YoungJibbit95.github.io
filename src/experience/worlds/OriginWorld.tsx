@@ -147,6 +147,7 @@ const QuietSpace = memo(function QuietSpace() {
 function SignalPath() {
   const step = useOriginSignal((state) => state.step)
   const revision = useOriginSignal((state) => state.revision)
+  const paused = useOriginSignal((state) => state.playback === 'paused')
   const reduced = useExperienceStore((state) => state.motion !== 'full')
   const pulse = useRef<Mesh>(null)
   const age = useRef(2)
@@ -156,8 +157,10 @@ function SignalPath() {
     age.current = reduced ? 2 : 0
     invalidate()
   }, [revision, reduced, invalidate])
+  useEffect(() => invalidate(), [paused, invalidate])
   useFrame((state, delta) => {
     if (!pulse.current) return
+    if (paused) return
     const moving = step > 0 && !reduced && age.current < 1.4
     pulse.current.visible = moving
     if (!moving) return
@@ -190,13 +193,15 @@ function SignalPath() {
 export default function OriginWorld({ onFocus, selectedId }: WorldSceneProps) {
   const step = useOriginSignal((state) => state.step)
   const reduced = useExperienceStore((state) => state.motion !== 'full')
+  const paused = useOriginSignal((state) => state.playback === 'paused')
   const response = signalResponse(step)
   const left = useRef<Group>(null)
   const right = useRef<Group>(null)
   const invalidate = useThree((state) => state.invalidate)
-  useEffect(() => invalidate(), [step, reduced, invalidate])
+  useEffect(() => invalidate(), [step, reduced, paused, invalidate])
   useFrame((state, delta) => {
     if (!left.current || !right.current) return
+    if (paused && !reduced) return
     const destination = response.aperture * 2.8
     const current = right.current.position.x
     const next = reduced

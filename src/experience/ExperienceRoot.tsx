@@ -1,12 +1,12 @@
 import { Component, lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { KeyboardEvent, ReactNode } from 'react'
+import type { KeyboardEvent, MouseEvent, ReactNode } from 'react'
 import { OriginSignalControls } from './ui/OriginSignalControls'
 import { projects } from '../data/projects'
 import { useExperienceStore } from '../store/experienceStore'
 import { moveWithKey, isFormTarget } from './InteractionRouter'
 import { effectiveMotion, webGLAvailable } from './MotionPolicy'
 import { SceneDirector } from './SceneDirector'
-import { availableWorlds, findHotspot, getWorld } from './SceneRegistry'
+import { availableWorlds, defaultSnapshot, findHotspot, getWorld, worldHref } from './SceneRegistry'
 import type { AvailableWorldId, CameraBridge, CameraPose } from './worldTypes'
 
 const WorldCanvas = lazy(() => import('./WorldCanvas'))
@@ -59,12 +59,16 @@ export default function ExperienceRoot() {
 
   useEffect(() => {
     director.start()
+    const theme = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+    const previousTheme = theme?.content
+    if (theme) theme.content = '#070914'
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
     const sync = () => setSystemReduced(media.matches)
     sync()
     media.addEventListener('change', sync)
     useExperienceStore.getState().setWebGL(webGLAvailable() ? 'ready' : 'fallback')
     return () => {
+      if (theme && previousTheme !== undefined) theme.content = previousTheme
       media.removeEventListener('change', sync)
       director.dispose()
     }
@@ -96,6 +100,19 @@ export default function ExperienceRoot() {
     if (event.target !== event.currentTarget) return
     moveWithKey(event.nativeEvent, director.bridge())
   }
+  const navigateLink = (
+    event: MouseEvent<HTMLAnchorElement>,
+    destination: AvailableWorldId,
+    id: string | null = null,
+  ) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+      return
+    event.preventDefault()
+    director.navigate(destination, id)
+    document
+      .querySelector('[data-testid="atlas-stage"]')
+      ?.scrollIntoView({ behavior: 'instant', block: 'start' })
+  }
 
   return (
     <main className="atlas-v3" data-testid="atlas-experience" data-active-world={world}>
@@ -113,14 +130,14 @@ export default function ExperienceRoot() {
         </a>
         <nav className="atlas-v3__world-nav" aria-label="Welten wählen">
           {availableWorlds.map((id) => (
-            <button
+            <a
               key={id}
-              type="button"
-              aria-pressed={world === id}
-              onClick={() => director.navigate(id)}
+              href={worldHref(defaultSnapshot(id, null))}
+              aria-current={world === id ? 'page' : undefined}
+              onClick={(event) => navigateLink(event, id)}
             >
               {getWorld(id).title}
-            </button>
+            </a>
           ))}
         </nav>
         <div className="atlas-v3__header-links">
@@ -207,7 +224,11 @@ export default function ExperienceRoot() {
 
         {world === 'origin' && (
           <div className="atlas-v3__signal-position atlas-v3__overlay">
-            <OriginSignalControls />
+            <OriginSignalControls
+              onFocus={select}
+              travelHref={worldHref(defaultSnapshot('observatory', null))}
+              onTravel={(event) => navigateLink(event, 'observatory')}
+            />
           </div>
         )}
 
@@ -264,40 +285,30 @@ export default function ExperienceRoot() {
         </div>
         <nav className="atlas-v3__places" aria-label="Orte im Raum">
           {definition.hotspots.map((spot) => (
-            <button
-              type="button"
+            <a
               key={spot.id}
-              aria-pressed={focusId === spot.id}
-              onClick={() => {
-                select(spot.id)
-                document
-                  .querySelector('[data-testid="atlas-stage"]')
-                  ?.scrollIntoView({ behavior: 'instant', block: 'center' })
-              }}
+              href={worldHref(defaultSnapshot(world, spot.id))}
+              aria-current={focusId === spot.id ? 'location' : undefined}
+              onClick={(event) => navigateLink(event, world, spot.id)}
             >
               <span>
                 <strong>{spot.title}</strong>
                 <small>{spot.kind}</small>
               </span>
               <span aria-hidden="true">↗</span>
-            </button>
+            </a>
           ))}
         </nav>
         <div className="atlas-v3__insight" aria-live="polite">
           <p>{focus?.description ?? 'Folge einer Verbindung. Oder finde deinen eigenen Weg.'}</p>
           {(focus?.destination || world === 'origin') && (
-            <button
-              type="button"
+            <a
               className="atlas-v3__travel"
-              onClick={() => {
-                director.navigate(focus?.destination ?? 'observatory')
-                document
-                  .querySelector('[data-testid="atlas-stage"]')
-                  ?.scrollIntoView({ behavior: 'instant', block: 'center' })
-              }}
+              href={worldHref(defaultSnapshot(focus?.destination ?? 'observatory', null))}
+              onClick={(event) => navigateLink(event, focus?.destination ?? 'observatory')}
             >
               Weiter zur Sternwarte ↗
-            </button>
+            </a>
           )}
         </div>
       </section>

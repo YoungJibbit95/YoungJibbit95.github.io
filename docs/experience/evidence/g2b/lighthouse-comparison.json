@@ -1,0 +1,109 @@
+{
+  "context": "Local production Vite preview, Lighthouse simulated mobile network/CPU, Playwright Chromium headless + SwiftShader. Lab sample; not field CWV or measured INP. Preview serves uncompressed assets.",
+  "before": {
+    "lighthouseVersion": "13.5.0",
+    "fetchTime": "2026-10-11T12:06:40.915Z",
+    "settings": {
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "scores": {
+      "performance": 0.3,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 8413.090560713486,
+        "unit": "millisecond"
+      },
+      "largest-contentful-paint": {
+        "value": 11834.188987499067,
+        "unit": "millisecond"
+      },
+      "total-blocking-time": {
+        "value": 1860.499999999999,
+        "unit": "millisecond"
+      },
+      "cumulative-layout-shift": {
+        "value": 0.01458080194410693,
+        "unit": "unitless"
+      },
+      "speed-index": {
+        "value": 8413.090560713486,
+        "unit": "millisecond"
+      }
+    },
+    "warnings": [],
+    "runtimeError": null
+  },
+  "after": {
+    "lighthouseVersion": "13.5.0",
+    "fetchTime": "2026-10-11T12:10:28.838Z",
+    "settings": {
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "scores": {
+      "performance": 0.33,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 4147.165242756126,
+        "unit": "millisecond"
+      },
+      "largest-contentful-paint": {
+        "value": 10852.2643884098,
+        "unit": "millisecond"
+      },
+      "total-blocking-time": {
+        "value": 2533,
+        "unit": "millisecond"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "unit": "unitless"
+      },
+      "speed-index": {
+        "value": 5664.02704310587,
+        "unit": "millisecond"
+      }
+    },
+    "warnings": [],
+    "runtimeError": null
+  }
+}

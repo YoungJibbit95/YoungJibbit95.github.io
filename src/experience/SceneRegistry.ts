@@ -20,7 +20,7 @@ const origin: WorldDefinition = {
   introduction: 'Ein Gedanke setzt etwas in Bewegung. Daraus entstehen Verbindungen.',
   renderer: 'r3f',
   defaultPose: originOverview,
-  compactPose: { position: [9, 12, 73], target: [9, 1, -16], fov: 48, zoom: 1 },
+  compactPose: { position: [9, 10, 78], target: [9, -5, -16], fov: 48, zoom: 1 },
   bounds: {
     minDistance: 8,
     maxDistance: 165,
@@ -120,7 +120,10 @@ export function defaultSnapshot(
     focusId: focus?.id ?? null,
     selectionId: focus?.id ?? null,
     pose: clonePose(
-      focus?.focusPose ?? (compact ? definition.compactPose : null) ?? definition.defaultPose,
+      (compact ? focus?.compactFocusPose : null) ??
+        focus?.focusPose ??
+        (compact ? definition.compactPose : null) ??
+        definition.defaultPose,
     ),
     filters: [],
   }

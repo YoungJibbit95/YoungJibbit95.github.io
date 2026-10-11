@@ -24,10 +24,10 @@ test('two worlds share exactly one R3F canvas across navigation', async ({ page 
   await page.goto('/?atlas=preview')
   await canvas(page)
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Ursprung')
-  await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
+  await page.getByRole('link', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
   await expect(page.getByTestId('atlas-canvas').locator('canvas')).toHaveCount(1)
-  await page.getByRole('button', { name: 'Ursprung', exact: true }).click()
+  await page.getByRole('link', { name: 'Ursprung', exact: true }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Ursprung')
   await expect(page.getByTestId('atlas-canvas').locator('canvas')).toHaveCount(1)
 })
@@ -36,27 +36,27 @@ test('deep link, browser back and forward restore world and focus', async ({ pag
   await page.goto('/?atlas=preview&world=observatory&focus=nexus')
   await canvas(page)
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
-  await expect(page.getByRole('button', { name: /Nexus Workspaces/ })).toHaveAttribute(
-    'aria-pressed',
-    'true',
+  await expect(page.getByRole('link', { name: /Nexus Workspaces/ })).toHaveAttribute(
+    'aria-current',
+    'location',
   )
-  await page.getByRole('button', { name: /Cerebri Planung/ }).click()
+  await page.getByRole('link', { name: /Cerebri Planung/ }).click()
   await expect(page).toHaveURL(/focus=cerebri/)
-  await expect(page.getByRole('button', { name: /Cerebri Planung/ })).toHaveAttribute(
-    'aria-pressed',
-    'true',
+  await expect(page.getByRole('link', { name: /Cerebri Planung/ })).toHaveAttribute(
+    'aria-current',
+    'location',
   )
   await page.goBack()
   await expect(page).toHaveURL(/focus=nexus/)
-  await expect(page.getByRole('button', { name: /Nexus Workspaces/ })).toHaveAttribute(
-    'aria-pressed',
-    'true',
+  await expect(page.getByRole('link', { name: /Nexus Workspaces/ })).toHaveAttribute(
+    'aria-current',
+    'location',
   )
   await page.goForward()
   await expect(page).toHaveURL(/focus=cerebri/)
-  await expect(page.getByRole('button', { name: /Cerebri Planung/ })).toHaveAttribute(
-    'aria-pressed',
-    'true',
+  await expect(page.getByRole('link', { name: /Cerebri Planung/ })).toHaveAttribute(
+    'aria-current',
+    'location',
   )
 })
 
@@ -74,9 +74,9 @@ test('cross-world Back returns to the actual previous camera pose', async ({ pag
   await page.mouse.up()
   await expect.poll(async () => (await pose(page)).target[0]).not.toBeCloseTo(0, 1)
   const earlier = await pose(page)
-  await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
+  await page.getByRole('link', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
-  await page.getByRole('button', { name: /Nexus Workspaces/ }).click()
+  await page.getByRole('link', { name: /Nexus Workspaces/ }).click()
   await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(-10, 1)
   await page.getByRole('button', { name: /Zurück/ }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
@@ -97,13 +97,13 @@ test('rapid focus changes are interruptible and settle on the latest destination
 }) => {
   await page.goto('/?atlas=preview')
   await canvas(page)
-  await page.getByRole('button', { name: /Das Signal Neugier/ }).click()
-  await page.getByRole('button', { name: /Der Horizont Entdeckung/ }).click()
+  await page.getByRole('link', { name: /Das Signal Neugier/ }).click()
+  await page.getByRole('link', { name: /Der Horizont Entdeckung/ }).click()
   // G2-A moves the horizon into the far field; tolerance remains unchanged.
   await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(60, 1)
-  await expect(page.getByRole('button', { name: /Der Horizont Entdeckung/ })).toHaveAttribute(
-    'aria-pressed',
-    'true',
+  await expect(page.getByRole('link', { name: /Der Horizont Entdeckung/ })).toHaveAttribute(
+    'aria-current',
+    'location',
   )
   await expect(page.getByTestId('atlas-transition')).toHaveText('focused')
 })
@@ -130,11 +130,11 @@ test('system reduced motion, keyboard and forced WebGL fallback keep content', a
   await page.goto('/?atlas=preview')
   await canvas(page)
   await expect(page.getByLabel('Kamerafahrten reduzieren')).toBeChecked()
-  await page.getByRole('button', { name: /Die Verbindung Zusammenhang/ }).click()
+  await page.getByRole('link', { name: /Die Verbindung Zusammenhang/ }).click()
   await expect(page.getByTestId('atlas-motion')).toHaveText('reduced')
-  await expect(page.getByRole('button', { name: /Die Verbindung Zusammenhang/ })).toHaveAttribute(
-    'aria-pressed',
-    'true',
+  await expect(page.getByRole('link', { name: /Die Verbindung Zusammenhang/ })).toHaveAttribute(
+    'aria-current',
+    'location',
   )
   await page.getByTestId('atlas-stage').focus()
   await page.keyboard.press('ArrowRight')
@@ -187,7 +187,7 @@ test('WebGL2 disabled still provides a usable world choice and seven project lin
       .getByRole('status'),
   ).toContainText('Die Projekte sind auch ohne', { timeout: 20_000 })
   await expect(page.getByTestId('atlas-canvas')).toHaveCount(0)
-  await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
+  await page.getByRole('link', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
   await expect(page.locator('#atlas-projects article')).toHaveCount(7)
 })
@@ -208,7 +208,7 @@ test('mobile and desktop preview compositions are screenshot-reviewed', async ({
     await page.setViewportSize({ width, height: width === 390 ? 844 : 900 })
     await page.goto('/?atlas=preview')
     await canvas(page)
-    await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
+    await page.getByRole('link', { name: 'Sternwarte', exact: true }).click()
     await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
     await expect(page.getByTestId('atlas-scene-ready')).toHaveText('observatory')
     await page.evaluate(() => document.fonts.ready)

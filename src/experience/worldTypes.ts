@@ -38,6 +38,7 @@ export interface WorldHotspot {
   description: string
   position: Vec3
   focusPose: CameraPose
+  compactFocusPose?: CameraPose
   evidenceStatus: 'illustrative' | 'verified'
   destination?: AvailableWorldId
 }

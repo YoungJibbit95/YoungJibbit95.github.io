@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-11",
+  "method": "skills/list",
+  "forceReload": true,
+  "host": "installed Codex binary, isolated stdio app-server",
+  "errors": [],
+  "skills": [
+    {
+      "name": "design-taste-frontend",
+      "path": ".agents/skills/design-taste-frontend/SKILL.md",
+      "scope": "repo",
+      "enabled": true,
+      "sha256NormalizedLF": "aa194351b246b8b4799099d4ed7b033d29eab6e6e3d58d8d2172978be7b3ec89",
+      "matchesReviewedSource": true
+    },
+    {
+      "name": "living-atlas-experience-design",
+      "path": ".agents/skills/living-atlas-experience-design/SKILL.md",
+      "scope": "repo",
+      "enabled": true,
+      "sha256NormalizedLF": "56abf98cb322edef2a4cd576b1908880b55880cf829c5495ff0b5e60e65014f6",
+      "matchesReviewedSource": true
+    },
+    {
+      "name": "living-atlas-world-qa",
+      "path": ".agents/skills/living-atlas-world-qa/SKILL.md",
+      "scope": "repo",
+      "enabled": true,
+      "sha256NormalizedLF": "b5fd6130f6a3bd3586ad332fd2801640baef54fa976f72c509744782fda4b784",
+      "matchesReviewedSource": true
+    },
+    {
+      "name": "redesign-existing-projects",
+      "path": ".agents/skills/redesign-existing-projects/SKILL.md",
+      "scope": "repo",
+      "enabled": true,
+      "sha256NormalizedLF": "98ad3e5b051bfb71b2795f7e8a6aa0d32b51ee095606c098a4b2822ac07926c9",
+      "matchesReviewedSource": true
+    },
+    {
+      "name": "vercel-react-best-practices",
+      "path": ".agents/skills/vercel-react-best-practices/SKILL.md",
+      "scope": "repo",
+      "enabled": true,
+      "sha256NormalizedLF": "71ed7794962fa6e803ee83030517b5b93a9f70fbfeb431ec4535c5480a8d8355",
+      "matchesReviewedSource": true
+    },
+    {
+      "name": "web-design-guidelines",
+      "path": ".agents/skills/web-design-guidelines/SKILL.md",
+      "scope": "repo",
+      "enabled": true,
+      "sha256NormalizedLF": "f4647ca866a3accf763777f83e7682954f0187cd6bea7eea0399796652414e8f",
+      "matchesReviewedSource": true
+    }
+  ]
+}
