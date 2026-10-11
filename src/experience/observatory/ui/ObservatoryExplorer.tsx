@@ -11,7 +11,6 @@ import { observatoryClusters, observatoryEdges, observatoryProjects } from '../d
 import { emptyFilters, filterEdges, getFilterOptions, MAX_QUERY_LENGTH } from '../state/filters'
 import { ProjectDossier } from './ProjectDossier'
 import { followNormally, projectHref } from './navigation'
-import './ui.css'
 
 export interface ObservatoryExplorerProps {
   filters: ObservatoryFilters

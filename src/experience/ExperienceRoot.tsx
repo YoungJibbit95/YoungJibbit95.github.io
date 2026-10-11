@@ -12,7 +12,6 @@ import type {
 import { cameraDistance, fitProjects, projectPose } from './observatory/camera'
 import { decodeFilters, encodeFilters, filterProjects } from './observatory/state/filters'
 import { ObservatoryExplorer } from './observatory/ui/ObservatoryExplorer'
-import './observatory/observatory.css'
 import { useExperienceStore } from '../store/experienceStore'
 import { moveWithKey, isFormTarget } from './InteractionRouter'
 import { effectiveMotion, webGLAvailable } from './MotionPolicy'

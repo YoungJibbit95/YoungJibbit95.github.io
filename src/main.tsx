@@ -10,6 +10,8 @@ import './cosmic-worlds.css'
 import './cosmic-deepdives.css'
 import './cosmic-detail-polish.css'
 import './experience/experience.css'
+import './experience/observatory/observatory.css'
+import './experience/observatory/ui/ui.css'
 
 const root = document.getElementById('root')!
 const preview = new URLSearchParams(location.search).get('atlas') === 'preview'

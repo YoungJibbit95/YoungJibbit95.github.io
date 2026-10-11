@@ -147,7 +147,11 @@ export function worldHref(snapshot: NavigationSnapshot): string {
   const query = new URLSearchParams({ atlas: 'preview', world: snapshot.world })
   if (snapshot.focusId) query.set('focus', snapshot.focusId)
   if (snapshot.world === 'observatory') appendTokensToQuery(query, snapshot.filters)
-  return '/?' + query.toString()
+  const entry =
+    typeof window !== 'undefined' && window.location.pathname.startsWith('/atlas/')
+      ? '/atlas/'
+      : '/'
+  return entry + '?' + query.toString()
 }
 
 export function validateRegistry(): string[] {
