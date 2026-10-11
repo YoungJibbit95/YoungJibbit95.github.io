@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { worldHref, defaultSnapshot } from '../src/experience/SceneRegistry'
+import { worldHref, defaultSnapshot, parseWorldRoute } from '../src/experience/SceneRegistry'
+import { experienceEntryWorld } from '../src/experience/entryPath'
 import { projectHref } from '../src/experience/observatory/ui/navigation'
 import { emptyFilters } from '../src/experience/observatory/state/filters'
 
@@ -9,8 +10,9 @@ test('native project and world links retain the same entry path and query state'
   snapshot.filters = ['q=Rust']
   for (const [pathname, expected] of [
     ['/', '/'],
-    ['/atlas/', '/atlas/'],
-    ['/atlas/index.html', '/atlas/'],
+    ['/atlas/', '/atlas/observatory/'],
+    ['/atlas/index.html', '/atlas/observatory/'],
+    ['/atlas/observatory/', '/atlas/observatory/'],
   ]) {
     for (const href of [
       worldHref(snapshot, pathname),
@@ -23,4 +25,23 @@ test('native project and world links retain the same entry path and query state'
       assert.equal(url.searchParams.get('q'), 'Rust')
     }
   }
+})
+
+test('bare static world entries restore the correct default without altering root queries', () => {
+  assert.equal(
+    parseWorldRoute('', false, experienceEntryWorld('/atlas/observatory/')).world,
+    'observatory',
+  )
+  assert.equal(parseWorldRoute('', false, experienceEntryWorld('/atlas/')).world, 'origin')
+  assert.equal(
+    parseWorldRoute('?world=observatory', false, experienceEntryWorld('/')).world,
+    'observatory',
+  )
+  assert.equal(
+    new URL(
+      worldHref(defaultSnapshot('origin', null), '/atlas/observatory/'),
+      'https://example.test',
+    ).pathname,
+    '/atlas/',
+  )
 })

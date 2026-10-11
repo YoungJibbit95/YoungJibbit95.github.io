@@ -41,9 +41,13 @@ class SpaceBoundary extends Component<
 }
 
 /** The visitor sees a place and their work, not a developer-facing demo dashboard. */
-export default function ExperienceRoot() {
+export default function ExperienceRoot({ initialWorld }: { initialWorld?: AvailableWorldId } = {}) {
   const director = useMemo(() => new SceneDirector(), [])
-  const world = useExperienceStore((state) => state.activeWorld)
+  const activeWorld = useExperienceStore((state) => state.activeWorld)
+  // The static document owns only the first hydration render. SceneDirector
+  // synchronously restores URL/history state before this override is released.
+  const [prerenderWorld, setPrerenderWorld] = useState(initialWorld)
+  const world = prerenderWorld ?? activeWorld
   const focusId = useExperienceStore((state) => state.focusId)
   const pose = useExperienceStore((state) => state.pose)
   const transition = useExperienceStore((state) => state.transition)
@@ -81,6 +85,7 @@ export default function ExperienceRoot() {
 
   useEffect(() => {
     director.start()
+    setPrerenderWorld(undefined)
     const theme = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
     const previousTheme = theme?.content
     if (theme) theme.content = '#070914'

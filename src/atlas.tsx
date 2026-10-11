@@ -13,6 +13,10 @@ import './experience/observatory/ui/ui.css'
 hydrateRoot(
   document.getElementById('root')!,
   <StrictMode>
-    <ExperienceRoot />
+    <ExperienceRoot
+      initialWorld={
+        document.documentElement.dataset.atlasWorld === 'observatory' ? 'observatory' : 'origin'
+      }
+    />
   </StrictMode>,
 )

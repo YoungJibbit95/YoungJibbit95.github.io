@@ -7,7 +7,13 @@ export default defineConfig({
   build: {
     target: ['chrome109', 'firefox115', 'safari16.4'],
     sourcemap: false,
-    rolldownOptions: { input: { main: 'index.html', atlas: 'atlas/index.html' } },
+    rolldownOptions: {
+      input: {
+        main: 'index.html',
+        atlas: 'atlas/index.html',
+        observatory: 'atlas/observatory/index.html',
+      },
+    },
   },
   server: { host: '0.0.0.0', port: 3000, strictPort: true, allowedHosts: true },
   preview: { host: '0.0.0.0', port: 3000, strictPort: true },

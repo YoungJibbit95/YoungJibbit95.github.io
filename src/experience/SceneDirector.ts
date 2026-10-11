@@ -2,6 +2,7 @@ import { defaultSnapshot, findHotspot, getWorld, parseWorldRoute, worldHref } fr
 import type { AvailableWorldId, CameraBridge, CameraPose, NavigationSnapshot } from './worldTypes'
 import { useExperienceStore } from '../store/experienceStore'
 import { copySnapshot, readBrowserEntry } from '../store/worldHistory'
+import { experienceEntryWorld } from './entryPath'
 
 type BrowserHistoryState = Record<string, unknown> & {
   livingAtlas?: {
@@ -18,7 +19,11 @@ export class SceneDirector {
 
   private readonly pop = (event: PopStateEvent) => {
     const entry = readBrowserEntry(event.state)
-    const route = parseWorldRoute(window.location.search, window.innerWidth < 620)
+    const route = parseWorldRoute(
+      window.location.search,
+      window.innerWidth < 620,
+      experienceEntryWorld(window.location.pathname),
+    )
     const snapshot =
       entry && worldHref(entry.snapshot) === worldHref(route) ? entry.snapshot : route
     void this.apply(snapshot, entry?.history ?? [], false, true)
@@ -27,7 +32,11 @@ export class SceneDirector {
   start(): void {
     if (this.started) return
     this.started = true
-    const route = parseWorldRoute(window.location.search, window.innerWidth < 620)
+    const route = parseWorldRoute(
+      window.location.search,
+      window.innerWidth < 620,
+      experienceEntryWorld(window.location.pathname),
+    )
     const entry = readBrowserEntry(window.history.state)
     const snapshot =
       entry && worldHref(entry.snapshot) === worldHref(route) ? entry.snapshot : route

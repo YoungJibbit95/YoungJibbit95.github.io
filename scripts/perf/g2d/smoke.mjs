@@ -44,7 +44,7 @@ try {
       .getByTestId('atlas-scene-ready')
       .filter({ hasText: 'observatory' })
       .waitFor({ state: 'attached', timeout: 30000 })
-    assert.equal(new URL(page.url()).pathname, '/atlas/')
+    assert.equal(new URL(page.url()).pathname, '/atlas/observatory/')
     assert.equal(await canvas.getAttribute('data-same-canvas'), 'retained')
     await page.goBack()
     await page
@@ -67,11 +67,17 @@ try {
   }
   const nojs = await browser.newContext({ javaScriptEnabled: false })
   const page = await nojs.newPage()
-  await page.goto(base + '/atlas/')
-  assert.equal(await page.locator('#atlas-projects article').count(), 7)
-  assert.equal(await page.getByRole('link', { name: 'Projekt auf GitHub' }).count(), 7)
-  assert.match(await page.locator('body').innerText(), /benötigt JavaScript/)
-  assert.equal(await page.locator('canvas').count(), 0)
+  for (const path of ['/atlas/', '/atlas/observatory/']) {
+    await page.goto(base + path)
+    assert.equal(await page.locator('#atlas-projects article').count(), 7)
+    assert.equal(await page.getByRole('link', { name: 'Projekt auf GitHub' }).count(), 7)
+    assert.match(await page.locator('body').innerText(), /benötigt JavaScript/)
+    assert.equal(await page.locator('canvas').count(), 0)
+    assert.equal(
+      await page.locator('main').getAttribute('data-active-world'),
+      path.includes('observatory') ? 'observatory' : 'origin',
+    )
+  }
   results.push({ noJS: 'seven source links and honest fallback; no canvas' })
   await nojs.close()
   const fallback = await browser.newContext()
@@ -82,7 +88,7 @@ try {
     }
   })
   const fallbackPage = await fallback.newPage()
-  await fallbackPage.goto(base + '/atlas/?world=observatory')
+  await fallbackPage.goto(base + '/atlas/observatory/')
   await fallbackPage
     .getByText('Direkte Links zu den Repositories bleiben jederzeit zugänglich.')
     .waitFor()
@@ -90,6 +96,35 @@ try {
   assert.equal(await fallbackPage.locator('canvas').count(), 0)
   results.push({ noWebGL: 'seven projects and usable fallback' })
   await fallback.close()
+  const direct = await browser.newContext({ reducedMotion: 'reduce' })
+  const directPage = await direct.newPage()
+  const directErrors = []
+  directPage.on('pageerror', (error) => directErrors.push(error.message))
+  directPage.on('console', (message) => {
+    if (message.type() === 'error') directErrors.push(message.text())
+  })
+  await directPage.goto(base + '/atlas/observatory/')
+  await directPage
+    .getByTestId('atlas-scene-ready')
+    .filter({ hasText: 'observatory' })
+    .waitFor({ state: 'attached', timeout: 30000 })
+  const nativeProject = directPage.getByRole('link', { name: /Nexus Workspaces/ })
+  assert.match(await nativeProject.getAttribute('href'), /^\/atlas\/observatory\/\?atlas=preview/)
+  const popupPromise = direct.waitForEvent('page')
+  await nativeProject.click({ modifiers: ['Control'] })
+  const popup = await popupPromise
+  await popup
+    .getByTestId('atlas-scene-ready')
+    .filter({ hasText: 'observatory' })
+    .waitFor({ state: 'attached', timeout: 30000 })
+  assert.equal(new URL(popup.url()).pathname, '/atlas/observatory/')
+  assert.equal(new URL(popup.url()).searchParams.get('focus'), 'nexus')
+  assert.deepEqual(directErrors, [])
+  results.push({
+    standaloneObservatory:
+      'bare path, hydration, actual scene and Ctrl-click native focus link pass',
+  })
+  await direct.close()
   await writeFile(`${out}/smoke.json`, JSON.stringify(results, null, 2) + '\n')
   console.log(JSON.stringify(results, null, 2))
 } finally {

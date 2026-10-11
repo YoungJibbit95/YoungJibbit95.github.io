@@ -135,10 +135,14 @@ export function defaultSnapshot(
   }
 }
 
-export function parseWorldRoute(search: string, compact = false): NavigationSnapshot {
+export function parseWorldRoute(
+  search: string,
+  compact = false,
+  entryWorld: AvailableWorldId = 'origin',
+): NavigationSnapshot {
   const params = new URLSearchParams(search)
   const raw = params.get('world')
-  const world = isAvailableWorld(raw) ? raw : 'origin'
+  const world = isAvailableWorld(raw) ? raw : entryWorld
   const snapshot = defaultSnapshot(world, params.get('focus'), compact)
   if (world === 'observatory') snapshot.filters = tokensFromQuery(params)
   return snapshot
@@ -148,7 +152,7 @@ export function worldHref(snapshot: NavigationSnapshot, pathname?: string): stri
   const query = new URLSearchParams({ atlas: 'preview', world: snapshot.world })
   if (snapshot.focusId) query.set('focus', snapshot.focusId)
   if (snapshot.world === 'observatory') appendTokensToQuery(query, snapshot.filters)
-  return experienceEntryPath(pathname) + '?' + query.toString()
+  return experienceEntryPath(pathname, snapshot.world) + '?' + query.toString()
 }
 
 export function validateRegistry(): string[] {

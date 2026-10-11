@@ -9,7 +9,7 @@ export function projectHref(id: ProjectId, filters: ObservatoryFilters, pathname
   for (const token of encodeFilters(filters)) {
     for (const [key, value] of new URLSearchParams(token)) query.set(key, value)
   }
-  return experienceEntryPath(pathname) + '?' + query.toString()
+  return experienceEntryPath(pathname, 'observatory') + '?' + query.toString()
 }
 
 export function followNormally(event: MouseEvent<HTMLAnchorElement>, navigate: () => void) {
