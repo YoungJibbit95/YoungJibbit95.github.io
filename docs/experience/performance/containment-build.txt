@@ -33,7 +33,7 @@ dist/assets/index-Cn4k2LIa.js                               223.63 kB │ gzip: 
 dist/assets/App-BGjsNduG.js                                 265.18 kB │ gzip:  90.11 kB
 dist/assets/extends-B49ULKH3.js                             862.86 kB │ gzip: 229.12 kB
 
-[plugin builtin:vite-reporter] 
+[plugin builtin:vite-reporter]
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
