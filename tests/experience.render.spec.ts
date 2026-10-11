@@ -16,9 +16,36 @@ async function readyCanvas(page: Page, world: World = 'origin') {
   return canvas
 }
 
+/**
+ * Scene canvases start below the editorial hero. Bring them into the viewport
+ * before sampling; screenshot actions must not own scrolling during a poll.
+ */
+async function positionCanvasForEvidence(canvas: Locator) {
+  await canvas.evaluate((element) => {
+    element.scrollIntoView({ behavior: 'instant', block: 'center' })
+  })
+  await expect
+    .poll(async () =>
+      canvas.evaluate((element) => {
+        const bounds = element.getBoundingClientRect()
+        return (
+          bounds.width > 100 &&
+          bounds.height > 100 &&
+          bounds.top >= 0 &&
+          bounds.bottom <= window.innerHeight + 1
+        )
+      }),
+    )
+    .toBe(true)
+}
+
 async function spatialPixelEvidence(page: Page, canvas: Locator) {
-  const png = await canvas.screenshot()
-  return page.evaluate(async (base64) => {
+  // A page screenshot has no locator-driven auto-scroll or stability wait.
+  // Crop its viewport pixels to the *actual* canvas, excluding the stage caption.
+  const bounds = await canvas.boundingBox()
+  if (!bounds) throw new Error('No canvas bounding rectangle for pixel evidence')
+  const png = await page.screenshot()
+  return page.evaluate(async ({ base64, bounds }) => {
     const image = new Image()
     image.src = 'data:image/png;base64,' + base64
     await image.decode()
@@ -27,7 +54,19 @@ async function spatialPixelEvidence(page: Page, canvas: Locator) {
     sample.height = 150
     const ctx = sample.getContext('2d', { willReadFrequently: true })
     if (!ctx) throw new Error('Cannot inspect screenshot pixels')
-    ctx.drawImage(image, 0, 0, sample.width, sample.height)
+    const scaleX = image.naturalWidth / window.innerWidth
+    const scaleY = image.naturalHeight / window.innerHeight
+    ctx.drawImage(
+      image,
+      (bounds.x + 8) * scaleX,
+      (bounds.y + 8) * scaleY,
+      (bounds.width - 16) * scaleX,
+      (bounds.height - 80) * scaleY,
+      0,
+      0,
+      sample.width,
+      sample.height,
+    )
     const pixels = ctx.getImageData(0, 0, sample.width, sample.height).data
     let lit = 0
     const colors = new Set<string>()
@@ -42,7 +81,7 @@ async function spatialPixelEvidence(page: Page, canvas: Locator) {
       }
     }
     return { lit, shades: colors.size }
-  }, png.toString('base64'))
+  }, { base64: png.toString('base64'), bounds })
 }
 
 for (const width of [390, 1440]) {
@@ -55,6 +94,7 @@ for (const width of [390, 1440]) {
       await expect(page.getByTestId('atlas-scene-ready')).toHaveText(world, {
         timeout: 20_000,
       })
+      await positionCanvasForEvidence(canvas)
       await expect
         .poll(async () => (await spatialPixelEvidence(page, canvas)).lit, {
           timeout: 20_000,
@@ -90,6 +130,7 @@ test('two consecutive world changes render real frames in one persistent canvas'
   ] as const) {
     await page.getByRole('button', { name: button, exact: true }).click()
     await expect(page.getByTestId('atlas-scene-ready')).toHaveText(world)
+    await positionCanvasForEvidence(canvas)
     await expect
       .poll(async () => (await spatialPixelEvidence(page, canvas)).lit)
       .toBeGreaterThan(35)
