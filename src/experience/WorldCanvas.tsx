@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import type { RefObject } from 'react'
 import { CameraRig } from './CameraRig'
 import { bindSpatialInput } from './InteractionRouter'
@@ -45,7 +45,8 @@ function RendererMetrics({
   target: RefObject<HTMLOutputElement | null>
   world: AvailableWorldId
 }) {
-  useFrame(({ gl }) => {
+  const gl = useThree((state) => state.gl)
+  const sample = useCallback(() => {
     if (!target.current) return
     target.current.value = JSON.stringify({
       world,
@@ -56,7 +57,15 @@ function RendererMetrics({
       textures: gl.info.memory.textures,
       programs: gl.info.programs?.length ?? 0,
     })
-  })
+  }, [gl, target, world])
+  useFrame(sample)
+  useEffect(() => {
+    // R3F frees old scene resources on idle, after the last demand frame.
+    // Explicit diagnostics must read those current counters without rendering.
+    const output = target.current
+    output?.addEventListener('atlas:sample-renderer', sample)
+    return () => output?.removeEventListener('atlas:sample-renderer', sample)
+  }, [sample, target])
   return null
 }
 

@@ -1,0 +1,85 @@
+{
+  "measurement": "live renderer counters after browser idle; no render requested",
+  "samples": [
+    {
+      "world": "observatory",
+      "frame": 17,
+      "calls": 29,
+      "triangles": 6598,
+      "geometries": 23,
+      "textures": 7,
+      "programs": 6
+    },
+    {
+      "world": "observatory",
+      "frame": 23,
+      "calls": 29,
+      "triangles": 6598,
+      "geometries": 23,
+      "textures": 7,
+      "programs": 6
+    },
+    {
+      "world": "observatory",
+      "frame": 29,
+      "calls": 29,
+      "triangles": 6598,
+      "geometries": 23,
+      "textures": 7,
+      "programs": 6
+    },
+    {
+      "world": "observatory",
+      "frame": 35,
+      "calls": 29,
+      "triangles": 6598,
+      "geometries": 23,
+      "textures": 7,
+      "programs": 6
+    }
+  ],
+  "poses": [
+    {
+      "position": [319.99999999999994, 300, 620],
+      "target": [0, 0, -220],
+      "fov": 48,
+      "zoom": 1
+    },
+    {
+      "position": [319.99999999999994, 300, 620],
+      "target": [0, 0, -220],
+      "fov": 48,
+      "zoom": 1
+    },
+    {
+      "position": [319.99999999999994, 300, 620],
+      "target": [0, 0, -220],
+      "fov": 48,
+      "zoom": 1
+    },
+    {
+      "position": [319.99999999999994, 300, 620],
+      "target": [0, 0, -220],
+      "fov": 48,
+      "zoom": 1
+    }
+  ],
+  "idle": {
+    "world": "observatory",
+    "frame": 35,
+    "calls": 29,
+    "triangles": 6598,
+    "geometries": 23,
+    "textures": 7,
+    "programs": 6
+  },
+  "empty": {
+    "world": "observatory",
+    "frame": 38,
+    "calls": 7,
+    "triangles": 4044,
+    "geometries": 19,
+    "textures": 7,
+    "programs": 5
+  }
+}

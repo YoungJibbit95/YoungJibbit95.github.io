@@ -13,7 +13,16 @@ export default defineConfig({
     trace: 'retain-on-failure',
     launchOptions: { args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader'] },
   },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    { name: 'chromium', testIgnore: 'portfolio.spec.ts', use: { ...devices['Desktop Chrome'] } },
+    // Start a fresh browser for the legacy document after the WebGL workload.
+    // CI traces showed context creation consuming 22–28 seconds of a 30-second test.
+    {
+      name: 'legacy-chromium',
+      testMatch: 'portfolio.spec.ts',
+      use: { ...devices['Desktop Chrome'] },
+    },
+  ],
   webServer: {
     command: 'npm run preview -- --port 4173',
     url: 'http://127.0.0.1:4173',

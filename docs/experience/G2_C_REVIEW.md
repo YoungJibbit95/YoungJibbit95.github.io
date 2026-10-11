@@ -107,9 +107,10 @@ Der CSS-Gewinn bleibt integriert erhalten. Die Origin-Ziele LCP ≤4.8 s und
 TBT ≤2 s werden weiterhin knapp verfehlt und wurden nicht angehoben. Initiale
 Weltdatei: Observatory 11.33 kB raw / 4.33 kB gzip; gemeinsamer Renderer
 862.66 / 229.04 kB (Vite-Ausgabe). Der Measurement-Build ist per Dateihash fixiert;
-danach wurde ausschließlich eine mobile Offen-Panel-CSS-Regel gegen verdeckten
-Tastaturfokus ergänzt. Diese Regel greift im gemessenen geschlossenen Startzustand
-nicht; die Messung wird trotzdem nicht als byteidentischer finaler Build bezeichnet.
+danach wurden eine mobile Offen-Panel-CSS-Regel gegen verdeckten Tastaturfokus
+und ein ereignisgesteuerter Renderer-Diagnose-Listener ergänzt. Die CSS-Regel greift
+im gemessenen geschlossenen Startzustand nicht; der Listener fordert keinen Frame
+an. Die Messung wird trotzdem nicht als byteidentischer finaler Build bezeichnet.
 
 Serverseitige gzip-Größen sind geprüft. Der Browsertransport normalisiert jedoch
 komprimierte Antworten; daraus lässt sich kein ehrlicher gzip-Ladezeitgewinn
@@ -143,21 +144,36 @@ Finale lokale Engineering-Prüfung:
 | ------------------------------------- | ------------------------------------------------------------------------------------------ |
 | TypeScript / Build / Prerender        | PASS                                                                                       |
 | Root-Unit                             | 22/22 PASS                                                                                 |
-| Vollständige Produktions-Browsersuite | 65/65 PASS, 5.4 Minuten, null Retries                                                      |
+| Vollständige Produktions-Browsersuite | 65/65 PASS nach CI-Reparatur, 5.0 Minuten, null Retries                                    |
 | Unabhängige neue QA                   | 16/16 plus zusätzlicher Fokusfall 1/1, jeweils null Retries                                |
 | G0                                    | 6 Unit-Tests; Build; 16 Browser-Passes, 8 bestehende gerätespezifische Skips, null Retries |
 | Prettier                              | PASS                                                                                       |
-| Zusätzlicher G1-Stress                | 3/3 PASS, 39.4 Sekunden, null Retries                                                      |
+| Zusätzlicher G1-Stress                | 3/3 PASS nach CI-Reparatur, 33.6 Sekunden, null Retries                                    |
 | Exakter Feature-HEAD in GitHub        | Beide Workflow-Ergebnisse im PR-Abschluss verlinkt; kein alter grüner SHA als Ersatz       |
 
-[Root-Log](evidence/g2c/verification/root-browser.log) und
+[Root-Abschlusslog nach CI-Reparatur](evidence/g2c/verification/root-browser-after-ci-repair.log),
+[vorheriges Root-Log](evidence/g2c/verification/root-browser.log) und
 [G0-Log](evidence/g2c/verification/g0-browser.log) sowie
 [Stress-Log](evidence/g2c/verification/g1-stress.log) sind archiviert.
+[Erneuter G1-Stress nach CI-Reparatur](evidence/g2c/verification/g1-stress-after-ci-repair.log)
+bestand ebenfalls 3/3 ohne Retry.
 G0 benötigte lokal ein frisches `npm ci`; wegen fehlerhafter Windows-Script-
 Auflösung wurden anschließend die installierten TypeScript-/Vite-/Playwright-
 Entrypoints direkt ausgeführt. Die CI prüft zusätzlich die regulären npm-Skripte.
 Frühe Entwicklungsfehler und HMR-beeinflusste Läufe sind im unabhängigen QA-Bericht
 offengelegt; sie werden nicht als stabile erste Passes ausgegeben.
+
+Die erste vollständige CI auf `5b81237` bestand mit **zwei Retries** in der Root-Suite.
+Der [CI-Reparaturbericht](G2_C_CI_REPAIR.md) erhält diese Historie und die Trace-Ursachen:
+veraltete DOM-Ressourcenzähler nach verzögerter Freigabe sowie ein 22-Sekunden-Stall
+bei der Erstellung eines Legacy-Browserkontexts. Frische Renderer-Abfragen nach
+Browser-Leerlauf und ein eigenes Legacy-Browserprojekt reparieren die Messgrenze
+beziehungsweise isolieren die Last. Assertions, Timeouts und Gesamtzahl von 65
+Tests bleiben erhalten. Die Ressourcenprüfung bestand danach 3/3 ohne Retry,
+mit konstant 23 Geometrien, sieben Texturen und sechs Programmen an zwölf
+vergleichbaren Messpunkten. Auch die vollständige lokale Suite bestand auf dem
+Reparaturstand 65/65 ohne Retry; der GitHub-Abschluss wird im PR mit seinem
+exakten SHA berichtet.
 
 Ursprüngliche Pixelgrenzen und Assertions bleiben erhalten; nur das erwartete
 Nexus-Ziel wechselt mit seiner neuen Position von -10 auf -230 bei identischer

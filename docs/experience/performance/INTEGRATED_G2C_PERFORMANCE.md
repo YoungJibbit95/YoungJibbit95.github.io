@@ -23,6 +23,13 @@ follow-up. Nevertheless, these artifacts identify the measured snapshot and
 **do not claim byte identity with the final rebuilt CSS/bundle**. The final
 post-fix build and complete functional/CI checks are recorded by Lead separately.
 
+The subsequent [CI repair](../G2_C_CI_REPAIR.md) also adds an event-driven
+diagnostic listener in WorldCanvas to read current renderer counters after idle
+disposal. It requests no frame and changes no world, geometry or loading path;
+the rebuilt WorldCanvas grows by approximately 0.05 kB gzip. The measurements
+and byte table below continue to describe the pinned measurement build, not
+that later diagnostic revision.
+
 Agent E completed all 16 new QA checks before this batch. Lead explicitly paused
 builds and browser suites during all **12 measurement runs**: each world received
 three Lighthouse runs and three separate real CDP-throttled readiness/input
@@ -98,7 +105,7 @@ iOS Safari, rather than deriving FPS/INP from software rendering.
 
 Compression remains a transport limitation: server gzip is verified, but this
 environment normalizes it before the browser records transfers. No gzip speedup
-is claimed. The final build's deterministic Node-gzip sizes are:
+is claimed. The measured build's deterministic Node-gzip sizes are:
 
 | Chunk            | Decoded bytes | Gzip bytes |
 | ---------------- | ------------: | ---------: |

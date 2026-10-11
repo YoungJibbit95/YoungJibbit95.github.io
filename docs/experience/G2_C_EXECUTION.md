@@ -60,7 +60,19 @@ flags removed. None of the six agents reports writing it. Preserved as a local
 change outside feature commits, with `.verification/g2c-lock-observed.json` backup.
 Do not silently revert it or add it to the feature change.
 
-Local gates complete. Next: commit verification docs, push only the
-existing feature branch, await both exact-HEAD workflows, update Draft PR and
-report screenshots. No G3, main merge or production deploy. G2-D handoff:
+The first full CI on `5b81237` passed with two Root retries; it is not a stable
+first-pass result. See `G2_C_CI_REPAIR.md` for the original traces and repairs.
+E's corrected live-resource check passed 3/3 without retry, with unchanged limits
+and an additional equal-camera-pose assertion. Architecture review rechecked
+the diagnostic listener, cleanup and disjoint Playwright projects without P0/P1.
+The complete local Root suite passed again: 65/65 in 5.0 minutes, zero retries;
+22/22 unit tests also passed again. The final exact-SHA CI results belong in the
+PR/Chat report, outside the commit whose checks they identify.
+The unchanged G1 world-switch stress also passed again: 3/3 in 33.6 seconds,
+zero retries. Final local logs are archived with the earlier run logs.
+
+Next: commit the documented CI repair, push only the existing feature branch,
+await both exact-HEAD workflows, update Draft PR and report screenshots.
+Close E's preview4173 server after Lead's full-suite reuse; all other servers
+are already stopped. No G3, main merge or production deploy. G2-D handoff:
 `PHASE_STATUS.md` and `performance/INTEGRATED_G2C_PERFORMANCE.md`.

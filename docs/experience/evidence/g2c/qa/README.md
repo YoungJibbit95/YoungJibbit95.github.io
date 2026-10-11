@@ -28,6 +28,14 @@ Tastaturfokus: 1/1 ohne Retry, native Tab-Reihenfolge und Hit-Targets bei 390 un
 768 px. Dieser gezielte Lauf folgt auf den vollständigen 16er-Lauf. Die Bilder
 wurden vor dieser rein zugänglichkeitsbezogenen CSS-Korrektur erfasst.
 
+Nach einem CI-Flake am Stand `5b81237` wurde die Ressourcenmessung korrigiert:
+`observatory-renderer-resources.json` liest nun tatsächliches `gl.info` nach dem
+Browser-Leerlauf per synchronem Diagnoseaufruf. Das alte, nur während eines
+Demand-Frames aktualisierte DOM-Abbild liegt unter
+`ci-repair/pre-idle-dom-snapshot.json`. Drei neue Production-Wiederholungen ohne
+Retry sind mit individuellen JSON-Daten und `ci-repair/repeat3.log` archiviert.
+Grenzwerte und Nichtwachstums-Assertions wurden nicht angehoben.
+
 Reproduktion nach Production Build über die bestehende Root-Konfiguration:
 
 ```powershell

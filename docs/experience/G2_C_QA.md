@@ -89,11 +89,45 @@ Wiederholung. Kein vorhandener G1-Test wurde durch E geändert.
 ## Gemessene Ressourcen und Accessibility
 
 Nach der Aufwärmrunde blieben über vier Observatory-Rückkehrzustände
-**54 Geometrien, 7 Texturen und 11 Programme** konstant. Der Frame-Zähler blieb
-anschließend eine volle Sekunde bei **35**. Ein leerer Filter senkte den gemessenen
+**23 Geometrien, 7 Texturen und 6 Programme** konstant. Diese nach dem
+CI-Befund korrigierte Messung liest aktuelle Renderer-Zähler nach dem Browser-
+Leerlauf; die vorherigen DOM-Abbilder waren teilweise veraltet. Drei vollständige
+Production-Wiederholungen ohne Retry bestanden in 19,8 Sekunden. In allen zwölf
+Rückkehrzuständen waren die Werte identisch. Der Frame-Zähler blieb jeweils
+anschließend eine volle Sekunde unverändert. Ein leerer Filter senkte den gemessenen
 Aufwand von **29 auf 7 Draw Calls** und **6.598 auf 4.044 Dreiecke**.
 [Originalzähler](evidence/g2c/qa/observatory-renderer-resources.json).
 Ein kurzer Plateau-Test beweist keine Langzeit- oder Treiber-Leakfreiheit.
+
+### CI-Ausreißer des Ressourcentests und Messkorrektur
+
+Am CI-HEAD `5b81237856e23421c8661afde1d10ddbb07a4cba` benötigte dieser Test
+einen Retry. Die Erstlauf-Spur zeigt Geometrien **23 → 54 → 23 → 23** und
+Programme **6 → 11 → 6 → 6**, jeweils bei gleichen 29 Draw Calls und 6.598
+Dreiecken. Der Retry hielt dagegen viermal das alte Abbild 54/7/11 fest.
+Das wurde ausdrücklich als Flake behandelt, nicht als stabiler Erfolg.
+
+Die installierte R3F-Implementierung `disposeOnIdle` disponiert das Aufräumen
+unmontierter Ressourcen über React Scheduler mit `IdlePriority`. Der bisherige
+Diagnostiktext wurde nur während Demand-Frames geschrieben. Nachlaufende
+Disposal-Arbeit konnte diese Werte verändern, ohne einen weiteren Frame
+auszulösen. Eine feste Wartezeit von 400 ms las deshalb weiterhin einen alten
+Text; sie erzeugte keinen konsistenten Messzeitpunkt.
+
+Der Lead ergänzte einen reinen Diagnoseaufruf `atlas:sample-renderer`. Der Test
+wartet auf den Browser-Leerlauf, leert das Diagnosefeld, fordert den aktuellen
+`gl.info`-Stand synchron an und verlangt eine frische Antwort. Dabei wird kein
+Render ausgelöst. Alle vier Kameraposen müssen zusätzlich exakt übereinstimmen.
+Die bisherigen Obergrenzen gegenüber der ersten Messung, der Canvas-Count,
+die Einsekunden-Ruheprüfung und die echte Filterreduktion bleiben erhalten.
+Es gibt keinen höheren Grenzwert, Median, Maximalwert oder tolerierten Ausreißer.
+
+[Drei Production-Wiederholungen](evidence/g2c/qa/ci-repair/repeat3.log),
+[aktuelle Messung 1](evidence/g2c/qa/ci-repair/live-idle-run-1.json),
+[Messung 2](evidence/g2c/qa/ci-repair/live-idle-run-2.json),
+[Messung 3](evidence/g2c/qa/ci-repair/live-idle-run-3.json).
+Das [frühere DOM-Abbild](evidence/g2c/qa/ci-repair/pre-idle-dom-snapshot.json)
+bleibt zum Vergleich archiviert und ist kein Beleg für nachgelagerten Ressourcenbesitz.
 
 Der mobile offene Nexus-Dossierzustand liefert **keine Axe-Verletzung** innerhalb
 der geprüften WCAG-2.1-A/AA-Tags; [Rohdaten](evidence/g2c/qa/observatory-axe.json).

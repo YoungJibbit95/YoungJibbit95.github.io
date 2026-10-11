@@ -1,58 +1,85 @@
 {
+  "measurement": "live renderer counters after browser idle; no render requested",
   "samples": [
     {
       "world": "observatory",
-      "frame": 17,
+      "frame": 15,
       "calls": 29,
       "triangles": 6598,
-      "geometries": 54,
+      "geometries": 23,
       "textures": 7,
-      "programs": 11
+      "programs": 6
     },
     {
       "world": "observatory",
-      "frame": 23,
+      "frame": 21,
       "calls": 29,
       "triangles": 6598,
-      "geometries": 54,
+      "geometries": 23,
       "textures": 7,
-      "programs": 11
+      "programs": 6
     },
     {
       "world": "observatory",
-      "frame": 29,
+      "frame": 27,
       "calls": 29,
       "triangles": 6598,
-      "geometries": 54,
+      "geometries": 23,
       "textures": 7,
-      "programs": 11
+      "programs": 6
     },
     {
       "world": "observatory",
-      "frame": 35,
+      "frame": 33,
       "calls": 29,
       "triangles": 6598,
-      "geometries": 54,
+      "geometries": 23,
       "textures": 7,
-      "programs": 11
+      "programs": 6
+    }
+  ],
+  "poses": [
+    {
+      "position": [319.99999999999994, 300, 620],
+      "target": [0, 0, -220],
+      "fov": 48,
+      "zoom": 1
+    },
+    {
+      "position": [319.99999999999994, 300, 620],
+      "target": [0, 0, -220],
+      "fov": 48,
+      "zoom": 1
+    },
+    {
+      "position": [319.99999999999994, 300, 620],
+      "target": [0, 0, -220],
+      "fov": 48,
+      "zoom": 1
+    },
+    {
+      "position": [319.99999999999994, 300, 620],
+      "target": [0, 0, -220],
+      "fov": 48,
+      "zoom": 1
     }
   ],
   "idle": {
     "world": "observatory",
-    "frame": 35,
+    "frame": 33,
     "calls": 29,
     "triangles": 6598,
-    "geometries": 54,
+    "geometries": 23,
     "textures": 7,
-    "programs": 11
+    "programs": 6
   },
   "empty": {
     "world": "observatory",
-    "frame": 38,
+    "frame": 36,
     "calls": 7,
     "triangles": 4044,
     "geometries": 19,
     "textures": 7,
-    "programs": 6
+    "programs": 5
   }
 }

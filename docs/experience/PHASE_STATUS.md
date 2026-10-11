@@ -31,12 +31,17 @@ PR-Abschluss. Main bleibt `e1e1da1cdb395d7fbb561b678f19a799d0a15043`.
 [Gesamtbericht](G2_C_REVIEW.md), [Multi-Agent-Checkpoint](G2_C_EXECUTION.md),
 [Quellen](G2_C_SOURCES.md), [Art](G2_C_ART.md), [unabhängige QA](G2_C_QA.md),
 [integrierte Performance](performance/INTEGRATED_G2C_PERFORMANCE.md),
+[CI-Reparatur und ursprüngliche Retry-Historie](G2_C_CI_REPAIR.md),
 [Bildindex](evidence/g2c/qa/README.md).
 
 TypeScript, Build/Prerender und 22 Root-Unit-Tests bestehen. Unabhängig: 16 Browser-
 Tests ohne Retry plus zusätzlicher Tastaturfall 1/1. G0: 6 Unit-Tests, Build,
 16 Browser-Passes und 8 unveränderte gerätespezifische Skips. Root: 65/65 und
 G1-Stress: 3/3 ohne Retry. Exakte CI-Ergebnisse stehen im Gesamtbericht/PR-Abschluss.
+Die erste CI auf `5b81237` benötigte zwei Root-Retries. Diagnosewerte werden jetzt
+nach Browser-Leerlauf frisch gelesen; Legacy-Tests erhalten einen eigenen Browser.
+Die reparierte Ressourcenprüfung besteht 3/3 ohne Retry. Der PR-Abschluss nennt
+die vollständige erneute Prüfung auf genau dem finalen Reparatur-SHA.
 
 Performance bleibt **PARTIAL**, menschliche Art-Abnahme offen. Origin-LCP 4,874 s,
 TBT 2065 ms; Observatory-LCP 5,282 s, TBT 905 ms im wiederholten mobilen Labor.
