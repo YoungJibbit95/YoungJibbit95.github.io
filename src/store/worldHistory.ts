@@ -5,6 +5,7 @@ import {
   isAvailableWorld,
 } from '../experience/SceneRegistry'
 import type { CameraPose, NavigationSnapshot } from '../experience/worldTypes'
+import { normalizeObservatoryTokens } from '../experience/observatory/routeState'
 
 export function copySnapshot(snapshot: NavigationSnapshot): NavigationSnapshot {
   return {
@@ -44,9 +45,12 @@ export function normalizeSnapshot(value: unknown): NavigationSnapshot | null {
   return {
     ...fallback,
     pose: clonePose(candidate.pose),
-    filters: Array.isArray(candidate.filters)
-      ? candidate.filters.filter((item): item is string => typeof item === 'string')
-      : [],
+    filters:
+      candidate.world === 'observatory' && Array.isArray(candidate.filters)
+        ? normalizeObservatoryTokens(
+            candidate.filters.filter((item): item is string => typeof item === 'string'),
+          )
+        : [],
     selectionId: focus ? focus.id : null,
   }
 }

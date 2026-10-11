@@ -77,7 +77,8 @@ test('cross-world Back returns to the actual previous camera pose', async ({ pag
   await page.getByRole('link', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
   await page.getByRole('link', { name: /Nexus Workspaces/ }).click()
-  await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(-10, 1)
+  // G2-C gives Nexus its authored architectural position; tolerance is unchanged.
+  await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(-230, 1)
   await page.getByRole('button', { name: /Zurück/ }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
   await page.getByRole('button', { name: /Zurück/ }).click()

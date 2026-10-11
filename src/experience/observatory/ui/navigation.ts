@@ -1,0 +1,26 @@
+import type { MouseEvent } from 'react'
+import type { ObservatoryFilters, ProjectId } from '../contracts'
+import { encodeFilters } from '../state/filters'
+
+/** Native links work before hydration, in a new tab, and with the middle mouse button. */
+export function projectHref(id: ProjectId, filters: ObservatoryFilters): string {
+  const query = new URLSearchParams({ atlas: 'preview', world: 'observatory', focus: id })
+  for (const token of encodeFilters(filters)) {
+    for (const [key, value] of new URLSearchParams(token)) query.set(key, value)
+  }
+  return '/?' + query.toString()
+}
+
+export function followNormally(event: MouseEvent<HTMLAnchorElement>, navigate: () => void) {
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey
+  )
+    return
+  event.preventDefault()
+  navigate()
+}

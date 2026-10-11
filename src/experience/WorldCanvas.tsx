@@ -5,11 +5,13 @@ import { CameraRig } from './CameraRig'
 import { bindSpatialInput } from './InteractionRouter'
 import { getWorld } from './SceneRegistry'
 import type { AvailableWorldId, CameraBridge, CameraPose } from './worldTypes'
+import type { ObservatorySceneInput } from './observatory/contracts'
 
 const Origin = lazy(() => getWorld('origin').loadScene())
 const Observatory = lazy(() => getWorld('observatory').loadScene())
 
 interface CanvasProps {
+  observatory?: ObservatorySceneInput
   world: AvailableWorldId
   selectedId: string | null
   initialPose: CameraPose
@@ -32,6 +34,29 @@ function ContextGuard({ onFailure }: { onFailure: () => void }) {
     gl.domElement.addEventListener('webglcontextlost', lost)
     return () => gl.domElement.removeEventListener('webglcontextlost', lost)
   }, [gl, onFailure])
+  return null
+}
+
+/** Diagnostic output samples real renderer counters on demand frames; it schedules no frames. */
+function RendererMetrics({
+  target,
+  world,
+}: {
+  target: RefObject<HTMLOutputElement | null>
+  world: AvailableWorldId
+}) {
+  useFrame(({ gl }) => {
+    if (!target.current) return
+    target.current.value = JSON.stringify({
+      world,
+      frame: gl.info.render.frame,
+      calls: gl.info.render.calls,
+      triangles: gl.info.render.triangles,
+      geometries: gl.info.memory.geometries,
+      textures: gl.info.memory.textures,
+      programs: gl.info.programs?.length ?? 0,
+    })
+  })
   return null
 }
 
@@ -107,6 +132,7 @@ export default function WorldCanvas(props: CanvasProps) {
   const { world, selectedId, onFocus, onInterrupt } = props
   const host = useRef<HTMLDivElement>(null)
   const camera = useRef<CameraBridge>(null)
+  const metrics = useRef<HTMLOutputElement>(null)
   const [visible, setVisible] = useState(true)
 
   useEffect(() => {
@@ -124,12 +150,13 @@ export default function WorldCanvas(props: CanvasProps) {
   return (
     <div className="atlas-v3__canvas" data-testid="atlas-canvas" ref={host}>
       <Canvas
-        camera={{ position: [...props.initialPose.position], fov: 51, near: 0.1, far: 230 }}
+        camera={{ position: [...props.initialPose.position], fov: 51, near: 0.1, far: 6000 }}
         dpr={[1, 1.5]}
         frameloop={visible ? 'demand' : 'never'}
         gl={{ antialias: true, alpha: false, powerPreference: 'low-power' }}
       >
         <ContextGuard onFailure={props.onFailure} />
+        <RendererMetrics target={metrics} world={world} />
         <CameraHost
           camera={camera}
           initialPose={props.initialPose}
@@ -143,11 +170,21 @@ export default function WorldCanvas(props: CanvasProps) {
           {world === 'origin' ? (
             <Origin onFocus={onFocus} selectedId={selectedId} />
           ) : (
-            <Observatory onFocus={onFocus} selectedId={selectedId} />
+            <Observatory
+              onFocus={onFocus}
+              selectedId={selectedId}
+              observatory={props.observatory}
+            />
           )}
           <SceneRenderReady key={world} world={world} onReady={props.onSceneReady} />
         </Suspense>
       </Canvas>
+      <output
+        className="atlas-v3__sr"
+        data-testid="atlas-renderer-info"
+        ref={metrics}
+        aria-hidden="true"
+      />
     </div>
   )
 }

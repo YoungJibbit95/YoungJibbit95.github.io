@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react'
+import type { ObservatorySceneInput } from './observatory/contracts'
 
 export type WorldId =
   | 'origin'
@@ -46,6 +47,7 @@ export interface WorldHotspot {
 export interface WorldSceneProps {
   onFocus: (id: string) => void
   selectedId: string | null
+  observatory?: ObservatorySceneInput
 }
 
 export interface WorldDefinition {

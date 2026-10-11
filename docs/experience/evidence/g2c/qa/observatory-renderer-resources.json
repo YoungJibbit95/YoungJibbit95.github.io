@@ -1,0 +1,58 @@
+{
+  "samples": [
+    {
+      "world": "observatory",
+      "frame": 17,
+      "calls": 29,
+      "triangles": 6598,
+      "geometries": 54,
+      "textures": 7,
+      "programs": 11
+    },
+    {
+      "world": "observatory",
+      "frame": 23,
+      "calls": 29,
+      "triangles": 6598,
+      "geometries": 54,
+      "textures": 7,
+      "programs": 11
+    },
+    {
+      "world": "observatory",
+      "frame": 29,
+      "calls": 29,
+      "triangles": 6598,
+      "geometries": 54,
+      "textures": 7,
+      "programs": 11
+    },
+    {
+      "world": "observatory",
+      "frame": 35,
+      "calls": 29,
+      "triangles": 6598,
+      "geometries": 54,
+      "textures": 7,
+      "programs": 11
+    }
+  ],
+  "idle": {
+    "world": "observatory",
+    "frame": 35,
+    "calls": 29,
+    "triangles": 6598,
+    "geometries": 54,
+    "textures": 7,
+    "programs": 11
+  },
+  "empty": {
+    "world": "observatory",
+    "frame": 38,
+    "calls": 7,
+    "triangles": 4044,
+    "geometries": 19,
+    "textures": 7,
+    "programs": 6
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "info": {
+    "render": {
+      "position": [319.99999999999994, 300, 620],
+      "calls": 29,
+      "triangles": 3370,
+      "geometries": 23,
+      "textures": 7
+    },
+    "lod": {
+      "level": "macro",
+      "levels": {
+        "nexus": "macro",
+        "cerebri": "macro",
+        "novacore": "macro",
+        "nemisis": "macro",
+        "adventura": "macro",
+        "yjse": "macro",
+        "jarvis": "macro"
+      }
+    },
+    "painted": 2
+  },
+  "errors": []
+}

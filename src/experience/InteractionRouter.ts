@@ -30,7 +30,7 @@ export function bindSpatialInput(element: HTMLElement, interrupt: () => void): (
   }
 }
 
-export function moveWithKey(event: KeyboardEvent, camera: CameraBridge | null): boolean {
+export function moveWithKey(event: KeyboardEvent, camera: CameraBridge | null, scale = 1): boolean {
   if (isFormTarget(event.target)) return false
   const moves: Record<string, readonly [number, number]> = {
     ArrowLeft: [-1.2, 0],
@@ -41,6 +41,6 @@ export function moveWithKey(event: KeyboardEvent, camera: CameraBridge | null): 
   const move = moves[event.key]
   if (!move || !camera) return false
   event.preventDefault()
-  void camera.pan(move[0], move[1])
+  void camera.pan(move[0] * scale, move[1] * scale)
   return true
 }

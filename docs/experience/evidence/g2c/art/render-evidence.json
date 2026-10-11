@@ -1,0 +1,339 @@
+{
+  "method": "Isolated browser harness imports production ObservatoryWorld and source data; same R3F demand rendering and CameraControls. Final integration UI/history tested separately by QA.",
+  "evidence": [
+    {
+      "view": "overview-1440",
+      "info": {
+        "render": {
+          "position": [319.99999999999994, 300, 620],
+          "calls": 29,
+          "triangles": 6598,
+          "geometries": 23,
+          "textures": 7
+        },
+        "lod": {
+          "level": "macro",
+          "levels": {
+            "nexus": "macro",
+            "cerebri": "macro",
+            "novacore": "macro",
+            "nemisis": "macro",
+            "adventura": "macro",
+            "yjse": "macro",
+            "jarvis": "macro"
+          }
+        }
+      }
+    },
+    {
+      "view": "nexus-micro-1440",
+      "info": {
+        "render": {
+          "position": [-145, 95, 24.99999999999997],
+          "calls": 26,
+          "triangles": 6980,
+          "geometries": 28,
+          "textures": 7
+        },
+        "lod": {
+          "level": "micro",
+          "levels": {
+            "nexus": "micro",
+            "cerebri": "meso",
+            "novacore": "macro",
+            "nemisis": "macro",
+            "adventura": "macro",
+            "yjse": "meso",
+            "jarvis": "meso"
+          }
+        },
+        "meso": true,
+        "micro": true
+      }
+    },
+    {
+      "view": "cerebri-micro-1440",
+      "info": {
+        "render": {
+          "position": [-25.000000000000014, 155, -225.00000000000003],
+          "calls": 20,
+          "triangles": 5540,
+          "geometries": 29,
+          "textures": 7
+        },
+        "lod": {
+          "level": "micro",
+          "levels": {
+            "nexus": "macro",
+            "cerebri": "micro",
+            "novacore": "macro",
+            "nemisis": "macro",
+            "adventura": "macro",
+            "yjse": "meso",
+            "jarvis": "meso"
+          }
+        },
+        "meso": true,
+        "micro": true
+      }
+    },
+    {
+      "view": "novacore-micro-1440",
+      "info": {
+        "render": {
+          "position": [200, 75, -45.00000000000003],
+          "calls": 27,
+          "triangles": 6892,
+          "geometries": 31,
+          "textures": 7
+        },
+        "lod": {
+          "level": "micro",
+          "levels": {
+            "nexus": "macro",
+            "cerebri": "meso",
+            "novacore": "micro",
+            "nemisis": "macro",
+            "adventura": "macro",
+            "yjse": "meso",
+            "jarvis": "macro"
+          }
+        },
+        "meso": true,
+        "micro": true
+      }
+    },
+    {
+      "view": "nemisis-micro-1440",
+      "info": {
+        "render": {
+          "position": [395, 65, -155.00000000000003],
+          "calls": 22,
+          "triangles": 6152,
+          "geometries": 33,
+          "textures": 7
+        },
+        "lod": {
+          "level": "micro",
+          "levels": {
+            "nexus": "macro",
+            "cerebri": "meso",
+            "novacore": "macro",
+            "nemisis": "micro",
+            "adventura": "macro",
+            "yjse": "meso",
+            "jarvis": "macro"
+          }
+        },
+        "meso": true,
+        "micro": true
+      }
+    },
+    {
+      "view": "adventura-micro-1440",
+      "info": {
+        "render": {
+          "position": [340, -9.999999999999993, 184.99999999999997],
+          "calls": 30,
+          "triangles": 6730,
+          "geometries": 35,
+          "textures": 7
+        },
+        "lod": {
+          "level": "micro",
+          "levels": {
+            "nexus": "macro",
+            "cerebri": "macro",
+            "novacore": "meso",
+            "nemisis": "meso",
+            "adventura": "micro",
+            "yjse": "macro",
+            "jarvis": "macro"
+          }
+        },
+        "meso": true,
+        "micro": true
+      }
+    },
+    {
+      "view": "yjse-micro-1440",
+      "info": {
+        "render": {
+          "position": [14.999999999999986, -44.99999999999999, -325],
+          "calls": 16,
+          "triangles": 5716,
+          "geometries": 36,
+          "textures": 7
+        },
+        "lod": {
+          "level": "micro",
+          "levels": {
+            "nexus": "macro",
+            "cerebri": "macro",
+            "novacore": "macro",
+            "nemisis": "macro",
+            "adventura": "macro",
+            "yjse": "micro",
+            "jarvis": "meso"
+          }
+        },
+        "meso": true,
+        "micro": true
+      }
+    },
+    {
+      "view": "jarvis-micro-1440",
+      "info": {
+        "render": {
+          "position": [-315, 45.00000000000001, -375],
+          "calls": 10,
+          "triangles": 3190,
+          "geometries": 37,
+          "textures": 7
+        },
+        "lod": {
+          "level": "micro",
+          "levels": {
+            "nexus": "macro",
+            "cerebri": "macro",
+            "novacore": "macro",
+            "nemisis": "macro",
+            "adventura": "macro",
+            "yjse": "macro",
+            "jarvis": "micro"
+          }
+        },
+        "meso": true,
+        "micro": true
+      }
+    },
+    {
+      "view": "nexus-meso-1440",
+      "info": {
+        "render": {
+          "position": [-145, 130, 255.00000000000006],
+          "calls": 24,
+          "triangles": 6214,
+          "geometries": 37,
+          "textures": 7
+        },
+        "lod": {
+          "level": "meso",
+          "levels": {
+            "nexus": "meso",
+            "cerebri": "macro",
+            "novacore": "macro",
+            "nemisis": "macro",
+            "adventura": "macro",
+            "yjse": "macro",
+            "jarvis": "macro"
+          }
+        },
+        "micro": false
+      }
+    },
+    {
+      "view": "filter-idle-1440",
+      "visibility": [
+        ["nexus", false],
+        ["cerebri", false],
+        ["novacore", true],
+        ["nemisis", false],
+        ["adventura", false],
+        ["yjse", false],
+        ["jarvis", false]
+      ],
+      "idleFrames": 19,
+      "errors": []
+    },
+    {
+      "view": "overview-390",
+      "info": {
+        "render": {
+          "position": [728.1852792188366, 741.5237178664634, 2199.532863742192],
+          "calls": 25,
+          "triangles": 6590,
+          "geometries": 23,
+          "textures": 3
+        },
+        "lod": {
+          "level": "macro",
+          "levels": {
+            "nexus": "macro",
+            "cerebri": "macro",
+            "novacore": "macro",
+            "nemisis": "macro",
+            "adventura": "macro",
+            "yjse": "macro",
+            "jarvis": "macro"
+          }
+        }
+      }
+    },
+    {
+      "view": "nexus-micro-390",
+      "info": {
+        "render": {
+          "position": [-155, 99.99999999999999, 15.000000000000028],
+          "calls": 17,
+          "triangles": 4340,
+          "geometries": 26,
+          "textures": 5
+        },
+        "lod": {
+          "level": "micro",
+          "levels": {
+            "nexus": "micro",
+            "cerebri": "macro",
+            "novacore": "macro",
+            "nemisis": "macro",
+            "adventura": "macro",
+            "yjse": "macro",
+            "jarvis": "meso"
+          }
+        },
+        "meso": true,
+        "micro": true
+      }
+    },
+    {
+      "view": "nexus-meso-390",
+      "info": {
+        "render": {
+          "position": [-145, 130, 255.00000000000006],
+          "calls": 19,
+          "triangles": 5252,
+          "geometries": 26,
+          "textures": 7
+        },
+        "lod": {
+          "level": "meso",
+          "levels": {
+            "nexus": "meso",
+            "cerebri": "macro",
+            "novacore": "macro",
+            "nemisis": "macro",
+            "adventura": "macro",
+            "yjse": "macro",
+            "jarvis": "macro"
+          }
+        },
+        "micro": false
+      }
+    },
+    {
+      "view": "filter-idle-390",
+      "visibility": [
+        ["nexus", false],
+        ["cerebri", false],
+        ["novacore", true],
+        ["nemisis", false],
+        ["adventura", false],
+        ["yjse", false],
+        ["jarvis", false]
+      ],
+      "idleFrames": 7,
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sternwarte Studie</title>
+    <style>
+      body {
+        margin: 0;
+        background: #091521;
+        color: #e7edf1;
+        font-family: Arial, sans-serif;
+      }
+      #root {
+        height: 100dvh;
+      }
+      header {
+        position: absolute;
+        z-index: 1;
+        top: 40px;
+        left: 40px;
+        pointer-events: none;
+      }
+      h1 {
+        font-size: 48px;
+        letter-spacing: -2px;
+        margin: 0;
+      }
+      p {
+        max-width: 30ch;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #aec2cc;
+      }
+      footer {
+        position: absolute;
+        z-index: 1;
+        bottom: 28px;
+        left: 40px;
+        font-size: 12px;
+        color: #aec2cc;
+      }
+      @media (max-width: 600px) {
+        header {
+          top: 25px;
+          left: 22px;
+        }
+        h1 {
+          font-size: 34px;
+        }
+        footer {
+          left: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./study-harness.tsx"></script>
+  </body>
+</html>

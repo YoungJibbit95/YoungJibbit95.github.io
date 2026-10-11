@@ -1,7 +1,18 @@
 import { Component, lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { KeyboardEvent, MouseEvent, ReactNode } from 'react'
 import { OriginSignalControls } from './ui/OriginSignalControls'
-import { projects } from '../data/projects'
+import { observatoryProjects, observatoryEdges, observatoryClusters } from './observatory/data'
+import { projectIds } from './observatory/contracts'
+import type {
+  ObservatoryFilters,
+  ObservatoryLodState,
+  ObservatoryNavigation,
+  ProjectId,
+} from './observatory/contracts'
+import { cameraDistance, fitProjects, projectPose } from './observatory/camera'
+import { decodeFilters, encodeFilters, filterProjects } from './observatory/state/filters'
+import { ObservatoryExplorer } from './observatory/ui/ObservatoryExplorer'
+import './observatory/observatory.css'
 import { useExperienceStore } from '../store/experienceStore'
 import { moveWithKey, isFormTarget } from './InteractionRouter'
 import { effectiveMotion, webGLAvailable } from './MotionPolicy'
@@ -40,6 +51,18 @@ export default function ExperienceRoot() {
   const history = useExperienceStore((state) => state.history)
   const motion = useExperienceStore((state) => state.motion)
   const webgl = useExperienceStore((state) => state.webgl)
+  const filterTokens = useExperienceStore((state) => state.filters)
+  const filters = useMemo(() => decodeFilters(filterTokens), [filterTokens])
+  const visibleProjects = useMemo(() => filterProjects(observatoryProjects, filters), [filters])
+  const selectedProject = observatoryProjects.find((project) => project.id === focusId) ?? null
+  const selectedEdge =
+    observatoryEdges.find((edge) => filterTokens.includes('edge=' + edge.id)) ?? null
+  const [lod, setLod] = useState<ObservatoryLodState>({
+    level: 'macro',
+    levels: Object.fromEntries(
+      projectIds.map((id) => [id, 'macro']),
+    ) as ObservatoryLodState['levels'],
+  })
   const [systemReduced, setSystemReduced] = useState(false)
   const [forceReduced, setForceReduced] = useState(false)
   const [renderedWorld, setRenderedWorld] = useState<AvailableWorldId | null>(null)
@@ -90,7 +113,81 @@ export default function ExperienceRoot() {
   const attach = useCallback((camera: CameraBridge | null) => director.attach(camera), [director])
   const rest = useCallback((current: CameraPose) => director.rest(current), [director])
   const interrupt = useCallback(() => director.interrupt(), [director])
-  const select = useCallback((id: string) => director.navigate(world, id), [director, world])
+  const select = useCallback(
+    (id: string) => {
+      const project =
+        world === 'observatory' ? observatoryProjects.find((item) => item.id === id) : null
+      if (project && !visibleProjects.some((item) => item.id === id)) {
+        director.navigateView(projectPose(project, window.innerWidth < 620), id, [])
+      } else director.navigate(world, id)
+    },
+    [director, world, visibleProjects],
+  )
+
+  const selectEdge = useCallback(
+    (id: string | null) => {
+      const tokens = useExperienceStore
+        .getState()
+        .filters.filter((token) => !token.startsWith('edge='))
+      if (id && observatoryEdges.some((edge) => edge.id === id)) tokens.push('edge=' + id)
+      director.updateFilters(tokens)
+    },
+    [director],
+  )
+
+  const navigation: ObservatoryNavigation = useMemo(
+    () => ({
+      focusProject: (id: ProjectId, detail = false) => {
+        const project = observatoryProjects.find((item) => item.id === id)
+        if (!project) return
+        const tokens = visibleProjects.some((item) => item.id === id) ? filterTokens : []
+        director.navigateView(projectPose(project, window.innerWidth < 620, detail), id, tokens)
+        document
+          .querySelector('[data-testid="atlas-stage"]')
+          ?.scrollIntoView({ behavior: 'instant', block: 'start' })
+      },
+      fitAll: () => {
+        const stage = document.querySelector('[data-testid="atlas-stage"]')
+        const rect = stage?.getBoundingClientRect()
+        director.navigateView(
+          fitProjects(visibleProjects, rect ? rect.width / rect.height : 1.7),
+          null,
+        )
+      },
+      fitCluster: (id) => {
+        const cluster = observatoryClusters.find((item) => item.id === id)
+        if (!cluster) return
+        const members = observatoryProjects.filter((project) => project.clusterId === id)
+        const rect = document.querySelector('[data-testid="atlas-stage"]')?.getBoundingClientRect()
+        director.navigateView(
+          fitProjects(members, rect ? rect.width / rect.height : 1.7),
+          'cluster-' + id,
+          [],
+        )
+      },
+      setFilters: (next: ObservatoryFilters) => {
+        const visible = filterProjects(observatoryProjects, next)
+        const state = useExperienceStore.getState()
+        director.updateFilters(
+          encodeFilters(next),
+          !state.focusId || visible.some((item) => item.id === state.focusId),
+        )
+      },
+      selectEdge,
+      back: () => director.back(),
+    }),
+    [director, visibleProjects, filterTokens, selectEdge],
+  )
+
+  const observatoryInput = useMemo(
+    () => ({
+      visibleIds: visibleProjects.map((project) => project.id),
+      selectedEdgeId: selectedEdge?.id ?? null,
+      onSelectEdge: selectEdge,
+      onLodChange: setLod,
+    }),
+    [visibleProjects, selectedEdge, selectEdge],
+  )
   const fail = useCallback(() => {
     useExperienceStore.getState().setWebGL('fallback')
     director.attach(null)
@@ -98,7 +195,12 @@ export default function ExperienceRoot() {
 
   const keyboard = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget) return
-    moveWithKey(event.nativeEvent, director.bridge())
+    const current = director.bridge()?.capture() ?? pose
+    moveWithKey(
+      event.nativeEvent,
+      director.bridge(),
+      world === 'observatory' ? Math.max(3, cameraDistance(current) / 32) : 1,
+    )
   }
   const navigateLink = (
     event: MouseEvent<HTMLAnchorElement>,
@@ -108,10 +210,21 @@ export default function ExperienceRoot() {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
       return
     event.preventDefault()
-    director.navigate(destination, id)
+    if (destination === world && id) select(id)
+    else director.navigate(destination, id)
     document
       .querySelector('[data-testid="atlas-stage"]')
       ?.scrollIntoView({ behavior: 'instant', block: 'start' })
+  }
+
+  const navigationHref = (destination: AvailableWorldId, id: string | null = null) => {
+    const snapshot = defaultSnapshot(destination, id)
+    const hiddenProject =
+      id &&
+      observatoryProjects.some((project) => project.id === id) &&
+      !visibleProjects.some((project) => project.id === id)
+    if (destination === world && !hiddenProject) snapshot.filters = [...filterTokens]
+    return worldHref(snapshot)
   }
 
   return (
@@ -132,7 +245,7 @@ export default function ExperienceRoot() {
           {availableWorlds.map((id) => (
             <a
               key={id}
-              href={worldHref(defaultSnapshot(id, null))}
+              href={navigationHref(id)}
               aria-current={world === id ? 'page' : undefined}
               onClick={(event) => navigateLink(event, id)}
             >
@@ -170,6 +283,7 @@ export default function ExperienceRoot() {
                 }
               >
                 <WorldCanvas
+                  observatory={observatoryInput}
                   world={world}
                   selectedId={focusId}
                   initialPose={pose}
@@ -232,6 +346,17 @@ export default function ExperienceRoot() {
           </div>
         )}
 
+        {world === 'observatory' && (
+          <ObservatoryExplorer
+            filters={filters}
+            visibleProjects={visibleProjects}
+            selectedProject={selectedProject}
+            selectedEdge={selectedEdge}
+            lod={lod}
+            navigation={navigation}
+          />
+        )}
+
         <div
           className="atlas-v3__controls atlas-v3__overlay"
           role="group"
@@ -244,14 +369,25 @@ export default function ExperienceRoot() {
           >
             ← Zurück
           </button>
-          <button type="button" onClick={() => director.overview()}>
+          <button
+            type="button"
+            onClick={() => (world === 'observatory' ? navigation.fitAll() : director.overview())}
+          >
             Übersicht
           </button>
           <button
             type="button"
             disabled={!supported}
             aria-label="Hineinzoomen"
-            onClick={() => void director.bridge()?.dolly(4)}
+            onClick={() =>
+              void director
+                .bridge()
+                ?.dolly(
+                  world === 'observatory'
+                    ? cameraDistance(director.bridge()?.capture() ?? pose) * 0.3
+                    : 4,
+                )
+            }
           >
             +
           </button>
@@ -259,7 +395,15 @@ export default function ExperienceRoot() {
             type="button"
             disabled={!supported}
             aria-label="Herauszoomen"
-            onClick={() => void director.bridge()?.dolly(-4)}
+            onClick={() =>
+              void director
+                .bridge()
+                ?.dolly(
+                  world === 'observatory'
+                    ? -cameraDistance(director.bridge()?.capture() ?? pose) * 0.3
+                    : -4,
+                )
+            }
           >
             −
           </button>
@@ -287,7 +431,7 @@ export default function ExperienceRoot() {
           {definition.hotspots.map((spot) => (
             <a
               key={spot.id}
-              href={worldHref(defaultSnapshot(world, spot.id))}
+              href={navigationHref(world, spot.id)}
               aria-current={focusId === spot.id ? 'location' : undefined}
               onClick={(event) => navigateLink(event, world, spot.id)}
             >
@@ -328,6 +472,14 @@ export default function ExperienceRoot() {
       <output className="atlas-v3__sr" data-testid="atlas-motion" aria-hidden="true">
         {motion}
       </output>
+      <output className="atlas-v3__sr" data-testid="atlas-observatory-state" aria-hidden="true">
+        {JSON.stringify({
+          visibleIds: observatoryInput.visibleIds,
+          filters,
+          selectedEdgeId: selectedEdge?.id ?? null,
+          lod,
+        })}
+      </output>
 
       <section className="atlas-v3__projects" id="atlas-projects">
         <div className="atlas-v3__project-heading">
@@ -343,7 +495,7 @@ export default function ExperienceRoot() {
           </p>
         </div>
         <div className="atlas-v3__project-list">
-          {projects.map((project) => (
+          {observatoryProjects.map((project) => (
             <article key={project.id}>
               <span>{project.category}</span>
               <h3 translate="no">{project.name}</h3>

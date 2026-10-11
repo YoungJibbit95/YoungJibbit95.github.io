@@ -77,12 +77,14 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
     cancel,
     moveTo,
     pan: async (horizontal, vertical) => {
+      callbacks.current.onManualStart()
       cancel()
       await controlsRef.current?.truck(horizontal, vertical, !reducedMotion)
       const current = capture()
       if (current) callbacks.current.onRest(current)
     },
     dolly: async (distance) => {
+      callbacks.current.onManualStart()
       cancel()
       await controlsRef.current?.dolly(distance, !reducedMotion)
       const current = capture()

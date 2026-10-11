@@ -20,9 +20,7 @@ export class SceneDirector {
     const entry = readBrowserEntry(event.state)
     const route = parseWorldRoute(window.location.search, window.innerWidth < 620)
     const snapshot =
-      entry?.snapshot.world === route.world && entry.snapshot.focusId === route.focusId
-        ? entry.snapshot
-        : route
+      entry && worldHref(entry.snapshot) === worldHref(route) ? entry.snapshot : route
     void this.apply(snapshot, entry?.history ?? [], false, true)
   }
 
@@ -32,9 +30,7 @@ export class SceneDirector {
     const route = parseWorldRoute(window.location.search, window.innerWidth < 620)
     const entry = readBrowserEntry(window.history.state)
     const snapshot =
-      entry?.snapshot.world === route.world && entry.snapshot.focusId === route.focusId
-        ? entry.snapshot
-        : route
+      entry && worldHref(entry.snapshot) === worldHref(route) ? entry.snapshot : route
     const stack = entry?.history ?? []
     this.persist(snapshot, stack)
     void this.apply(snapshot, stack, false, false)
@@ -96,6 +92,39 @@ export class SceneDirector {
     const focus = findHotspot(world, requestedFocus)
     const destination = defaultSnapshot(world, focus?.id ?? null, window.innerWidth < 620)
     const state = useExperienceStore.getState()
+    if (state.activeWorld === world) destination.filters = [...state.filters]
+    this.navigateSnapshot(destination)
+  }
+
+  /** Camera targets, filters and selection share the same validated history owner. */
+  navigateView(pose: CameraPose, focusId: string | null, filters?: readonly string[]): void {
+    const state = useExperienceStore.getState()
+    const focus = findHotspot(state.activeWorld, focusId)
+    this.navigateSnapshot({
+      world: state.activeWorld,
+      focusId: focus?.id ?? null,
+      selectionId: focus?.id ?? null,
+      pose,
+      filters: [...(filters ?? state.filters)],
+    })
+  }
+
+  updateFilters(filters: readonly string[], keepFocus = true): void {
+    const snapshot = this.snapshot()
+    if (JSON.stringify(snapshot.filters) === JSON.stringify(filters)) return
+    this.navigateSnapshot(
+      {
+        ...snapshot,
+        filters: [...filters],
+        focusId: keepFocus ? snapshot.focusId : null,
+        selectionId: keepFocus ? snapshot.selectionId : null,
+      },
+      false,
+    )
+  }
+
+  private navigateSnapshot(destination: NavigationSnapshot, animate = true): void {
+    const state = useExperienceStore.getState()
     const previous = this.snapshot()
     const stack = [...state.history, previous].slice(-32)
     this.persist(previous, state.history)
@@ -104,7 +133,7 @@ export class SceneDirector {
       '',
       worldHref(destination),
     )
-    void this.apply(destination, stack, true, false)
+    void this.apply(destination, stack, animate, false)
   }
 
   back(): void {

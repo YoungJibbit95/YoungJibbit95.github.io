@@ -1,4 +1,12 @@
 import { originLandmarks, originOverview } from './worlds/originModel'
+import { observatoryProjects, observatoryClusters } from './observatory/data'
+import {
+  observatoryBounds,
+  observatoryOverview,
+  projectPose,
+  fitProjects,
+} from './observatory/camera'
+import { appendTokensToQuery, tokensFromQuery } from './observatory/routeState'
 import type {
   AvailableWorldId,
   CameraPose,
@@ -6,12 +14,6 @@ import type {
   WorldDefinition,
   WorldHotspot,
 } from './worldTypes'
-
-const bounds = {
-  minDistance: 3,
-  maxDistance: 54,
-  box: { x: [-19, 19], y: [-12, 12], z: [-26, 15] },
-} as const
 
 const origin: WorldDefinition = {
   id: 'origin',
@@ -41,43 +43,46 @@ const observatory: WorldDefinition = {
   subtitle: 'Ideen bilden Konstellationen.',
   introduction: 'Unterschiedliche Fragen, die sich über Projekte miteinander verbinden.',
   renderer: 'r3f',
-  defaultPose: { position: [0, 8, 32], target: [0, 0, -8], fov: 51, zoom: 1 },
-  bounds,
+  defaultPose: observatoryOverview,
+  compactPose: fitProjects(observatoryProjects, 0.5),
+  bounds: observatoryBounds,
   hotspots: [
-    {
-      id: 'nexus',
-      title: 'Nexus',
-      kind: 'Workspaces',
-      description: 'Notizen, Aufgaben, Dateien und Code gehören für mich zusammen.',
-      position: [-10, 2, -14],
-      focusPose: { position: [-7, 5, -3], target: [-10, 2, -14], fov: 51, zoom: 1 },
+    ...observatoryProjects.map((project): WorldHotspot => ({
+      id: project.id,
+      title: project.id === 'nexus' ? 'Nexus' : project.id === 'cerebri' ? 'Cerebri' : project.name,
+      kind:
+        project.id === 'nexus'
+          ? 'Workspaces'
+          : project.id === 'cerebri'
+            ? 'Planung'
+            : project.category,
+      description: project.description,
+      position: project.position,
+      focusPose: projectPose(project),
+      compactFocusPose: projectPose(project, true),
       evidenceStatus: 'verified',
-    },
-    {
-      id: 'cerebri',
-      title: 'Cerebri',
-      kind: 'Planung',
-      description: 'Ein Plan muss überprüfbar und nachvollziehbar bleiben.',
-      position: [1, -2, -5],
-      focusPose: { position: [2, 2, 6], target: [1, -2, -5], fov: 51, zoom: 1 },
-      evidenceStatus: 'verified',
-    },
-    {
-      id: 'forge',
-      title: 'Engines',
-      kind: 'Eigene Welten',
-      description: 'Wie aus Technik Bewegung, Spiel und neue Orte entstehen.',
-      position: [11, 2, -19],
-      focusPose: { position: [12, 5, -7], target: [11, 2, -19], fov: 51, zoom: 1 },
-      evidenceStatus: 'verified',
-    },
+    })),
+    ...observatoryClusters.map((cluster): WorldHotspot => {
+      const members = observatoryProjects.filter((project) => project.clusterId === cluster.id)
+      const focusPose = fitProjects(members, 1.7)
+      return {
+        id: 'cluster-' + cluster.id,
+        title: cluster.name,
+        kind: 'Thematische Region',
+        description: cluster.description,
+        position: focusPose.target,
+        focusPose,
+        compactFocusPose: fitProjects(members, 0.5),
+        evidenceStatus: 'illustrative',
+      }
+    }),
   ],
   destinations: ['origin'],
   contentSectionId: 'observatory-content',
   fallbackText: 'Direkte Links zu den Repositories bleiben jederzeit zugänglich.',
   assets: [],
   motion: 'optional',
-  loadScene: () => import('./worlds/ObservatoryPreview'),
+  loadScene: () => import('./worlds/ObservatoryWorld'),
 }
 
 /** Production registry remains intentionally limited until G2/G3 evidence gates. */
@@ -133,12 +138,15 @@ export function parseWorldRoute(search: string, compact = false): NavigationSnap
   const params = new URLSearchParams(search)
   const raw = params.get('world')
   const world = isAvailableWorld(raw) ? raw : 'origin'
-  return defaultSnapshot(world, params.get('focus'), compact)
+  const snapshot = defaultSnapshot(world, params.get('focus'), compact)
+  if (world === 'observatory') snapshot.filters = tokensFromQuery(params)
+  return snapshot
 }
 
 export function worldHref(snapshot: NavigationSnapshot): string {
   const query = new URLSearchParams({ atlas: 'preview', world: snapshot.world })
   if (snapshot.focusId) query.set('focus', snapshot.focusId)
+  if (snapshot.world === 'observatory') appendTokensToQuery(query, snapshot.filters)
   return '/?' + query.toString()
 }
 

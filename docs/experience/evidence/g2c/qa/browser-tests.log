@@ -1,0 +1,23 @@
+
+Running 16 tests using 1 worker
+
+(node:18824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\observatory.resources.spec.ts:16:1 › demand frames stop at rest and repeated world changes release renderer resources (8.1s)
+  ok  2 [chromium] › tests\observatory.spec.ts:109:3 › observatory overview, cluster and project have real pixels at 390px (3.2s)
+  ok  3 [chromium] › tests\observatory.spec.ts:109:3 › observatory overview, cluster and project have real pixels at 768px (3.7s)
+  ok  4 [chromium] › tests\observatory.spec.ts:109:3 › observatory overview, cluster and project have real pixels at 1440px (4.0s)
+  ok  5 [chromium] › tests\observatory.spec.ts:109:3 › observatory overview, cluster and project have real pixels at 1920px (4.2s)
+  ok  6 [chromium] › tests\observatory.spec.ts:144:1 › all seven projects have unique rendered portraits, exact targets and source dossiers (6.9s)
+  ok  7 [chromium] › tests\observatory.spec.ts:177:1 › search, four filters, empty state and relation selection change real scene state (6.2s)
+  ok  8 [chromium] › tests\observatory.spec.ts:226:1 › free pan and zoom change real pose and LOD; Fit All restores macro (4.1s)
+  ok  9 [chromium] › tests\observatory.spec.ts:251:1 › Origin to Observatory, filters and exact camera survive Back and Forward (6.2s)
+  ok 10 [chromium] › tests\observatory.spec.ts:289:1 › rapid focus and user input interrupt camera flight without a stale destination (10.3s)
+  ok 11 [chromium] › tests\observatory.spec.ts:310:1 › mobile pinch and two-finger pan move Observatory without scrolling the page (6.4s)
+  ok 12 [chromium] › tests\observatory.spec.ts:368:1 › explorer supports keyboard focus, 44px controls and WCAG A/AA severe checks (11.5s)
+  ok 13 [chromium] › tests\observatory.spec.ts:403:1 › filtered project geometry cannot capture clicks and silently reset the filter (6.1s)
+  ok 14 [chromium] › tests\observatory.spec.ts:426:1 › a 160-character Unicode search survives URL reload and browser history (6.5s)
+  ok 15 [chromium] › tests\observatory.spec.ts:445:1 › mouse drag and wheel explore physical space beyond the initial viewport (6.3s)
+  ok 16 [chromium] › tests\observatory.spec.ts:467:1 › WebGL failure preserves seven semantic projects, filters and source links (3.7s)
+
+  16 passed (1.7m)
