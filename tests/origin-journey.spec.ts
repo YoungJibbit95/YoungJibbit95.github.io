@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test'
 import { originLandmarks } from '../src/experience/worlds/originModel'
+import type { CameraPose } from '../src/experience/worldTypes'
 
 test.describe.configure({ timeout: 90_000 })
 
@@ -15,6 +16,18 @@ test('preview loads no legacy application chunk or legacy animation tree', async
 })
 const readPose = async (page: Page) =>
   JSON.parse((await page.getByTestId('atlas-pose').textContent())!)
+async function expectRestoredPose(page: Page, expected: CameraPose) {
+  const values = (value: CameraPose) => [...value.position, ...value.target, value.fov, value.zoom]
+  const target = values(expected)
+  // CameraControls spherical round-trips use the same full-pose precision as G2-C.
+  await expect
+    .poll(async () =>
+      Math.max(
+        ...values(await readPose(page)).map((value, index) => Math.abs(value - target[index])),
+      ),
+    )
+    .toBeLessThan(1e-7)
+}
 async function open(page: Page, width = 1440) {
   await page.setViewportSize({ width, height: width < 620 ? 844 : 900 })
   await page.goto('/?atlas=preview')
@@ -103,7 +116,7 @@ test('each mobile landmark has its own framed pose and exact history return', as
     )
     await page.screenshot({ path: info.outputPath(`g2b-focus-${landmark.id}-390.png`) })
     await page.goBack()
-    await expect.poll(() => readPose(page)).toEqual(wide)
+    await expectRestoredPose(page, wide)
   }
   await page.getByRole('button', { name: 'Abspielen', exact: true }).click()
   await page.getByRole('link', { name: 'Sternwarte', exact: true }).click()
@@ -113,7 +126,7 @@ test('each mobile landmark has its own framed pose and exact history return', as
   await page.goBack()
   await expect(page.getByTestId('origin-signal')).toHaveAttribute('data-step', '1')
   await expect(page.getByTestId('origin-signal')).toHaveAttribute('data-playback', 'paused')
-  await expect.poll(() => readPose(page)).toEqual(wide)
+  await expectRestoredPose(page, wide)
 })
 
 test('native navigation opens deep links in a new tab without changing this camera', async ({

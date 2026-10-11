@@ -27,6 +27,26 @@ const resetUploads = (page: Page) =>
 const hasHeight = (values: MatrixUpload[], height: number) =>
   values.some((value) => value.translation.every((xyz) => Math.abs(xyz[1] - height) < 0.001))
 
+async function settledPose(page: Page): Promise<Pose> {
+  const frame = () =>
+    page.getByTestId('atlas-renderer-info').evaluate((element) => {
+      element.dispatchEvent(new Event('atlas:sample-renderer'))
+      return JSON.parse((element as HTMLOutputElement).value).frame as number
+    })
+  // Opening can finish before CameraControls sleeps. Observe real demand-frame rest.
+  await expect
+    .poll(
+      async () => {
+        const before = await frame()
+        await page.waitForTimeout(300)
+        return (await frame()) === before
+      },
+      { timeout: 20_000 },
+    )
+    .toBe(true)
+  return pose(page)
+}
+
 /** Read actual instance matrices sent to WebGL. Forward every native call unchanged. */
 async function observeGeometry(page: Page) {
   await page.addInitScript(() => {
@@ -243,7 +263,7 @@ test('Schnittwerk roof uses global reduced motion with identical final geometry 
   await page.getByRole('button', { name: 'Innenraum entdecken', exact: true }).click()
   await expect.poll(async () => hasHeight(await uploads(page), -46), { timeout: 20_000 }).toBe(true)
   await expect.poll(async () => hasHeight(await uploads(page), -34)).toBe(true)
-  const fullPose = await pose(page)
+  const fullPose = await settledPose(page)
   const fullUploads = await uploads(page)
   expect(
     fullUploads.some((value) =>

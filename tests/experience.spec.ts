@@ -63,6 +63,7 @@ test('deep link, browser back and forward restore world and focus', async ({ pag
 test('cross-world Back returns to the actual previous camera pose', async ({ page }) => {
   await page.goto('/?atlas=preview')
   const stage = await canvas(page)
+  const initial = await pose(page)
   await stage.scrollIntoViewIfNeeded()
   const bounds = await stage.boundingBox()
   expect(bounds).not.toBeNull()
@@ -72,7 +73,8 @@ test('cross-world Back returns to the actual previous camera pose', async ({ pag
   await page.mouse.down()
   await page.mouse.move(x + 110, y + 38, { steps: 12 })
   await page.mouse.up()
-  await expect.poll(async () => (await pose(page)).target[0]).not.toBeCloseTo(0, 1)
+  // The authored overview need not target x=0. Wait for the actual drag to commit.
+  await expect.poll(async () => (await pose(page)).target[0]).not.toBeCloseTo(initial.target[0], 1)
   const earlier = await pose(page)
   await page.getByRole('link', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')

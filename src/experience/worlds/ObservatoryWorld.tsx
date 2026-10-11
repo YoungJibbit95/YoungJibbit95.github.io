@@ -48,7 +48,13 @@ export function isVisibleHit(object: Object3D): boolean {
   return true
 }
 
-const ProjectName = memo(function ProjectName({ project }: { project: ObservatoryProject }) {
+const ProjectName = memo(function ProjectName({
+  project,
+  selectedId,
+}: {
+  project: ObservatoryProject
+  selectedId: string | null
+}) {
   const compact = useThree((state) => state.size.width < 768)
   const shortNames: Record<ProjectId, string> = {
     nexus: 'Nexus',
@@ -88,13 +94,22 @@ const ProjectName = memo(function ProjectName({ project }: { project: Observator
   const sprite = useRef<Sprite>(null)
   const farLabels = useRef(false)
   const point = useMemo(() => new Vector3(...project.position), [project.position])
+  const selectedPoint = useMemo(() => {
+    const selected = observatoryProjects.find((item) => item.id === selectedId)
+    return selected ? new Vector3(...selected.position) : null
+  }, [selectedId])
   useEffect(() => () => texture.dispose(), [texture])
   useEffect(() => () => macroTexture?.dispose(), [macroTexture])
   useFrame(({ camera, size }) => {
     if (!sprite.current) return
     const distance = camera.position.distanceTo(point)
     farLabels.current = compact && (farLabels.current ? distance > 1550 : distance > 1650)
-    sprite.current.visible = !farLabels.current || Boolean(macroTexture)
+    // In a close reading, a distant neighbour's name must not label the foreground building.
+    // Panning away restores map labels without changing selection, camera or history.
+    const readingSelected = selectedPoint && camera.position.distanceTo(selectedPoint) < 320
+    sprite.current.visible =
+      (!readingSelected || project.id === selectedId) &&
+      (!farLabels.current || Boolean(macroTexture))
     const material = sprite.current.material as SpriteMaterial
     material.map = farLabels.current && macroTexture ? macroTexture : texture
     const radians = ((camera as PerspectiveCamera).fov * Math.PI) / 180
@@ -317,7 +332,7 @@ export default function ObservatoryWorld({
                 level="micro"
               />
             </group>
-            <ProjectName project={project} />
+            <ProjectName project={project} selectedId={selectedId} />
           </group>
         ))}
       </group>

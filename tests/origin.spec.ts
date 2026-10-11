@@ -135,7 +135,14 @@ test('far-field exploration and world return preserve scale, selection and signa
     .toEqual([...originLandmarks[2].compactFocusPose!.target])
   await expect(page.getByTestId('origin-signal')).toHaveAttribute('data-step', '1')
   await page.goBack()
-  await expect.poll(async () => (await pose(page)).position).toEqual(wide.position)
+  await expect
+    .poll(async () => {
+      const restored = await pose(page)
+      const actual = [...restored.position, ...restored.target, restored.fov, restored.zoom]
+      const expected = [...wide.position, ...wide.target, wide.fov, wide.zoom]
+      return Math.max(...actual.map((value, index) => Math.abs(value - expected[index])))
+    })
+    .toBeLessThan(1e-7)
 })
 
 for (const width of [320, 390, 768, 1440, 1920]) {
