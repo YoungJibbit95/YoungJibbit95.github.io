@@ -1,20 +1,17 @@
 import { Line } from '@react-three/drei'
 import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { memo, useEffect, useMemo, useRef } from 'react'
-import { CatmullRomCurve3, Color, Group, InstancedMesh, Mesh, Object3D, Vector3 } from 'three'
+import { CatmullRomCurve3, Group, Mesh, Vector3 } from 'three'
 import { useExperienceStore } from '../../store/experienceStore'
 import { useOriginSignal } from '../../store/originSignalStore'
 import type { WorldSceneProps } from '../worldTypes'
 import { landmarkPosition, originEdges, originLandmarks, signalResponse } from './originModel'
-import { OriginArchitecture } from './OriginArchitecture'
-
-const stars = Float32Array.from(
-  Array.from({ length: 240 }, (_, index) => [
-    ((index * 73) % 347) - 173,
-    ((index * 47) % 181) - 70,
-    -45 - ((index * 109) % 160),
-  ]).flat(),
-)
+import {
+  OriginArchitecture,
+  OriginFold,
+  OriginHorizonFrame,
+  OriginHorizonLeaf,
+} from './OriginArchitecture'
 
 const curves = originEdges.map(
   (edge) =>
@@ -26,120 +23,28 @@ const curves = originEdges.map(
 )
 const curvePoints = curves.map((curve) => curve.getPoints(60))
 
-/** Each fin is a section of one continuous, split body. Repeated ribs are instanced. */
-function Lamellae({ side, lit }: { side: -1 | 1; lit: boolean }) {
-  const fins = useRef<InstancedMesh>(null)
-  const seams = useRef<InstancedMesh>(null)
-  const invalidate = useThree((state) => state.invalidate)
-  useEffect(() => {
-    const transform = new Object3D()
-    const shade = new Color()
-    for (let index = 0; index < 42; index++) {
-      const t = index / 41
-      const waist = Math.sin(t * Math.PI)
-      const width = 2.4 + waist * 9.4
-      transform.position.set(
-        side * (1.4 + width * 0.5),
-        (t - 0.5) * 29,
-        Math.sin(t * Math.PI * 1.3) * 2,
-      )
-      transform.rotation.set(0, (t - 0.5) * 1.45 * side, side * 0.03)
-      transform.scale.set(width, 0.5, 3.2 + waist * 2.5)
-      transform.updateMatrix()
-      fins.current?.setMatrixAt(index, transform.matrix)
-      shade.setScalar(0.62 + Math.sin(t * Math.PI) * 0.3 + (index % 5 === 0 ? 0.08 : 0))
-      fins.current?.setColorAt(index, shade)
-      transform.position.x -= side * width * 0.47
-      transform.scale.set(0.07, 0.39, 2.2 + waist * 3.6)
-      transform.updateMatrix()
-      seams.current?.setMatrixAt(index, transform.matrix)
-    }
-    if (fins.current) {
-      fins.current.instanceMatrix.needsUpdate = true
-      if (fins.current.instanceColor) fins.current.instanceColor.needsUpdate = true
-      fins.current.computeBoundingSphere()
-    }
-    if (seams.current) {
-      seams.current.instanceMatrix.needsUpdate = true
-      seams.current.computeBoundingSphere()
-    }
-    invalidate()
-  }, [side, invalidate])
-  return (
-    <>
-      <instancedMesh ref={fins} args={[undefined, undefined, 42]}>
-        <boxGeometry />
-        <meshStandardMaterial
-          color={side === 1 ? '#d5d6d1' : '#a4adae'}
-          metalness={0.18}
-          roughness={0.55}
-        />
-      </instancedMesh>
-      <instancedMesh ref={seams} args={[undefined, undefined, 42]}>
-        <boxGeometry />
-        <meshStandardMaterial
-          color="#87c8cd"
-          emissive="#78e8e8"
-          emissiveIntensity={lit ? 2 : 0.35}
-          metalness={0.35}
-          roughness={0.4}
-        />
-      </instancedMesh>
-    </>
-  )
-}
-
 const QuietSpace = memo(function QuietSpace() {
   return (
     <>
-      <color attach="background" args={['#070914']} />
-      <fog attach="fog" args={['#070914', 115, 250]} />
-      <ambientLight intensity={0.38} color="#b7c9da" />
-      <directionalLight position={[-35, 48, 36]} intensity={4.8} color="#f5f2e9" />
-      <directionalLight position={[38, -9, -8]} intensity={1.2} color="#6e9cab" />
-      <directionalLight position={[-20, -14, -38]} intensity={2.4} color="#b9c7d1" />
-      <OriginArchitecture />
-      <points>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[stars, 3]} />
-        </bufferGeometry>
-        <pointsMaterial
-          color="#aab9d1"
-          size={0.105}
-          transparent
-          opacity={0.48}
-          depthWrite={false}
-        />
-      </points>
-      {/* Clipped foreground remnants and distant siblings establish physical parallax. */}
-      <group position={[-40, -23, 23]} rotation={[0.18, 0.2, -0.34]}>
-        {[0, 1, 2, 3, 4].map((i) => (
-          <mesh key={i} position={[i * 2.5, 0, -i * 2]}>
-            <boxGeometry args={[1.1, 35 - i * 3, 3]} />
-            <meshStandardMaterial color="#263c4b" metalness={0.6} roughness={0.5} />
-          </mesh>
-        ))}
-      </group>
-      <group position={[-64, -12, -85]} rotation={[0.2, 0.5, 0.15]}>
-        {[0, 1, 2].map((i) => (
-          <mesh key={i} position={[i * 3, i * 1.5, -i]}>
-            <boxGeometry args={[1.5, 23, 3]} />
-            <meshStandardMaterial color="#455e72" roughness={0.8} />
-          </mesh>
-        ))}
-      </group>
-      <Line
-        points={[
-          [-95, -18, -95],
-          [-42, -17, -30],
-          [9, -18, -16],
-          [76, -19, -90],
-        ]}
-        color="#344b5d"
-        lineWidth={0.65}
-        transparent
-        opacity={0.6}
+      <color attach="background" args={['#c9d0bf']} />
+      <ambientLight intensity={0.3} color="#e3e6d5" />
+      <hemisphereLight args={['#f6fae8', '#55604e', 0.85]} />
+      <directionalLight
+        position={[-60, 95, 45]}
+        intensity={2.5}
+        color="#fffde9"
+        castShadow
+        shadow-mapSize={[1024, 1024]}
+        shadow-camera-left={-110}
+        shadow-camera-right={110}
+        shadow-camera-top={110}
+        shadow-camera-bottom={-110}
+        shadow-camera-far={280}
+        shadow-bias={-0.0004}
+        shadow-normalBias={0.08}
       />
+      <directionalLight position={[70, 40, -70]} intensity={0.6} color="#dcebef" />
+      <OriginArchitecture />
     </>
   )
 })
@@ -159,8 +64,7 @@ function SignalPath() {
   }, [revision, reduced, invalidate])
   useEffect(() => invalidate(), [paused, invalidate])
   useFrame((state, delta) => {
-    if (!pulse.current) return
-    if (paused) return
+    if (!pulse.current || paused) return
     const moving = step > 0 && !reduced && age.current < 1.4
     pulse.current.visible = moving
     if (!moving) return
@@ -175,21 +79,21 @@ function SignalPath() {
         <Line
           key={edge.id}
           points={curvePoints[index]}
-          color={step > index ? '#78e8e8' : '#425968'}
-          lineWidth={step > index ? 2.4 : 0.85}
+          color={step > index ? '#d7e775' : '#667658'}
+          lineWidth={step > index ? 2.6 : 0.85}
           transparent
-          opacity={step > index ? 0.95 : 0.55}
+          opacity={step > index ? 1 : 0.5}
         />
       ))}
       <mesh ref={pulse} visible={false}>
         <sphereGeometry args={[0.46, 12, 8]} />
-        <meshBasicMaterial color="#e5ffff" toneMapped={false} />
+        <meshBasicMaterial color="#f5f8c2" toneMapped={false} />
       </mesh>
     </>
   )
 }
 
-/** Origin's geometry responds to the same pure graph as its accessible controls. */
+/** The existing causal graph moves real architecture; reduced motion reaches identical final poses. */
 export default function OriginWorld({ onFocus, selectedId }: WorldSceneProps) {
   const step = useOriginSignal((state) => state.step)
   const reduced = useExperienceStore((state) => state.motion !== 'full')
@@ -197,19 +101,27 @@ export default function OriginWorld({ onFocus, selectedId }: WorldSceneProps) {
   const response = signalResponse(step)
   const left = useRef<Group>(null)
   const right = useRef<Group>(null)
+  const horizonLeft = useRef<Group>(null)
+  const horizonRight = useRef<Group>(null)
   const invalidate = useThree((state) => state.invalidate)
   useEffect(() => invalidate(), [step, reduced, paused, invalidate])
   useFrame((state, delta) => {
-    if (!left.current || !right.current) return
+    if (!left.current || !right.current || !horizonLeft.current || !horizonRight.current) return
     if (paused && !reduced) return
-    const destination = response.aperture * 2.8
-    const current = right.current.position.x
-    const next = reduced
-      ? destination
-      : current + (destination - current) * (1 - Math.exp(-delta * 5))
-    right.current.position.x = Math.abs(next - destination) < 0.003 ? destination : next
-    left.current.position.x = -right.current.position.x
-    if (Math.abs(current - destination) > 0.003) state.invalidate()
+    const move = (first: Group, second: Group, destination: number, turn: number) => {
+      const current = second.position.x
+      const next = reduced
+        ? destination
+        : current + (destination - current) * (1 - Math.exp(-delta * 5))
+      const settled = Math.abs(next - destination) < 0.003
+      second.position.x = settled ? destination : next
+      first.position.x = -second.position.x
+      second.rotation.y = -second.position.x * turn
+      first.rotation.y = -second.rotation.y
+      if (!settled) state.invalidate()
+    }
+    move(left.current, right.current, response.aperture * 7.8, 0.011)
+    move(horizonLeft.current, horizonRight.current, response.portal ? 6.4 : 0, 0.016)
   })
   const choose = (id: string) => (event: ThreeEvent<MouseEvent>) => {
     if (event.delta > 6) return
@@ -220,101 +132,87 @@ export default function OriginWorld({ onFocus, selectedId }: WorldSceneProps) {
     <>
       <QuietSpace />
       <SignalPath />
-      <group
-        position={[...originLandmarks[1].position]}
-        rotation={[0.06, -0.38, -0.22]}
-        onClick={choose('relation')}
-      >
+      <group position={[...originLandmarks[1].position]} onClick={choose('relation')}>
         <group ref={left}>
-          <Lamellae side={-1} lit={response.aperture > 0} />
+          <OriginFold side={-1} />
         </group>
         <group ref={right}>
-          <Lamellae side={1} lit={response.aperture > 0} />
+          <OriginFold side={1} />
         </group>
-        <mesh rotation={[0, 0, 0.05]}>
-          <boxGeometry args={[0.13, 25, 0.18]} />
-          <meshBasicMaterial color={step ? '#9dffff' : '#4a818c'} toneMapped={false} />
+        <mesh position={[0, -12.9, 8]} receiveShadow>
+          <boxGeometry args={[21, 0.65, 8]} />
+          <meshStandardMaterial color="#e3e6d5" roughness={0.9} />
         </mesh>
-        <mesh position={[0, -15.5, 0]} rotation={[0, 0, Math.PI / 4]}>
-          <boxGeometry args={[1.1, 1.1, 1.1]} />
-          <meshStandardMaterial color="#e3b98d" metalness={0.6} roughness={0.3} />
+        <mesh position={[0, -12.54, 8]}>
+          <boxGeometry args={[2.35, 0.055, 8]} />
+          <meshStandardMaterial color="#d7e775" roughness={0.85} />
         </mesh>
         {selectedId === 'relation' && (
           <Line
             points={[
-              [-16, -17, 0],
-              [-16, -19, 0],
-              [16, -19, 0],
-              [16, -17, 0],
+              [-12, -12.5, 12],
+              [12, -12.5, 12],
             ]}
-            color="#78e8e8"
-            lineWidth={1.5}
-          />
-        )}
-      </group>
-      <group
-        position={[...originLandmarks[0].position]}
-        rotation={[0.2, 0.4, 0.15]}
-        onClick={choose('signal')}
-      >
-        <mesh>
-          <boxGeometry args={[1.5, 7, 1.7]} />
-          <meshStandardMaterial color="#8295a1" metalness={0.7} roughness={0.35} />
-        </mesh>
-        <mesh position={[1, 0, 1]}>
-          <boxGeometry args={[0.12, 6, 0.18]} />
-          <meshBasicMaterial color={step ? '#a7ffff' : '#78b7c4'} toneMapped={false} />
-        </mesh>
-        <mesh position={[-1.4, -2, -0.5]}>
-          <boxGeometry args={[0.4, 10, 3]} />
-          <meshStandardMaterial color="#3d5465" metalness={0.6} roughness={0.45} />
-        </mesh>
-        {selectedId === 'signal' && (
-          <Line
-            points={[
-              [-3, -6, 0],
-              [3, -6, 0],
-            ]}
-            color="#78e8e8"
+            color="#d7e775"
             lineWidth={2}
           />
         )}
       </group>
-      <group
-        position={[...originLandmarks[2].position]}
-        rotation={[0, -0.22, 0]}
-        onClick={choose('horizon')}
-      >
-        {[-1, 1].map((side) => (
-          <group key={side} position={[side * 5.3, 0, 0]} rotation={[0, 0, side * -0.11]}>
-            <mesh>
-              <boxGeometry args={[1.4, 22, 3]} />
-              <meshStandardMaterial color="#708591" metalness={0.5} roughness={0.5} />
-            </mesh>
-            <mesh position={[-side * 0.75, 0, 1.5]}>
-              <boxGeometry args={[0.12, 21, 0.12]} />
-              <meshBasicMaterial
-                color={response.portal ? '#acffff' : '#4d7585'}
-                toneMapped={false}
-              />
-            </mesh>
-          </group>
+      <group position={[...originLandmarks[0].position]} onClick={choose('signal')}>
+        {[0, 1, 2, 3].map((layer) => (
+          <mesh key={layer} position={[0, -7.75 + layer * 0.85, 0]} receiveShadow>
+            <cylinderGeometry args={[5.7 - layer * 0.3, 5.7 - layer * 0.3, 0.9, 48]} />
+            <meshStandardMaterial color={layer % 2 ? '#adbaa1' : '#e3e6d5'} roughness={0.9} />
+          </mesh>
         ))}
-        <mesh position={[0, 11, 0]}>
-          <boxGeometry args={[8, 0.8, 3]} />
-          <meshStandardMaterial color="#98a7a9" metalness={0.6} roughness={0.4} />
-        </mesh>
-        {response.portal && (
+        <group rotation-y={-0.32}>
+          <mesh position={[-1.35, -0.2, 0]} castShadow receiveShadow>
+            <boxGeometry args={[2.3, 9.5, 2.5]} />
+            <meshStandardMaterial color="#e3e6d5" roughness={0.84} />
+          </mesh>
+          <mesh position={[1.1, -1.7, -0.35]} castShadow receiveShadow>
+            <boxGeometry args={[2.2, 6.5, 3.2]} />
+            <meshStandardMaterial color="#626f60" roughness={0.86} />
+          </mesh>
+          <mesh position={[0.1, -0.2, 1.35]}>
+            <boxGeometry args={[0.22, 8, 0.1]} />
+            <meshStandardMaterial
+              color={step ? '#f1f7ad' : '#d7e775'}
+              emissive="#d7e775"
+              emissiveIntensity={step ? 0.3 : 0}
+              roughness={0.6}
+            />
+          </mesh>
+          {[0, 1, 2, 3].map((index) => (
+            <mesh key={index} position={[-1.35, -2.2 + index * 0.8, 1.29]}>
+              <boxGeometry args={[1.6, 0.04, 0.025]} />
+              <meshStandardMaterial color="#839176" roughness={0.85} />
+            </mesh>
+          ))}
+        </group>
+        {selectedId === 'signal' && (
           <Line
             points={[
-              [-4, -10, 1],
-              [0, -12, 1],
-              [4, -10, 1],
+              [-4, -4.5, 4],
+              [4, -4.5, 4],
             ]}
-            color="#9cffff"
-            lineWidth={3}
+            color="#d7e775"
+            lineWidth={2}
           />
         )}
+      </group>
+      <group position={[...originLandmarks[2].position]} onClick={choose('horizon')}>
+        <OriginHorizonFrame />
+        <group ref={horizonLeft}>
+          <OriginHorizonLeaf side={-1} />
+        </group>
+        <group ref={horizonRight}>
+          <OriginHorizonLeaf side={1} />
+        </group>
+        <mesh position={[0, -12.32, -7]} receiveShadow>
+          <boxGeometry args={[2.4, 0.07, 24]} />
+          <meshStandardMaterial color={response.portal ? '#e5ee97' : '#9eac73'} roughness={0.85} />
+        </mesh>
       </group>
     </>
   )

@@ -46,6 +46,10 @@ export function ObservatoryExplorer({
   const activeEdge = edges.find((edge) => edge.id === selectedEdge?.id) ?? null
   const hasFilters = Object.values(filters).some(Boolean)
   const visibleSelected = visibleProjects.some((project) => project.id === selectedProject?.id)
+  const discoveryProject =
+    (visibleSelected ? selectedProject : null) ??
+    visibleProjects.find((project) => project.id === 'nexus') ??
+    visibleProjects[0]
 
   useEffect(() => {
     if (open) title.current?.focus({ preventScroll: true })
@@ -66,7 +70,7 @@ export function ObservatoryExplorer({
 
   return (
     <aside
-      className="observatory-explorer"
+      className="observatory-explorer atlas-v3__overlay"
       data-testid="observatory-explorer"
       data-expanded={open}
       aria-label="Projektsternwarte erkunden"
@@ -79,6 +83,23 @@ export function ObservatoryExplorer({
       }}
     >
       <div className="observatory-explorer__bar">
+        <button
+          type="button"
+          className="schnittwerk-discover"
+          disabled={!discoveryProject}
+          onClick={() => {
+            if (discoveryProject) navigation.focusProject(discoveryProject.id, visibleSelected)
+          }}
+        >
+          {visibleSelected
+            ? selectedProject?.id === 'nexus'
+              ? 'Innenraum entdecken'
+              : 'Architektur erkunden'
+            : discoveryProject
+              ? `${discoveryProject.id === 'nexus' ? 'Nexus' : discoveryProject.name} erkunden`
+              : 'Keine Projekte im Ausschnitt'}
+          <span aria-hidden="true">↗</span>
+        </button>
         <button
           ref={trigger}
           type="button"

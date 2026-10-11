@@ -1,7 +1,7 @@
 /* Shared browser defaults only; the standalone entry does not load legacy UI. */
 :root {
-  color: #edf1fb;
-  background: #070914;
+  color: #233026;
+  background: #c9d0bf;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

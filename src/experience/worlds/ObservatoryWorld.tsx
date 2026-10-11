@@ -26,6 +26,7 @@ import type {
 } from '../observatory/contracts'
 import { ObservatoryAtmosphere } from './observatory/ObservatoryAtmosphere'
 import { ProjectArchitecture } from './observatory/ProjectArchitecture'
+import { SchnittwerkMaterials, schnittwerk } from './SchnittwerkMaterials'
 
 export function distanceLevel(
   distance: number,
@@ -69,14 +70,13 @@ const ProjectName = memo(function ProjectName({ project }: { project: Observator
     canvas.width = 768
     canvas.height = 128
     const ctx = canvas.getContext('2d')!
-    ctx.fillStyle = '#e7edf0'
     ctx.font = '500 64px Arial, sans-serif'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.strokeStyle = '#091521'
-    ctx.lineWidth = 12
-    ctx.lineJoin = 'round'
-    ctx.strokeText(text, 384, 64)
+    const width = Math.min(752, ctx.measureText(text).width + 42)
+    ctx.fillStyle = schnittwerk.mineral
+    ctx.fillRect((768 - width) / 2, 18, width, 92)
+    ctx.fillStyle = schnittwerk.ink
     ctx.fillText(text, 384, 64)
     const next = new CanvasTexture(canvas)
     next.colorSpace = SRGBColorSpace
@@ -102,8 +102,8 @@ const ProjectName = memo(function ProjectName({ project }: { project: Observator
     sprite.current.scale.set(height * 6, height, 1)
   })
   return (
-    <sprite ref={sprite} position={[0, -66, 0]} name={'label-' + project.id}>
-      <spriteMaterial map={texture} depthTest depthWrite={false} toneMapped={false} />
+    <sprite ref={sprite} position={[0, 44, 0]} name={'label-' + project.id} renderOrder={10}>
+      <spriteMaterial map={texture} depthTest={false} depthWrite={false} toneMapped={false} />
     </sprite>
   )
 })
@@ -147,9 +147,9 @@ const Connection = memo(function Connection({
       }}
     >
       <lineBasicMaterial
-        color={selected ? '#e5f4ee' : technical ? '#78e8e8' : '#738289'}
+        color={selected ? '#233026' : technical ? '#526731' : '#626f60'}
         transparent
-        opacity={selected ? 1 : technical ? 0.9 : 0.48}
+        opacity={selected ? 1 : technical ? 0.95 : 0.62}
       />
     </lineSegments>
   )
@@ -240,13 +240,27 @@ export default function ObservatoryWorld({
   })
 
   return (
-    <>
-      <color attach="background" args={['#091521']} />
-      <fog attach="fog" args={['#091521', 2500, 5200]} />
+    <SchnittwerkMaterials>
+      <color attach="background" args={[schnittwerk.sky]} />
+      <fog attach="fog" args={[schnittwerk.sky, 3100, 5600]} />
       <group ref={root} name="observatory-world">
-        <ambientLight intensity={0.32} />
-        <directionalLight position={[-300, 450, 450]} color="#e7edf1" intensity={3.8} />
-        <directionalLight position={[350, -60, -450]} color="#84abb8" intensity={0.65} />
+        <ambientLight intensity={0.45} color="#dae5da" />
+        <hemisphereLight args={['#f4f5dc', '#5b674f', 0.85]} />
+        <directionalLight
+          position={[-450, 760, 450]}
+          color="#fffbe4"
+          intensity={2.6}
+          castShadow
+          shadow-mapSize={[1024, 1024]}
+          shadow-camera-left={-950}
+          shadow-camera-right={950}
+          shadow-camera-top={950}
+          shadow-camera-bottom={-950}
+          shadow-camera-far={2300}
+          shadow-bias={-0.0003}
+          shadow-normalBias={1.1}
+        />
+        <directionalLight position={[550, 230, -650]} color="#dce8ec" intensity={0.7} />
         <ObservatoryAtmosphere />
         {observatoryEdges.map((edge) => {
           if (!visible.has(edge.from) || !visible.has(edge.to)) return null
@@ -307,6 +321,6 @@ export default function ObservatoryWorld({
           </group>
         ))}
       </group>
-    </>
+    </SchnittwerkMaterials>
   )
 }

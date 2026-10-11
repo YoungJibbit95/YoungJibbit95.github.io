@@ -88,7 +88,7 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
     setPrerenderWorld(undefined)
     const theme = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
     const previousTheme = theme?.content
-    if (theme) theme.content = '#070914'
+    if (theme) theme.content = '#c9d0bf'
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
     const sync = () => setSystemReduced(media.matches)
     sync()
@@ -279,13 +279,7 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
         >
           {supported ? (
             <SpaceBoundary onFailure={fail}>
-              <Suspense
-                fallback={
-                  <p className="atlas-v3__fallback" role="status">
-                    Die Welt öffnet sich… Projekte bleiben direkt erreichbar.
-                  </p>
-                }
-              >
+              <Suspense fallback={null}>
                 <WorldCanvas
                   observatory={observatoryInput}
                   world={world}
@@ -308,6 +302,13 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
                 : definition.fallbackText}
             </div>
           )}
+          {supported && renderedWorld !== world && (
+            <div className="atlas-v3__fallback atlas-v3__loading" role="status">
+              <span aria-hidden="true" />
+              Die Landschaft wird aufgebaut.
+              <small>Projekte und Quellen sind unten schon zugänglich.</small>
+            </div>
+          )}
         </div>
 
         <div className="atlas-v3__intro atlas-v3__overlay" data-focused={Boolean(focusId)}>
@@ -320,16 +321,16 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
               </>
             ) : (
               <>
-                Ideen bilden
+                Eine Landschaft.
                 <br />
-                <em>Konstellationen.</em>
+                <em>Sieben offene Fragen.</em>
               </>
             )}
           </h1>
           <p>
             {world === 'origin'
               ? 'Eine Frage kann alles in Bewegung setzen.'
-              : 'Unterschiedliche Projekte. Ein gemeinsamer Ursprung.'}
+              : 'Näher kommen. Schichten öffnen. Zusammenhänge entdecken.'}
           </p>
         </div>
 

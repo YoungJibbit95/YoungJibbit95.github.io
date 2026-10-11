@@ -1,0 +1,271 @@
+/* User-approved G2-D direction B. One visual layer for the existing Atlas shell. */
+html:has(.atlas-v3) {
+  color-scheme: light;
+  background: #c9d0bf;
+}
+.atlas-v3 {
+  --atlas-ink: #c9d0bf;
+  --atlas-paper: #233026;
+  --atlas-cyan: #4e5c20;
+  --atlas-muted: #505b49;
+  --atlas-edge: #88917c;
+  color-scheme: light;
+}
+.atlas-v3 :is(button, a, input, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid #334722;
+  outline-offset: 4px;
+}
+.atlas-v3__header {
+  background: #c9d0bf;
+  border-bottom-color: #9fa891;
+}
+.atlas-v3__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.atlas-v3__brand span {
+  color: inherit;
+}
+.atlas-v3__world-nav a[aria-current='page'] {
+  border-bottom: 2px solid #344429;
+}
+.atlas-v3__intro,
+.atlas-v3[data-active-world='observatory'] .atlas-v3__intro {
+  top: 28px;
+  left: 4%;
+  max-width: min(650px, 60%);
+  padding: 18px 30px 22px 0;
+  background: linear-gradient(90deg, #c9d0bff0, #c9d0bfcc 72%, #c9d0bf00);
+}
+.atlas-v3__intro h1,
+.atlas-v3[data-active-world='observatory'] .atlas-v3__intro h1 {
+  font-size: clamp(2.6rem, 4.1vw, 4rem);
+  letter-spacing: -0.065em;
+  line-height: 1.05;
+  font-weight: 500;
+}
+.atlas-v3__intro h1 em {
+  color: inherit;
+  font-weight: inherit;
+}
+.atlas-v3__intro > p,
+.atlas-v3[data-active-world='observatory'] .atlas-v3__intro > p {
+  margin-top: 20px;
+  max-width: 43ch;
+  text-shadow: none;
+  color: #354331;
+  font-size: 0.82rem;
+}
+.atlas-v3__world-label,
+.atlas-v3[data-active-world='observatory'] .atlas-v3__world-label {
+  top: 40px;
+  right: 4%;
+  bottom: auto;
+  min-width: 140px;
+  padding: 12px;
+  background: #e5e8d9ed;
+}
+.atlas-v3__controls button,
+.atlas-v3__reset,
+.atlas-v3 .atlas-v3__journey-stops button {
+  background: #e5e8d9f5;
+  color: #263526;
+}
+.atlas-v3__controls button:hover:not(:disabled),
+.atlas-v3 .atlas-v3__reset:hover:not(:disabled),
+.atlas-v3 .atlas-v3__journey-stops button:hover {
+  color: #263526;
+  background: #f2f3e9;
+  border-color: #465938;
+}
+.atlas-v3__gesture {
+  color: #34422e;
+  background: #e5e8d9e8;
+  padding: 6px 9px;
+}
+.atlas-v3__signal-position {
+  background: #e5e8d9f5;
+  padding: 18px;
+  border: 1px solid #9ca68c;
+  width: 370px;
+}
+.atlas-v3__signal p {
+  color: #283824;
+  text-shadow: none;
+}
+.atlas-v3 .atlas-v3__journey-stops button[data-reached='true'] {
+  background: #d8e69d;
+  border-bottom-color: #536523;
+  color: #263526;
+}
+.atlas-v3__send,
+.atlas-v3 .observatory-explorer .schnittwerk-discover {
+  background: #d7e775;
+  color: #25321d;
+  border-color: #7b8a41;
+}
+.atlas-v3 .atlas-v3__send:hover:not(:disabled),
+.atlas-v3 .observatory-explorer .schnittwerk-discover:hover {
+  background: #e4eea0;
+  color: #25321d;
+  border-color: #4b6029;
+}
+.atlas-v3__metaphor,
+.atlas-v3__insight p,
+.atlas-v3__project-list p {
+  color: #465340;
+}
+.atlas-v3__fallback {
+  color: #283824;
+  background: #e5e8d9f5;
+  max-width: 32rem;
+  margin-inline: auto;
+  border-color: #8f9b80;
+}
+.atlas-v3__loading {
+  pointer-events: none;
+  z-index: 1;
+  text-align: left;
+}
+.atlas-v3__loading > span {
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-bottom: 18px;
+  background: #7a8c39;
+}
+.atlas-v3__loading small {
+  display: block;
+  margin-top: 8px;
+  color: #465340;
+}
+.atlas-v3 .observatory-explorer button,
+.observatory-explorer__actions a {
+  color: #263526;
+  background: #e5e8d9fa;
+  border-color: #8a967b;
+}
+.atlas-v3 .observatory-explorer button:hover,
+.observatory-explorer__actions a:hover,
+.observatory-explorer__results a:hover,
+.observatory-explorer__results a[aria-current='location'],
+.atlas-v3 .observatory-explorer button[aria-pressed='true'] {
+  background: #d7e3b2;
+  color: #233421;
+  border-color: #687d46;
+}
+.observatory-explorer__panel {
+  color: #263526;
+  background: #edf0e3;
+  border-color: #8a967b;
+}
+.observatory-explorer input,
+.observatory-explorer select {
+  color: #233421;
+  background: #fafbf5;
+  border-color: #8a967b;
+}
+.observatory-explorer input::placeholder {
+  color: #58654d;
+}
+.observatory-explorer__bar {
+  flex-wrap: wrap;
+}
+.atlas-v3 .observatory-explorer .schnittwerk-discover {
+  flex: 0 0 100%;
+  width: 100%;
+  justify-content: space-between;
+  padding: 12px 16px;
+  font-size: 0.83rem;
+}
+.observatory-explorer__bar > button:not(.schnittwerk-discover) {
+  flex: 1;
+}
+.atlas-v3__wayfinding,
+.atlas-v3__projects,
+.atlas-v3__footer {
+  border-color: #8f9b80;
+}
+@media (max-width: 900px) {
+  .atlas-v3__intro,
+  .atlas-v3[data-active-world='observatory'] .atlas-v3__intro {
+    top: 18px;
+    left: 20px;
+    max-width: calc(100% - 40px);
+    padding: 8px 14px 12px 0;
+  }
+  .atlas-v3__intro h1,
+  .atlas-v3[data-active-world='observatory'] .atlas-v3__intro h1 {
+    font-size: clamp(2rem, 8.5vw, 3rem);
+  }
+  .atlas-v3__intro > p,
+  .atlas-v3[data-active-world='observatory'] .atlas-v3__intro > p {
+    margin-top: 13px;
+    font-size: 0.72rem;
+    max-width: 38ch;
+  }
+  .atlas-v3__world-label,
+  .atlas-v3[data-active-world='observatory'] .atlas-v3__world-label {
+    top: auto;
+    bottom: 212px;
+    right: 20px;
+    padding: 8px 10px;
+    min-width: 125px;
+  }
+  .atlas-v3:has(.atlas-v3__intro[data-focused='true']) .atlas-v3__world-label {
+    top: 18px;
+    bottom: auto;
+  }
+  .atlas-v3[data-active-world='origin'] .atlas-v3__world-label {
+    top: 18px;
+    bottom: auto;
+    min-width: 0;
+    padding: 6px 8px;
+  }
+  .atlas-v3[data-active-world='origin']:has(.atlas-v3__intro[data-focused='false'])
+    .atlas-v3__world-label
+    span {
+    display: none;
+  }
+}
+@media (max-width: 767px) and (max-height: 700px) {
+  .atlas-v3[data-active-world='origin'] .atlas-v3__intro > p,
+  .atlas-v3[data-active-world='origin'] .atlas-v3__metaphor {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .atlas-v3__stage {
+    min-height: 0;
+  }
+  .atlas-v3__signal-position {
+    width: auto;
+    padding: 12px;
+    bottom: 82px;
+  }
+  .atlas-v3__controls,
+  .atlas-v3[data-active-world='observatory'] .atlas-v3__controls {
+    bottom: max(18px, calc(env(safe-area-inset-bottom) + 12px));
+    left: 20px;
+    right: 20px;
+  }
+  .atlas-v3[data-active-world='observatory'] .atlas-v3__controls {
+    bottom: max(138px, calc(env(safe-area-inset-bottom) + 130px));
+  }
+  .observatory-explorer {
+    bottom: max(16px, calc(env(safe-area-inset-bottom) + 8px));
+  }
+  .observatory-explorer__panel {
+    max-height: 45dvh;
+  }
+  .observatory-explorer[data-expanded='true'] .schnittwerk-discover {
+    display: none;
+  }
+  .observatory-explorer[data-expanded='true'] ~ .atlas-v3__controls {
+    visibility: hidden;
+  }
+  .atlas-v3 .observatory-explorer__bar > button:first-child > svg {
+    display: block;
+  }
+}

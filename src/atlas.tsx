@@ -7,6 +7,7 @@ import './experience/atlas-base.css'
 import './experience/experience.css'
 import './experience/observatory/observatory.css'
 import './experience/observatory/ui/ui.css'
+import './experience/schnittwerk.css'
 
 // A real static document precedes enhancement. The existing scene shell owns
 // the only Canvas, camera and history; Three remains behind its lazy boundary.

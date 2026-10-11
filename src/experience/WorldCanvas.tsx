@@ -159,6 +159,7 @@ export default function WorldCanvas(props: CanvasProps) {
   return (
     <div className="atlas-v3__canvas" data-testid="atlas-canvas" ref={host}>
       <Canvas
+        shadows="soft"
         camera={{ position: [...props.initialPose.position], fov: 51, near: 0.1, far: 6000 }}
         dpr={[1, 1.5]}
         frameloop={visible ? 'demand' : 'never'}

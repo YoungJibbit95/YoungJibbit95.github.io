@@ -20,16 +20,35 @@ export const observatoryCompactOverview: CameraPose = {
   zoom: 1,
 }
 
+/** A portrait visit begins at a readable place; Fit All remains a separate action. */
+export function observatoryArrival(project: ObservatoryProject): CameraPose {
+  return {
+    position: [project.position[0] + 150, project.position[1] + 150, project.position[2] + 320],
+    target: [project.position[0], project.position[1] + 8, project.position[2]],
+    fov: 48,
+    zoom: 1,
+  }
+}
+
 export function projectPose(
   project: ObservatoryProject,
   compact = false,
   detail = false,
 ): CameraPose {
-  const offset: Vec3 = detail ? [75, 65, 135] : compact ? [95, 90, 210] : [85, 60, 145]
+  const nexusInterior = detail && project.id === 'nexus'
+  const offset: Vec3 = nexusInterior
+    ? [55, 130, 90]
+    : detail
+      ? [75, 65, 135]
+      : compact
+        ? // Keep the approach outside the existing 250-unit micro exit boundary.
+          // Returning from the detail pose must restore the same visible LOD.
+          [95, 100, 210]
+        : [85, 60, 145]
   return {
     position: project.position.map((value, axis) => value + offset[axis]) as unknown as Vec3,
     target: [...project.position],
-    fov: 48,
+    fov: nexusInterior && compact ? 62 : 48,
     zoom: 1,
   }
 }

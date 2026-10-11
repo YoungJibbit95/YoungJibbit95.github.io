@@ -3,6 +3,7 @@ import { observatoryProjects, observatoryClusters } from './observatory/data'
 import {
   observatoryBounds,
   observatoryOverview,
+  observatoryArrival,
   projectPose,
   fitProjects,
 } from './observatory/camera'
@@ -23,7 +24,7 @@ const origin: WorldDefinition = {
   introduction: 'Ein Gedanke setzt etwas in Bewegung. Daraus entstehen Verbindungen.',
   renderer: 'r3f',
   defaultPose: originOverview,
-  compactPose: { position: [9, 10, 78], target: [9, -5, -16], fov: 48, zoom: 1 },
+  compactPose: { position: [28, 32, 126], target: [9, -3, -16], fov: 56, zoom: 1 },
   bounds: {
     minDistance: 8,
     maxDistance: 165,
@@ -45,7 +46,7 @@ const observatory: WorldDefinition = {
   introduction: 'Unterschiedliche Fragen, die sich über Projekte miteinander verbinden.',
   renderer: 'r3f',
   defaultPose: observatoryOverview,
-  compactPose: fitProjects(observatoryProjects, 0.5),
+  compactPose: observatoryArrival(observatoryProjects.find((project) => project.id === 'nexus')!),
   bounds: observatoryBounds,
   hotspots: [
     ...observatoryProjects.map((project): WorldHotspot => ({

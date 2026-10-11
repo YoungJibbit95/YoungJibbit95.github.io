@@ -37,8 +37,8 @@ export const originLandmarks: readonly WorldHotspot[] = [
 ]
 
 export const originOverview: CameraPose = {
-  position: [0, 10, 48],
-  target: [0, 1, -16],
+  position: [64, 43, 94],
+  target: [9, 0, -24],
   fov: 48,
   zoom: 1,
 }
