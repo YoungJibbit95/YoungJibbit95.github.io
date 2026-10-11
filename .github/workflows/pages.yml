@@ -33,7 +33,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm test
       - name: Repeat G1 world-switch pixel regression
-        run: npx playwright test tests/experience.render.spec.ts --grep "two consecutive world changes" --repeat-each=3 --workers=1
+        run: npx playwright test tests/experience.render.spec.ts --grep "two consecutive world changes" --repeat-each=3 --workers=1 --output=test-results/g1-stress
       - name: Save G1 preview screenshots and traces
         if: always() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
