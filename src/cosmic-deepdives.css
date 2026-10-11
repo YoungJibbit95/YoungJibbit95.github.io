@@ -1,0 +1,865 @@
+/* ==========================================================================
+   EBENE 04: WURMLOCH-CHRONOMETER & EXPLODIERTE UHRWERK-ANSICHT (CEREBRI)
+   ========================================================================== */
+
+.wormhole-chronometer-stage {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 26px;
+  align-items: stretch;
+  margin-bottom: 24px;
+}
+
+.wormhole-clock-dial-card,
+.wormhole-exploded-inspector,
+.brain-galaxy-map-card,
+.brain-exploded-inspector {
+  padding: 24px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(168, 85, 247, 0.16), rgba(6, 10, 24, 0.96) 72%),
+    linear-gradient(180deg, rgba(10, 16, 36, 0.95), rgba(5, 9, 20, 0.99));
+  border: 1px solid rgba(169, 139, 255, 0.34);
+  box-shadow: 0 26px 75px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.wormhole-dial-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 179, 255, 0.18);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: #c4d7ff;
+}
+
+.wormhole-dial-header strong {
+  color: #fde047;
+}
+
+.wormhole-clock-rig {
+  position: relative;
+  min-height: 390px;
+  display: grid;
+  place-items: center;
+}
+
+.wormhole-clock-svg {
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  pointer-events: none;
+}
+
+.wormhole-hour-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 9px 14px;
+  border-radius: 14px;
+  background: rgba(8, 14, 32, 0.95) !important;
+  border: 1px solid rgba(169, 139, 255, 0.45) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+  z-index: 6;
+}
+
+.wormhole-hour-node:hover,
+.wormhole-hour-node.is-selected {
+  border-color: #fde047 !important;
+  background: rgba(20, 16, 48, 0.98) !important;
+  box-shadow: 0 0 26px rgba(253, 224, 71, 0.45);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.wormhole-hour-time {
+  font-family: var(--mono);
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #fde047;
+}
+
+.wormhole-hour-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: #e2eeff;
+}
+
+.wormhole-dial-caption {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #d0e1ff;
+  text-align: center;
+}
+
+.exploded-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(169, 139, 255, 0.18);
+  border: 1px solid rgba(169, 139, 255, 0.48);
+}
+
+.wormhole-exploded-inspector h3,
+.brain-exploded-inspector h3 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+  color: #ffffff;
+}
+
+.exploded-subtitle {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  color: #7de3ff;
+}
+
+.exploded-explanation {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #e3eeff;
+}
+
+.exploded-rings-stack,
+.exploded-cortex-layers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exploded-ring-plate,
+.cortex-exploded-slice {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  border-radius: 14px;
+  background: rgba(9, 16, 36, 0.92);
+  border: 1px solid rgba(148, 179, 255, 0.28);
+}
+
+.cortex-exploded-slice {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.ring-plate-disc,
+.slice-index-pill {
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: rgba(125, 227, 255, 0.16);
+  border: 1px solid rgba(125, 227, 255, 0.4);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #7de3ff;
+  white-space: nowrap;
+}
+
+.ring-plate-copy small {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: #a5c0f2;
+}
+
+.ring-plate-copy strong,
+.cortex-exploded-slice strong {
+  font-size: 0.94rem;
+  color: #ffffff;
+}
+
+.cortex-exploded-slice p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #d6e5ff;
+}
+
+.wormhole-telemetry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.wormhole-telemetry-grid > div {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(6, 11, 24, 0.88);
+  border: 1px solid rgba(148, 179, 255, 0.24);
+}
+
+.wormhole-telemetry-grid span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: #9fb8e8;
+  margin-bottom: 4px;
+}
+
+.wormhole-telemetry-grid strong,
+.wormhole-telemetry-grid code {
+  font-size: 0.84rem;
+  color: #ffffff;
+}
+
+.exploded-step-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Cerebri Rule & Candidate Simulator Deck */
+.cerebri-simulator-deck {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 22px;
+}
+
+.cerebri-rules-box,
+.cerebri-candidates-box {
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(8, 14, 30, 0.92);
+  border: 1px solid rgba(125, 227, 255, 0.26);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #7de3ff;
+}
+
+.rule-toggles,
+.candidate-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rule-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(11, 19, 40, 0.9);
+  border: 1px solid rgba(148, 179, 255, 0.25);
+  text-align: left;
+}
+
+.rule-toggle-btn.is-on {
+  border-color: rgba(93, 242, 181, 0.55);
+  background: rgba(12, 28, 42, 0.92);
+}
+
+.rule-toggle-indicator {
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: rgba(93, 242, 181, 0.16);
+  color: #5df2b5;
+}
+
+.rule-toggle-copy strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.rule-toggle-copy span {
+  font-size: 0.8rem;
+  color: #c5d7fb;
+}
+
+.candidate-slot {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(10, 18, 38, 0.9);
+  border: 1px solid rgba(148, 179, 255, 0.25);
+}
+
+.candidate-slot.is-recommended {
+  border-color: #5df2b5;
+  box-shadow: 0 0 22px rgba(93, 242, 181, 0.2);
+}
+
+.candidate-slot.is-rejected {
+  opacity: 0.65;
+  border-color: rgba(251, 113, 133, 0.38);
+}
+
+.slot-time-badge,
+.slot-status-tag {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.slot-details strong {
+  display: block;
+  font-size: 0.92rem;
+  color: #ffffff;
+}
+
+.slot-conflict,
+.slot-ok {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0;
+  font-size: 0.82rem;
+}
+
+.slot-conflict {
+  color: #fda4af;
+}
+
+.slot-ok {
+  color: #6ee7b7;
+}
+
+.slot-evidence {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: #93c5fd;
+}
+
+.cerebri-commit-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(148, 179, 255, 0.18);
+}
+
+.commit-info span {
+  display: block;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.commit-info small {
+  font-size: 0.78rem;
+  color: #b8cefa;
+}
+
+.commit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   EBENE 05: DIE GEMÜTLICHE WELTEN-SCHMIEDE (COZY FORGE WORKSHOP)
+   ========================================================================== */
+
+.forge-workshop-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.forge-room-map {
+  position: relative;
+  min-height: 440px;
+  border-radius: 26px;
+  background: #100b0a;
+  border: 1px solid rgba(251, 146, 60, 0.42);
+  box-shadow: 0 30px 85px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+.forge-room-hud {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  right: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: rgba(16, 11, 10, 0.88);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: #fde68a;
+  z-index: 8;
+}
+
+.forge-room-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  display: block;
+  pointer-events: none;
+}
+
+.forge-hotspot-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  z-index: 10;
+}
+
+.forge-hotspot-ember {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #fbbf24 55%, #ea580c 100%);
+  box-shadow: 0 0 24px #f97316;
+}
+
+.forge-hotspot-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 11px;
+  background: rgba(18, 12, 10, 0.95);
+  border: 1px solid rgba(251, 191, 36, 0.48);
+  white-space: nowrap;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+.forge-hotspot-node:hover .forge-hotspot-card,
+.forge-hotspot-node.is-selected .forge-hotspot-card {
+  border-color: #fde047;
+  background: rgba(34, 20, 14, 0.98);
+  box-shadow: 0 0 24px rgba(251, 191, 36, 0.45);
+  transform: scale(1.06);
+}
+
+.forge-hotspot-card small {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: #fbbf24;
+}
+
+.forge-hotspot-card strong {
+  font-size: 0.84rem;
+  color: #ffffff;
+}
+
+.forge-hotspot-card span {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: #fed7aa;
+}
+
+.forge-station-zoom-view {
+  padding: 26px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(249, 115, 22, 0.18), transparent 55%),
+    linear-gradient(165deg, rgba(20, 14, 13, 0.96), rgba(10, 9, 16, 0.99));
+  border: 1px solid rgba(251, 191, 36, 0.42);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.forge-zoom-content-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 26px;
+  align-items: center;
+}
+
+.forge-zoom-artifact-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.forge-artifact-emblem {
+  padding: 24px;
+  border-radius: 20px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.26), rgba(15, 11, 10, 0.95));
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  color: #fde047;
+}
+
+.forge-artifact-emblem span {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.forge-artifact-emblem small {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: #fdba74;
+}
+
+.forge-lore-quote {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(24, 16, 14, 0.9);
+  border: 1px solid rgba(251, 146, 60, 0.3);
+}
+
+.forge-lore-quote span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: #fbbf24;
+  margin-bottom: 4px;
+}
+
+.forge-lore-quote p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #ffedd5;
+}
+
+.forge-code-plate {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #070911;
+  border: 1px solid rgba(251, 191, 36, 0.32);
+  color: #fde047;
+  overflow-x: auto;
+}
+
+.forge-code-plate code {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: #fef3c7;
+}
+
+.forge-specs-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.forge-spec-item {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(15, 12, 18, 0.9);
+  border: 1px solid rgba(251, 191, 36, 0.28);
+}
+
+.forge-spec-item span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: #fbbf24;
+  margin-bottom: 4px;
+}
+
+.forge-spec-item strong {
+  font-size: 0.86rem;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   EBENE 06: YJARVIS — GEHIRN × GALAXIE KORTEX
+   ========================================================================== */
+
+.brain-galaxy-stage {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.brain-galaxy-canvas {
+  position: relative;
+  min-height: 360px;
+  border-radius: 18px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(16, 185, 129, 0.16),
+    rgba(5, 9, 20, 0.96) 76%
+  );
+  border: 1px solid rgba(110, 231, 183, 0.25);
+  overflow: hidden;
+}
+
+.brain-galaxy-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  display: block;
+  pointer-events: none;
+}
+
+.brain-region-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  z-index: 8;
+}
+
+.synapse-star-core {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #34d399 65%, #064e3b 100%);
+  box-shadow: 0 0 22px #34d399;
+}
+
+.brain-node-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: rgba(6, 14, 26, 0.95);
+  border: 1px solid rgba(110, 231, 183, 0.42);
+  white-space: nowrap;
+}
+
+.brain-region-node.is-selected .brain-node-label {
+  border-color: #fde047;
+  box-shadow: 0 0 22px rgba(253, 224, 71, 0.4);
+}
+
+.brain-node-label small {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: #6ee7b7;
+}
+
+.brain-node-label strong {
+  font-size: 0.84rem;
+  color: #ffffff;
+}
+
+.jarvis-gate-simulator {
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(6, 12, 24, 0.92);
+  border: 1px solid rgba(110, 231, 183, 0.32);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gate-sim-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: #a7f3d0;
+}
+
+.gate-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.gate-pill.is-locked {
+  background: rgba(251, 191, 36, 0.18);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  color: #fde047;
+}
+
+.gate-pill.is-open {
+  background: rgba(52, 211, 153, 0.2);
+  border: 1px solid rgba(52, 211, 153, 0.55);
+  color: #6ee7b7;
+}
+
+.gate-sim-command {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #040812;
+  border: 1px solid rgba(125, 227, 255, 0.24);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: #e0f2fe;
+}
+
+.gate-sim-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   EBENE 08: STERNENGARTEN LANDSCHAFTSKARTE
+   ========================================================================== */
+
+.garden-map-shell {
+  margin: 26px 0;
+  padding: 24px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(16, 185, 129, 0.16), rgba(5, 12, 20, 0.97) 75%),
+    linear-gradient(180deg, rgba(8, 20, 28, 0.96), rgba(5, 11, 18, 0.99));
+  border: 1px solid rgba(110, 231, 183, 0.34);
+  box-shadow: 0 30px 85px rgba(0, 0, 0, 0.65);
+}
+
+.garden-landscape-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.garden-scenic-map {
+  position: relative;
+  min-height: 390px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(110, 231, 183, 0.28);
+}
+
+.garden-scenic-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 390px;
+  display: block;
+  pointer-events: none;
+}
+
+.garden-spot-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  z-index: 8;
+}
+
+.firefly-core {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #6ee7b7 60%, #065f46 100%);
+  box-shadow: 0 0 22px #34d399;
+}
+
+.garden-spot-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: rgba(6, 18, 24, 0.94);
+  border: 1px solid rgba(110, 231, 183, 0.42);
+  white-space: nowrap;
+}
+
+.garden-spot-marker.is-selected .garden-spot-tag {
+  border-color: #fde047;
+  box-shadow: 0 0 22px rgba(253, 224, 71, 0.4);
+}
+
+.garden-spot-tag small {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: #6ee7b7;
+}
+
+.garden-spot-tag strong {
+  font-size: 0.84rem;
+  color: #ffffff;
+}
+
+.garden-spot-zoom-card {
+  padding: 22px;
+  border-radius: 20px;
+  background: rgba(7, 18, 26, 0.94);
+  border: 1px solid rgba(110, 231, 183, 0.36);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.garden-zoom-body {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.garden-zoom-quote {
+  margin: 0;
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(5, 14, 20, 0.9);
+  border: 1px solid rgba(110, 231, 183, 0.28);
+  color: #d1fae5;
+}
+
+@media (max-width: 960px) {
+  .wormhole-chronometer-stage,
+  .cerebri-simulator-deck,
+  .forge-zoom-content-grid,
+  .forge-specs-list,
+  .brain-galaxy-stage,
+  .garden-zoom-body {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,166 @@
+/* ==========================================================================
+   INTERACTIVE ZOOM TRANSITIONS, HOVER STATES & VISUAL POLISH
+   ========================================================================== */
+
+/* Ebene 01: Solar System -> Opened Planet Zoom Transition */
+.solar-map-container .planet-expedition-chamber {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+}
+
+.solar-map-container.is-planet-zoomed .planet-expedition-chamber.is-open {
+  border-color: #fde047;
+  box-shadow:
+    0 34px 95px rgba(0, 0, 0, 0.78),
+    0 0 48px rgba(251, 191, 36, 0.22);
+  transform: translateY(-4px);
+}
+
+/* Planet color theming for Opened Planet Chamber */
+.planet-chamber--solar {
+  border-color: rgba(251, 191, 36, 0.48);
+}
+.planet-chamber--cyan {
+  border-color: rgba(56, 189, 248, 0.48);
+}
+.planet-chamber--violet {
+  border-color: rgba(192, 132, 252, 0.48);
+}
+.planet-chamber--green {
+  border-color: rgba(52, 211, 153, 0.48);
+}
+
+/* Ebene 02: Observatory Star System Themes */
+.observatory-planet--cyan .obs-planet-orb {
+  background: radial-gradient(circle at 30% 30%, #ffffff, #38bdf8 65%, #0c4a6e);
+  box-shadow: 0 0 14px #38bdf8;
+}
+.observatory-planet--solar .obs-planet-orb {
+  background: radial-gradient(circle at 30% 30%, #ffffff, #fbbf24 65%, #78350f);
+  box-shadow: 0 0 14px #fbbf24;
+}
+.observatory-planet--violet .obs-planet-orb {
+  background: radial-gradient(circle at 30% 30%, #ffffff, #c084fc 65%, #4c1d95);
+  box-shadow: 0 0 14px #c084fc;
+}
+.observatory-planet--green .obs-planet-orb {
+  background: radial-gradient(circle at 30% 30%, #ffffff, #34d399 65%, #064e3b);
+  box-shadow: 0 0 14px #34d399;
+}
+
+/* Ebene 03: Pulsar Marker Theme Colors */
+.galaxy-pulsar-marker--cyan .pulsar-marker-core {
+  background: radial-gradient(circle, #ffffff 0%, #38bdf8 62%, #082f49 100%);
+  box-shadow: 0 0 28px #38bdf8;
+}
+.galaxy-pulsar-marker--violet .pulsar-marker-core {
+  background: radial-gradient(circle, #ffffff 0%, #c084fc 62%, #3b0764 100%);
+  box-shadow: 0 0 28px #c084fc;
+}
+.galaxy-pulsar-marker--solar .pulsar-marker-core {
+  background: radial-gradient(circle, #ffffff 0%, #fbbf24 62%, #78350f 100%);
+  box-shadow: 0 0 28px #fbbf24;
+}
+
+.pulsar-marker-jet {
+  position: absolute;
+  width: 3px;
+  height: 58px;
+  background: linear-gradient(180deg, transparent, #67e8f9, transparent);
+  pointer-events: none;
+}
+.pulsar-marker-jet--top {
+  top: -22px;
+  transform: rotate(-24deg);
+}
+.pulsar-marker-jet--bottom {
+  bottom: 24px;
+  transform: rotate(-24deg);
+}
+
+.pulsar-radiation-cone {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 92px;
+  background: linear-gradient(180deg, rgba(103, 232, 249, 0.04), rgba(103, 232, 249, 0.65));
+  clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+  pointer-events: none;
+}
+
+.pulsar-radiation-cone--south {
+  background: linear-gradient(0deg, rgba(103, 232, 249, 0.04), rgba(103, 232, 249, 0.65));
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Ebene 04: Wormhole Exploded Ring Shift Animation */
+.wormhole-ring-layer {
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: 230px 230px;
+}
+
+.wormhole-chronometer-stage.is-exploded .wormhole-ring-layer--outer {
+  transform: scale(1.06) rotate(-8deg);
+}
+
+.wormhole-chronometer-stage.is-exploded .wormhole-ring-layer--mid {
+  transform: scale(0.95) rotate(12deg);
+}
+
+.wormhole-chronometer-stage.is-exploded .wormhole-ring-layer--inner {
+  transform: scale(1.08);
+}
+
+/* Ebene 05: Forge Station Zoom Highlight */
+.forge-workshop-container.is-station-zoomed .forge-station-zoom-view {
+  border-color: #fde047;
+  box-shadow:
+    0 32px 90px rgba(0, 0, 0, 0.78),
+    0 0 46px rgba(249, 115, 22, 0.28);
+}
+
+/* Ebene 06: Brain Region Node Color Variants */
+.brain-node--cyan .synapse-star-core {
+  background: radial-gradient(circle, #ffffff 0%, #38bdf8 65%, #0c4a6e 100%);
+  box-shadow: 0 0 22px #38bdf8;
+}
+.brain-node--emerald .synapse-star-core {
+  background: radial-gradient(circle, #ffffff 0%, #34d399 65%, #064e3b 100%);
+  box-shadow: 0 0 22px #34d399;
+}
+.brain-node--amber .synapse-star-core {
+  background: radial-gradient(circle, #ffffff 0%, #fbbf24 65%, #78350f 100%);
+  box-shadow: 0 0 22px #fbbf24;
+}
+.brain-node--violet .synapse-star-core {
+  background: radial-gradient(circle, #ffffff 0%, #c084fc 65%, #4c1d95 100%);
+  box-shadow: 0 0 22px #c084fc;
+}
+
+/* Ebene 07: Workflow Stepper Polish */
+.workflow-nav-btns {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.workflow-nav-btns button {
+  padding: 7px 13px;
+  border-radius: 9px;
+  background: rgba(14, 24, 52, 0.92);
+  border: 1px solid rgba(125, 227, 255, 0.35);
+  color: #ffffff;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+}
+
+/* Ebene 08: Garden SpotZoom Highlight */
+.garden-landscape-stage.is-spot-zoomed .garden-spot-zoom-card {
+  border-color: #fde047;
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.72),
+    0 0 40px rgba(52, 211, 153, 0.25);
+}

@@ -1,16 +1,8 @@
 # YoungJibbit95 Portfolio
 
-My developer portfolio, built with React, TypeScript, Vite and GSAP and published on GitHub Pages.
+My personal portfolio: **Aus Neugier wird Software.** Built with React, TypeScript, Vite and GSAP, published on GitHub Pages.
 
 **Website:** [youngjibbit95.github.io](https://youngjibbit95.github.io/)
-
-## Release 0.3
-
-A space-themed, scrollable atlas presents my development history, Nexus, Cerebri, tech stack and working methods. The project stories use direct personal descriptions alongside animated explanations.
-
-The introductory journey, Nexus workspace/runtime switch and Cerebri time/conflict/proposal example are local interactions. The planning graphic is an illustration of a documented fixture; it does not call a planner or modify a calendar. Full, reduced and disabled motion remain supported.
-
-Image sources remain documented in `public/media/nexus/SOURCES.md`. Narrative and planning-example sources are documented in `docs/atlas-content.md`.
 
 ## Release 0.2
 
@@ -46,7 +38,7 @@ npx playwright install chromium
 npm run check
 ```
 
-The build runs TypeScript checks, produces the Vite bundle and prerenders the React content. Browser tests check the introductory journey, Nexus views, planning illustration, atlas navigation, reduced motion, layouts from 320 to 1440 pixels, accessible markup, animation interruption and baseline content without JavaScript.
+The build runs TypeScript checks, produces the Vite bundle and prerenders the React content. Browser tests check project selection, mobile navigation, reduced motion, layouts from 320 to 1440 pixels, accessible markup, Nexus chapter controls, motion interruption and baseline content without JavaScript.
 
 ```sh
 npm run preview
@@ -58,15 +50,15 @@ Pushes to `main` run `.github/workflows/pages.yml`. The site is deployed only af
 
 ## Project structure
 
-| Path                        | Purpose                                                              |
-| --------------------------- | -------------------------------------------------------------------- |
-| `src/App.tsx`               | Atlas narrative, stack, navigation and layer transitions             |
-| `src/components/`           | Space backdrop, journey, project explanations and motion preferences |
-| `src/styles.css`            | Atlas layout, typography and responsive styles                       |
-| `src/cosmos.css`            | Space theme, glow, blur and interactive graphics                     |
-| `scripts/prerender.tsx`     | Build-time React rendering                                           |
-| `tests/portfolio.spec.ts`   | Production browser checks                                            |
-| `docs/portfolio-konzept.md` | Original concept and motion direction                                |
-| `docs/release-plan.md`      | Small, independently publishable release stages                      |
+| Path                        | Purpose                                                                 |
+| --------------------------- | ----------------------------------------------------------------------- |
+| `src/data/projects.ts`      | Curated project descriptions and repository links                       |
+| `src/components/`           | Navigation, constellation, project illustrations and motion preferences |
+| `src/styles.css`            | Visual tokens, layout, motion and responsive styles                     |
+| `src/portfolio.css`         | Personal portfolio direction and Nexus story layouts                    |
+| `scripts/prerender.tsx`     | Build-time React rendering                                              |
+| `tests/portfolio.spec.ts`   | Production browser checks                                               |
+| `docs/portfolio-konzept.md` | Original concept and motion direction                                   |
+| `docs/release-plan.md`      | Small, independently publishable release stages                         |
 
 Project information is based on the linked public repositories and my GitHub profile. Personal copy reflects my own interests and perspective.

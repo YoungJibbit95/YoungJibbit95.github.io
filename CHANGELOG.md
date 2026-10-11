@@ -1,14 +1,5 @@
 # Changelog
 
-## 0.3.0 — 2026-10-08
-
-- Rebuilt the page as a space-themed portfolio atlas with layered scroll transitions, glow and blur.
-- Restored personal development history with a selectable Web, Nexus, Cerebri and engines journey.
-- Kept both main project origin stories and added dedicated stack and working-method layers.
-- Added a Nexus workspace/runtime switch and a time/conflict/proposal illustration for Cerebri.
-- Replaced slogan-heavy copy and handwritten styling with direct project descriptions.
-- Added a visibility-aware star canvas, accessible controls and responsive geometry checks.
-
 ## 0.2.0 — 2026-10-08
 
 - Put the developer's name and personal voice at the center of the portfolio.

@@ -1,0 +1,6 @@
+{
+  "name": "YoungJibbit95 – Aus Neugier wird Software.",
+  "description": "YoungJibbit95 – unabhängiger Entwickler. Aus Neugier entstehen Workspaces, nachvollziehbare Planung, eigene Engines und digitale Welten.",
+  "requestFramePermissions": [],
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
