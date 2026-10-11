@@ -1,0 +1,50 @@
+[
+  {
+    "width": 1440,
+    "overview": {
+      "position": [74, 52.999999999999986, 95],
+      "target": [0, 11, -53],
+      "calls": 252,
+      "triangles": 49386,
+      "geometries": 252,
+      "textures": 18,
+      "frame": 37
+    },
+    "detail": {
+      "position": [-3.0000000000000018, 19.999999999999996, 37],
+      "target": [-18, 12, 8],
+      "calls": 228,
+      "triangles": 39054,
+      "geometries": 252,
+      "textures": 18,
+      "frame": 41
+    },
+    "errors": [],
+    "idleFrameStable": true,
+    "singleCanvas": true
+  },
+  {
+    "width": 390,
+    "overview": {
+      "position": [7.9999999999999964, 24.000000000000007, 72],
+      "target": [-18, 14, 8],
+      "calls": 143,
+      "triangles": 26416,
+      "geometries": 180,
+      "textures": 10,
+      "frame": 37
+    },
+    "detail": {
+      "position": [-2.9999999999999982, 20, 53],
+      "target": [-18, 12, 8],
+      "calls": 155,
+      "triangles": 28426,
+      "geometries": 184,
+      "textures": 11,
+      "frame": 41
+    },
+    "errors": [],
+    "idleFrameStable": true,
+    "singleCanvas": true
+  }
+]

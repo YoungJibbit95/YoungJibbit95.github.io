@@ -1,0 +1,50 @@
+[
+  {
+    "name": "YoungJibbit95.UrsprungProjekteThe Apertu",
+    "width": 768,
+    "height": 86,
+    "background": "rgb(215, 216, 205)"
+  },
+  {
+    "name": "Nexus",
+    "width": 53.859375,
+    "height": 44,
+    "background": "rgba(0, 0, 0, 0)"
+  },
+  {
+    "name": "Cerebri",
+    "width": 59.640625,
+    "height": 44,
+    "background": "rgba(0, 0, 0, 0)"
+  },
+  {
+    "name": "NovaCore",
+    "width": 71.859375,
+    "height": 44,
+    "background": "rgba(0, 0, 0, 0)"
+  },
+  {
+    "name": "Nemisis",
+    "width": 61.8125,
+    "height": 44,
+    "background": "rgba(0, 0, 0, 0)"
+  },
+  {
+    "name": "Adventura",
+    "width": 74.453125,
+    "height": 44,
+    "background": "rgba(0, 0, 0, 0)"
+  },
+  {
+    "name": "YjsE",
+    "width": 44,
+    "height": 44,
+    "background": "rgba(0, 0, 0, 0)"
+  },
+  {
+    "name": "YJarvis",
+    "width": 56.34375,
+    "height": 44,
+    "background": "rgba(0, 0, 0, 0)"
+  }
+]

@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-11T15:50:48.035Z",
+  "evidence": [
+    {
+      "width": 1440,
+      "height": 900,
+      "labels": [
+        {
+          "name": "Nexus↗",
+          "visibility": "visible",
+          "left": 516.998291015625,
+          "right": 603.435791015625,
+          "height": 44
+        },
+        {
+          "name": "Cerebri↗",
+          "visibility": "visible",
+          "left": 630.238037109375,
+          "right": 723.863037109375,
+          "height": 44
+        },
+        {
+          "name": "NovaCore↗",
+          "visibility": "visible",
+          "left": 783.6036376953125,
+          "right": 891.7755126953125,
+          "height": 44
+        },
+        {
+          "name": "Nemisis↗",
+          "visibility": "visible",
+          "left": 1028.8238525390625,
+          "right": 1125.1207275390625,
+          "height": 44
+        },
+        {
+          "name": "Adventura↗",
+          "visibility": "visible",
+          "left": 599.8002319335938,
+          "right": 711.2846069335938,
+          "height": 44
+        },
+        {
+          "name": "YjsE↗",
+          "visibility": "visible",
+          "left": 816.1714477539062,
+          "right": 889.6870727539062,
+          "height": 44
+        },
+        {
+          "name": "YJarvis↗",
+          "visibility": "visible",
+          "left": 549.1229248046875,
+          "right": 639.0916748046875,
+          "height": 44
+        }
+      ],
+      "metrics": {
+        "calls": 126,
+        "triangles": 78410,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [100.00000000000001, 70.99999999999997, 135],
+        "target": [-13, 1, -21],
+        "sampledColoredPixels": 51840,
+        "sampledColorBuckets": 81,
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "labels": [
+        {
+          "name": "Nexus↗",
+          "visibility": "visible",
+          "left": 56.964698791503906,
+          "right": 135.40219116210938,
+          "height": 44
+        },
+        {
+          "name": "Cerebri↗",
+          "visibility": "visible",
+          "left": 131.2921142578125,
+          "right": 216.9171142578125,
+          "height": 44
+        },
+        {
+          "name": "NovaCore↗",
+          "visibility": "hidden",
+          "left": 391.8990783691406,
+          "right": 492.0709533691406,
+          "height": 44
+        },
+        {
+          "name": "Nemisis↗",
+          "visibility": "hidden",
+          "left": 627.545654296875,
+          "right": 715.842529296875,
+          "height": 44
+        },
+        {
+          "name": "Adventura↗",
+          "visibility": "hidden",
+          "left": 304.30145263671875,
+          "right": 407.78582763671875,
+          "height": 44
+        },
+        {
+          "name": "YjsE↗",
+          "visibility": "visible",
+          "left": 307.2970886230469,
+          "right": 372.8127136230469,
+          "height": 44
+        },
+        {
+          "name": "YJarvis↗",
+          "visibility": "hidden",
+          "left": 0.5660285949707031,
+          "right": 82.5347785949707,
+          "height": 44
+        }
+      ],
+      "metrics": {
+        "calls": 107,
+        "triangles": 74702,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [42, 61.99999999999999, 121],
+        "target": [-15, 13, -7],
+        "sampledColoredPixels": 13167,
+        "sampledColorBuckets": 80,
+        "width": 390,
+        "height": 844
+      }
+    }
+  ]
+}

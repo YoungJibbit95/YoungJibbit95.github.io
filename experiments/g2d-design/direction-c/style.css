@@ -1,0 +1,376 @@
+:root {
+  font-family: 'Manrope Variable', sans-serif;
+  color: #f0e8d5;
+  background: #10262b;
+  color-scheme: dark;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid #7b8c85;
+  cursor: pointer;
+  min-height: 44px;
+  padding: 10px 18px;
+  transition:
+    background 0.18s,
+    color 0.18s;
+}
+button:hover {
+  background: #304845;
+}
+button:focus-visible,
+a:focus-visible,
+.stage:focus-visible {
+  outline: 3px solid #ebc188;
+  outline-offset: 4px;
+}
+header {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4vw;
+  background: #102125;
+}
+header a {
+  text-decoration: none;
+  color: #f2ead7;
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: -0.7px;
+}
+header nav {
+  display: flex;
+  gap: 22px;
+}
+header button {
+  border: 0;
+  padding: 0 4px;
+}
+header button[aria-pressed='true'] {
+  box-shadow: inset 0 -2px #d1ab78;
+}
+.concept-label {
+  font-size: 12px;
+  color: #b7c6be;
+}
+.stage {
+  position: relative;
+  height: calc(100dvh - 76px);
+  min-height: 650px;
+}
+.stage canvas {
+  touch-action: none;
+}
+.intro {
+  pointer-events: none;
+  position: absolute;
+  top: 38px;
+  left: 4vw;
+  width: min(390px, 36vw);
+}
+.intro p {
+  font-size: 14px;
+  color: #c5cbbd;
+  margin: 0 0 16px;
+}
+.intro h1 {
+  font-size: clamp(34px, 3.8vw, 60px);
+  font-weight: 450;
+  letter-spacing: -2px;
+  line-height: 1.03;
+  margin: 0 0 24px;
+  text-wrap: balance;
+}
+.intro span {
+  font-size: 14px;
+  color: #d1d5c7;
+}
+.camera-tools {
+  position: absolute;
+  left: 4vw;
+  bottom: 206px;
+  display: flex;
+  gap: 8px;
+}
+.camera-tools > div {
+  display: flex;
+  gap: 8px;
+}
+.camera-tools summary {
+  display: none;
+}
+.mobile-project-select {
+  display: none;
+}
+header a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.camera-tools button {
+  background: #10262bde;
+}
+.gesture-hint {
+  position: absolute;
+  bottom: 181px;
+  left: 4vw;
+  margin: 0;
+  font-size: 11px;
+  color: #c0cdbf;
+}
+.discovery {
+  position: fixed;
+  bottom: 68px;
+  left: 4vw;
+  right: 4vw;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  padding: 22px 26px;
+  background: #172e2ef5;
+  border-top: 1px solid #789086;
+}
+.discovery > div {
+  flex: 1;
+}
+.discovery span {
+  font-size: 11px;
+  color: #b9c8bb;
+}
+.discovery h2 {
+  font-weight: 500;
+  font-size: 21px;
+  letter-spacing: -0.6px;
+  margin: 6px 0 0;
+}
+.discovery p {
+  max-width: 730px;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 9px 0;
+}
+.discovery a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #f0c48b;
+  font-size: 12px;
+}
+.primary {
+  background: #deba83;
+  color: #18312f;
+  border-color: #deba83;
+  font-weight: 650;
+}
+.primary:hover {
+  background: #f2d3a6;
+}
+.close {
+  border: 0;
+  font-size: 23px;
+}
+.project-strip {
+  position: fixed;
+  bottom: 22px;
+  left: 4vw;
+  right: 4vw;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.project-strip button {
+  font-size: 12px;
+  border: 0;
+  padding: 0;
+  min-height: 44px;
+  min-width: 44px;
+}
+.project-strip button[aria-pressed='true'] {
+  color: #f4c48b;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.interpretation {
+  position: fixed;
+  right: 4vw;
+  bottom: 4px;
+  margin: 0;
+  font-size: 9px;
+  color: #a7bdb5;
+}
+.loading {
+  position: absolute;
+  top: 40%;
+  left: 4vw;
+  background: #173033;
+  padding: 24px;
+}
+@media (max-width: 900px) {
+  header {
+    height: 65px;
+    padding: 0 20px;
+  }
+  header a {
+    font-size: 17px;
+  }
+  header nav {
+    gap: 10px;
+    font-size: 12px;
+  }
+  .concept-label {
+    display: none;
+  }
+  .stage {
+    height: calc(100dvh - 65px);
+    min-height: 0;
+  }
+  .intro {
+    left: 20px;
+    top: 23px;
+    width: 300px;
+  }
+  .intro p {
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+  .intro h1 {
+    font-size: 33px;
+    width: 235px;
+    margin-bottom: 12px;
+    letter-spacing: -1.2px;
+  }
+  .intro span {
+    display: none;
+  }
+  .camera-tools {
+    left: auto;
+    right: 20px;
+    bottom: auto;
+    top: 22px;
+    background: #10262bf5;
+  }
+  .camera-tools summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 10px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .camera-tools > div {
+    display: flex;
+    flex-direction: column;
+  }
+  .camera-tools:not([open]) > div {
+    display: none;
+  }
+  .mobile-project-select {
+    display: block;
+    min-height: 44px;
+    width: 123px;
+    padding: 6px;
+    border: 1px solid #84948a;
+    background: #1a3332;
+    color: #f0e8d5;
+    font: inherit;
+    font-size: 12px;
+  }
+  .mobile-project-select:focus-visible {
+    outline: 3px solid #ebc188;
+    outline-offset: 3px;
+  }
+  main[data-world='observatory'][data-selected=''] .discovery > div {
+    display: none;
+  }
+  main[data-world='observatory'][data-selected=''] .discovery {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+  main[data-world='observatory'][data-selected=''] .discovery .primary {
+    flex: 1;
+    padding: 10px 6px;
+  }
+  .camera-tools summary:focus-visible {
+    outline: 3px solid #ebc188;
+  }
+  main[data-selected]:not([data-selected='']) .intro {
+    display: none;
+  }
+  .project-strip {
+    display: none;
+  }
+  header {
+    padding-top: env(safe-area-inset-top);
+  }
+  .discovery {
+    bottom: calc(26px + env(safe-area-inset-bottom));
+  }
+  .gesture-hint {
+    display: none;
+  }
+  .discovery {
+    left: 16px;
+    right: 16px;
+    bottom: calc(26px + env(safe-area-inset-bottom));
+    padding: 15px;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-height: 39dvh;
+    overflow: auto;
+  }
+  .discovery > div {
+    flex-basis: 100%;
+  }
+  .discovery h2 {
+    font-size: 19px;
+  }
+  .discovery p {
+    font-size: 12px;
+    margin: 6px 0;
+  }
+  .discovery .primary {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+  .discovery .close {
+    position: absolute;
+    right: 5px;
+    top: 0;
+  }
+  .project-strip {
+    bottom: 26px;
+    left: 20px;
+    right: 20px;
+    gap: 19px;
+    overflow: auto;
+  }
+  .project-strip button {
+    flex-shrink: 0;
+  }
+  .interpretation {
+    right: 20px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    font-size: 8px;
+  }
+  main[data-opened='true'] .camera-tools {
+    visibility: hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

@@ -29,6 +29,11 @@ jobs:
       - run: npm ci
       - run: npm run format:check
       - run: npm run test:unit
+      - name: Typecheck isolated G2-D design prototypes
+        run: |
+          for direction in direction-a direction-b direction-c mobile; do
+            npx tsc --noEmit --project "experiments/g2d-design/$direction/tsconfig.json"
+          done
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm test

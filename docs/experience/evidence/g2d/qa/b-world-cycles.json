@@ -1,0 +1,44 @@
+[
+  {
+    "calls": 126,
+    "triangles": 78410,
+    "geometries": 126,
+    "textures": 2,
+    "programs": 4,
+    "position": [100.00000000000001, 70.99999999999997, 135],
+    "target": [-13, 1, -21],
+    "sampledColoredPixels": 51840,
+    "sampledColorBuckets": 81,
+    "width": 1440,
+    "height": 900,
+    "frame": 12
+  },
+  {
+    "calls": 126,
+    "triangles": 78410,
+    "geometries": 126,
+    "textures": 2,
+    "programs": 4,
+    "position": [100.00000000000001, 70.99999999999997, 135],
+    "target": [-13, 1, -21],
+    "sampledColoredPixels": 51840,
+    "sampledColorBuckets": 81,
+    "width": 1440,
+    "height": 900,
+    "frame": 16
+  },
+  {
+    "calls": 126,
+    "triangles": 78410,
+    "geometries": 126,
+    "textures": 2,
+    "programs": 4,
+    "position": [100.00000000000001, 70.99999999999997, 135],
+    "target": [-13, 1, -21],
+    "sampledColoredPixels": 51840,
+    "sampledColorBuckets": 81,
+    "width": 1440,
+    "height": 900,
+    "frame": 20
+  }
+]

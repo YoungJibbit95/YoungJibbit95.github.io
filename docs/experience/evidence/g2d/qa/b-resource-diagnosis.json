@@ -1,0 +1,147 @@
+[
+  {
+    "cycle": 0,
+    "initial": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 130,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 51840,
+      "sampledColorBuckets": 81,
+      "width": 1440,
+      "height": 900
+    },
+    "settled": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 130,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 51840,
+      "sampledColorBuckets": 81,
+      "width": 1440,
+      "height": 900
+    }
+  },
+  {
+    "cycle": 1,
+    "initial": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 134,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 51840,
+      "sampledColorBuckets": 81,
+      "width": 1440,
+      "height": 900
+    },
+    "settled": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 134,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 51840,
+      "sampledColorBuckets": 81,
+      "width": 1440,
+      "height": 900
+    }
+  },
+  {
+    "cycle": 2,
+    "initial": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 138,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 51840,
+      "sampledColorBuckets": 81,
+      "width": 1440,
+      "height": 900
+    },
+    "settled": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 138,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 51840,
+      "sampledColorBuckets": 81,
+      "width": 1440,
+      "height": 900
+    }
+  },
+  {
+    "cycle": 3,
+    "initial": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 142,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 51840,
+      "sampledColorBuckets": 81,
+      "width": 1440,
+      "height": 900
+    },
+    "settled": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 142,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 51840,
+      "sampledColorBuckets": 81,
+      "width": 1440,
+      "height": 900
+    }
+  },
+  {
+    "cycle": 4,
+    "initial": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 146,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 51840,
+      "sampledColorBuckets": 81,
+      "width": 1440,
+      "height": 900
+    },
+    "settled": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 146,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 51840,
+      "sampledColorBuckets": 81,
+      "width": 1440,
+      "height": 900
+    }
+  }
+]

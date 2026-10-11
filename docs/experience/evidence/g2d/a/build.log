@@ -1,0 +1,29 @@
+vite v8.3.3 building client environment for production...
+transforming...
+✓ 35 modules transformed.
+rendering chunks...
+computing gzip size...
+experiments/g2d-design/direction-a/dist/index.html                                                     0.90 kB │ gzip:   0.51 kB
+experiments/g2d-design/direction-a/dist/assets/jetbrains-mono-greek-400-normal-C190GLew.woff2          4.22 kB
+experiments/g2d-design/direction-a/dist/assets/jetbrains-mono-cyrillic-400-normal-BEIGL1Tu.woff2       5.32 kB
+experiments/g2d-design/direction-a/dist/assets/jetbrains-mono-vietnamese-400-normal-CqNFfHCs.woff      5.37 kB
+experiments/g2d-design/direction-a/dist/assets/jetbrains-mono-greek-400-normal-B9oWc5Lo.woff           5.66 kB
+experiments/g2d-design/direction-a/dist/assets/jetbrains-mono-cyrillic-400-normal-ugxPyKxw.woff        6.97 kB
+experiments/g2d-design/direction-a/dist/assets/jetbrains-mono-latin-ext-400-normal-Bc8Ftmh3.woff2      7.33 kB
+experiments/g2d-design/direction-a/dist/assets/manrope-vietnamese-wght-normal-usUDDRr7.woff2           8.52 kB
+experiments/g2d-design/direction-a/dist/assets/manrope-greek-wght-normal-DL7QRZyv.woff2                9.44 kB
+experiments/g2d-design/direction-a/dist/assets/jetbrains-mono-latin-ext-400-normal-fXTG6kC5.woff      10.12 kB
+experiments/g2d-design/direction-a/dist/assets/manrope-cyrillic-wght-normal-Dvxsihut.woff2            14.50 kB
+experiments/g2d-design/direction-a/dist/assets/manrope-latin-ext-wght-normal-Ch3YOpNY.woff2           15.12 kB
+experiments/g2d-design/direction-a/dist/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2         21.16 kB
+experiments/g2d-design/direction-a/dist/assets/manrope-latin-wght-normal-DHIcAJRg.woff2               24.83 kB
+experiments/g2d-design/direction-a/dist/assets/jetbrains-mono-latin-400-normal-6-qcROiO.woff          27.49 kB
+experiments/g2d-design/direction-a/dist/assets/index-EWFunZbz.css                                     23.29 kB │ gzip:  12.72 kB
+experiments/g2d-design/direction-a/dist/assets/index-DsNLdP_I.js                                   1,167.02 kB │ gzip: 321.55 kB
+
+✓ built in 542ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

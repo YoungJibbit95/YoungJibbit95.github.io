@@ -1,0 +1,510 @@
+:root {
+  font-family: 'Manrope Variable', sans-serif;
+  color: #17251e;
+  background: #c4cebb;
+  font-synthesis: none;
+  font-weight: 500;
+  font-size: 16px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #17251e;
+  outline-offset: 5px;
+}
+a {
+  color: inherit;
+}
+main {
+  min-height: 100dvh;
+}
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+.scene canvas {
+  touch-action: none;
+}
+header,
+.intro,
+footer,
+.dossier,
+.register,
+.semantic {
+  position: relative;
+  z-index: 10;
+}
+header {
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 3.3vw;
+  border-bottom: 1px solid #34412c40;
+  pointer-events: none;
+}
+header > * {
+  pointer-events: auto;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+  letter-spacing: -0.06em;
+  font-size: 23px;
+  font-weight: 780;
+}
+.brand span {
+  font-size: 12px;
+  vertical-align: super;
+  margin-left: 4px;
+}
+nav {
+  display: flex;
+  gap: 7px;
+}
+nav button {
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  padding: 12px 15px;
+  font-size: 14px;
+}
+nav button[aria-pressed='true'] {
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 2px;
+}
+.study {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+.intro {
+  margin: 34px 3.3vw;
+  width: max-content;
+  max-width: 640px;
+  pointer-events: none;
+}
+.place {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  margin: 0 0 20px;
+}
+.intro h1 {
+  font-size: clamp(38px, 4.1vw, 66px);
+  line-height: 1.05;
+  letter-spacing: -0.065em;
+  font-weight: 580;
+  margin: 0;
+  text-wrap: balance;
+}
+.dek {
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 340px;
+  margin-top: 20px;
+}
+.intro.compact h1 {
+  font-size: 40px;
+}
+.intro.compact {
+  max-width: 460px;
+}
+.site-label {
+  border: 1px solid #26342650;
+  background: #ebefe4f0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  padding: 9px 12px;
+  box-shadow: 0 3px 9px #27332415;
+  font-size: 13px;
+}
+.site-label span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: #53604d;
+}
+.site-label b {
+  font-size: 14px;
+  font-weight: 400;
+}
+.site-label.selected {
+  background: #dbe36d;
+}
+.core-label {
+  white-space: nowrap;
+  background: #17251e;
+  color: #eef4df;
+  padding: 10px 15px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+footer {
+  position: fixed;
+  bottom: 30px;
+  left: 3.3vw;
+  right: 3.3vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  pointer-events: none;
+}
+footer > * {
+  pointer-events: auto;
+}
+.position > span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.position p {
+  font-size: 11px;
+  margin: 9px 0 0;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+}
+.actions button {
+  min-height: 47px;
+  padding: 0 18px;
+  background: #e8eddf;
+  border: 1px solid #59634c80;
+  font-size: 12px;
+  white-space: nowrap;
+  transition:
+    background 0.18s,
+    transform 0.18s;
+}
+.actions .primary {
+  background: #17251e;
+  color: #f0f3e7;
+  border-color: #17251e;
+}
+.actions button:hover {
+  background: #dbe36d;
+  color: #17251e;
+}
+.actions button:active {
+  transform: translateY(1px);
+}
+.dossier {
+  position: fixed;
+  left: 3.3vw;
+  bottom: 145px;
+  width: 305px;
+  background: #e9eee1f5;
+  padding: 24px;
+  box-shadow: 0 9px 40px #2536240e;
+}
+.dossier > p:first-child {
+  font-size: 21px;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  margin-top: 0;
+}
+.dossier .fact {
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+.status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  display: block;
+  margin: 0 0 12px;
+}
+.dossier a {
+  font-size: 12px;
+  text-underline-offset: 4px;
+}
+.client-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+.client-list span {
+  font-size: 11px;
+  background: #d8e0cc;
+  padding: 9px;
+}
+.register {
+  position: fixed;
+  right: 3.3vw;
+  bottom: 96px;
+  background: #edf1e5;
+  width: 290px;
+  padding: 22px;
+  box-shadow: 0 8px 35px #29392525;
+}
+.register h2 {
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: -0.03em;
+  margin-top: 0;
+}
+.register button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #58644730;
+  padding: 13px 0;
+  font-size: 13px;
+}
+.register button span:first-child {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+}
+.semantic {
+  margin-top: calc(100dvh - 260px);
+  padding: 32px 3.3vw;
+  background: #e5ecdd;
+}
+.semantic summary {
+  cursor: pointer;
+  font-size: 13px;
+}
+.semantic article {
+  max-width: 650px;
+  padding: 20px 0;
+}
+.semantic p {
+  max-width: 650px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.skip {
+  position: fixed;
+  top: 0;
+  left: 30px;
+  z-index: 50;
+  transform: translateY(-150%);
+  padding: 14px;
+  background: #dbe36d;
+}
+.skip:focus {
+  transform: translateY(0);
+}
+@media (max-width: 700px) {
+  header {
+    height: 74px;
+    margin: 0 20px;
+    gap: 8px;
+  }
+  .brand {
+    font-size: 18px;
+  }
+  .brand span {
+    display: none;
+  }
+  nav {
+    gap: 0;
+  }
+  nav button {
+    font-size: 11px;
+    padding: 12px 8px;
+  }
+  .study {
+    display: none;
+  }
+  .intro {
+    margin: 28px 20px;
+    max-width: 350px;
+  }
+  .place {
+    font-size: 10px;
+    margin-bottom: 13px;
+  }
+  .intro h1 {
+    font-size: 39px;
+    line-height: 1.05;
+  }
+  .dek {
+    font-size: 12px;
+    max-width: 265px;
+    margin-top: 15px;
+  }
+  .intro.compact h1 {
+    font-size: 31px;
+  }
+  .intro.compact {
+    max-width: 330px;
+  }
+  .intro.compact .place {
+    font-size: 9px;
+  }
+  footer {
+    bottom: 24px;
+    left: 20px;
+    right: 20px;
+    display: block;
+  }
+  .position {
+    margin-bottom: 13px;
+  }
+  .position p {
+    font-size: 10px;
+    margin-top: 5px;
+  }
+  .actions {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .actions button {
+    min-height: 44px;
+    padding: 0 13px;
+    font-size: 11px;
+  }
+  .actions .primary {
+    flex-grow: 1;
+  }
+  .dossier {
+    left: 20px;
+    right: 20px;
+    bottom: 151px;
+    width: auto;
+    padding: 16px;
+    max-height: 190px;
+    overflow-y: auto;
+  }
+  .dossier > p:first-child {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+  .dossier .fact {
+    font-size: 11px;
+    line-height: 1.45;
+    margin: 9px 0 12px;
+  }
+  .client-list {
+    margin: 0;
+    gap: 5px;
+  }
+  .client-list span {
+    font-size: 10px;
+    padding: 6px;
+  }
+  .dossier .status {
+    display: none;
+  }
+  .dossier a {
+    font-size: 11px;
+  }
+  .site-label {
+    padding: 8px 10px;
+    font-size: 13px;
+    gap: 8px;
+  }
+  .register {
+    right: 20px;
+    left: 20px;
+    bottom: 132px;
+    width: auto;
+  }
+  .semantic {
+    margin-top: calc(100dvh - 250px);
+    padding: 24px 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+.semantic {
+  position: absolute;
+  top: 100dvh;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  z-index: 12;
+}
+/* Foreground controls10, spatial labels8, semantic content12, skip50. */
+.spatial-labels {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+}
+.spatial-labels [data-anchor] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  pointer-events: auto;
+}
+.site-label {
+  min-height: 44px;
+}
+.dossier a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.register {
+  max-height: 70dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+header {
+  height: 80px;
+  background: #c4cebbd9;
+}
+.scene:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(#c4cebb 0%, #c4cebb00 38%, #c4cebb00 90%, #c4cebb33 100%);
+}
+@media (max-width: 700px) {
+  header {
+    height: 74px;
+  }
+  .scene:after {
+    background: linear-gradient(
+      #c4cebb 0%,
+      #c4cebbf5 15%,
+      #c4cebb00 39%,
+      #c4cebb00 86%,
+      #c4cebb99 100%
+    );
+  }
+  footer {
+    bottom: max(24px, env(safe-area-inset-bottom));
+  }
+  .dossier {
+    bottom: 155px;
+    max-height: 187px;
+  }
+  .dossier a {
+    min-height: 44px;
+  }
+  .position p {
+    max-width: 250px;
+  }
+}
