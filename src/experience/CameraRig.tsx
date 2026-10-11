@@ -45,6 +45,15 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
     invalidate()
   }
 
+  function setBounds(next: CameraBounds): void {
+    const controls = controlsRef.current
+    if (!controls) return
+    controls.minDistance = next.minDistance
+    controls.maxDistance = next.maxDistance
+    const { x, y, z } = next.box
+    controls.setBoundary(new Box3(new Vector3(x[0], y[0], z[0]), new Vector3(x[1], y[1], z[1])))
+  }
+
   async function moveTo(pose: CameraPose, animate: boolean): Promise<boolean> {
     const controls = controlsRef.current
     if (!controls) return false
@@ -63,6 +72,7 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
   }
 
   useImperativeHandle(forwarded, () => ({
+    setBounds,
     capture,
     cancel,
     moveTo,
@@ -81,10 +91,7 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
   }))
 
   useEffect(() => {
-    const controls = controlsRef.current
-    if (!controls) return
-    const { x, y, z } = bounds.box
-    controls.setBoundary(new Box3(new Vector3(x[0], y[0], z[0]), new Vector3(x[1], y[1], z[1])))
+    setBounds(bounds)
   }, [bounds])
 
   useEffect(() => {

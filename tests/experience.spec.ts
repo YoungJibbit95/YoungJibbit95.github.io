@@ -99,7 +99,8 @@ test('rapid focus changes are interruptible and settle on the latest destination
   await canvas(page)
   await page.getByRole('button', { name: /Das Signal Neugier/ }).click()
   await page.getByRole('button', { name: /Der Horizont Entdeckung/ }).click()
-  await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(10, 1)
+  // G2-A moves the horizon into the far field; tolerance remains unchanged.
+  await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(60, 1)
   await expect(page.getByRole('button', { name: /Der Horizont Entdeckung/ })).toHaveAttribute(
     'aria-pressed',
     'true',

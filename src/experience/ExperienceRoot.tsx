@@ -1,5 +1,6 @@
-import { Component, lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react'
+import { Component, lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { KeyboardEvent, ReactNode } from 'react'
+import { OriginSignalControls } from './ui/OriginSignalControls'
 import { projects } from '../data/projects'
 import { useExperienceStore } from '../store/experienceStore'
 import { moveWithKey, isFormTarget } from './InteractionRouter'
@@ -42,11 +43,17 @@ export default function ExperienceRoot() {
   const [systemReduced, setSystemReduced] = useState(false)
   const [forceReduced, setForceReduced] = useState(false)
   const [renderedWorld, setRenderedWorld] = useState<AvailableWorldId | null>(null)
+  const heading = useRef<HTMLHeadingElement>(null)
+  const previousWorld = useRef(world)
   const definition = getWorld(world)
   const focus = findHotspot(world, focusId)
 
   useEffect(() => {
     setRenderedWorld(null)
+    if (previousWorld.current !== world) {
+      heading.current?.focus({ preventScroll: true })
+      previousWorld.current = world
+    }
   }, [world])
   const supported = webgl === 'ready'
 
@@ -91,211 +98,257 @@ export default function ExperienceRoot() {
   }
 
   return (
-    <main className="atlas-v3" data-testid="atlas-experience">
+    <main className="atlas-v3" data-testid="atlas-experience" data-active-world={world}>
       <a className="atlas-v3__skip" href="#atlas-projects">
         Direkt zu Projekten
       </a>
       <header className="atlas-v3__header">
-        <a className="atlas-v3__brand" href="/" aria-label="YoungJibbit95 – klassische Ansicht">
+        <a
+          className="atlas-v3__brand"
+          href="/"
+          aria-label="YoungJibbit95, klassische Ansicht"
+          translate="no"
+        >
           YoungJibbit95<span>.</span>
         </a>
-        <span className="atlas-v3__header-detail">AUS NEUGIER WIRD SOFTWARE</span>
-        <a href="https://github.com/YoungJibbit95" className="atlas-v3__top-link">
-          GitHub <span aria-hidden="true">↗</span>
-        </a>
+        <nav className="atlas-v3__world-nav" aria-label="Welten wählen">
+          {availableWorlds.map((id) => (
+            <button
+              key={id}
+              type="button"
+              aria-pressed={world === id}
+              onClick={() => director.navigate(id)}
+            >
+              {getWorld(id).title}
+            </button>
+          ))}
+        </nav>
+        <div className="atlas-v3__header-links">
+          <a href="#atlas-projects">Projekte</a>
+          <a href="https://github.com/YoungJibbit95">
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </header>
 
-      <div className="atlas-v3__intro">
-        <p className="atlas-v3__eyebrow">DIE WELT HINTER DEN IDEEN</p>
-        <h1>
-          Ich baue, <em>um zu verstehen.</em>
-        </h1>
-        <p>
-          Es beginnt mit Neugier. Der Rest entsteht, wenn man Verbindungen nicht nur sieht, sondern
-          ihnen folgt.
-        </p>
-      </div>
-
       <section className="atlas-v3__experience" aria-label="Räumlicher Atlas">
-        <div className="atlas-v3__scene-header">
-          <div>
-            <span className="atlas-v3__eyebrow">EIN ORT / VIELE VERBINDUNGEN</span>
-            <h2 data-testid="atlas-world-title">{definition.title}</h2>
-            <p>{definition.subtitle}</p>
-          </div>
-          <nav className="atlas-v3__world-nav" aria-label="Welten wählen">
-            {availableWorlds.map((id) => (
-              <button
-                key={id}
-                type="button"
-                aria-pressed={world === id}
-                onClick={() => director.navigate(id)}
+        <div
+          className="atlas-v3__stage"
+          role="region"
+          tabIndex={0}
+          aria-label="Räumlicher Atlas, mit Pfeiltasten verschiebbar"
+          onKeyDown={keyboard}
+          data-testid="atlas-stage"
+          data-world={world}
+          data-world-input
+          data-lenis-prevent
+        >
+          {supported ? (
+            <SpaceBoundary onFailure={fail}>
+              <Suspense
+                fallback={
+                  <p className="atlas-v3__fallback" role="status">
+                    Die Welt öffnet sich… Projekte bleiben direkt erreichbar.
+                  </p>
+                }
               >
-                {getWorld(id).title}
-              </button>
-            ))}
-          </nav>
+                <WorldCanvas
+                  world={world}
+                  selectedId={focusId}
+                  initialPose={pose}
+                  reducedMotion={motion !== 'full'}
+                  onCamera={attach}
+                  onRest={rest}
+                  onInterrupt={interrupt}
+                  onFocus={select}
+                  onFailure={fail}
+                  onSceneReady={setRenderedWorld}
+                />
+              </Suspense>
+            </SpaceBoundary>
+          ) : (
+            <div className="atlas-v3__fallback" role="status">
+              {webgl === 'checking'
+                ? 'Die räumliche Ansicht wird vorbereitet…'
+                : definition.fallbackText}
+            </div>
+          )}
         </div>
 
-        <div className="atlas-v3__stage-layout">
-          <div className="atlas-v3__stage-container">
-            <div
-              className="atlas-v3__stage"
-              role="region"
-              tabIndex={0}
-              aria-label="Räumlicher Atlas, mit Pfeiltasten verschiebbar"
-              onKeyDown={keyboard}
-              data-testid="atlas-stage"
-              data-world={world}
-            >
-              {supported ? (
-                <SpaceBoundary onFailure={fail}>
-                  <Suspense
-                    fallback={
-                      <p className="atlas-v3__fallback" role="status">
-                        Die Welt öffnet sich. Orte und Projekte bleiben daneben erreichbar.
-                      </p>
-                    }
-                  >
-                    <WorldCanvas
-                      world={world}
-                      selectedId={focusId}
-                      initialPose={pose}
-                      reducedMotion={motion !== 'full'}
-                      onCamera={attach}
-                      onRest={rest}
-                      onInterrupt={interrupt}
-                      onFocus={select}
-                      onFailure={fail}
-                      onSceneReady={setRenderedWorld}
-                    />
-                  </Suspense>
-                </SpaceBoundary>
-              ) : (
-                <div className="atlas-v3__fallback" role="status">
-                  {webgl === 'checking'
-                    ? 'Die räumliche Ansicht wird vorbereitet.'
-                    : definition.fallbackText}
-                </div>
-              )}
-              <div className="atlas-v3__scene-caption" aria-hidden="true">
-                <span>YOUNGJIBBIT95 / {world.toUpperCase()}</span>
-                <span>ZIEHEN · RECHTS DREHEN · ZOOMEN</span>
-              </div>
-            </div>
+        <div className="atlas-v3__intro atlas-v3__overlay" data-focused={Boolean(focusId)}>
+          <h1>
+            {world === 'origin' ? (
+              <>
+                Aus Neugier
+                <br />
+                <em>wird Software.</em>
+              </>
+            ) : (
+              <>
+                Ideen bilden
+                <br />
+                <em>Konstellationen.</em>
+              </>
+            )}
+          </h1>
+          <p>
+            {world === 'origin'
+              ? 'Eine Frage kann alles in Bewegung setzen.'
+              : 'Unterschiedliche Projekte. Ein gemeinsamer Ursprung.'}
+          </p>
+        </div>
 
-            <div className="atlas-v3__controls" role="group" aria-label="Kamera und Verlauf">
-              <button
-                type="button"
-                onClick={() => director.back()}
-                disabled={!history.length && !focusId && world === 'origin'}
-              >
-                ← Zurück
-              </button>
-              <button type="button" onClick={() => director.overview()}>
-                Übersicht
-              </button>
-              <div className="atlas-v3__zoom">
-                <button
-                  type="button"
-                  disabled={!supported}
-                  aria-label="Hineinzoomen"
-                  onClick={() => void director.bridge()?.dolly(2)}
-                >
-                  +
-                </button>
-                <button
-                  type="button"
-                  disabled={!supported}
-                  aria-label="Herauszoomen"
-                  onClick={() => void director.bridge()?.dolly(-2)}
-                >
-                  −
-                </button>
-              </div>
-            </div>
+        <div className="atlas-v3__world-label atlas-v3__overlay">
+          <h2 ref={heading} tabIndex={-1} data-testid="atlas-world-title">
+            {definition.title}
+          </h2>
+          <span>{focus?.title ?? 'Freier Blick'}</span>
+        </div>
+
+        {world === 'origin' && (
+          <div className="atlas-v3__signal-position atlas-v3__overlay">
+            <OriginSignalControls />
           </div>
+        )}
 
-          <aside className="atlas-v3__sidebar" aria-label="Orte und Erklärungen">
-            <p className="atlas-v3__eyebrow">VERBINDUNGEN ENTDECKEN</p>
-            <p className="atlas-v3__sidebar-lead">{definition.introduction}</p>
-            <nav className="atlas-v3__places" aria-label="Orte im Raum">
-              {definition.hotspots.map((spot, index) => (
-                <button
-                  type="button"
-                  key={spot.id}
-                  aria-pressed={focusId === spot.id}
-                  onClick={() => select(spot.id)}
-                >
-                  <span className="atlas-v3__place-count">0{index + 1}</span>
-                  <span>
-                    <strong>{spot.title}</strong>
-                    <small>{spot.kind}</small>
-                  </span>
-                  <span aria-hidden="true">↗</span>
-                </button>
-              ))}
-            </nav>
-            <div className="atlas-v3__insight" aria-live="polite">
-              <span className="atlas-v3__eyebrow">IM FOKUS</span>
-              <p>{focus?.description ?? 'Bewege den Blick. Wähle einen Ort.'}</p>
-              {focus?.destination && (
-                <button
-                  type="button"
-                  className="atlas-v3__travel"
-                  onClick={() => director.navigate(focus.destination!)}
-                >
-                  Weiter zur Sternwarte ↗
-                </button>
-              )}
-            </div>
-            <label className="atlas-v3__motion">
-              <input
-                type="checkbox"
-                checked={systemReduced || forceReduced}
-                onChange={(event) => setForceReduced(event.target.checked)}
-              />
-              Kamerafahrten reduzieren
-            </label>
-            <output className="atlas-v3__sr" data-testid="atlas-scene-ready" aria-hidden="true">
-              {renderedWorld === world ? renderedWorld : ''}
-            </output>
-            <output className="atlas-v3__sr" data-testid="atlas-pose">
-              {JSON.stringify(pose)}
-            </output>
-            <output className="atlas-v3__sr" data-testid="atlas-history-depth">
-              {history.length}
-            </output>
-            <output className="atlas-v3__sr" data-testid="atlas-transition">
-              {transition}
-            </output>
-            <output className="atlas-v3__sr" data-testid="atlas-motion">
-              {motion}
-            </output>
-          </aside>
+        <div
+          className="atlas-v3__controls atlas-v3__overlay"
+          role="group"
+          aria-label="Kamera und Verlauf"
+        >
+          <button
+            type="button"
+            onClick={() => director.back()}
+            disabled={!history.length && !focusId && world === 'origin'}
+          >
+            ← Zurück
+          </button>
+          <button type="button" onClick={() => director.overview()}>
+            Übersicht
+          </button>
+          <button
+            type="button"
+            disabled={!supported}
+            aria-label="Hineinzoomen"
+            onClick={() => void director.bridge()?.dolly(4)}
+          >
+            +
+          </button>
+          <button
+            type="button"
+            disabled={!supported}
+            aria-label="Herauszoomen"
+            onClick={() => void director.bridge()?.dolly(-4)}
+          >
+            −
+          </button>
+        </div>
+        <p className="atlas-v3__gesture atlas-v3__overlay">
+          Ziehen zum Erkunden <span>· Scrollen oder Pinchen zum Zoomen</span>
+        </p>
+      </section>
+
+      <section className="atlas-v3__wayfinding" aria-label="Orte und Erklärungen">
+        <div className="atlas-v3__wayfinding-intro">
+          <p className="atlas-v3__eyebrow">Dein Weg durch den Raum</p>
+          <p>{definition.introduction}</p>
+          <label className="atlas-v3__motion">
+            <input
+              type="checkbox"
+              name="reduce-camera-motion"
+              checked={systemReduced || forceReduced}
+              onChange={(event) => setForceReduced(event.target.checked)}
+            />
+            Kamerafahrten reduzieren
+          </label>
+        </div>
+        <nav className="atlas-v3__places" aria-label="Orte im Raum">
+          {definition.hotspots.map((spot) => (
+            <button
+              type="button"
+              key={spot.id}
+              aria-pressed={focusId === spot.id}
+              onClick={() => {
+                select(spot.id)
+                document
+                  .querySelector('[data-testid="atlas-stage"]')
+                  ?.scrollIntoView({ behavior: 'instant', block: 'center' })
+              }}
+            >
+              <span>
+                <strong>{spot.title}</strong>
+                <small>{spot.kind}</small>
+              </span>
+              <span aria-hidden="true">↗</span>
+            </button>
+          ))}
+        </nav>
+        <div className="atlas-v3__insight" aria-live="polite">
+          <p>{focus?.description ?? 'Folge einer Verbindung. Oder finde deinen eigenen Weg.'}</p>
+          {(focus?.destination || world === 'origin') && (
+            <button
+              type="button"
+              className="atlas-v3__travel"
+              onClick={() => {
+                director.navigate(focus?.destination ?? 'observatory')
+                document
+                  .querySelector('[data-testid="atlas-stage"]')
+                  ?.scrollIntoView({ behavior: 'instant', block: 'center' })
+              }}
+            >
+              Weiter zur Sternwarte ↗
+            </button>
+          )}
         </div>
       </section>
 
+      <output className="atlas-v3__sr" data-testid="atlas-scene-ready" aria-hidden="true">
+        {renderedWorld === world ? renderedWorld : ''}
+      </output>
+      <output className="atlas-v3__sr" data-testid="atlas-pose" aria-hidden="true">
+        {JSON.stringify(pose)}
+      </output>
+      <output className="atlas-v3__sr" data-testid="atlas-history-depth" aria-hidden="true">
+        {history.length}
+      </output>
+      <output className="atlas-v3__sr" data-testid="atlas-transition" aria-hidden="true">
+        {transition}
+      </output>
+      <output className="atlas-v3__sr" data-testid="atlas-motion" aria-hidden="true">
+        {motion}
+      </output>
+
       <section className="atlas-v3__projects" id="atlas-projects">
-        <div>
-          <p className="atlas-v3__eyebrow">DIE ARBEIT DAHINTER</p>
-          <h2>Ideen, die zu Projekten werden.</h2>
-          <p>Die Projekte sind auch ohne Raumansicht direkt zugänglich.</p>
+        <div className="atlas-v3__project-heading">
+          <h2>
+            Die Arbeit
+            <br />
+            dahinter.
+          </h2>
+          <p>
+            Sieben Fragen, an denen ich arbeite.
+            <br />
+            Alle Projekte direkt zugänglich.
+          </p>
         </div>
-        <div className="atlas-v3__project-grid">
+        <div className="atlas-v3__project-list">
           {projects.map((project) => (
             <article key={project.id}>
               <span>{project.category}</span>
-              <h3>{project.name}</h3>
-              <p>{project.tagline}</p>
-              <a href={project.repo}>Projekt auf GitHub ↗</a>
+              <h3 translate="no">{project.name}</h3>
+              <p>
+                {project.tagline}
+                <small>{project.status}</small>
+              </p>
+              <a href={project.repo}>
+                Projekt auf GitHub <span aria-hidden="true">↗</span>
+              </a>
             </article>
           ))}
         </div>
       </section>
-
       <footer className="atlas-v3__footer">
-        <span>YoungJibbit95 · Neugier, Systeme und eigene Welten</span>
+        <span>YoungJibbit95</span>
         <a href="/#mensch">Über mich</a>
         <a href="https://github.com/YoungJibbit95">Kontakt über GitHub ↗</a>
       </footer>

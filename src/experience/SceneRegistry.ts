@@ -1,3 +1,4 @@
+import { originLandmarks, originOverview } from './worlds/originModel'
 import type {
   AvailableWorldId,
   CameraPose,
@@ -18,45 +19,20 @@ const origin: WorldDefinition = {
   subtitle: 'Alles beginnt mit einer Frage.',
   introduction: 'Ein Gedanke setzt etwas in Bewegung. Daraus entstehen Verbindungen.',
   renderer: 'r3f',
-  defaultPose: { position: [0, 7, 28], target: [0, 0, -7], fov: 51, zoom: 1 },
-  bounds,
-  hotspots: [
-    {
-      id: 'signal',
-      title: 'Das Signal',
-      kind: 'Neugier',
-      description: 'Eine kleine Beobachtung kann ein ganzes System in Bewegung setzen.',
-      position: [-9, 2, -8],
-      focusPose: { position: [-6, 4, 3], target: [-9, 2, -8], fov: 51, zoom: 1 },
-      evidenceStatus: 'illustrative',
-    },
-    {
-      id: 'relation',
-      title: 'Die Verbindung',
-      kind: 'Zusammenhang',
-      description: 'Im räumlichen Wechsel werden Beziehungen sichtbar.',
-      position: [0, -2, -3],
-      focusPose: { position: [1, 1, 9], target: [0, -2, -3], fov: 51, zoom: 1 },
-      evidenceStatus: 'illustrative',
-      destination: 'observatory',
-    },
-    {
-      id: 'horizon',
-      title: 'Der Horizont',
-      kind: 'Entdeckung',
-      description: 'Hinter dem nächsten Ort liegen die Projekte.',
-      position: [10, 3, -20],
-      focusPose: { position: [11, 5, -8], target: [10, 3, -20], fov: 51, zoom: 1 },
-      evidenceStatus: 'illustrative',
-      destination: 'observatory',
-    },
-  ],
+  defaultPose: originOverview,
+  compactPose: { position: [9, 12, 73], target: [9, 1, -16], fov: 48, zoom: 1 },
+  bounds: {
+    minDistance: 8,
+    maxDistance: 165,
+    box: { x: [-85, 85], y: [-42, 55], z: [-120, 50] },
+  },
+  hotspots: originLandmarks,
   destinations: ['observatory'],
   contentSectionId: 'origin-content',
   fallbackText: 'Die Projekte sind auch ohne dreidimensionale Ansicht direkt erreichbar.',
   assets: [],
   motion: 'optional',
-  loadScene: () => import('./worlds/OriginPreview'),
+  loadScene: () => import('./worlds/OriginWorld'),
 }
 
 const observatory: WorldDefinition = {
@@ -135,22 +111,26 @@ export function clonePose(pose: CameraPose): CameraPose {
 export function defaultSnapshot(
   world: AvailableWorldId,
   focusId: string | null,
+  compact = false,
 ): NavigationSnapshot {
   const focus = findHotspot(world, focusId)
+  const definition = sceneRegistry[world]
   return {
     world,
     focusId: focus?.id ?? null,
     selectionId: focus?.id ?? null,
-    pose: clonePose(focus?.focusPose ?? sceneRegistry[world].defaultPose),
+    pose: clonePose(
+      focus?.focusPose ?? (compact ? definition.compactPose : null) ?? definition.defaultPose,
+    ),
     filters: [],
   }
 }
 
-export function parseWorldRoute(search: string): NavigationSnapshot {
+export function parseWorldRoute(search: string, compact = false): NavigationSnapshot {
   const params = new URLSearchParams(search)
   const raw = params.get('world')
   const world = isAvailableWorld(raw) ? raw : 'origin'
-  return defaultSnapshot(world, params.get('focus'))
+  return defaultSnapshot(world, params.get('focus'), compact)
 }
 
 export function worldHref(snapshot: NavigationSnapshot): string {

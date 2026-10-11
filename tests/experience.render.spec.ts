@@ -44,7 +44,17 @@ async function spatialPixelEvidence(page: Page, canvas: Locator) {
   // Crop its viewport pixels to the *actual* canvas, excluding the stage caption.
   const bounds = await canvas.boundingBox()
   if (!bounds) throw new Error('No canvas bounding rectangle for pixel evidence')
-  const png = await page.screenshot()
+  // G2 overlays occupy the canvas rectangle. Exclude DOM pixels so a headline
+  // or cyan button can never make an empty WebGL frame pass this gate.
+  const mask = await page.addStyleTag({
+    content: '.atlas-v3__overlay { visibility: hidden !important; }',
+  })
+  let png: Buffer
+  try {
+    png = await page.screenshot()
+  } finally {
+    await mask.evaluate((element) => element.parentNode?.removeChild(element))
+  }
   return page.evaluate(
     async ({ base64, bounds }) => {
       const image = new Image()

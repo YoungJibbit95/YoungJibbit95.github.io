@@ -18,7 +18,7 @@ export class SceneDirector {
 
   private readonly pop = (event: PopStateEvent) => {
     const entry = readBrowserEntry(event.state)
-    const route = parseWorldRoute(window.location.search)
+    const route = parseWorldRoute(window.location.search, window.innerWidth < 620)
     const snapshot =
       entry?.snapshot.world === route.world && entry.snapshot.focusId === route.focusId
         ? entry.snapshot
@@ -29,7 +29,7 @@ export class SceneDirector {
   start(): void {
     if (this.started) return
     this.started = true
-    const route = parseWorldRoute(window.location.search)
+    const route = parseWorldRoute(window.location.search, window.innerWidth < 620)
     const entry = readBrowserEntry(window.history.state)
     const snapshot =
       entry?.snapshot.world === route.world && entry.snapshot.focusId === route.focusId
@@ -54,6 +54,7 @@ export class SceneDirector {
     if (camera) {
       const state = useExperienceStore.getState()
       const pose = this.snapshot(state.pose)
+      camera.setBounds(getWorld(state.activeWorld).bounds)
       void camera.moveTo(pose.pose, false).then((complete) => {
         if (complete && this.camera === camera) this.rest(camera.capture() ?? pose.pose)
       })
@@ -93,7 +94,7 @@ export class SceneDirector {
 
   navigate(world: AvailableWorldId, requestedFocus: string | null = null): void {
     const focus = findHotspot(world, requestedFocus)
-    const destination = defaultSnapshot(world, focus?.id ?? null)
+    const destination = defaultSnapshot(world, focus?.id ?? null, window.innerWidth < 620)
     const state = useExperienceStore.getState()
     const previous = this.snapshot()
     const stack = [...state.history, previous].slice(-32)
@@ -173,6 +174,9 @@ export class SceneDirector {
     }
     try {
       const motion = useExperienceStore.getState().motion
+      // World scales differ. Apply the destination bounds before setLookAt,
+      // rather than allowing the previous world's React props to clamp the flight.
+      this.camera.setBounds(getWorld(snapshot.world).bounds)
       const complete = await this.camera.moveTo(snapshot.pose, animate && motion === 'full')
       if (sequence !== this.sequence || !complete) return
       const actual = this.camera.capture() ?? snapshot.pose

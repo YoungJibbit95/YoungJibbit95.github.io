@@ -54,6 +54,7 @@ export interface WorldDefinition {
   introduction: string
   renderer: 'r3f'
   defaultPose: CameraPose
+  compactPose?: CameraPose
   bounds: CameraBounds
   hotspots: readonly WorldHotspot[]
   destinations: readonly AvailableWorldId[]
@@ -75,6 +76,7 @@ export interface NavigationSnapshot {
 }
 
 export interface CameraBridge {
+  setBounds: (bounds: CameraBounds) => void
   capture: () => CameraPose | null
   cancel: () => void
   moveTo: (pose: CameraPose, animate: boolean) => Promise<boolean>
