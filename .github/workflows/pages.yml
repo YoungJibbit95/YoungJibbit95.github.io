@@ -27,10 +27,6 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: G1 formatting diagnostics (read-only)
-        run: |
-          npx prettier tests/experience.render.spec.ts > /tmp/g1-expected.ts
-          diff -u tests/experience.render.spec.ts /tmp/g1-expected.ts || true
       - run: npm run format:check
       - run: npm run test:unit
       - run: npm run build

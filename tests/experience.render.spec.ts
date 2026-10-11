@@ -45,43 +45,46 @@ async function spatialPixelEvidence(page: Page, canvas: Locator) {
   const bounds = await canvas.boundingBox()
   if (!bounds) throw new Error('No canvas bounding rectangle for pixel evidence')
   const png = await page.screenshot()
-  return page.evaluate(async ({ base64, bounds }) => {
-    const image = new Image()
-    image.src = 'data:image/png;base64,' + base64
-    await image.decode()
-    const sample = document.createElement('canvas')
-    sample.width = 240
-    sample.height = 150
-    const ctx = sample.getContext('2d', { willReadFrequently: true })
-    if (!ctx) throw new Error('Cannot inspect screenshot pixels')
-    const scaleX = image.naturalWidth / window.innerWidth
-    const scaleY = image.naturalHeight / window.innerHeight
-    ctx.drawImage(
-      image,
-      (bounds.x + 8) * scaleX,
-      (bounds.y + 8) * scaleY,
-      (bounds.width - 16) * scaleX,
-      (bounds.height - 80) * scaleY,
-      0,
-      0,
-      sample.width,
-      sample.height,
-    )
-    const pixels = ctx.getImageData(0, 0, sample.width, sample.height).data
-    let lit = 0
-    const colors = new Set<string>()
-    for (let index = 0; index < pixels.length; index += 4) {
-      const red = pixels[index]
-      const green = pixels[index + 1]
-      const blue = pixels[index + 2]
-      const high = Math.max(red, green, blue)
-      if (high > 85 && high - Math.min(red, green, blue) > 12) {
-        lit++
-        colors.add([red >> 4, green >> 4, blue >> 4].join('/'))
+  return page.evaluate(
+    async ({ base64, bounds }) => {
+      const image = new Image()
+      image.src = 'data:image/png;base64,' + base64
+      await image.decode()
+      const sample = document.createElement('canvas')
+      sample.width = 240
+      sample.height = 150
+      const ctx = sample.getContext('2d', { willReadFrequently: true })
+      if (!ctx) throw new Error('Cannot inspect screenshot pixels')
+      const scaleX = image.naturalWidth / window.innerWidth
+      const scaleY = image.naturalHeight / window.innerHeight
+      ctx.drawImage(
+        image,
+        (bounds.x + 8) * scaleX,
+        (bounds.y + 8) * scaleY,
+        (bounds.width - 16) * scaleX,
+        (bounds.height - 80) * scaleY,
+        0,
+        0,
+        sample.width,
+        sample.height,
+      )
+      const pixels = ctx.getImageData(0, 0, sample.width, sample.height).data
+      let lit = 0
+      const colors = new Set<string>()
+      for (let index = 0; index < pixels.length; index += 4) {
+        const red = pixels[index]
+        const green = pixels[index + 1]
+        const blue = pixels[index + 2]
+        const high = Math.max(red, green, blue)
+        if (high > 85 && high - Math.min(red, green, blue) > 12) {
+          lit++
+          colors.add([red >> 4, green >> 4, blue >> 4].join('/'))
+        }
       }
-    }
-    return { lit, shades: colors.size }
-  }, { base64: png.toString('base64'), bounds })
+      return { lit, shades: colors.size }
+    },
+    { base64: png.toString('base64'), bounds },
+  )
 }
 
 for (const width of [390, 1440]) {
@@ -138,9 +141,7 @@ test('two consecutive world changes render real frames in one persistent canvas'
   }
 })
 
-test('history, reduced motion and viewport resize preserve rendered worlds', async ({
-  page,
-}) => {
+test('history, reduced motion and viewport resize preserve rendered worlds', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.setViewportSize({ width: 1440, height: 900 })
   await page.goto('/?atlas=preview')
@@ -177,9 +178,7 @@ test('interrupted camera flight leaves the destination world visibly rendered', 
   await page.getByRole('button', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-scene-ready')).toHaveText('observatory')
   await positionCanvasForEvidence(canvas)
-  await expect
-    .poll(async () => (await spatialPixelEvidence(page, canvas)).lit)
-    .toBeGreaterThan(35)
+  await expect.poll(async () => (await spatialPixelEvidence(page, canvas)).lit).toBeGreaterThan(35)
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
   await expect(page.getByTestId('atlas-canvas').locator('canvas')).toHaveCount(1)
 })
