@@ -1,10 +1,16 @@
 # Living Atlas — phase checkpoint
 
-**Phase:** G2-A implemented; local validation completed/in review. **Gate:** PENDING final feature-HEAD CI.  
-**Branch:** `feat/living-atlas-v3` · [Draft PR #1](https://github.com/YoungJibbit95/YoungJibbit95.github.io/pull/1)  
-**Starting / last accepted CI HEAD:** `9dd986c6218824d1c83739ae6b7726f01c598ca4`
+**Phase:** G2-A implemented and technically verified; next G2-B. **Gate:** code/input/render PASS on the verified implementation/evidence HEAD; human art review remains open.
 
-This file is committed with the implementation. Resolve its containing commit with `git log -1 --format=%H -- docs/experience/PHASE_STATUS.md`; final validation links belong in [G2_A_REPORT.md](G2_A_REPORT.md). Always compare with current remote HEAD before continuing.
+**Branch:** `feat/living-atlas-v3` · [Draft PR #1](https://github.com/YoungJibbit95/YoungJibbit95.github.io/pull/1)
+
+**Starting HEAD:** `9dd986c6218824d1c83739ae6b7726f01c598ca4`
+
+**Last passing CI HEAD:** `09eff8bbc511f01f31ba694b0d3cb66ed24c6ec0`; runtime commit `eda76e0a42090add691e2db908ab663e0c47a74f`.
+
+[Root CI](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38135442472) and [G0 CI](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38135442391) both completed successfully. Root deploy skipped. This subsequent report-only revision also requires both current PR checks; inspect them before continuing.
+
+Resolve this file's containing commit with `git log -1 --format=%H -- docs/experience/PHASE_STATUS.md`; validation details are in [G2_A_REPORT.md](G2_A_REPORT.md). Always compare with current remote HEAD before continuing. The complete V4 source package remains at `C:/Users/Administrator/Downloads/YoungJibbit95_Codex_Master_Handoff_V4/YoungJibbit95_Codex_Handoff_V4`, including full V2/V3 references.
 
 ## Done
 
@@ -19,7 +25,7 @@ This file is committed with the implementation. Resolve its containing commit wi
 - Root clean install, format, 6 unit tests, TypeScript/Vite/prerender.
 - Full root 42 browser/Axe tests; 3 additional world-switch repetitions.
 - 9 new Origin cases: real pixel change, reset, raycast/drag, far-field history, five widths, reduced-motion/fallback. Pixel samples mask DOM overlays.
-- Final screenshot captures and G0 result: see report for current status and CI links.
+- Final 320/390/768/1440/1920 captures visually inspected; G0 6 unit / 16 browser passes, 8 pre-existing device-specific skips. See report and CI links.
 - Chromium/software WebGL and touch emulation; real mobile hardware is not verified.
 
 ## Resume at G2-B

@@ -1,6 +1,14 @@
 # G2-A — Origin vertical slice
 
-2026-10-11 · `feat/living-atlas-v3` · [Draft PR #1](https://github.com/YoungJibbit95/YoungJibbit95.github.io/pull/1). Gate: **PENDING final HEAD CI** at this implementation checkpoint.
+2026-10-11 · `feat/living-atlas-v3` · [Draft PR #1](https://github.com/YoungJibbit95/YoungJibbit95.github.io/pull/1). **Code / interaction / render gates PASS** on implementation/evidence HEAD `09eff8bbc511f01f31ba694b0d3cb66ed24c6ec0`. Human art approval and physical-device evaluation remain open.
+
+## Completed GitHub validation
+
+- [Root run 38135442472](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38135442472): success, 6 unit tests, 42 browser/Axe tests, 3 additional persistent-world pixel repetitions. Deploy **skipped**.
+- [G0 run 38135442391](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38135442391): success, separate camera model/build/browser workflow.
+- [Screenshot artifact 11699989959](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38135442472/artifacts/11699989959): `g1-preview-evidence`, 2,546,748 bytes; includes the new Origin screenshots. Durable copies are committed in the evidence folder.
+
+Both runs completed on `09eff8bbc511f01f31ba694b0d3cb66ed24c6ec0`. This report-only follow-up preserves the verified runtime; its own final-HEAD CI must also be checked through the PR checks. The human-facing completion report links those final runs after they finish, avoiding a self-referential commit hash in this file.
 
 ## What works
 
