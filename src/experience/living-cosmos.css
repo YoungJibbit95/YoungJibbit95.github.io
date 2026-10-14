@@ -1,4 +1,10 @@
 /* Scoped to the review slice. Shared camera controls and semantic content retain their roles. */
+/* Keep the provisional regular-Atlas overlay from painting before this query
+   variant hydrates. Geometry stays reserved; the static project list is readable. */
+html[data-cosmos-pending] .atlas-v3:not([data-cosmos='preview']) .atlas-v3__overlay,
+html[data-cosmos-pending] .atlas-v3:not([data-cosmos='preview']) .observatory-explorer {
+  visibility: hidden;
+}
 html:has(.atlas-v3[data-cosmos='preview']) {
   color-scheme: dark;
   background: #070914;

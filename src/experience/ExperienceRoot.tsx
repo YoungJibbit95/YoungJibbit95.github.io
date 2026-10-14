@@ -105,6 +105,10 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
   }, [director])
 
   useEffect(() => {
+    if (cosmicPreview) document.documentElement.removeAttribute('data-cosmos-pending')
+  }, [cosmicPreview])
+
+  useEffect(() => {
     const theme = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
     if (theme) theme.content = cosmicPreview && world === 'observatory' ? '#070914' : '#c9d0bf'
   }, [cosmicPreview, world])

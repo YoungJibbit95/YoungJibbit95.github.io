@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      // A query variant cannot be selected by static prerendering. Reserve its
+      // overlay space until hydration selects the matching controls and title.
+      if (new URLSearchParams(location.search).get('cosmos') === 'preview') {
+        document.documentElement.dataset.cosmosPending = ''
+      }
+    </script>
     <meta name="theme-color" content="#c9d0bf" />
     <meta
       name="description"

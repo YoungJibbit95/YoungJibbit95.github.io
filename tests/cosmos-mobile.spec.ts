@@ -1,4 +1,29 @@
 import AxeBuilder from '@axe-core/playwright'
+
+test('cosmic static entry reserves overlays until the query variant hydrates', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  let release!: () => void
+  const scripts = new Promise<void>((resolve) => {
+    release = resolve
+  })
+  await page.route('**/*.js', async (route) => {
+    await scripts
+    await route.continue()
+  })
+  try {
+    await page.goto('/atlas/observatory/?cosmos=preview', { waitUntil: 'commit' })
+    await expect(page.locator('#atlas-projects article')).toHaveCount(7)
+    await expect(page.locator('.atlas-v3__intro')).toBeHidden()
+    await expect(page.getByRole('group', { name: 'Kamera und Verlauf' })).toBeHidden()
+    await expect(page.getByTestId('observatory-explorer')).toBeHidden()
+  } finally {
+    release()
+  }
+  await expect(page.getByTestId('atlas-scene-ready')).toHaveText('observatory', { timeout: 30_000 })
+  await expect(page.getByRole('heading', { name: 'Sieben Systeme. Ein Universum.' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Nexus erkunden', exact: true })).toBeVisible()
+  await expect(page.locator('html')).not.toHaveAttribute('data-cosmos-pending')
+})
 import { expect, test, type Locator } from '@playwright/test'
 
 async function touchTarget(locator: Locator) {
