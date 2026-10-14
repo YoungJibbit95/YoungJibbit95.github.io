@@ -1,5 +1,11 @@
 # YoungJibbit95 Living Cosmos
 
+**Verbindliche Folgeentscheidung:** Der Nutzer legt für den Galactic-Atlas-
+Refinement-Pass **Nebelraum** fest. „Stille Weite“ bleibt ausschließlich
+archivierter Vergleich. [Konkrete Art-Verfeinerung](refinement/ART_REFINEMENT.md)
+und [sechs neue echte Browserbilder](refinement/REVIEW.html) ergänzen diese
+historische Konzeptdokumentation. Die endgültige visuelle Freigabe bleibt offen.
+
 Interne Art Direction, 14. Oktober 2026. Die neue Nutzeranweisung ersetzt die
 mineralische Schnittwerk-Themenrichtung. Menschliche Bildfreigabe steht aus.
 

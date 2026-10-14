@@ -1,0 +1,313 @@
+[
+  {
+    "id": "refined-lighthouse-final-1",
+    "lighthouseVersion": "13.5.0",
+    "fetchTime": "2026-10-14T20:40:42.668Z",
+    "score": 0.7,
+    "metrics": {
+      "first-contentful-paint": 3163.951,
+      "largest-contentful-paint": 4080.9264999999996,
+      "total-blocking-time": 393,
+      "cumulative-layout-shift": 0.0001487590204224082,
+      "speed-index": 3677.244313385071
+    },
+    "settings": {
+      "output": "json",
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": ["file_systems", "shader_cache", "service_workers", "cache_storage"],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "node",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": ["performance"],
+      "skipAudits": null
+    },
+    "warnings": [],
+    "mainthread": [
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 1441.8239999999985
+      },
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 1209.295999999986
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 460.5959999999999
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 46.77599999999995
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 17.88799999999999
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 6.683999999999998
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 3.2960000000000003
+      }
+    ],
+    "bootup": [
+      {
+        "url": "Unattributable",
+        "total": 1271.3039999999987,
+        "scripting": 15.88399999999998,
+        "scriptParseCompile": 0
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/living-cosmos-nIK3OKu-.js",
+        "total": 929.3520000000076,
+        "scripting": 814.4400000000076,
+        "scriptParseCompile": 0.276
+      },
+      {
+        "url": "http://127.0.0.1:4173/atlas/observatory/?cosmos=preview&world=observatory",
+        "total": 570.1719999999999,
+        "scripting": 4.392,
+        "scriptParseCompile": 0.744
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/events-9ce18a08.esm-Cn-TjVxL.js",
+        "total": 390.4400000000018,
+        "scripting": 369.27600000000183,
+        "scriptParseCompile": 1.136
+      }
+    ],
+    "longTasks": [
+      {
+        "url": "Unattributable",
+        "duration": 929,
+        "startTime": 993.9755
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/living-cosmos-nIK3OKu-.js",
+        "duration": 293,
+        "startTime": 3249.951
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/events-9ce18a08.esm-Cn-TjVxL.js",
+        "duration": 164,
+        "startTime": 8421.9265
+      },
+      {
+        "url": "Unattributable",
+        "duration": 162,
+        "startTime": 648.9755
+      },
+      {
+        "url": "http://127.0.0.1:4173/atlas/observatory/?cosmos=preview&world=observatory",
+        "duration": 161,
+        "startTime": 810.9755
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/living-cosmos-nIK3OKu-.js",
+        "duration": 105,
+        "startTime": 3542.951
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/living-cosmos-nIK3OKu-.js",
+        "duration": 72,
+        "startTime": 8349.9265
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/living-cosmos-nIK3OKu-.js",
+        "duration": 52,
+        "startTime": 3163.951
+      }
+    ],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:4173/atlas/observatory/?cosmos=preview&world=observatory",
+        "transferSize": 12236,
+        "resourceSize": 11945,
+        "resourceType": "Document",
+        "rendererStartTime": 0,
+        "networkEndTime": 69.58300000056624
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/jsx-runtime-D3jfb0Ew.js",
+        "transferSize": 9282,
+        "resourceSize": 8901,
+        "resourceType": "Script",
+        "rendererStartTime": 125.76900000497699,
+        "networkEndTime": 143.28700000420213
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/living-cosmos-nIK3OKu-.js",
+        "transferSize": 213550,
+        "resourceSize": 213128,
+        "resourceType": "Script",
+        "rendererStartTime": 125.9890000000596,
+        "networkEndTime": 159.18000000342727
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/projects-C5jg4fx7.js",
+        "transferSize": 8058,
+        "resourceSize": 7677,
+        "resourceType": "Script",
+        "rendererStartTime": 126.05800000205636,
+        "networkEndTime": 143.4700000025332
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/SceneRegistry-Bl-nVWKf.js",
+        "transferSize": 17009,
+        "resourceSize": 16627,
+        "resourceType": "Script",
+        "rendererStartTime": 126.11300000548363,
+        "networkEndTime": 145.5050000026822
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/experienceStore-BRvW3uAk.js",
+        "transferSize": 2537,
+        "resourceSize": 2157,
+        "resourceType": "Script",
+        "rendererStartTime": 126.17800000309944,
+        "networkEndTime": 144.5679999999702
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/ExperienceRoot-Cb7DsBqO.js",
+        "transferSize": 31621,
+        "resourceSize": 31239,
+        "resourceType": "Script",
+        "rendererStartTime": 126.23200000450015,
+        "networkEndTime": 148.27300000563264
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/atlas-BPHeKLDi.js",
+        "transferSize": 707,
+        "resourceSize": 386,
+        "resourceType": "Script",
+        "rendererStartTime": 126.28300000354648,
+        "networkEndTime": 152.87600000202656
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/living-cosmos-BDkNLqyW.css",
+        "transferSize": 37664,
+        "resourceSize": 37289,
+        "resourceType": "Stylesheet",
+        "rendererStartTime": 126.33900000527501,
+        "networkEndTime": 153.027000002563
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/atlas-DR8STKoE.css",
+        "transferSize": 710,
+        "resourceSize": 396,
+        "resourceType": "Stylesheet",
+        "rendererStartTime": 126.40300000458956,
+        "networkEndTime": 151.6190000027418
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
+        "transferSize": 25156,
+        "resourceSize": 24836,
+        "resourceType": "Font",
+        "rendererStartTime": 165.15400000289083,
+        "networkEndTime": 245.00400000065565
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+        "transferSize": 21488,
+        "resourceSize": 21168,
+        "resourceType": "Font",
+        "rendererStartTime": 170.23800000548363,
+        "networkEndTime": 244.82700000330806
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/WorldCanvas-DpY5X3B2.js",
+        "transferSize": 58901,
+        "resourceSize": 58519,
+        "resourceType": "Script",
+        "rendererStartTime": 355.2360000014305,
+        "networkEndTime": 367.972000002861
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/events-9ce18a08.esm-Cn-TjVxL.js",
+        "transferSize": 865237,
+        "resourceSize": 864677,
+        "resourceType": "Script",
+        "rendererStartTime": 355.5350000038743,
+        "networkEndTime": 415.31900000199676
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/extends-CvVTau-c.js",
+        "transferSize": 552,
+        "resourceSize": 231,
+        "resourceType": "Script",
+        "rendererStartTime": 355.7010000012815,
+        "networkEndTime": 365.0780000053346
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/CosmicObservatoryWorld-u0-jgTxV.js",
+        "transferSize": 19302,
+        "resourceSize": 18920,
+        "resourceType": "Script",
+        "rendererStartTime": 747.7730000056326,
+        "networkEndTime": 754.499000005424
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/ObservatoryWorld-CpVsz_jo.js",
+        "transferSize": 18547,
+        "resourceSize": 18165,
+        "resourceType": "Script",
+        "rendererStartTime": 748.1490000039339,
+        "networkEndTime": 754.6360000036657
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/nebula-dust-CgRBWUM9.png",
+        "transferSize": 54342,
+        "resourceSize": 54023,
+        "resourceType": "Image",
+        "rendererStartTime": 784.4409999996424,
+        "networkEndTime": 791.1240000016987
+      }
+    ]
+  }
+]

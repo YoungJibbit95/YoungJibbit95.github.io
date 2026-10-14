@@ -1,4 +1,22 @@
-# Living Atlas: G2-D — Cosmic Reset / Visual Review
+# Living Atlas: G2-D — Galactic Atlas Refinement / Visual Review
+
+**Neuer begrenzter Checkpoint vom 14. Oktober 2026:** Auf Basis des tatsächlich
+verifizierten lokalen/Remote-/PR-HEAD `e21dd2a9deb7d629c096d16371711d5f09584dd8`
+wurde ausschließlich der Cosmic-Review-Einstieg verfeinert. **Nebelraum ist
+verbindlich**, „Stille Weite“ bleibt archivierte Vergleichsstudie.
+Code-/Bild-Checkpoint: `4bf2ece`. [Refinement-Bericht mit Abnahme](living-cosmos/refinement/REPORT.md),
+[sechs finale Bilder und Vorher/Nachher](living-cosmos/refinement/REVIEW.html).
+
+Sieben klare Projektlabels, echte räumliche Sternschichten, zusammenhängendes
+Nebelband, bereinigte Nexus-Nahansicht und eine 112-px-Mobile-Bedienzone sind
+integriert. Die Monumentalität ist gestalterisch **nur teilweise erreicht**;
+technische Tests ersetzen diese Bildentscheidung nicht. Höchstens zwei
+Subagents arbeiteten mit getrennten Zuständigkeiten, Browserprüfungen seriell.
+Die sechs Skills sind mit konkreter Wirkung im neuen Bericht dokumentiert.
+**Stop zur visuellen Nutzerfreigabe.** Kein Origin-Storyboard/-Recode, keine
+sechs neuen Detailwelten, kein G3, Merge oder Deploy.
+
+## Vorheriger Cosmic-Vertical-Slice-Checkpoint
 
 **Maßgeblicher Stand vom 14. Oktober 2026:** Der Nutzer hat die mineralische
 Schnittwerk-Richtung ausdrücklich durch einen dunkelblau-violetten, frei

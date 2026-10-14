@@ -1,5 +1,11 @@
 # Living Cosmos — Vertical Slice und Handoff
 
+**Nachfolgender Checkpoint:** Der autorisierte Galactic-Atlas-Refinement-Pass
+auf Basis von `e21dd2a9` ist im [aktuellen Abnahmebericht](refinement/REPORT.md)
+und [neuen Bildreview](refinement/REVIEW.html) dokumentiert. Nebelraum ist die
+verbindliche Grundlage. Die folgende Dokumentation beschreibt die bewahrte
+Vertical-Slice-Baseline; ihre Messwerte sind keine Messung des Refinements.
+
 Stand: 14. Oktober 2026. **Visuelle Nutzerfreigabe offen.** Dieser Checkpoint
 beendet Recovery, Art Direction und den begrenzten Observatory-/Nexus-Slice.
 Origin und die sechs übrigen Detailwelten werden erst nach Bildfreigabe gestaltet.

@@ -90,8 +90,10 @@ the world label no longer overlaps Adventura. Text and touch controls are clear.
 The existing focusProject navigation intentionally scrolls the stage into view;
 the new dossier focus does not add page scrolling. Main scene label spacing and
 galactic depth still require the lead/art review on the final integrated scene.
-These UI frames are an intermediate checkpoint, not substitutes for the six final
-Macro/Approach/Detail images or user visual approval.
+The lead subsequently refreshed all six linked UI frames from the full Root
+suite on integrated code checkpoint `4bf2ece`, after the final nebula polish,
+and inspected them again. They supplement the six final Macro/Approach/Detail
+images; neither set substitutes for user visual approval.
 
 Browser test runner and its preview server exited; no process was left occupying
 port 4173. No full suite or performance job was started by this agent. Integrated
