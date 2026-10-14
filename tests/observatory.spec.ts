@@ -111,7 +111,7 @@ for (const width of [390, 768, 1440, 1920]) {
   }, info) => {
     await page.emulateMedia({ reducedMotion: 'reduce' })
     await open(page, width)
-    await expect.poll(async () => (await pixels(page)).lit).toBeGreaterThan(35)
+    expect((await pixels(page)).lit).toBeGreaterThan(35)
     expect((await pixels(page)).shades).toBeGreaterThan(6)
     expect((await state(page)).visibleIds).toHaveLength(7)
     await page.screenshot({ path: info.outputPath(`g2c-overview-${width}.png`) })
@@ -123,14 +123,14 @@ for (const width of [390, 768, 1440, 1920]) {
       .click()
     await expect.poll(async () => delta(await pose(page), overview)).toBeGreaterThan(50)
     await close(page)
-    await expect.poll(async () => (await pixels(page)).lit).toBeGreaterThan(35)
+    expect((await pixels(page)).lit).toBeGreaterThan(35)
     await page.screenshot({ path: info.outputPath(`g2c-cluster-${width}.png`) })
     await focus(page, 'novacore')
     await expect
       .poll(async () => (await state(page)).lod.levels.novacore)
       .toBe(width === 390 ? 'meso' : 'micro')
     await close(page)
-    await expect.poll(async () => (await pixels(page)).lit).toBeGreaterThan(35)
+    expect((await pixels(page)).lit).toBeGreaterThan(35)
     await page.screenshot({ path: info.outputPath(`g2c-project-${width}.png`) })
     expect(
       await page.evaluate(
@@ -245,7 +245,7 @@ test('free pan and zoom change real pose and LOD; Fit All restores macro', async
   await page.getByRole('button', { name: 'Alle einrahmen', exact: true }).click()
   await expect.poll(async () => (await state(page)).lod.level).toBe('macro')
   expect(distance(await pose(page))).toBeGreaterThan(1000)
-  await expect.poll(async () => (await pixels(page)).lit).toBeGreaterThan(35)
+  expect((await pixels(page)).lit).toBeGreaterThan(35)
 })
 
 test('Origin to Observatory, filters and exact camera survive Back and Forward', async ({
@@ -283,7 +283,7 @@ test('Origin to Observatory, filters and exact camera survive Back and Forward',
   await page.goBack()
   await expect(page.getByTestId('atlas-scene-ready')).toHaveText('origin')
   await expect.poll(async () => delta(await pose(page), origin)).toBeLessThan(0.0000001)
-  await expect.poll(async () => (await pixels(page)).lit).toBeGreaterThan(35)
+  expect((await pixels(page)).lit).toBeGreaterThan(35)
 })
 
 test('rapid focus and user input interrupt camera flight without a stale destination', async ({

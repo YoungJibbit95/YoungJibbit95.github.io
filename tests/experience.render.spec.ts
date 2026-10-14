@@ -161,9 +161,7 @@ test('history, reduced motion and viewport resize preserve rendered worlds', asy
   async function checkVisible(world: World) {
     await expect(page.getByTestId('atlas-scene-ready')).toHaveText(world)
     await positionCanvasForEvidence(canvas)
-    await expect
-      .poll(async () => (await spatialPixelEvidence(page, canvas)).lit)
-      .toBeGreaterThan(35)
+    expect((await spatialPixelEvidence(page, canvas)).lit).toBeGreaterThan(35)
     expect((await spatialPixelEvidence(page, canvas)).shades).toBeGreaterThan(6)
     await expect(stage.locator('canvas')).toHaveCount(1)
   }
@@ -188,7 +186,7 @@ test('interrupted camera flight leaves the destination world visibly rendered', 
   await page.getByRole('link', { name: 'Sternwarte', exact: true }).click()
   await expect(page.getByTestId('atlas-scene-ready')).toHaveText('observatory')
   await positionCanvasForEvidence(canvas)
-  await expect.poll(async () => (await spatialPixelEvidence(page, canvas)).lit).toBeGreaterThan(35)
+  expect((await spatialPixelEvidence(page, canvas)).lit).toBeGreaterThan(35)
   await expect(page.getByTestId('atlas-world-title')).toHaveText('Sternwarte')
   await expect(page.getByTestId('atlas-canvas').locator('canvas')).toHaveCount(1)
 })

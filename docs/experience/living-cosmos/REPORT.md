@@ -11,7 +11,7 @@ Repository `YoungJibbit95/YoungJibbit95.github.io`, bestehender Branch
 `feat/living-atlas-v3`, bestehender [Draft PR #1](https://github.com/YoungJibbit95/YoungJibbit95.github.io/pull/1).
 Start-HEAD: `32e6a87a238fb3ea14fc2f3cf77f7df0a739b60f`.
 Integrierter Cosmic-Code: `e651626ab7df5b6269041df9a978e90cfa8f01db`.
-Die folgende kleine G0-Ergänzung ist unten dokumentiert.
+Die folgenden kleinen G0- und Screenshot-Test-Ergänzungen sind unten dokumentiert.
 Der vollständige finale Feature-SHA und dessen CI stehen im PR und im Abschluss
 dieser Arbeit; ein Bericht kann seinen eigenen Commit-Hash nicht enthalten.
 
@@ -163,9 +163,28 @@ Es bleibt die einzelne echte Aufnahme außerhalb des zu kurzen 5-Sekunden-Polls.
 Alle drei Wechsel, Scene-Readiness, Viewport, Pixelgrenzen, Canvas-Zählung und
 das ursprüngliche 30-Sekunden-Limit bleiben erhalten.
 
-**Finale CI:** siehe den SHA-bezogenen Status im Draft PR. Dieser Bericht
-unterscheidet den beobachteten Recovery-Lauf von der folgenden integrierten
-Revision; lokales Grün wird nicht als GitHub-Grün ausgegeben.
+Der integrierte Slice auf `e651626` besteht die vollständige
+[Root-CI 38543193996](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38543193996):
+83 Browserfälle und drei Stressläufe, ohne flaky Fälle. Die folgende G0-Reparatur
+auf `473afe2` besteht
+[G0-CI 38545182935](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38545182935)
+mit 16 bestandenen Fällen und acht bestehenden gerätespezifischen Skips.
+
+Die [Root-Wiederholung 38545182974](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38545182974)
+auf `473afe2` endet mit 81 bestanden, einem Fehler und einem flaky Legacy-Fall.
+Der History-Fall besteht zuerst Readiness und die exakte Pose; danach läuft die
+Screenshot-Aufnahme erneut in den zu kurzen 5-Sekunden-Poll. Eine systematische
+Suche findet sieben verbleibende positive Polls dieser Art. Sie erfassen jetzt
+jeweils einmal nach den bereits vorhandenen Readiness-/Pose-Prüfungen und prüfen
+die unveränderten Pixelgrenzen. Zeitlimits, Retries und dynamische Origin-
+Animationsprüfungen bleiben unverändert. Alle acht betroffenen Fälle bestehen
+lokal mit einem Worker ohne Retries in 44,9 Sekunden. Der flaky Legacy-Versuch
+scheitert beim Browser-Kontextaufbau vor dem Anwendungstest; Legacy bleibt
+unverändert. Trace-Zeiten und genaue Teststellen stehen in [RECOVERY.md](RECOVERY.md).
+
+**Finale CI:** siehe den SHA-bezogenen Status im Draft PR und im Abschluss.
+Lokales Grün und Erfolge früherer Revisionen werden nicht als Erfolg der
+finalen GitHub-Revision ausgegeben.
 
 ## Lokale technische Prüfungen
 

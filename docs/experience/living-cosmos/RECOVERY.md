@@ -136,6 +136,47 @@ run. Raw CI trace and local regression evidence are ignored under
 `.verification/living-cosmos/recovery/g0-38543193983/`, `g0-readiness-baseline/`
 and `g0-readiness-full/`.
 
+## Remaining short screenshot polls
+
+[Root CI 38545182974](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38545182974)
+on `473afe2086cfffa61aa567fffa0b350121e150ea` reports **81 passed, 1 failed,
+1 flaky**. Both attempts of the Observatory cross-world history case pass scene
+readiness and the complete restored-pose tolerance `< 1e-7`, then fail the final
+five-second screenshot poll at `observatory.spec.ts:286`. In the first trace,
+capture starts at 451076.977 ms and fonts are ready at 451082.188 ms; the poll
+expires at 456038.636 ms without a pixel result. The retry repeats the same
+sequence (capture 468260.162 ms, fonts ready 468266.364 ms, poll expiry
+473143.428 ms). This is the previously identified capture/poll deadline mismatch,
+not evidence of an incorrect restored pose or a sampled black frame.
+
+A complete `tests/` search identifies seven remaining positive screenshot polls
+with that default deadline. Each already follows real scene or pose checks:
+
+| Location at `473afe2`                                     | Existing prerequisite retained                                             |
+| --------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `observatory.spec.ts:114`, overview at four widths        | `open()` waits for Observatory scene readiness and fonts.                  |
+| `observatory.spec.ts:126`, cluster at four widths         | Reduced-motion camera pose changes by more than 50.                        |
+| `observatory.spec.ts:133`, project at four widths         | `focused` transition, project URL and meso/micro LOD match.                |
+| `observatory.spec.ts:248`, Fit All                        | Macro LOD and actual camera distance greater than 1000.                    |
+| `observatory.spec.ts:286`, cross-world Back               | Origin scene readiness and exact full-pose delta below `1e-7`.             |
+| `experience.render.spec.ts:165`, history/resize helper    | Correct world readiness and Canvas viewport placement on every invocation. |
+| `experience.render.spec.ts:191`, interrupted world flight | Observatory scene readiness and Canvas viewport placement.                 |
+
+All seven now capture once outside the short assertion poll and assert the same
+`lit > 35`. Masks, crops, shade checks, history, gestures, world/Canvas checks,
+test deadlines and retry configuration are unchanged. The explicit 20-second
+initial-render pixel poll and Origin's dynamic changed-pixel animation assertions
+are retained. No other identical positive five-second screenshot poll was found.
+The eight affected cases pass locally, serially with one worker and no retries,
+in **44.9 seconds**. Final remote verification remains separate.
+
+The Legacy Nexus flaky attempt fails while creating its browser context, before
+the application test runs, with `Browser.setDownloadBehavior` reporting a missing
+context after its 30-second setup deadline; retry passes. No application defect
+is established, and no Legacy source, test or timeout is changed. Raw traces and
+focused-run evidence remain ignored under
+`.verification/living-cosmos/recovery/ci-38545182974/` and `capture-class-final/`.
+
 ## Static entry and small performance candidate
 
 Both `/atlas/` and `/atlas/observatory/` have dedicated HTML documents,
