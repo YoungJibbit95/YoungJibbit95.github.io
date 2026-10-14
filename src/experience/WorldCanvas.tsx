@@ -6,6 +6,7 @@ import { bindSpatialInput } from './InteractionRouter'
 import { getWorld } from './SceneRegistry'
 import type { AvailableWorldId, CameraBridge, CameraPose } from './worldTypes'
 import type { ObservatorySceneInput } from './observatory/contracts'
+import { Sprite, Vector3 } from 'three'
 
 const Origin = lazy(() => getWorld('origin').loadScene())
 const Observatory = lazy(() => getWorld('observatory').loadScene())
@@ -49,6 +50,7 @@ function RendererMetrics({
   const gl = useThree((state) => state.gl)
   const scene = useThree((state) => state.scene)
   const camera = useThree((state) => state.camera)
+  const size = useThree((state) => state.size)
   const sample = useCallback(
     (inspect = false) => {
       if (!target.current) return
@@ -64,6 +66,33 @@ function RendererMetrics({
           ? {
               cameraFar: camera.far,
               cameraPosition: camera.position.toArray(),
+              // Project the real sprite corners only when a test requests them.
+              labels: (scene.getObjectByName('cosmic-project-labels')?.children ?? [])
+                .filter((object) => object.visible && object instanceof Sprite)
+                .map((object) => {
+                  const center = object.getWorldPosition(new Vector3())
+                  const scale = object.getWorldScale(new Vector3())
+                  const right = new Vector3(1, 0, 0).applyQuaternion(camera.quaternion)
+                  const up = new Vector3(0, 1, 0).applyQuaternion(camera.quaternion)
+                  const corners = [-1, 1].flatMap((x) =>
+                    [-1, 1].map((y) =>
+                      center
+                        .clone()
+                        .addScaledVector(right, (x * scale.x) / 2)
+                        .addScaledVector(up, (y * scale.y) / 2)
+                        .project(camera),
+                    ),
+                  )
+                  const xs = corners.map((point) => ((point.x + 1) * size.width) / 2)
+                  const ys = corners.map((point) => ((1 - point.y) * size.height) / 2)
+                  return {
+                    id: object.name.replace('cosmic-label-', ''),
+                    x: Math.min(...xs),
+                    y: Math.min(...ys),
+                    width: Math.max(...xs) - Math.min(...xs),
+                    height: Math.max(...ys) - Math.min(...ys),
+                  }
+                }),
               // Read actual transforms only on explicit diagnostic requests.
               discovery: scene.getObjectByName('nexus-stellar-system')
                 ? {
@@ -77,7 +106,7 @@ function RendererMetrics({
           : {}),
       })
     },
-    [gl, target, world, scene, camera],
+    [gl, target, world, scene, camera, size.width, size.height],
   )
   useFrame(() => sample())
   useEffect(() => {

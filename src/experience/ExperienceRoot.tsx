@@ -327,7 +327,11 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
           )}
         </div>
 
-        <div className="atlas-v3__intro atlas-v3__overlay" data-focused={Boolean(focusId)}>
+        <div
+          className="atlas-v3__intro atlas-v3__overlay"
+          data-focused={Boolean(focusId)}
+          data-cosmos-occluder
+        >
           <h1>
             {world === 'origin' ? (
               <>
@@ -358,7 +362,7 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
           </p>
         </div>
 
-        <div className="atlas-v3__world-label atlas-v3__overlay">
+        <div className="atlas-v3__world-label atlas-v3__overlay" data-cosmos-occluder>
           <h2 ref={heading} tabIndex={-1} data-testid="atlas-world-title">
             {definition.title}
           </h2>
@@ -389,6 +393,7 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
 
         <div
           className="atlas-v3__controls atlas-v3__overlay"
+          data-cosmos-occluder
           role="group"
           aria-label="Kamera und Verlauf"
         >

@@ -4,10 +4,12 @@ import { gzipSync } from 'node:zlib'
 import { resolve } from 'node:path'
 
 const base = process.argv[2] ?? 'http://127.0.0.1:4173'
-const out = resolve('.verification/living-cosmos/performance')
+const out = resolve(process.env.ATLAS_PERF_OUTPUT ?? '.verification/living-cosmos/performance')
 await mkdir(out, { recursive: true })
 const samples = []
-for (const variant of ['existing', 'cosmos']) {
+for (const variant of process.argv.includes('--cosmos-only')
+  ? ['cosmos']
+  : ['existing', 'cosmos']) {
   const browser = await chromium.launch({
     args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader'],
   })

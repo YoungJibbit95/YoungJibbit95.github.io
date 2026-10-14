@@ -7,8 +7,11 @@ import {
   DoubleSide,
   Float32BufferAttribute,
   Group,
+  MeshBasicMaterial,
+  MeshStandardMaterial,
   PerspectiveCamera,
   Sprite,
+  SpriteMaterial,
   SRGBColorSpace,
   Vector3,
 } from 'three'
@@ -24,45 +27,65 @@ const RuntimeLabel = memo(function RuntimeLabel({
 }) {
   const sprite = useRef<Sprite>(null)
   const point = useMemo(() => new Vector3(), [])
-  const texture = useMemo(() => {
+  const viewPoint = useMemo(() => new Vector3(), [])
+  const label = useMemo(() => {
     const canvas = document.createElement('canvas')
     canvas.width = 512
     canvas.height = 80
     const context = canvas.getContext('2d')!
-    context.font = '500 36px Arial, sans-serif'
+    context.font = text.startsWith('@') ? '500 35px monospace' : '500 36px Arial, sans-serif'
     context.textAlign = 'center'
     context.textBaseline = 'middle'
-    context.fillStyle = 'rgba(7,9,20,0.88)'
-    context.fillRect(
-      250 - context.measureText(text).width / 2,
-      8,
-      context.measureText(text).width + 12,
-      64,
-    )
-    context.fillStyle = '#E9EDF4'
+    // A tight text halo preserves contrast without floating opaque UI rectangles.
+    context.strokeStyle = '#070914'
+    context.lineWidth = 6
+    context.lineJoin = 'round'
+    context.shadowColor = '#070914'
+    context.shadowBlur = 8
+    context.strokeText(text, 256, 40)
+    context.fillStyle = text.startsWith('@') ? '#b6f4f4' : '#E9EDF4'
     context.fillText(text, 256, 40)
     const map = new CanvasTexture(canvas)
     map.colorSpace = SRGBColorSpace
-    return map
+    return { map, width: context.measureText(text).width / 512 }
   }, [text])
-  useEffect(() => () => texture.dispose(), [texture])
+  useEffect(() => () => label.map.dispose(), [label])
   useFrame(({ camera, size }) => {
     if (!sprite.current) return
     sprite.current.getWorldPosition(point)
-    const distance = camera.position.distanceTo(point)
+    // Camera-space depth keeps the raster text at 29px even near a viewport edge.
+    const distance = -viewPoint.copy(point).applyMatrix4(camera.matrixWorldInverse).z
     const height =
       (distance * Math.tan(((camera as PerspectiveCamera).fov * Math.PI) / 360) * 2 * 29) /
       size.height
     sprite.current.scale.set(height * 6.4, height, 1)
+    point.project(camera)
+    const x = ((point.x + 1) * size.width) / 2
+    const y = ((1 - point.y) * size.height) / 2
+    const halfWidth = (29 * 6.4 * label.width) / 2 + 8
+    const safeX = Math.max(halfWidth, Math.min(size.width - halfWidth, x))
+    const safeY = Math.max(18, Math.min(size.height - 18, y))
+    // Keep all five real names available on narrow viewports; move the quad, never cull it.
+    sprite.current.center.set(0.5 + (x - safeX) / (29 * 6.4), 0.5 + (safeY - y) / 29)
   })
   return (
     <sprite ref={sprite} position={position} renderOrder={9}>
-      <spriteMaterial map={texture} depthTest={false} depthWrite={false} toneMapped={false} />
+      <spriteMaterial
+        map={label.map}
+        fog={false}
+        depthTest={false}
+        depthWrite={false}
+        toneMapped={false}
+      />
     </sprite>
   )
 })
 
-const CoreHalo = memo(function CoreHalo() {
+const CoreHalo = memo(function CoreHalo({ selected }: { selected: boolean }) {
+  const root = useRef<Sprite>(null)
+  const material = useRef<SpriteMaterial>(null)
+  const reducedMotion = useExperienceStore((state) => state.motion !== 'full')
+  const scratch = useMemo(() => ({ center: new Vector3(), open: false, amount: 0 }), [])
   const texture = useMemo(() => {
     const canvas = document.createElement('canvas')
     canvas.width = canvas.height = 64
@@ -76,9 +99,24 @@ const CoreHalo = memo(function CoreHalo() {
     return new CanvasTexture(canvas)
   }, [])
   useEffect(() => () => texture.dispose(), [texture])
+  useFrame(({ camera, invalidate }, delta) => {
+    if (!root.current || !material.current) return
+    root.current.getWorldPosition(scratch.center)
+    scratch.open =
+      selected && camera.position.distanceTo(scratch.center) <= (scratch.open ? 176 : 172)
+    const destination = scratch.open ? 1 : 0
+    scratch.amount = reducedMotion
+      ? destination
+      : scratch.amount + (destination - scratch.amount) * (1 - Math.exp(-Math.min(delta, 0.05) * 7))
+    if (Math.abs(destination - scratch.amount) < 0.001) scratch.amount = destination
+    material.current.opacity = 0.65 + scratch.amount * 0.35
+    root.current.scale.setScalar(79 + scratch.amount * 15)
+    if (scratch.amount !== destination) invalidate()
+  })
   return (
-    <sprite scale={[75, 75, 1]}>
+    <sprite ref={root} scale={[79, 79, 1]}>
       <spriteMaterial
+        ref={material}
         map={texture}
         transparent
         depthWrite={false}
@@ -111,13 +149,13 @@ function sailGeometry(inner: number, outer: number, start: number, span: number,
   return geometry
 }
 
-function lightPaths(open: boolean) {
+function lightPaths() {
   const positions: number[] = []
   for (let client = 0; client < 4; client++) {
     const angle = (client * Math.PI) / 2 + 0.35
-    const reach = open ? 42 : 33
     const a = [Math.cos(angle) * 8, 0, Math.sin(angle) * 8]
-    const b = [Math.cos(angle) * reach, 8 + (client % 2) * 4, Math.sin(angle) * reach]
+    // End at the four visible client modules, whose coordinates are shared below.
+    const b = [Math.cos(angle) * 30, 7, Math.sin(angle) * 30]
     positions.push(...a, ...b)
   }
   const geometry = new BufferGeometry()
@@ -137,6 +175,8 @@ const ClientSail = memo(function ClientSail({
   const outer = 37
   const span = index % 2 === 0 ? 1.16 : 0.76
   const root = useRef<Group>(null)
+  const surface = useRef<MeshStandardMaterial>(null)
+  const edge = useRef<MeshBasicMaterial>(null)
   const reducedMotion = useExperienceStore((state) => state.motion !== 'full')
   const scratch = useMemo(() => ({ center: new Vector3(), open: false, amount: 0 }), [])
   const geometry = useMemo(
@@ -170,24 +210,30 @@ const ClientSail = memo(function ClientSail({
       (index % 2 ? -3 : 3) + scratch.amount * (index % 2 ? -6 : 6),
       Math.sin(direction) * scratch.amount * 9,
     )
+    if (surface.current) surface.current.emissiveIntensity = 0.5 + scratch.amount * 0.65
+    if (edge.current) edge.current.opacity = 0.7 + scratch.amount * 0.3
     if (scratch.amount !== destination) invalidate()
   })
   return (
     <group ref={root} position-y={index % 2 ? -3 : 3} name={'nexus-client-sail-' + index}>
       <mesh geometry={geometry}>
         <meshStandardMaterial
-          color={index % 2 ? '#242652' : '#171e40'}
+          ref={surface}
+          color={index % 2 ? '#2d2c5a' : '#1c2b4c'}
           metalness={0.7}
           roughness={0.28}
           emissive={index % 2 ? '#242652' : '#171e40'}
-          emissiveIntensity={0.45}
+          emissiveIntensity={0.5}
           side={DoubleSide}
         />
       </mesh>
       <mesh geometry={rim}>
         <meshBasicMaterial
+          ref={edge}
           color={index % 2 ? '#A891FF' : '#78E8E8'}
           toneMapped={false}
+          transparent
+          opacity={0.7}
           side={DoubleSide}
           polygonOffset
           polygonOffsetFactor={-2}
@@ -206,8 +252,7 @@ export const NexusSystem = memo(function NexusSystem({
   selected?: boolean
   level: SemanticLevel
 }) {
-  const open = selected && level === 'micro'
-  const paths = useMemo(() => lightPaths(open), [open])
+  const paths = useMemo(lightPaths, [])
   const detail = useRef<Group>(null)
   const center = useMemo(() => new Vector3(), [])
   const close = useRef(false)
@@ -243,7 +288,7 @@ export const NexusSystem = memo(function NexusSystem({
           />
         ))}
         <lineSegments geometry={paths}>
-          <lineBasicMaterial color="#78E8E8" transparent opacity={0.8} toneMapped={false} />
+          <lineBasicMaterial color="#a3f2ed" transparent opacity={0.95} toneMapped={false} />
         </lineSegments>
         {[0, 1, 2].map((index) => (
           <mesh
@@ -251,7 +296,7 @@ export const NexusSystem = memo(function NexusSystem({
             rotation={[Math.PI / 2, index * 0.65, index * 0.28]}
             position-y={index * 2 - 2}
           >
-            <torusGeometry args={[11 + index * 3, 0.12, 5, 56, Math.PI * 1.75]} />
+            <torusGeometry args={[11 + index * 3, 0.2, 5, 56, Math.PI * 1.75]} />
             <meshBasicMaterial color={index === 0 ? '#78E8E8' : '#A891FF'} toneMapped={false} />
           </mesh>
         ))}
@@ -266,14 +311,14 @@ export const NexusSystem = memo(function NexusSystem({
             rotation={[0, (-index * Math.PI) / 2, 0]}
           >
             <boxGeometry args={[index % 2 ? 3 : 9, 0.8, index % 2 ? 8 : 4]} />
-            <meshBasicMaterial color="#b8b3df" toneMapped={false} />
+            <meshBasicMaterial color={index % 2 ? '#c7b8f5' : '#b3eeee'} toneMapped={false} />
           </mesh>
         ))}
       </group>
     )
   return (
     <group name="nexus-stellar-system">
-      <CoreHalo />
+      <CoreHalo selected={selected} />
       {[0, 1, 2, 3].map((index) => (
         <ClientSail key={index} index={index} selected={selected} />
       ))}

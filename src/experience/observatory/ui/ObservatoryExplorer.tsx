@@ -44,6 +44,10 @@ export function ObservatoryExplorer({
   const [draftQuery, setDraftQuery] = useState(filters.query)
   const trigger = useRef<HTMLButtonElement>(null)
   const title = useRef<HTMLHeadingElement>(null)
+  const dossierTitle = useRef<HTMLHeadingElement>(null)
+  const body = useRef<HTMLDivElement>(null)
+  const selectedProjectId = selectedProject?.id
+  const previousProject = useRef(selectedProjectId)
   const edges = filterEdges(observatoryEdges, visibleProjects)
   const activeEdge = edges.find((edge) => edge.id === selectedEdge?.id) ?? null
   const hasFilters = Object.values(filters).some(Boolean)
@@ -58,6 +62,17 @@ export function ObservatoryExplorer({
   }, [open])
 
   useEffect(() => setDraftQuery(filters.query), [filters.query])
+
+  useEffect(() => {
+    const changed = previousProject.current !== selectedProjectId
+    previousProject.current = selectedProjectId
+    if (cosmicPreview && open && changed && selectedProjectId) {
+      // A result may be far down the scrollable sheet. Bring its new dossier
+      // into view without moving the page or changing the camera contract.
+      body.current?.scrollTo({ top: 0, behavior: 'instant' })
+      dossierTitle.current?.focus({ preventScroll: true })
+    }
+  }, [cosmicPreview, open, selectedProjectId])
 
   const close = () => {
     setOpen(false)
@@ -84,7 +99,7 @@ export function ObservatoryExplorer({
         }
       }}
     >
-      <div className="observatory-explorer__bar">
+      <div className="observatory-explorer__bar" data-cosmos-occluder={cosmicPreview || undefined}>
         <button
           type="button"
           className="schnittwerk-discover"
@@ -107,6 +122,7 @@ export function ObservatoryExplorer({
         <button
           ref={trigger}
           type="button"
+          className="observatory-explorer__trigger"
           aria-label="Projekte erkunden"
           aria-expanded={open}
           aria-controls="observatory-explorer-panel"
@@ -114,8 +130,10 @@ export function ObservatoryExplorer({
         >
           <Compass size={18} aria-hidden="true" />
           <span className="observatory-explorer__trigger-label">
-            Projekte erkunden
-            {selectedProject && !open ? <small translate="no">{selectedProject.name}</small> : null}
+            {cosmicPreview ? 'Projekte' : 'Projekte erkunden'}
+            {selectedProject && !open && !cosmicPreview ? (
+              <small translate="no">{selectedProject.name}</small>
+            ) : null}
           </span>
           <span
             className="observatory-explorer__count"
@@ -124,15 +142,18 @@ export function ObservatoryExplorer({
             {visibleProjects.length}/7
           </span>
         </button>
-        <button type="button" onClick={navigation.fitAll}>
-          Alle einrahmen
-        </button>
+        {!cosmicPreview ? (
+          <button type="button" onClick={navigation.fitAll}>
+            Alle einrahmen
+          </button>
+        ) : null}
       </div>
       {open ? (
         <section
           id="observatory-explorer-panel"
           className="observatory-explorer__panel"
           aria-labelledby="observatory-explorer-title"
+          data-cosmos-occluder={cosmicPreview || undefined}
         >
           <header className="observatory-explorer__heading">
             <h2 id="observatory-explorer-title" ref={title} tabIndex={-1}>
@@ -142,7 +163,17 @@ export function ObservatoryExplorer({
               <X size={18} aria-hidden="true" />
             </button>
           </header>
-          <div className="observatory-explorer__body">
+          <div className="observatory-explorer__body" ref={body}>
+            {cosmicPreview ? (
+              <div className="cosmos-explorer-navigation">
+                <button type="button" onClick={navigation.fitAll}>
+                  Alle einrahmen
+                </button>
+                <a href="#atlas-projects" onClick={close}>
+                  Projektliste als Text ↓
+                </a>
+              </div>
+            ) : null}
             <p
               className="observatory-explorer__level"
               data-testid="observatory-lod"
@@ -156,6 +187,7 @@ export function ObservatoryExplorer({
                 filters={filters}
                 navigation={navigation}
                 cosmicPreview={cosmicPreview}
+                headingRef={cosmicPreview ? dossierTitle : undefined}
               />
             ) : null}
             <form

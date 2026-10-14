@@ -1,3 +1,4 @@
+import type { Ref } from 'react'
 import type { ObservatoryFilters, ObservatoryNavigation, ObservatoryProject } from '../contracts'
 import { followNormally, projectHref } from './navigation'
 
@@ -6,6 +7,7 @@ export interface ProjectDossierProps {
   project: ObservatoryProject
   filters: ObservatoryFilters
   navigation: ObservatoryNavigation
+  headingRef?: Ref<HTMLHeadingElement>
 }
 
 /** Text remains complete at every camera LOD, including the no-WebGL alternative. */
@@ -14,6 +16,7 @@ export function ProjectDossier({
   filters,
   navigation,
   cosmicPreview = false,
+  headingRef,
 }: ProjectDossierProps) {
   return (
     <article
@@ -22,7 +25,12 @@ export function ProjectDossier({
       data-testid="observatory-dossier"
     >
       <p className="observatory-explorer__eyebrow">{project.category}</p>
-      <h3 id={`dossier-${project.id}`} translate="no">
+      <h3
+        id={`dossier-${project.id}`}
+        ref={headingRef}
+        tabIndex={cosmicPreview ? -1 : undefined}
+        translate="no"
+      >
         {project.name}
       </h3>
       <p className="observatory-dossier__question">{project.question}</p>

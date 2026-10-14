@@ -6,6 +6,7 @@ import {
   Float32BufferAttribute,
   Frustum,
   Group,
+  LineSegments,
   Matrix4,
   Object3D,
   PerspectiveCamera,
@@ -144,6 +145,7 @@ const Connection = memo(function Connection({
   selected,
   onSelect,
   cosmic,
+  focusedId,
 }: {
   from: ObservatoryProject
   to: ObservatoryProject
@@ -151,7 +153,20 @@ const Connection = memo(function Connection({
   selected: boolean
   onSelect: () => void
   cosmic: boolean
+  focusedId: string | null
 }) {
+  const line = useRef<LineSegments>(null)
+  const related = focusedId === from.id || focusedId === to.id
+  const focusedPoint = useMemo(() => {
+    const project = observatoryProjects.find((item) => item.id === focusedId)
+    return project ? new Vector3(...project.position) : null
+  }, [focusedId])
+  useFrame(({ camera }) => {
+    if (cosmic && line.current) {
+      // Local runtime paths take priority; free exploration restores the constellation.
+      line.current.visible = !focusedPoint || camera.position.distanceTo(focusedPoint) >= 280
+    }
+  })
   const geometry = useMemo(() => {
     const start = new Vector3(...from.position)
     const end = new Vector3(...to.position)
@@ -169,10 +184,11 @@ const Connection = memo(function Connection({
   useEffect(() => () => geometry.dispose(), [geometry])
   return (
     <lineSegments
+      ref={line}
       geometry={geometry}
       name={`edge-${from.id}-${to.id}`}
       onClick={(event) => {
-        if (event.delta > 6) return
+        if (event.delta > 6 || !isVisibleHit(event.object)) return
         event.stopPropagation()
         onSelect()
       }}
@@ -180,7 +196,7 @@ const Connection = memo(function Connection({
       <lineBasicMaterial
         color={
           cosmic
-            ? selected
+            ? selected || related
               ? '#e9edf4'
               : technical
                 ? '#78e8e8'
@@ -192,7 +208,19 @@ const Connection = memo(function Connection({
                 : '#626f60'
         }
         transparent
-        opacity={selected ? 1 : technical ? 0.95 : cosmic ? 0.4 : 0.62}
+        opacity={
+          selected
+            ? 1
+            : cosmic && focusedId
+              ? related
+                ? 0.85
+                : 0.15
+              : technical
+                ? 0.95
+                : cosmic
+                  ? 0.4
+                  : 0.62
+        }
         toneMapped={!cosmic}
       />
     </lineSegments>
@@ -201,6 +229,11 @@ const Connection = memo(function Connection({
 
 export interface ObservatoryVisuals {
   Environment: ComponentType
+  Labels?: ComponentType<{
+    selectedId: string | null
+    visibleIds: readonly ProjectId[]
+    onFocus: (id: ProjectId) => void
+  }>
   Architecture: ComponentType<{
     id: ProjectId
     color: string
@@ -220,6 +253,7 @@ export default function ObservatoryWorld({
   const Materials = cosmic ? Fragment : SchnittwerkMaterials
   const Architecture = visuals?.Architecture ?? ProjectArchitecture
   const Environment = visuals?.Environment ?? ObservatoryAtmosphere
+  const Labels = visuals?.Labels
   const { gl, invalidate, raycaster } = useThree()
   const compact = useThree((state) => state.size.width < 768)
   const root = useRef<Group>(null)
@@ -249,6 +283,7 @@ export default function ObservatoryWorld({
     [],
   )
   const layerRefs = useRef(new Map<ProjectId, { meso: Group | null; micro: Group | null }>())
+  const projectGroups = useRef(new Map<ProjectId, Group>())
 
   useEffect(() => {
     invalidate()
@@ -270,10 +305,21 @@ export default function ObservatoryWorld({
     spatial.matrix.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse)
     spatial.frustum.setFromProjectionMatrix(spatial.matrix)
     let closest = Infinity
+    const focused = observatoryProjects.find((project) => project.id === selectedId)
+    const closeReading =
+      cosmic &&
+      focused &&
+      camera.position.distanceTo(spatial.spheres[observatoryProjects.indexOf(focused)].center) < 280
     observatoryProjects.forEach((project, index) => {
       const distance = camera.position.distanceTo(spatial.spheres[index].center)
       const inView =
-        visible.has(project.id) && spatial.frustum.intersectsSphere(spatial.spheres[index])
+        visible.has(project.id) &&
+        (!closeReading || project.id === selectedId) &&
+        spatial.frustum.intersectsSphere(spatial.spheres[index])
+      const projectGroup = projectGroups.current.get(project.id)
+      if (projectGroup)
+        projectGroup.visible =
+          visible.has(project.id) && (!closeReading || project.id === selectedId)
       const level = inView ? distanceLevel(distance, levels.current[project.id], compact) : 'macro'
       levels.current[project.id] = level
       if (inView) closest = Math.min(closest, distance)
@@ -330,6 +376,7 @@ export default function ObservatoryWorld({
           return (
             <Connection
               cosmic={cosmic}
+              focusedId={selectedId}
               key={edge.id}
               from={observatoryProjects.find((project) => project.id === edge.from)!}
               to={observatoryProjects.find((project) => project.id === edge.to)!}
@@ -342,6 +389,10 @@ export default function ObservatoryWorld({
         {observatoryProjects.map((project) => (
           <group
             key={project.id}
+            ref={(group) => {
+              if (group) projectGroups.current.set(project.id, group)
+              else projectGroups.current.delete(project.id)
+            }}
             name={'observatory-' + project.id}
             position={[...project.position]}
             visible={visible.has(project.id)}
@@ -381,9 +432,10 @@ export default function ObservatoryWorld({
                 level="micro"
               />
             </group>
-            <ProjectName project={project} selectedId={selectedId} cosmic={cosmic} />
+            {!cosmic && <ProjectName project={project} selectedId={selectedId} cosmic={false} />}
           </group>
         ))}
+        {Labels && <Labels selectedId={selectedId} visibleIds={visibleIds} onFocus={onFocus} />}
       </group>
     </Materials>
   )

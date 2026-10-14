@@ -3,9 +3,11 @@ import type { ObservatoryWorldProps } from '../observatory/contracts'
 import { CosmicEnvironment } from './cosmos/CosmicEnvironment'
 import { CosmicProjectMarker } from './cosmos/CosmicProjectMarker'
 import { NexusSystem } from './cosmos/NexusSystem'
+import { CosmicLabels } from './cosmos/CosmicLabels'
 
 const visuals: ObservatoryVisuals = {
   Environment: CosmicEnvironment,
+  Labels: CosmicLabels,
   Architecture: function CosmicArchitecture({ id, selected, level }) {
     return id === 'nexus' ? (
       <NexusSystem selected={selected} level={level} />

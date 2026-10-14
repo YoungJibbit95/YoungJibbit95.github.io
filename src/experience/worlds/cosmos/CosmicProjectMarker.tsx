@@ -24,7 +24,7 @@ function Orbit({
 }) {
   return (
     <mesh rotation={[Math.PI / 2 + tilt, tilt * 0.6, 0]}>
-      <torusGeometry args={[radius, 0.65, 5, 52, arc]} />
+      <torusGeometry args={[radius, 0.85, 5, 52, arc]} />
       <meshBasicMaterial color={color} toneMapped={false} />
     </mesh>
   )
@@ -43,12 +43,16 @@ export const CosmicProjectMarker = memo(function CosmicProjectMarker({
   const color = cosmicProjectColors[id]
   if (level !== 'macro') return null
   return (
-    <group name={'cosmic-signature-' + id} scale={selected ? 1.1 : 1}>
+    <group name={'cosmic-signature-' + id} scale={selected ? 1.2 : 1.08}>
       {id === 'cerebri' ? (
         <>
           <Orbit radius={29} tilt={0.24} color={color} arc={Math.PI * 1.6} />
           <Orbit radius={20} tilt={-0.4} color={color} arc={Math.PI * 1.4} />
           <Orbit radius={10} tilt={0.65} color="#E9EDF4" arc={Math.PI * 1.7} />
+          <mesh position={[-28, 5, 8]}>
+            <sphereGeometry args={[2.8, 8, 6]} />
+            <meshBasicMaterial color="#ded4f4" toneMapped={false} />
+          </mesh>
         </>
       ) : null}
       {id === 'novacore' ? (
@@ -61,7 +65,7 @@ export const CosmicProjectMarker = memo(function CosmicProjectMarker({
                 <meshStandardMaterial
                   color="#51405b"
                   emissive={color}
-                  emissiveIntensity={0.25}
+                  emissiveIntensity={selected ? 0.65 : 0.4}
                   metalness={0.7}
                   roughness={0.3}
                 />
@@ -86,7 +90,7 @@ export const CosmicProjectMarker = memo(function CosmicProjectMarker({
               <meshStandardMaterial
                 color="#3c2847"
                 emissive={color}
-                emissiveIntensity={0.35}
+                emissiveIntensity={selected ? 0.75 : 0.46}
                 metalness={0.75}
                 roughness={0.3}
               />
@@ -110,7 +114,7 @@ export const CosmicProjectMarker = memo(function CosmicProjectMarker({
               <meshStandardMaterial
                 color="#243b4b"
                 emissive={color}
-                emissiveIntensity={0.3}
+                emissiveIntensity={selected ? 0.7 : 0.43}
                 metalness={0.4}
                 roughness={0.4}
               />
@@ -128,7 +132,7 @@ export const CosmicProjectMarker = memo(function CosmicProjectMarker({
                 <meshStandardMaterial
                   color="#293158"
                   emissive={color}
-                  emissiveIntensity={0.18}
+                  emissiveIntensity={selected ? 0.6 : 0.32}
                   metalness={0.6}
                   roughness={0.3}
                 />
@@ -150,6 +154,10 @@ export const CosmicProjectMarker = memo(function CosmicProjectMarker({
           <mesh scale={[0.6, 2, 0.6]}>
             <octahedronGeometry args={[10, 0]} />
             <meshBasicMaterial color="#b6a6ee" toneMapped={false} />
+          </mesh>
+          <mesh position={[25, 11, -9]}>
+            <octahedronGeometry args={[3, 0]} />
+            <meshBasicMaterial color="#b7cdec" toneMapped={false} />
           </mesh>
         </>
       ) : null}
