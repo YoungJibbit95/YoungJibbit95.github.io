@@ -9,6 +9,7 @@ import {
 } from './observatory/camera'
 import { appendTokensToQuery, tokensFromQuery } from './observatory/routeState'
 import { experienceEntryPath } from './entryPath'
+import { preserveCosmicPreview } from './cosmicPreview'
 import type {
   AvailableWorldId,
   CameraPose,
@@ -151,6 +152,7 @@ export function parseWorldRoute(
 
 export function worldHref(snapshot: NavigationSnapshot, pathname?: string): string {
   const query = new URLSearchParams({ atlas: 'preview', world: snapshot.world })
+  preserveCosmicPreview(query)
   if (snapshot.focusId) query.set('focus', snapshot.focusId)
   if (snapshot.world === 'observatory') appendTokensToQuery(query, snapshot.filters)
   return experienceEntryPath(pathname, snapshot.world) + '?' + query.toString()

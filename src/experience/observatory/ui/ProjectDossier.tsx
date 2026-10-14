@@ -2,13 +2,19 @@ import type { ObservatoryFilters, ObservatoryNavigation, ObservatoryProject } fr
 import { followNormally, projectHref } from './navigation'
 
 export interface ProjectDossierProps {
+  cosmicPreview?: boolean
   project: ObservatoryProject
   filters: ObservatoryFilters
   navigation: ObservatoryNavigation
 }
 
 /** Text remains complete at every camera LOD, including the no-WebGL alternative. */
-export function ProjectDossier({ project, filters, navigation }: ProjectDossierProps) {
+export function ProjectDossier({
+  project,
+  filters,
+  navigation,
+  cosmicPreview = false,
+}: ProjectDossierProps) {
   return (
     <article
       className="observatory-dossier"
@@ -21,6 +27,13 @@ export function ProjectDossier({ project, filters, navigation }: ProjectDossierP
       </h3>
       <p className="observatory-dossier__question">{project.question}</p>
       <p>{project.description}</p>
+      {cosmicPreview && project.id === 'nexus' && (
+        <p>
+          <span translate="no">Nexus Main, Nexus Mobile, Nexus Code und Nexus Code Mobile</span>{' '}
+          teilen den Runtime-Kern <span translate="no">@nexus/core</span>. Die vier orbitalen Segel
+          veranschaulichen diese gemeinsame Grundlage.
+        </p>
+      )}
       <dl>
         <div>
           <dt>Stand</dt>

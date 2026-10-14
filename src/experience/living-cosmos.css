@@ -1,0 +1,154 @@
+/* Scoped to the review slice. Shared camera controls and semantic content retain their roles. */
+html:has(.atlas-v3[data-cosmos='preview']) {
+  color-scheme: dark;
+  background: #070914;
+}
+.atlas-v3[data-cosmos='preview'] {
+  --atlas-ink: #070914;
+  --atlas-paper: #e9edf4;
+  --atlas-cyan: #78e8e8;
+  --atlas-muted: #b2b6ce;
+  --atlas-edge: #454666;
+  color-scheme: dark;
+}
+.atlas-v3[data-cosmos='preview'] :is(button, a, input, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #a891ff;
+  outline-offset: 4px;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__header {
+  background: #070914;
+  border-color: #22243b;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__brand span {
+  color: #a891ff;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__world-nav a[aria-current='page'] {
+  border-color: #a891ff;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__intro {
+  top: 30px;
+  left: 4%;
+  max-width: 42rem;
+  padding: 0;
+  background: none;
+  text-shadow: 0 2px 24px #070914;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__intro h1 {
+  font-size: clamp(2.5rem, 4.4vw, 4.3rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1.08;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__intro h1 em {
+  color: #b7a4ef;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__intro > p {
+  max-width: 40ch;
+  margin-top: 18px;
+  color: #c2c5d9;
+  font-size: 0.82rem;
+  text-shadow: 0 2px 8px #070914;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__world-label {
+  top: 36px;
+  right: 4%;
+  bottom: auto;
+  background: #070914c9;
+  border-right: 1px solid #7257b8;
+  padding: 10px 16px;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__gesture {
+  color: #b2b6ce;
+  background: #070914de;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__controls button,
+.atlas-v3[data-cosmos='preview'] .observatory-explorer button,
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__actions a {
+  color: #e9edf4;
+  background: #0b1025f5;
+  border-color: #454666;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__controls button:hover:not(:disabled),
+.atlas-v3[data-cosmos='preview'] .observatory-explorer button:hover:not(:disabled),
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__actions a:hover,
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__results a:hover,
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__results a[aria-current='location'],
+.atlas-v3[data-cosmos='preview'] .observatory-explorer button[aria-pressed='true'] {
+  color: #e9edf4;
+  background: #252044;
+  border-color: #a891ff;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer .schnittwerk-discover {
+  color: #f1edff;
+  background: #332653;
+  border-color: #8c73c5;
+  padding-block: 14px;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer .schnittwerk-discover:hover {
+  background: #48366f;
+  color: #fff;
+  border-color: #c4b2ff;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__panel {
+  color: #e9edf4;
+  background: #0b1025fa;
+  border-color: #454666;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer input,
+.atlas-v3[data-cosmos='preview'] .observatory-explorer select {
+  color: #e9edf4;
+  background: #11172e;
+  border-color: #555875;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer input::placeholder {
+  color: #b2b6ce;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__fallback {
+  color: #e9edf4;
+  background: #0b1025;
+  border-color: #454666;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__loading > span {
+  background: #a891ff;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__loading small,
+.atlas-v3[data-cosmos='preview'] .atlas-v3__insight p,
+.atlas-v3[data-cosmos='preview'] .atlas-v3__project-list p {
+  color: #b2b6ce;
+}
+.atlas-v3[data-cosmos='preview']
+  :is(.atlas-v3__wayfinding, .atlas-v3__projects, .atlas-v3__footer) {
+  border-color: #454666;
+}
+@media (max-width: 767px) {
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__intro {
+    top: 24px;
+    left: 20px;
+    max-width: calc(100% - 40px);
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__intro h1 {
+    font-size: clamp(2rem, 8.6vw, 3rem);
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__intro > p {
+    max-width: 31ch;
+    font-size: 0.76rem;
+    margin-top: 14px;
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__world-label {
+    top: auto;
+    bottom: 220px;
+    right: 20px;
+    min-width: 0;
+    padding: 8px 12px;
+  }
+  .atlas-v3[data-cosmos='preview']:has(.atlas-v3__intro[data-focused='true'])
+    .atlas-v3__world-label {
+    top: 24px;
+    bottom: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__intro {
+    transition: none;
+  }
+}

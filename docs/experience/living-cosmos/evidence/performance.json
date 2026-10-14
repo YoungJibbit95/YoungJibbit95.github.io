@@ -1,0 +1,343 @@
+{
+  "methodology": "One exploratory sample per variant, fresh Chromium/SwiftShader; actual CDP 4x CPU, 150ms latency, 1.6Mbps down. firstHtml is observable prerendered link markup; FCP is the paint metric. rendered is the existing post-render readiness acknowledgement, not a GPU presentation timestamp. physicalCameraChanged samples the actual Three camera on browser rAF; cameraChanged is the later persisted rest pose. Input timing includes automation delivery. No phone/FPS/field CWV claim.",
+  "samples": [
+    {
+      "variant": "existing",
+      "url": "http://127.0.0.1:4173/atlas/observatory/?world=observatory",
+      "browser": "156.0.8078.4",
+      "metrics": {
+        "firstHtml": 213.5,
+        "rendered": 8722.300000000745,
+        "input": 8874.800000000745,
+        "cameraChanged": 12171,
+        "physicalCameraChanged": 8942.800000000745,
+        "beforePose": "{\"position\":[-80,185,200],\"target\":[-230,43,-120],\"fov\":48,\"zoom\":1}",
+        "paints": [
+          {
+            "name": "first-paint",
+            "startTime": 1452
+          },
+          {
+            "name": "first-contentful-paint",
+            "startTime": 1452
+          }
+        ],
+        "resources": [
+          {
+            "name": "http://127.0.0.1:4173/assets/jsx-runtime-D3jfb0Ew.js",
+            "transferSize": 9201,
+            "decodedBodySize": 8901
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/living-cosmos-CvNbpLuh.js",
+            "transferSize": 213428,
+            "decodedBodySize": 213128
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/projects-C5jg4fx7.js",
+            "transferSize": 7977,
+            "decodedBodySize": 7677
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/SceneRegistry-RsZp9qZv.js",
+            "transferSize": 16927,
+            "decodedBodySize": 16627
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/experienceStore-B4krn3_B.js",
+            "transferSize": 2457,
+            "decodedBodySize": 2157
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/ExperienceRoot-BgxRSsnj.js",
+            "transferSize": 30692,
+            "decodedBodySize": 30392
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/atlas-2pMgUKyJ.js",
+            "transferSize": 686,
+            "decodedBodySize": 386
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/living-cosmos-DKOgubkx.css",
+            "transferSize": 33702,
+            "decodedBodySize": 33402
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/atlas-DR8STKoE.css",
+            "transferSize": 696,
+            "decodedBodySize": 396
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
+            "transferSize": 25136,
+            "decodedBodySize": 24836
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+            "transferSize": 21468,
+            "decodedBodySize": 21168
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/WorldCanvas-D_VaptuN.js",
+            "transferSize": 58198,
+            "decodedBodySize": 57898
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/events-9ce18a08.esm-B2Hl8sZL.js",
+            "transferSize": 864961,
+            "decodedBodySize": 864661
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/extends-CvVTau-c.js",
+            "transferSize": 531,
+            "decodedBodySize": 231
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/ObservatoryWorld-BMy9NkjI.js",
+            "transferSize": 17853,
+            "decodedBodySize": 17553
+          }
+        ],
+        "domNodes": 207
+      },
+      "renderer": {
+        "world": "observatory",
+        "frame": 70,
+        "calls": 15,
+        "triangles": 33434,
+        "geometries": 19,
+        "textures": 4,
+        "programs": 11,
+        "cameraFar": 6000,
+        "cameraPosition": [-67.0676673119508, 185, 193.93796905247692],
+        "discovery": null
+      },
+      "errors": []
+    },
+    {
+      "variant": "cosmos",
+      "url": "http://127.0.0.1:4173/atlas/observatory/?world=observatory&cosmos=preview",
+      "browser": "156.0.8078.4",
+      "metrics": {
+        "firstHtml": 217.29999999981374,
+        "rendered": 8864.5,
+        "input": 8980.299999999814,
+        "cameraChanged": 12196.099999999627,
+        "physicalCameraChanged": 9046.099999999627,
+        "beforePose": "{\"position\":[-80,185,200],\"target\":[-230,43,-120],\"fov\":48,\"zoom\":1}",
+        "paints": [
+          {
+            "name": "first-paint",
+            "startTime": 1468
+          },
+          {
+            "name": "first-contentful-paint",
+            "startTime": 1468
+          }
+        ],
+        "resources": [
+          {
+            "name": "http://127.0.0.1:4173/assets/jsx-runtime-D3jfb0Ew.js",
+            "transferSize": 9201,
+            "decodedBodySize": 8901
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/living-cosmos-CvNbpLuh.js",
+            "transferSize": 213428,
+            "decodedBodySize": 213128
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/projects-C5jg4fx7.js",
+            "transferSize": 7977,
+            "decodedBodySize": 7677
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/SceneRegistry-RsZp9qZv.js",
+            "transferSize": 16927,
+            "decodedBodySize": 16627
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/experienceStore-B4krn3_B.js",
+            "transferSize": 2457,
+            "decodedBodySize": 2157
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/ExperienceRoot-BgxRSsnj.js",
+            "transferSize": 30692,
+            "decodedBodySize": 30392
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/atlas-2pMgUKyJ.js",
+            "transferSize": 686,
+            "decodedBodySize": 386
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/living-cosmos-DKOgubkx.css",
+            "transferSize": 33702,
+            "decodedBodySize": 33402
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/atlas-DR8STKoE.css",
+            "transferSize": 696,
+            "decodedBodySize": 396
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
+            "transferSize": 25136,
+            "decodedBodySize": 24836
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+            "transferSize": 21468,
+            "decodedBodySize": 21168
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/WorldCanvas-D_VaptuN.js",
+            "transferSize": 58198,
+            "decodedBodySize": 57898
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/events-9ce18a08.esm-B2Hl8sZL.js",
+            "transferSize": 864961,
+            "decodedBodySize": 864661
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/extends-CvVTau-c.js",
+            "transferSize": 531,
+            "decodedBodySize": 231
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/CosmicObservatoryWorld-CCqcnS2I.js",
+            "transferSize": 11900,
+            "decodedBodySize": 11600
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/ObservatoryWorld-BMy9NkjI.js",
+            "transferSize": 17853,
+            "decodedBodySize": 17553
+          },
+          {
+            "name": "http://127.0.0.1:4173/assets/nebula-dust-CgRBWUM9.png",
+            "transferSize": 54323,
+            "decodedBodySize": 54023
+          }
+        ],
+        "domNodes": 208
+      },
+      "renderer": {
+        "world": "observatory",
+        "frame": 131,
+        "calls": 26,
+        "triangles": 3006,
+        "geometries": 20,
+        "textures": 4,
+        "programs": 8,
+        "cameraFar": 14000,
+        "cameraPosition": [-67.07045926690361, 185, 193.93927778136106],
+        "discovery": {
+          "sails": [
+            [0, 3, 0],
+            [0, -3, 0],
+            [0, 3, 0],
+            [0, -3, 0]
+          ],
+          "detailVisible": false
+        }
+      },
+      "errors": []
+    }
+  ],
+  "bundles": [
+    {
+      "file": "App-D5fEDl9V.js",
+      "bytes": 264861,
+      "gzipBytes": 89483
+    },
+    {
+      "file": "atlas-2pMgUKyJ.js",
+      "bytes": 386,
+      "gzipBytes": 272
+    },
+    {
+      "file": "atlas-DR8STKoE.css",
+      "bytes": 396,
+      "gzipBytes": 269
+    },
+    {
+      "file": "CosmicObservatoryWorld-CCqcnS2I.js",
+      "bytes": 11600,
+      "gzipBytes": 3992
+    },
+    {
+      "file": "events-9ce18a08.esm-B2Hl8sZL.js",
+      "bytes": 864661,
+      "gzipBytes": 227712
+    },
+    {
+      "file": "ExperienceRoot-BgxRSsnj.js",
+      "bytes": 30392,
+      "gzipBytes": 9189
+    },
+    {
+      "file": "experienceStore-B4krn3_B.js",
+      "bytes": 2157,
+      "gzipBytes": 993
+    },
+    {
+      "file": "extends-CvVTau-c.js",
+      "bytes": 231,
+      "gzipBytes": 182
+    },
+    {
+      "file": "jsx-runtime-D3jfb0Ew.js",
+      "bytes": 8901,
+      "gzipBytes": 3382
+    },
+    {
+      "file": "living-cosmos-CvNbpLuh.js",
+      "bytes": 213128,
+      "gzipBytes": 65926
+    },
+    {
+      "file": "living-cosmos-DKOgubkx.css",
+      "bytes": 33402,
+      "gzipBytes": 9200
+    },
+    {
+      "file": "main-2tEyuGJX.js",
+      "bytes": 1838,
+      "gzipBytes": 868
+    },
+    {
+      "file": "main-D_NP1Uba.css",
+      "bytes": 110053,
+      "gzipBytes": 23255
+    },
+    {
+      "file": "ObservatoryWorld-BMy9NkjI.js",
+      "bytes": 17553,
+      "gzipBytes": 6618
+    },
+    {
+      "file": "OriginWorld-X5_EMlJl.js",
+      "bytes": 30555,
+      "gzipBytes": 9279
+    },
+    {
+      "file": "projects-C5jg4fx7.js",
+      "bytes": 7677,
+      "gzipBytes": 3633
+    },
+    {
+      "file": "SceneRegistry-RsZp9qZv.js",
+      "bytes": 16627,
+      "gzipBytes": 7049
+    },
+    {
+      "file": "WorldCanvas-D_VaptuN.js",
+      "bytes": 57898,
+      "gzipBytes": 15033
+    }
+  ]
+}

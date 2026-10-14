@@ -25,7 +25,7 @@ network records inspected. Raw traces remain local under the ignored directory
 
 | Case                                  | Trace evidence                                                                                                                                                                                           | Classification and repair                                                                                                                                                                                                                                                                                                              |
 | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Consecutive world changes             | Both attempts reach the real `Page.screenshot` call. Fonts finish loading; the capture never returns a pixel sample before the 5-second assertion poll expires. Scene readiness already passed.          | Screenshot transport was inside a shorter assertion deadline. Wait for scene readiness **and** camera `idle`, then capture once within the unchanged test deadline and assert the unchanged `lit > 35`. A black sample fails immediately.                                                                                              |
+| Consecutive world changes             | Both attempts reach the real `Page.screenshot` call. Fonts finish loading; the capture never returns a pixel sample before the 5-second assertion poll expires. Scene readiness already passed.          | Screenshot transport was inside a shorter assertion deadline. Preserve the original scene-readiness and viewport checks, then capture once within the unchanged test deadline and assert the unchanged `lit > 35`. A black sample fails immediately.                                                                                   |
 | Rapid focus and keyboard interruption | First attempt stays `interrupted` for the complete 5-second assertion. The retry settles after 4.835 seconds, passes the unchanged one-second pose-stability check, then stalls in screenshot capture.   | Separate camera behavior from capture timing. The library's `stop()` copies its pending destination into its current position and does not clear velocity before a following manual move. Lead replaces cancellation with the physical current pose and a zero-delta update. Screenshot capture is moved outside the short pixel poll. |
 | Mobile pinch and pan                  | Both attempts pass distance change, target movement and page-scroll assertions. The final screenshot starts, fonts finish, and no sample returns before the 5-second poll deadline.                      | Preserve both genuine touch gestures and every pose/scroll threshold. Wait for camera `idle` after touch release, capture once, retain `lit > 35`.                                                                                                                                                                                     |
 | Legacy Nexus capture                  | `Create context` alone takes 22.919 seconds of the unchanged 30-second test. `notes.png` returns HTTP 200, 1,162,074 bytes, after 223.448 ms. The image-completion assertion then expires; retry passes. | Browser/context pressure is evidenced; an image URL/data failure is not. No timeout increase, retry increase or invented application fix. Keep this case unchanged and require the next complete Root CI to establish recovery.                                                                                                        |
@@ -64,6 +64,45 @@ controls receive the new wheel delta, so cancellation cannot discard that input.
 | Standalone entry: hydration, exact camera history, native URLs, No-JS and No-WebGL | **PASS 5/5** as part of the focused run, retaining exact full-pose assertions.                                                                                                                     |
 | Full Root, G0 and three world-switch stress runs on recovery commit                | **PENDING**, owned by lead.                                                                                                                                                                        |
 | Independent art quality                                                            | Not assessed by this recovery report.                                                                                                                                                              |
+
+## Follow-up on recovery CI
+
+[Root CI 38539741374](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38539741374)
+on recovery commit `61541b60187c9c5a6ee69d0873e22cecfc2f342c` finishes with
+**76 passed, 1 failed**. Rapid camera interruption, stationary pointer, mobile
+pinch, and the unchanged Legacy Nexus case all pass on their first attempt.
+Legacy Nexus takes 27.2 seconds; this is a pass, with little timing margin, not
+evidence that the previously observed browser-context pressure cannot recur.
+No Legacy test or timeout is changed.
+
+Only the consecutive-world pixel test exceeds its unchanged 30-second total
+deadline. Its first two screenshot calls actually complete in 6.259 and 6.803
+seconds; retry timings are 6.329 and 6.422 seconds. The third screenshot starts
+near the total deadline and is canceled by test teardown. The cleanup exception
+is secondary to that cancellation, not an independent application exception.
+
+The three camera-`idle` assertions added in the recovery commit consume 8.953
+seconds in the first attempt and 9.497 seconds in the retry. Renderer frames
+still advance from 51 to 60 and from 80 to 87 during capture after camera rest;
+this observation does not establish the cause of the screenshot cost. A local
+probe additionally waiting for the renderer counter to stop passes three runs,
+but takes 27.4, 27.4 and 27.0 seconds versus the lead's preceding 23.9, 23.9 and
+24.0 seconds. That added wait did not improve the measured test duration and is
+not retained.
+
+Comparison against the original `32e6a87` test confirms that neither camera
+`idle` nor renderer stillness was an acceptance condition for this world-switch
+case. The follow-up removes only those additional barriers. It retains all three
+animated world changes, the original scene-readiness and viewport checks, actual
+screenshot pixels, crop, thresholds, Canvas count and the 30-second deadline.
+The sole remaining test change from the original is capturing once outside the
+short pixel poll, then asserting the same `lit > 35`. Existing camera-settling
+and interruption tests remain unchanged by this follow-up. Final stress and CI
+results are pending; no capture-speed improvement is claimed.
+
+Raw follow-up traces remain ignored at
+`.verification/living-cosmos/recovery/ci-38539741374/`. No additional browser run
+was started while the lead's final validation was using the browser slot.
 
 ## Static entry and small performance candidate
 

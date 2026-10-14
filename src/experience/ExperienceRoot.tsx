@@ -15,6 +15,7 @@ import { ObservatoryExplorer } from './observatory/ui/ObservatoryExplorer'
 import { useExperienceStore } from '../store/experienceStore'
 import { moveWithKey, isFormTarget } from './InteractionRouter'
 import { effectiveMotion, webGLAvailable } from './MotionPolicy'
+import { cosmicPreviewEnabled } from './cosmicPreview'
 import { SceneDirector } from './SceneDirector'
 import { availableWorlds, defaultSnapshot, findHotspot, getWorld, worldHref } from './SceneRegistry'
 import type { AvailableWorldId, CameraBridge, CameraPose } from './worldTypes'
@@ -47,6 +48,7 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
   // The static document owns only the first hydration render. SceneDirector
   // synchronously restores URL/history state before this override is released.
   const [prerenderWorld, setPrerenderWorld] = useState(initialWorld)
+  const [cosmicPreview, setCosmicPreview] = useState(false)
   const world = prerenderWorld ?? activeWorld
   const focusId = useExperienceStore((state) => state.focusId)
   const pose = useExperienceStore((state) => state.pose)
@@ -84,11 +86,12 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
   const supported = webgl === 'ready'
 
   useEffect(() => {
+    setCosmicPreview(cosmicPreviewEnabled())
     director.start()
     setPrerenderWorld(undefined)
     const theme = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
     const previousTheme = theme?.content
-    if (theme) theme.content = '#c9d0bf'
+    if (theme) theme.content = cosmicPreviewEnabled() ? '#070914' : '#c9d0bf'
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
     const sync = () => setSystemReduced(media.matches)
     sync()
@@ -100,6 +103,11 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
       director.dispose()
     }
   }, [director])
+
+  useEffect(() => {
+    const theme = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+    if (theme) theme.content = cosmicPreview && world === 'observatory' ? '#070914' : '#c9d0bf'
+  }, [cosmicPreview, world])
 
   useEffect(() => {
     useExperienceStore.getState().setMotion(effectiveMotion(systemReduced, forceReduced))
@@ -185,12 +193,13 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
 
   const observatoryInput = useMemo(
     () => ({
+      cosmicPreview,
       visibleIds: visibleProjects.map((project) => project.id),
       selectedEdgeId: selectedEdge?.id ?? null,
       onSelectEdge: selectEdge,
       onLodChange: setLod,
     }),
-    [visibleProjects, selectedEdge, selectEdge],
+    [cosmicPreview, visibleProjects, selectedEdge, selectEdge],
   )
   const fail = useCallback(() => {
     useExperienceStore.getState().setWebGL('fallback')
@@ -232,7 +241,12 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
   }
 
   return (
-    <main className="atlas-v3" data-testid="atlas-experience" data-active-world={world}>
+    <main
+      className="atlas-v3"
+      data-testid="atlas-experience"
+      data-active-world={world}
+      data-cosmos={cosmicPreview && world === 'observatory' ? 'preview' : undefined}
+    >
       <a className="atlas-v3__skip" href="#atlas-projects">
         Direkt zu Projekten
       </a>
@@ -305,7 +319,9 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
           {supported && renderedWorld !== world && (
             <div className="atlas-v3__fallback atlas-v3__loading" role="status">
               <span aria-hidden="true" />
-              Die Landschaft wird aufgebaut.
+              {cosmicPreview && world === 'observatory'
+                ? 'Die Sternenkarte entsteht…'
+                : 'Die Landschaft wird aufgebaut.'}
               <small>Projekte und Quellen sind unten schon zugänglich.</small>
             </div>
           )}
@@ -319,6 +335,12 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
                 <br />
                 <em>wird Software.</em>
               </>
+            ) : cosmicPreview ? (
+              <>
+                Sieben Systeme.
+                <br />
+                <em>Ein Universum.</em>
+              </>
             ) : (
               <>
                 Eine Landschaft.
@@ -330,7 +352,9 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
           <p>
             {world === 'origin'
               ? 'Eine Frage kann alles in Bewegung setzen.'
-              : 'Näher kommen. Schichten öffnen. Zusammenhänge entdecken.'}
+              : cosmicPreview
+                ? 'Folge deiner Neugier. Entdecke, was die Projekte verbindet.'
+                : 'Näher kommen. Schichten öffnen. Zusammenhänge entdecken.'}
           </p>
         </div>
 
@@ -353,6 +377,7 @@ export default function ExperienceRoot({ initialWorld }: { initialWorld?: Availa
 
         {world === 'observatory' && (
           <ObservatoryExplorer
+            cosmicPreview={cosmicPreview}
             filters={filters}
             visibleProjects={visibleProjects}
             selectedProject={selectedProject}

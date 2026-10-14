@@ -9,6 +9,7 @@ import type { ObservatorySceneInput } from './observatory/contracts'
 
 const Origin = lazy(() => getWorld('origin').loadScene())
 const Observatory = lazy(() => getWorld('observatory').loadScene())
+const CosmicObservatory = lazy(() => import('./worlds/CosmicObservatoryWorld'))
 
 interface CanvasProps {
   observatory?: ObservatorySceneInput
@@ -46,25 +47,46 @@ function RendererMetrics({
   world: AvailableWorldId
 }) {
   const gl = useThree((state) => state.gl)
-  const sample = useCallback(() => {
-    if (!target.current) return
-    target.current.value = JSON.stringify({
-      world,
-      frame: gl.info.render.frame,
-      calls: gl.info.render.calls,
-      triangles: gl.info.render.triangles,
-      geometries: gl.info.memory.geometries,
-      textures: gl.info.memory.textures,
-      programs: gl.info.programs?.length ?? 0,
-    })
-  }, [gl, target, world])
-  useFrame(sample)
+  const scene = useThree((state) => state.scene)
+  const camera = useThree((state) => state.camera)
+  const sample = useCallback(
+    (inspect = false) => {
+      if (!target.current) return
+      target.current.value = JSON.stringify({
+        world,
+        frame: gl.info.render.frame,
+        calls: gl.info.render.calls,
+        triangles: gl.info.render.triangles,
+        geometries: gl.info.memory.geometries,
+        textures: gl.info.memory.textures,
+        programs: gl.info.programs?.length ?? 0,
+        ...(inspect
+          ? {
+              cameraFar: camera.far,
+              cameraPosition: camera.position.toArray(),
+              // Read actual transforms only on explicit diagnostic requests.
+              discovery: scene.getObjectByName('nexus-stellar-system')
+                ? {
+                    sails: [0, 1, 2, 3].map((index) =>
+                      scene.getObjectByName('nexus-client-sail-' + index)?.position.toArray(),
+                    ),
+                    detailVisible: scene.getObjectByName('nexus-runtime-detail')?.visible,
+                  }
+                : null,
+            }
+          : {}),
+      })
+    },
+    [gl, target, world, scene, camera],
+  )
+  useFrame(() => sample())
   useEffect(() => {
     // R3F frees old scene resources on idle, after the last demand frame.
     // Explicit diagnostics must read those current counters without rendering.
     const output = target.current
-    output?.addEventListener('atlas:sample-renderer', sample)
-    return () => output?.removeEventListener('atlas:sample-renderer', sample)
+    const inspect = () => sample(true)
+    output?.addEventListener('atlas:sample-renderer', inspect)
+    return () => output?.removeEventListener('atlas:sample-renderer', inspect)
   }, [sample, target])
   return null
 }
@@ -179,6 +201,12 @@ export default function WorldCanvas(props: CanvasProps) {
         <Suspense fallback={null}>
           {world === 'origin' ? (
             <Origin onFocus={onFocus} selectedId={selectedId} />
+          ) : props.observatory?.cosmicPreview ? (
+            <CosmicObservatory
+              onFocus={onFocus}
+              selectedId={selectedId}
+              observatory={props.observatory}
+            />
           ) : (
             <Observatory
               onFocus={onFocus}

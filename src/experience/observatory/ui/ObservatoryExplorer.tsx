@@ -13,6 +13,7 @@ import { ProjectDossier } from './ProjectDossier'
 import { followNormally, projectHref } from './navigation'
 
 export interface ObservatoryExplorerProps {
+  cosmicPreview?: boolean
   filters: ObservatoryFilters
   visibleProjects: readonly ObservatoryProject[]
   selectedProject: ObservatoryProject | null
@@ -37,6 +38,7 @@ export function ObservatoryExplorer({
   selectedEdge,
   lod,
   navigation,
+  cosmicPreview = false,
 }: ObservatoryExplorerProps) {
   const [open, setOpen] = useState(false)
   const [draftQuery, setDraftQuery] = useState(filters.query)
@@ -93,7 +95,9 @@ export function ObservatoryExplorer({
         >
           {visibleSelected
             ? selectedProject?.id === 'nexus'
-              ? 'Innenraum entdecken'
+              ? cosmicPreview
+                ? 'Kern entdecken'
+                : 'Innenraum entdecken'
               : 'Architektur erkunden'
             : discoveryProject
               ? `${discoveryProject.id === 'nexus' ? 'Nexus' : discoveryProject.name} erkunden`
@@ -147,7 +151,12 @@ export function ObservatoryExplorer({
               {levels[lod.level]}
             </p>
             {selectedProject && visibleSelected ? (
-              <ProjectDossier project={selectedProject} filters={filters} navigation={navigation} />
+              <ProjectDossier
+                project={selectedProject}
+                filters={filters}
+                navigation={navigation}
+                cosmicPreview={cosmicPreview}
+              />
             ) : null}
             <form
               role="search"

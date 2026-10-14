@@ -1,5 +1,5 @@
 import { useFrame, useThree } from '@react-three/fiber'
-import { memo, useEffect, useMemo, useRef } from 'react'
+import { Fragment, memo, useEffect, useMemo, useRef, type ComponentType } from 'react'
 import {
   BufferGeometry,
   CanvasTexture,
@@ -51,9 +51,11 @@ export function isVisibleHit(object: Object3D): boolean {
 const ProjectName = memo(function ProjectName({
   project,
   selectedId,
+  cosmic,
 }: {
   project: ObservatoryProject
   selectedId: string | null
+  cosmic: boolean
 }) {
   const compact = useThree((state) => state.size.width < 768)
   const shortNames: Record<ProjectId, string> = {
@@ -80,17 +82,20 @@ const ProjectName = memo(function ProjectName({
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     const width = Math.min(752, ctx.measureText(text).width + 42)
-    ctx.fillStyle = schnittwerk.mineral
+    ctx.fillStyle = cosmic ? '#070914d9' : schnittwerk.mineral
     ctx.fillRect((768 - width) / 2, 18, width, 92)
-    ctx.fillStyle = schnittwerk.ink
+    ctx.fillStyle = cosmic ? '#e9edf4' : schnittwerk.ink
     ctx.fillText(text, 384, 64)
     const next = new CanvasTexture(canvas)
     next.colorSpace = SRGBColorSpace
     return next
   }
-  const texture = useMemo(() => makeTexture(label), [label])
+  const texture = useMemo(() => makeTexture(label), [label, cosmic])
   const macroText = compact ? macroLabels[project.id] : undefined
-  const macroTexture = useMemo(() => (macroText ? makeTexture(macroText) : null), [macroText])
+  const macroTexture = useMemo(
+    () => (macroText ? makeTexture(macroText) : null),
+    [macroText, cosmic],
+  )
   const sprite = useRef<Sprite>(null)
   const farLabels = useRef(false)
   const point = useMemo(() => new Vector3(...project.position), [project.position])
@@ -103,6 +108,10 @@ const ProjectName = memo(function ProjectName({
   useFrame(({ camera, size }) => {
     if (!sprite.current) return
     const distance = camera.position.distanceTo(point)
+    // On the guided portrait arrival, keep Nexus attached to its own silhouette
+    // instead of projecting its label across the more distant YJarvis orbit.
+    sprite.current.position.y =
+      cosmic && compact && !selectedId && project.id === 'nexus' ? 30 : cosmic ? 56 : 44
     farLabels.current = compact && (farLabels.current ? distance > 1550 : distance > 1650)
     // In a close reading, a distant neighbour's name must not label the foreground building.
     // Panning away restores map labels without changing selection, camera or history.
@@ -117,7 +126,12 @@ const ProjectName = memo(function ProjectName({
     sprite.current.scale.set(height * 6, height, 1)
   })
   return (
-    <sprite ref={sprite} position={[0, 44, 0]} name={'label-' + project.id} renderOrder={10}>
+    <sprite
+      ref={sprite}
+      position={[0, cosmic ? 56 : 44, 0]}
+      name={'label-' + project.id}
+      renderOrder={10}
+    >
       <spriteMaterial map={texture} depthTest={false} depthWrite={false} toneMapped={false} />
     </sprite>
   )
@@ -129,12 +143,14 @@ const Connection = memo(function Connection({
   technical,
   selected,
   onSelect,
+  cosmic,
 }: {
   from: ObservatoryProject
   to: ObservatoryProject
   technical: boolean
   selected: boolean
   onSelect: () => void
+  cosmic: boolean
 }) {
   const geometry = useMemo(() => {
     const start = new Vector3(...from.position)
@@ -162,20 +178,48 @@ const Connection = memo(function Connection({
       }}
     >
       <lineBasicMaterial
-        color={selected ? '#233026' : technical ? '#526731' : '#626f60'}
+        color={
+          cosmic
+            ? selected
+              ? '#e9edf4'
+              : technical
+                ? '#78e8e8'
+                : '#8070b1'
+            : selected
+              ? '#233026'
+              : technical
+                ? '#526731'
+                : '#626f60'
+        }
         transparent
-        opacity={selected ? 1 : technical ? 0.95 : 0.62}
+        opacity={selected ? 1 : technical ? 0.95 : cosmic ? 0.4 : 0.62}
+        toneMapped={!cosmic}
       />
     </lineSegments>
   )
 })
 
-/** Seven independent silhouettes in one persistent G1 camera coordinate system. */
+export interface ObservatoryVisuals {
+  Environment: ComponentType
+  Architecture: ComponentType<{
+    id: ProjectId
+    color: string
+    selected: boolean
+    level: SemanticLevel
+  }>
+}
+
+/** Both art variants share the same real coordinates, LOD, filters and hit handling. */
 export default function ObservatoryWorld({
   selectedId,
   onFocus,
   observatory,
-}: ObservatoryWorldProps) {
+  visuals,
+}: ObservatoryWorldProps & { visuals?: ObservatoryVisuals }) {
+  const cosmic = Boolean(visuals)
+  const Materials = cosmic ? Fragment : SchnittwerkMaterials
+  const Architecture = visuals?.Architecture ?? ProjectArchitecture
+  const Environment = visuals?.Environment ?? ObservatoryAtmosphere
   const { gl, invalidate, raycaster } = useThree()
   const compact = useThree((state) => state.size.width < 768)
   const root = useRef<Group>(null)
@@ -255,17 +299,17 @@ export default function ObservatoryWorld({
   })
 
   return (
-    <SchnittwerkMaterials>
-      <color attach="background" args={[schnittwerk.sky]} />
-      <fog attach="fog" args={[schnittwerk.sky, 3100, 5600]} />
+    <Materials>
+      <color attach="background" args={[cosmic ? '#070914' : schnittwerk.sky]} />
+      <fog attach="fog" args={[cosmic ? '#070914' : schnittwerk.sky, 3100, 5600]} />
       <group ref={root} name="observatory-world">
-        <ambientLight intensity={0.45} color="#dae5da" />
-        <hemisphereLight args={['#f4f5dc', '#5b674f', 0.85]} />
+        <ambientLight intensity={cosmic ? 0.75 : 0.45} color={cosmic ? '#9ca6df' : '#dae5da'} />
+        {!cosmic && <hemisphereLight args={['#f4f5dc', '#5b674f', 0.85]} />}
         <directionalLight
           position={[-450, 760, 450]}
-          color="#fffbe4"
+          color={cosmic ? '#b8d4ff' : '#fffbe4'}
           intensity={2.6}
-          castShadow
+          castShadow={!cosmic}
           shadow-mapSize={[1024, 1024]}
           shadow-camera-left={-950}
           shadow-camera-right={950}
@@ -275,12 +319,17 @@ export default function ObservatoryWorld({
           shadow-bias={-0.0003}
           shadow-normalBias={1.1}
         />
-        <directionalLight position={[550, 230, -650]} color="#dce8ec" intensity={0.7} />
-        <ObservatoryAtmosphere />
+        <directionalLight
+          position={[550, 230, -650]}
+          color={cosmic ? '#a28edc' : '#dce8ec'}
+          intensity={cosmic ? 1.5 : 0.7}
+        />
+        <Environment />
         {observatoryEdges.map((edge) => {
           if (!visible.has(edge.from) || !visible.has(edge.to)) return null
           return (
             <Connection
+              cosmic={cosmic}
               key={edge.id}
               from={observatoryProjects.find((project) => project.id === edge.from)!}
               to={observatoryProjects.find((project) => project.id === edge.to)!}
@@ -310,14 +359,14 @@ export default function ObservatoryWorld({
               gl.domElement.style.cursor = ''
             }}
           >
-            <ProjectArchitecture
+            <Architecture
               id={project.id}
               color={project.visual.color}
               selected={selectedId === project.id}
               level="macro"
             />
             <group name={'meso-' + project.id} visible={false}>
-              <ProjectArchitecture
+              <Architecture
                 id={project.id}
                 color={project.visual.color}
                 selected={selectedId === project.id}
@@ -325,17 +374,17 @@ export default function ObservatoryWorld({
               />
             </group>
             <group name={'micro-' + project.id} visible={false}>
-              <ProjectArchitecture
+              <Architecture
                 id={project.id}
                 color={project.visual.color}
                 selected={selectedId === project.id}
                 level="micro"
               />
             </group>
-            <ProjectName project={project} selectedId={selectedId} />
+            <ProjectName project={project} selectedId={selectedId} cosmic={cosmic} />
           </group>
         ))}
       </group>
-    </SchnittwerkMaterials>
+    </Materials>
   )
 }

@@ -1,12 +1,23 @@
 # G2-D: erster menschlicher Design-Checkpoint
 
+> **Cosmic Reset, 14. Oktober 2026:** Die frühere Schnittwerk-Themenfreigabe
+> wurde durch den Nutzer ausdrücklich korrigiert. Maßgeblich sind jetzt
+> [Cosmic Vertical Slice und technische Prüfung](living-cosmos/REPORT.md),
+> [vier integrierte Browserbilder](living-cosmos/REVIEW.html) und
+> [Living Cosmos Art Direction](living-cosmos/ART_DIRECTION.md).
+> Das untenstehende Protokoll bleibt als historischer Arbeitsstand erhalten.
+> Die aktuelle Bildfreigabe ist offen. Kein Gesamtumbau, G3, Merge oder Deploy.
+
 Startpunkt: lokaler Branch, GitHub und Draft PR #1 identisch auf
 `c2e338cf723f1ec6e20b4493175a8783ac95b405`. Der G2-C-Engineering-Stand bleibt
 die Basis. Seine Gestaltung ist ausdrücklich nicht menschlich freigegeben.
 
-**Dieser Checkpoint ist keine fertige G2-D-Abnahme.** Drei eigenständige,
-funktionierende Browserprototypen liegen zur Richtungswahl vor. Keine
-Produktionsszene wurde durch eine subjektive Agentenwahl ersetzt. G3 ist gesperrt.
+**Richtungsentscheidung erfolgt:** Der Nutzer gab am 11. Oktober 2026 ausdrücklich
+„B – Schnittwerk weiterentwickeln“ frei, nachdem beide Vergleichsbilder und die
+Stärken/Schwächen vorlagen. Die Umsetzung auf Origin und Observatory ist damit
+autorisiert. Die folgenden Prototypen dokumentieren diesen ersten Checkpoint;
+die Richtungswahl ist noch keine Abnahme des fertig integrierten Ergebnisses.
+G3 bleibt gesperrt.
 
 ## Vergleich und Empfehlung
 
@@ -47,17 +58,21 @@ Ressourcen-Cleanup und belegte Informationen. Die Live-Referenz
 [basement.studio](https://basement.studio/) wurde als gebauter, ausgestatteter Ort
 mit Perspektive untersucht. Übernommen wurden Gestaltungsprinzipien, keine Assets.
 
-## Übergabe nach der Richtungsentscheidung
+## Umsetzung nach der Richtungsentscheidung
 
-1. Nutzer wählt A, B, C oder eine konkret benannte Weiterentwicklung anhand des
-   Bildvergleichs. Das ist der verlangte Checkpoint aus Abschnitt 4 des Auftrags.
-2. Gewählte Formensprache konsequent auf Origin und Observatory übertragen,
-   einschließlich sieben lesbarer Projektidentitäten und sinnvoller Nahmomente.
-3. Bestehende SceneRegistry, SceneDirector, Kamera, History, Filter und persistenten
-   Canvas weiterverwenden. Prototypsteuerungen sind keine zweite Produktarchitektur.
-4. Geometrie-/Materialkosten senken und unterbrechbare Bewegungsfolgen ausarbeiten.
-   Tatsächliche Bildschirmaufnahmen, Performance und vollständige technische
-   Regression auf dem integrierten HEAD wiederholen.
+1. **Erledigt: Nutzer hat B gewählt.** Der verlangte Checkpoint aus Abschnitt 4
+   wurde mit tatsächlichen Desktop-/Mobile-Bildern durchgeführt.
+2. **Implementiert:** B prägt Origin als gefaltete Schwelle und Observatory als
+   zusammenhängende Landschaft mit sieben eigenen Projektarchitekturen. Nexus
+   öffnet in der Nähe vier Dach-/Wandsegmente und legt belegte Client-Bereiche frei.
+3. Bestehende SceneRegistry, SceneDirector, Kamera, History, Filter und ein
+   persistenter Canvas bleiben verantwortlich. Beide Welten haben eigene statisch
+   ausgelieferte HTML-Einstiege mit zugänglichen Projekt- und Quellenartikeln.
+4. Die integrierte Ausführung erhält eigene Desktop-/Mobile-Aufnahmen,
+   unabhängige Regression und wiederholte Leistungsmessungen. Maßgeblich sind
+   [Integration](g2d/INTEGRATION.md), [integrierte QA](g2d/INTEGRATED_QA.md) und
+   [integrierte Performance](g2d/INTEGRATED_PERFORMANCE.md); die ursprünglichen
+   Konzeptbilder oben bleiben als historischer Richtungsvergleich erhalten.
 5. Menschliches Visual-Experience-Gate separat abnehmen. Kein G3, main-Merge oder
    Produktionsdeploy aus diesem Checkpoint ableiten.
 

@@ -65,6 +65,7 @@ export interface ObservatoryLodState {
 }
 
 export interface ObservatorySceneInput {
+  cosmicPreview?: boolean
   visibleIds: readonly ProjectId[]
   selectedEdgeId: string | null
   onSelectEdge?: (id: string) => void

@@ -1,25 +1,52 @@
 # G2-D creative reconstruction checkpoint
 
+## Cosmic Reset continuation — 14 October 2026
+
+The user's latest direction supersedes the mineral/architectural theme below.
+Two subagents were used, with disjoint file ownership: Cosmic Art Direction
+(`experiments/living-cosmos/`, new art report) and Engineering Recovery/QA
+(focused tests and recovery report). The lead alone changed shared production
+modules, integrated the slice, committed and monitored CI.
+
+Recovery checkpoint: `61541b6`; 11 focused browser checks passed without retry.
+The bounded slice is available at `/atlas/observatory/?cosmos=preview` through
+the existing single Canvas, camera and history. The second interpretation stays
+isolated. See [current report](living-cosmos/REPORT.md),
+[skill applications](living-cosmos/ART_DIRECTION.md) and
+[visual review](living-cosmos/REVIEW.html). Full Origin/Observatory redesign
+awaits explicit visual approval; G3, merge and deploy remain excluded.
+
+## Historical execution record
+
 Baseline local, GitHub and Draft PR #1: `c2e338cf723f1ec6e20b4493175a8783ac95b405`.
 Branch: `feat/living-atlas-v3`. G2-C engineering passes; its visuals are explicitly
 not human-approved. The new request authorizes isolated prototypes and technical
 improvements, but requires a human direction choice before replacing production
 Origin/Observatory. No G3, main merge, deployment or history rewrite.
 
+**Human checkpoint passed for direction selection:** the user explicitly chose
+“B – Schnittwerk weiterentwickeln” after the real desktop/mobile comparison.
+A now implements Origin in B's language, B implements Observatory, the Lead owns
+shell/mobile composition and camera entry framing. Performance continues in its
+separate worktree. Existing scene/history/render-ready contracts stay in place.
+Independent final QA and a human judgment of the integrated work still follow.
+
 ## Ownership and waves
 
 Three available child slots require real parallel waves; five roles are assigned.
 
-| Role                             | State                                                                 | Exclusive write area                                                                                                   |
-| -------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| A creative direction             | two worlds, twelve captures; independent review                       | `experiments/g2d-design/direction-a/`, `g2d/DIRECTION_A.md`, `evidence/g2d/a/`                                         |
-| B independent creative direction | two worlds, ten captures; independent review                          | `experiments/g2d-design/direction-b/`, `g2d/DIRECTION_B.md`, `evidence/g2d/b/`                                         |
-| C performance                    | standalone candidate and native-link fix; paired measurements pending | worktree `F:/Coding/atlas-g2d-performance`, branch `codex/g2d-performance`; own report/scripts/artifacts               |
-| D mobile experience              | all three reviewed; native selection/modal prototype                  | own mobile report/experiment, production read-only                                                                     |
-| E independent QA                 | serial browser review after art captures                              | own test harness/report/artifacts, production read-only                                                                |
-| Lead                             | third direction and integration                                       | `direction-c/`, shared experiment contract, comparison page, central reports; production integration only after review |
+| Role                             | State                                                                        | Exclusive write area                                                     |
+| -------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| A creative direction             | concept complete; approved B implemented in Origin, actual camera comparison | Origin geometry, permitted Origin poses, `production-origin/` evidence   |
+| B independent creative direction | concept complete; approved B implemented in Observatory                      | Observatory geometry/materials, `production-observatory/` evidence       |
+| C performance                    | 36 isolated runs complete; integrated B runner prepared                      | worktree `F:/Coding/atlas-g2d-performance`; own scripts/reports/evidence |
+| D mobile experience              | production 320/390/768 review complete; short-height repair verified         | own mobile reports/evidence; production read-only                        |
+| E independent QA                 | new physical discovery regressions and full engineering run                  | new test file, independent report/evidence; production read-only         |
+| Lead                             | third concept, chosen B shell integration, camera/art fixes and Git          | shared shell/styles, central reports, branch and PR                      |
 
-A and B do not inspect or copy each other's concept. Shared production scene,
+A and B did not inspect or copy each other's original concept. After the human
+choice they intentionally share B's approved palette and spatial language.
+Shared production scene,
 history, camera, filtering and source models remain intact. Prototype canvases
 are separate experiment documents, never mounted inside the production app.
 
@@ -28,6 +55,12 @@ slot for D. D delivered mobile composition findings and a reusable native reader
 then released a slot for E. C resumed source work while E tested alone. Timing
 measurements wait for all art/QA browser processes to close: parallel development
 does not justify contaminated software-WebGL benchmarks.
+
+After the choice, A and B implemented separate production worlds while C completed
+the isolated bootstrap comparison. D then reviewed the integrated mobile build;
+E reviews the completed production source and conducts runtime regression.
+Serial browser windows preserve reproducible software-WebGL evidence while
+source, documentation and test preparation continue in parallel.
 
 Review documents: [A](g2d/DIRECTION_A.md), [B](g2d/DIRECTION_B.md),
 [C](g2d/DIRECTION_C.md), [mobile](g2d/MOBILE.md), [QA](g2d/QA.md),
