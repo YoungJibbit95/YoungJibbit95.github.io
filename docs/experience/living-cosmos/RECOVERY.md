@@ -104,6 +104,38 @@ Raw follow-up traces remain ignored at
 `.verification/living-cosmos/recovery/ci-38539741374/`. No additional browser run
 was started while the lead's final validation was using the browser slot.
 
+## G0 initialization follow-up
+
+[G0 CI 38543193983](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38543193983)
+on `e651626ab7df5b6269041df9a978e90cfa8f01db` reports **15 passed, 1 failed,
+8 intentional project skips**, using two workers. The unchanged mobile case taps
+Raumpunkt B before the inner CameraRig exists. At trace time 26380 ms the Canvas
+is still its native 300 × 150 size and the readiness-dependent toolbar is
+disabled. The tap completes at 26403 ms and marks B selected, but `saved-pose`
+remains empty. Only the 26593 ms snapshot shows initialized Three/CameraControls
+and an enabled toolbar. The initial pose persists throughout the 14-second poll.
+`SpikeScene`'s optional ref delegation silently drops this early request; no
+started camera flight or later overwrite is evidenced. The camera-spike source
+is unchanged between `61541b6` and `e651626`.
+
+The repair adds one `disabled` condition to existing DOM focus buttons until the
+existing camera readiness callback. Confirmed No-WebGL and SceneError fallbacks
+remain selectable. The existing mobile test now holds the lazy scene request,
+asserts the temporary disabled state, then releases it and retains the actual
+tap, target-Y precision, screenshot and overflow checks. This deterministic
+initialization check fails against the preceding build (**1/1**, button enabled).
+No timeout, retry, gesture or precision threshold is changed.
+
+Typecheck, production build and unit tests (**6/6**) pass. The full two-worker G0
+browser suite passes **16/16**, with the existing eight project skips, no retries,
+in 49.7 seconds. This includes the deterministic mobile case and both desktop and
+mobile No-WebGL keyboard-selection cases. The saved mobile screenshot was also
+inspected: the selected B landmark is rendered and the target readout reaches
+approximately `[0, -1.999, 3.997]`. This local result does not replace the next CI
+run. Raw CI trace and local regression evidence are ignored under
+`.verification/living-cosmos/recovery/g0-38543193983/`, `g0-readiness-baseline/`
+and `g0-readiness-full/`.
+
 ## Static entry and small performance candidate
 
 Both `/atlas/` and `/atlas/observatory/` have dedicated HTML documents,

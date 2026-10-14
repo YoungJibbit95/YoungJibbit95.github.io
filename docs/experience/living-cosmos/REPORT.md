@@ -10,14 +10,16 @@ G3, Merge nach `main` und Produktionsdeploy wurden nicht ausgeführt.
 Repository `YoungJibbit95/YoungJibbit95.github.io`, bestehender Branch
 `feat/living-atlas-v3`, bestehender [Draft PR #1](https://github.com/YoungJibbit95/YoungJibbit95.github.io/pull/1).
 Start-HEAD: `32e6a87a238fb3ea14fc2f3cf77f7df0a739b60f`.
+Integrierter Cosmic-Code: `e651626ab7df5b6269041df9a978e90cfa8f01db`.
+Die folgende kleine G0-Ergänzung ist unten dokumentiert.
 Der vollständige finale Feature-SHA und dessen CI stehen im PR und im Abschluss
 dieser Arbeit; ein Bericht kann seinen eigenen Commit-Hash nicht enthalten.
 
-| Etappe                               | Commit / Dateien                                                                                                                                     |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Recovery                             | `61541b6`: `CameraRig.tsx`, `InteractionRouter.ts`, zwei vorhandene Browsertests und `RECOVERY.md`                                                   |
-| Zwei kosmische Studien               | `99d4609`: `experiments/living-cosmos/` einschließlich sechs Browserbildern, Generator und `ART_DIRECTION.md`                                        |
-| Integrierter Slice und Abnahmebelege | Commit dieses Berichts: unten aufgeführte Integrationsdateien, sechs neue Slice-Tests, finale Screenshot-Recovery, Performance-Script und Bildreview |
+| Etappe                               | Commit / Dateien                                                                                                                        |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Recovery                             | `61541b6`: `CameraRig.tsx`, `InteractionRouter.ts`, zwei vorhandene Browsertests und `RECOVERY.md`                                      |
+| Zwei kosmische Studien               | `99d4609`: `experiments/living-cosmos/` einschließlich sechs Browserbildern, Generator und `ART_DIRECTION.md`                           |
+| Integrierter Slice und Abnahmebelege | `e651626`: unten aufgeführte Integrationsdateien, sechs neue Slice-Tests, finale Screenshot-Recovery, Performance-Script und Bildreview |
 
 Die Integration berührt `src/{main,atlas}.tsx`, `ExperienceRoot`, `WorldCanvas`,
 `SceneRegistry`, die Observatory-Contracts, Explorer/Dossier/Navigation und
@@ -166,6 +168,21 @@ unterscheidet den beobachteten Recovery-Lauf von der folgenden integrierten
 Revision; lokales Grün wird nicht als GitHub-Grün ausgegeben.
 
 ## Lokale technische Prüfungen
+
+Die CI auf `e651626` fand zusätzlich eine bereits vorhandene G0-Start-Race:
+[G0 38543193983](https://github.com/YoungJibbit95/YoungJibbit95.github.io/actions/runs/38543193983)
+meldet 15 bestanden, einen Fehler und acht gerätespezifische Skips. Der Trace
+zeigt den Tap auf B vor der inneren CameraRig-Bereitschaft. Der sichtbare Button
+war bereits aktiv; die noch fehlende Rig-Referenz verwarf den Fokusauftrag.
+Eine Runtime-Zeile in `experiments/camera-spike/src/SpikeApp.tsx` deaktiviert
+Kameraaktionen bis zur bestehenden Readiness-Meldung. No-WebGL-/Fehler-Fallback
+bleiben bedienbar. Der vorhandene mobile Fall in `e2e/camera.spec.ts` blockiert
+kontrolliert das Lazy-Modul, prüft den deaktivierten Zustand, gibt das Modul
+frei und behält Tap, Zielpräzision, Screenshot und Overflow-Prüfung unverändert.
+Die Baseline scheitert deterministisch; anschließend bestehen Build, 6/6 Units
+und die vollständige G0-Suite mit **zwei Workern wie CI: 16/16, acht bestehende
+Skips, keine Retries, 49,7 Sekunden**. Details in [RECOVERY.md](RECOVERY.md).
+Die Cosmic-Implementierung und ihre Bilder ändern sich dadurch nicht.
 
 | Prüfung                                                                        | Ergebnis                                                                                                            |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |

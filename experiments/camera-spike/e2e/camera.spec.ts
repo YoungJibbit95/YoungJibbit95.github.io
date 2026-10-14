@@ -164,7 +164,24 @@ test('WCAG 2.1 A/AA audit has no serious or critical violations', async ({ page 
 
 test('mobile stage, large DOM targets and screenshot', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'Mobile-only viewport test')
-  await page.goto('/')
+  // Keep the lazy scene pending so a visible DOM target cannot silently drop
+  // a focus request before the real CameraRig reports readiness.
+  let releaseScene = () => {}
+  const sceneGate = new Promise<void>((resolve) => {
+    releaseScene = resolve
+  })
+  await page.route('**/assets/SpikeScene-*.js', async (route) => {
+    await sceneGate
+    await route.continue()
+  })
+  const sceneRequest = page.waitForRequest('**/assets/SpikeScene-*.js')
+  try {
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    await sceneRequest
+    await expect(page.getByRole('button', { name: /Verbindung Raumpunkt B/ })).toBeDisabled()
+  } finally {
+    releaseScene()
+  }
   await stage(page)
   await expect(page.getByRole('button', { name: /Verbindung Raumpunkt B/ })).toBeVisible()
   await page.getByRole('button', { name: /Verbindung Raumpunkt B/ }).tap()

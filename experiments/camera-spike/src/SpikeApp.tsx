@@ -236,6 +236,7 @@ export default function SpikeApp() {
                 key={point.id}
                 className={`location ${selected === point.id ? 'active' : ''}`}
                 aria-pressed={selected === point.id}
+                disabled={ability !== 'fallback' && !failed && !sceneReady}
                 onClick={() => select(point.id)}
               >
                 <span className="location-number">0{index + 1}</span>
