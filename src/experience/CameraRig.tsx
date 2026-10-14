@@ -41,7 +41,14 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
 
   function cancel(): void {
     generation.current++
-    controlsRef.current?.stop()
+    const controls = controlsRef.current
+    const current = capture()
+    if (controls && current) {
+      // CameraControls.stop() snaps to the pending end pose. Interruption must
+      // instead keep the physical pose, then clear the previous flight velocity.
+      void controls.setLookAt(...current.position, ...current.target, false)
+      controls.update(0)
+    }
     invalidate()
   }
 
@@ -57,8 +64,8 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
   async function moveTo(pose: CameraPose, animate: boolean): Promise<boolean> {
     const controls = controlsRef.current
     if (!controls) return false
-    const token = ++generation.current
-    controls.stop()
+    cancel()
+    const moveToken = generation.current
     const perspective = camera as PerspectiveCamera
     perspective.fov = pose.fov
     perspective.zoom = pose.zoom
@@ -66,7 +73,7 @@ export const CameraRig = forwardRef<CameraBridge, RigProps>(function CameraRig(
     controls.normalizeRotations()
     invalidate()
     await controls.setLookAt(...pose.position, ...pose.target, animate)
-    const complete = generation.current === token
+    const complete = generation.current === moveToken
     if (complete) invalidate()
     return complete
   }

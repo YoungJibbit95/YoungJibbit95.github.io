@@ -143,10 +143,11 @@ test('two consecutive world changes render real frames in one persistent canvas'
   ] as const) {
     await page.getByRole('link', { name: button, exact: true }).click()
     await expect(page.getByTestId('atlas-scene-ready')).toHaveText(world)
+    await expect(page.getByTestId('atlas-transition')).toHaveText('idle')
     await positionCanvasForEvidence(canvas)
-    await expect
-      .poll(async () => (await spatialPixelEvidence(page, canvas)).lit)
-      .toBeGreaterThan(35)
+    // Readiness precedes camera rest. Capture after both boundaries and keep
+    // screenshot transport outside the short assertion polling deadline.
+    expect((await spatialPixelEvidence(page, canvas)).lit).toBeGreaterThan(35)
     await expect(stage.locator('canvas')).toHaveCount(1)
   }
 })

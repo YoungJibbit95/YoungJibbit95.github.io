@@ -296,15 +296,39 @@ test('rapid focus and user input interrupt camera flight without a stale destina
   await expect(page).toHaveURL(/focus=jarvis/)
   await expect.poll(async () => (await pose(page)).target[0]).toBeCloseTo(-400, 1)
   await panel(page).locator('[data-project-id="novacore"]').click()
+  const canceledDestination = await pose(page)
   await page.getByTestId('atlas-stage').focus()
   await page.keyboard.press('ArrowRight')
   // Manual motion retains the selected project; the Director must settle that
   // retained selection instead of staying in a canceled 'transitioning' state.
   await expect(page.getByTestId('atlas-transition')).toHaveText('focused')
   const stopped = await pose(page)
+  // Interruption must retain the physical view, not snap to the old end pose
+  // before applying the small manual pan.
+  expect(
+    Math.hypot(...stopped.target.map((value, axis) => value - canceledDestination.target[axis])),
+  ).toBeGreaterThan(50)
   await page.waitForTimeout(1000)
   expect(delta(await pose(page), stopped)).toBeLessThan(0.05)
-  await expect.poll(async () => (await pixels(page)).lit).toBeGreaterThan(35)
+  // The CI trace reached screenshot capture but returned no sample before the
+  // assertion poll expired. Capture once within the test's existing deadline;
+  // a genuinely empty rendered frame still fails the same strict pixel gate.
+  expect((await pixels(page)).lit).toBeGreaterThan(35)
+})
+
+test('a stationary pointer press releases camera interruption without changing the view', async ({
+  page,
+}) => {
+  await open(page)
+  await expect(page.getByTestId('atlas-transition')).toHaveText('idle')
+  const before = await pose(page)
+  const canvas = page.getByTestId('atlas-canvas').locator('canvas')
+  const bounds = (await canvas.boundingBox())!
+  await page.mouse.move(bounds.x + bounds.width - 8, bounds.y + bounds.height - 8)
+  await page.mouse.down()
+  await page.mouse.up()
+  await expect(page.getByTestId('atlas-transition')).toHaveText('idle')
+  expect(delta(await pose(page), before)).toBeLessThan(0.0000001)
 })
 
 test('mobile pinch and two-finger pan move Observatory without scrolling the page', async ({
@@ -359,7 +383,8 @@ test('mobile pinch and two-finger pan move Observatory without scrolling the pag
       .toBeGreaterThan(1)
     expect(Math.abs((await page.evaluate(() => scrollY)) - startScroll)).toBeLessThan(3)
     await client.detach()
-    await expect.poll(async () => (await pixels(page)).lit).toBeGreaterThan(35)
+    await expect(page.getByTestId('atlas-transition')).toHaveText('idle')
+    expect((await pixels(page)).lit).toBeGreaterThan(35)
   } finally {
     await context.close()
   }

@@ -13,17 +13,18 @@ export function isFormTarget(target: EventTarget | null): boolean {
 export function bindSpatialInput(element: HTMLElement, interrupt: () => void): () => void {
   const wheel = (event: WheelEvent) => {
     event.preventDefault()
-    event.stopPropagation()
+    // Cancel the preceding flight before CameraControls applies this wheel delta.
+    // Stopping propagation here would prevent the actual camera gesture.
     interrupt()
   }
   const start = () => interrupt()
   const context = (event: MouseEvent) => event.preventDefault()
-  element.addEventListener('wheel', wheel, { passive: false })
+  element.addEventListener('wheel', wheel, { passive: false, capture: true })
   element.addEventListener('pointerdown', start, { capture: true })
   element.addEventListener('touchstart', start, { capture: true, passive: true })
   element.addEventListener('contextmenu', context)
   return () => {
-    element.removeEventListener('wheel', wheel)
+    element.removeEventListener('wheel', wheel, true)
     element.removeEventListener('pointerdown', start, true)
     element.removeEventListener('touchstart', start, true)
     element.removeEventListener('contextmenu', context)
