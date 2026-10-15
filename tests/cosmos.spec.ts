@@ -1,6 +1,7 @@
 import { devices, expect, test, type Page, type TestInfo } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import type { CameraPose } from '../src/experience/worldTypes'
+import { nexusSemantics } from '../src/experience/worlds/cosmos/nexusSemantic'
 
 test.describe.configure({ timeout: 120_000 })
 
@@ -21,7 +22,11 @@ const panel = (page: Page) => page.getByRole('region', { name: 'Projektsternwart
 
 type RendererSample = {
   cameraFar: number
-  discovery: { sails: [number, number, number][]; detailVisible: boolean } | null
+  discovery: {
+    clients: { id: string; position: [number, number, number]; shells: number[][] }[]
+    relations: number[][]
+    detailVisible: boolean
+  } | null
 }
 
 /** Dispatch and read in one browser task so a demand frame cannot replace the inspection. */
@@ -33,17 +38,62 @@ const renderer = async (page: Page): Promise<RendererSample> =>
 
 async function expectDiscovery(page: Page, opened: boolean) {
   const initial = (await renderer(page)).discovery
-  expect(initial?.sails).toHaveLength(4)
-  for (const sail of initial!.sails) expect(sail).toHaveLength(3)
-  const horizontal = async () =>
-    (await renderer(page)).discovery!.sails.map(([x, , z]) => Math.hypot(x, z))
+  expect(initial?.clients.map(({ id }) => id)).toEqual(nexusSemantics.clients.map(({ id }) => id))
+  for (const client of initial!.clients) expect(client.position).toHaveLength(3)
+  const displacement = async () =>
+    (await renderer(page)).discovery!.clients.map(({ position }, index) =>
+      Math.hypot(
+        ...position.map(
+          (coordinate, axis) => coordinate - nexusSemantics.clients[index].closed[axis],
+        ),
+      ),
+    )
   if (opened) {
-    await expect.poll(async () => Math.min(...(await horizontal()))).toBeGreaterThan(8.99)
+    await expect.poll(async () => Math.min(...(await displacement()))).toBeGreaterThan(8.99)
   } else {
-    await expect.poll(async () => Math.max(...(await horizontal()))).toBeLessThan(1e-7)
+    await expect.poll(async () => Math.max(...(await displacement()))).toBeLessThan(1e-7)
   }
+  // The new orbital bodies keep the old physical-opening threshold and also
+  // have to arrive at all authored endpoints, not merely flip a detail flag.
+  await expect
+    .poll(async () =>
+      Math.max(
+        ...(await renderer(page)).discovery!.clients.map(({ position }, index) =>
+          Math.hypot(
+            ...position.map(
+              (coordinate, axis) =>
+                coordinate - nexusSemantics.clients[index][opened ? 'opened' : 'closed'][axis],
+            ),
+          ),
+        ),
+      ),
+    )
+    .toBeLessThan(1e-7)
   await expect.poll(async () => (await renderer(page)).discovery?.detailVisible).toBe(opened)
-  return (await renderer(page)).discovery!
+  const result = (await renderer(page)).discovery!
+  for (const client of result.clients) {
+    expect(client.shells).toHaveLength(2)
+    for (const shell of client.shells) {
+      expect(shell).toHaveLength(3)
+      if (opened) expect(Math.hypot(...shell)).toBeGreaterThan(2.39)
+      else expect(Math.hypot(...shell)).toBeLessThan(1e-7)
+    }
+  }
+  if (opened) {
+    expect(result.relations).toHaveLength(8)
+    for (let index = 0; index < 4; index++) {
+      // The four rendered segments really terminate at the four moving clients.
+      expect(
+        Math.hypot(
+          ...result.relations[index * 2 + 1].map(
+            (value, axis) => value - result.clients[index].position[axis],
+          ),
+        ),
+      ).toBeLessThan(1e-5)
+      expect(Math.hypot(...result.relations[index * 2])).toBeCloseTo(9, 5)
+    }
+  }
+  return result
 }
 
 async function open(page: Page, width = 1440, reducedMotion = false) {

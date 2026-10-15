@@ -1,5 +1,10 @@
 # Living Cosmos — Vertical Slice und Handoff
 
+**Neuester Checkpoint vom 15. Oktober:** [Nexus als Core-Stern und vier
+App-Welten](semantic/NEXUS_REDESIGN_REPORT.md) mit [neuen Browserbildern](semantic/REVIEW.html)
+und quellengebundener Semantik für alle sieben Projekte. Die ältere
+Nexus-Segelgestalt ist damit überholt; Nebelraum bleibt die Grundlage.
+
 **Nachfolgender Checkpoint:** Der autorisierte Galactic-Atlas-Refinement-Pass
 auf Basis von `e21dd2a9` ist im [aktuellen Abnahmebericht](refinement/REPORT.md)
 und [neuen Bildreview](refinement/REVIEW.html) dokumentiert. Nebelraum ist die

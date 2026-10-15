@@ -6,7 +6,8 @@ import { bindSpatialInput } from './InteractionRouter'
 import { getWorld } from './SceneRegistry'
 import type { AvailableWorldId, CameraBridge, CameraPose } from './worldTypes'
 import type { ObservatorySceneInput } from './observatory/contracts'
-import { Sprite, Vector3 } from 'three'
+import { LineSegments, Sprite, Vector3 } from 'three'
+import { nexusSemantics } from './worlds/cosmos/nexusSemantic'
 
 const Origin = lazy(() => getWorld('origin').loadScene())
 const Observatory = lazy(() => getWorld('observatory').loadScene())
@@ -54,6 +55,66 @@ function RendererMetrics({
   const sample = useCallback(
     (inspect = false) => {
       if (!target.current) return
+      const nexusLabels: {
+        id: string
+        x: number
+        y: number
+        width: number
+        height: number
+        nameFontSize: number
+        roleFontSize: number
+      }[] = []
+      const nexusRelations: number[][] = []
+      if (inspect) {
+        const relations = scene.getObjectByName('nexus-core-relations')
+        if (relations instanceof LineSegments) {
+          const positions = relations.geometry.getAttribute('position')
+          for (let index = 0; index < positions.count; index++)
+            nexusRelations.push([
+              positions.getX(index),
+              positions.getY(index),
+              positions.getZ(index),
+            ])
+        }
+        scene.traverse((object) => {
+          if (!(object instanceof Sprite) || !object.name.startsWith('nexus-label-')) return
+          for (let ancestor = object.parent; ancestor; ancestor = ancestor.parent)
+            if (!ancestor.visible) return
+          if (!object.visible) return
+          const center = object.getWorldPosition(new Vector3())
+          const scale = object.getWorldScale(new Vector3())
+          const right = new Vector3(1, 0, 0).applyQuaternion(camera.quaternion)
+          const up = new Vector3(0, 1, 0).applyQuaternion(camera.quaternion)
+          // Measure the actual text footprint, including a relocated sprite anchor.
+          const corners = [-1, 1].flatMap((x) =>
+            [-1, 1].map((y) =>
+              center
+                .clone()
+                .addScaledVector(
+                  right,
+                  (0.5 - object.center.x + (x * object.userData.glyphWidth) / 2) * scale.x,
+                )
+                .addScaledVector(
+                  up,
+                  (0.5 - object.center.y + (y * object.userData.glyphHeight) / 2) * scale.y,
+                )
+                .project(camera),
+            ),
+          )
+          const xs = corners.map((point) => ((point.x + 1) * size.width) / 2)
+          const ys = corners.map((point) => ((1 - point.y) * size.height) / 2)
+          const projectedHeight = (Math.max(...ys) - Math.min(...ys)) / object.userData.glyphHeight
+          nexusLabels.push({
+            id: object.name.replace('nexus-label-', ''),
+            x: Math.min(...xs),
+            y: Math.min(...ys),
+            width: Math.max(...xs) - Math.min(...xs),
+            height: Math.max(...ys) - Math.min(...ys),
+            nameFontSize: projectedHeight * object.userData.nameFontRatio,
+            roleFontSize: projectedHeight * object.userData.roleFontRatio,
+          })
+        })
+      }
       target.current.value = JSON.stringify({
         world,
         frame: gl.info.render.frame,
@@ -96,9 +157,15 @@ function RendererMetrics({
               // Read actual transforms only on explicit diagnostic requests.
               discovery: scene.getObjectByName('nexus-stellar-system')
                 ? {
-                    sails: [0, 1, 2, 3].map((index) =>
-                      scene.getObjectByName('nexus-client-sail-' + index)?.position.toArray(),
-                    ),
+                    clients: nexusSemantics.clients.map(({ id }) => ({
+                      id,
+                      position: scene.getObjectByName('nexus-client-' + id)?.position.toArray(),
+                      shells: ['upper', 'lower'].map((half) =>
+                        scene.getObjectByName('nexus-shell-' + half + '-' + id)?.position.toArray(),
+                      ),
+                    })),
+                    relations: nexusRelations,
+                    labels: nexusLabels,
                     detailVisible: scene.getObjectByName('nexus-runtime-detail')?.visible,
                   }
                 : null,

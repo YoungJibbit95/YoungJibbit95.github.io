@@ -1,4 +1,24 @@
-# Living Atlas: G2-D — Galactic Atlas Refinement / Visual Review
+# Living Atlas: G2-D — Semantic Systems / Nexus Review
+
+**Aktueller begrenzter Checkpoint vom 15. Oktober 2026:** Ausgangs-HEAD
+lokal/remote/Draft PR #1 war `5b78a873572ff62a8c6bc8de95445e0d699f92be` mit
+erfolgreicher Root- und G0-CI. Nexus wurde als Core-Stern mit vier benannten,
+funktional unterscheidbaren App-Welten neu ausgearbeitet. Die physische
+Annäherung öffnet die Hüllen und macht vier Core-Beziehungen sichtbar.
+
+[Nexus Redesign Report mit aktuellem Prüfstand](living-cosmos/semantic/NEXUS_REDESIGN_REPORT.md),
+[vier echte Browserbilder](living-cosmos/semantic/REVIEW.html),
+[Semantik aller sieben Projekte](living-cosmos/semantic/PROJECT_SEMANTIC_LANGUAGE.md),
+[kleiner Exploded-View-Vertrag](living-cosmos/semantic/EXPLODED_VIEW_FRAMEWORK.md).
+
+Nebelraum, bestehende Kamera-/History-/Canvas-Verträge und die sechs anderen
+Projektkörper bleiben erhalten. Zwei Subagents und der Lead haben die sechs
+lokalen Skills konkret angewandt. Die frühere Nexus-Segelgestalt ist durch
+diesen neueren Nutzerauftrag ersetzt. **Stop zur visuellen Nutzerfreigabe.**
+Als nächster Schritt wird nach Freigabe Cerebri als zweite semantische Detailwelt
+empfohlen. Kein Origin-Ausbau, G3, Merge oder Produktionsdeploy.
+
+## Vorheriger Galactic-Atlas-Refinement-Checkpoint
 
 **Neuer begrenzter Checkpoint vom 14. Oktober 2026:** Auf Basis des tatsächlich
 verifizierten lokalen/Remote-/PR-HEAD `e21dd2a9deb7d629c096d16371711d5f09584dd8`

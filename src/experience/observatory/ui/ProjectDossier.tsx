@@ -1,5 +1,6 @@
 import type { Ref } from 'react'
 import type { ObservatoryFilters, ObservatoryNavigation, ObservatoryProject } from '../contracts'
+import { nexusSemantics } from '../../worlds/cosmos/nexusSemantic'
 import { followNormally, projectHref } from './navigation'
 
 export interface ProjectDossierProps {
@@ -36,11 +37,25 @@ export function ProjectDossier({
       <p className="observatory-dossier__question">{project.question}</p>
       <p>{project.description}</p>
       {cosmicPreview && project.id === 'nexus' && (
-        <p>
-          <span translate="no">Nexus Main, Nexus Mobile, Nexus Code und Nexus Code Mobile</span>{' '}
-          teilen den Runtime-Kern <span translate="no">@nexus/core</span>. Die vier orbitalen Segel
-          veranschaulichen diese gemeinsame Grundlage.
-        </p>
+        <section className="cosmos-nexus-system" aria-labelledby="nexus-system-title">
+          <h4 id="nexus-system-title">Ein Stern, vier Apps</h4>
+          <p className="cosmos-nexus-system__core">
+            <strong translate="no">{nexusSemantics.core.label}</strong>
+            <span>{nexusSemantics.core.role}</span>
+          </p>
+          <dl aria-label="Die vier Nexus-Apps">
+            {nexusSemantics.clients.map((client) => (
+              <div key={client.id} data-nexus-client={client.id}>
+                <dt translate="no">{client.label}</dt>
+                <dd>{client.role}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="cosmos-nexus-system__reading">
+            Beim Näherkommen fächern sich die App-Welten um den zentralen Stern auf. So werden die
+            vier Anwendungen und ihre gemeinsame Grundlage einzeln lesbar.
+          </p>
+        </section>
       )}
       <dl>
         <div>
@@ -72,7 +87,11 @@ export function ProjectDossier({
       </div>
       <details className="observatory-evidence">
         <summary>Quellen & Grenzen</summary>
-        <p>{project.visual.interpretation}</p>
+        <p>
+          {cosmicPreview && project.id === 'nexus'
+            ? nexusSemantics.explanation
+            : project.visual.interpretation}
+        </p>
         <ul>
           {project.evidence.map((source) => (
             <li key={source.id}>

@@ -1,5 +1,10 @@
 # Living Cosmos — Galactic Atlas Refinement
 
+**Nachfolgender Checkpoint vom 15. Oktober:** [Nexus Redesign und semantische
+Projektwelten](../semantic/NEXUS_REDESIGN_REPORT.md), [aktueller Bildreview](../semantic/REVIEW.html).
+Die dortige Core-Stern-/App-Planeten-Struktur ersetzt die hier dokumentierten
+Nexus-Segel. Dieser Bericht bewahrt die vorherige Nebelraum- und Technikbaseline.
+
 14. Oktober 2026. Begrenzter Creative-Quality-Pass auf **Nebelraum**.
     **Visuelle Nutzerfreigabe offen.** Die technischen Resultate und die Art-Bewertung
     werden getrennt beurteilt. [Vorher/Nachher und sechs finale Browserbilder](REVIEW.html).

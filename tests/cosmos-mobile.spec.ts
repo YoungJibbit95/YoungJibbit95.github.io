@@ -111,9 +111,12 @@ for (const viewport of [
     const dossierHeading = dossier.getByRole('heading', { name: 'Nexus Ecosystem', exact: true })
     await expect(dossierHeading).toBeFocused()
     await expect(dossierHeading).toBeInViewport({ ratio: 1 })
-    await expect(dossier).toContainText(
-      'Nexus Main, Nexus Mobile, Nexus Code und Nexus Code Mobile',
-    )
+    await expect(dossier.locator('.cosmos-nexus-system dt')).toHaveText([
+      'Nexus Main',
+      'Nexus Mobile',
+      'Nexus Code',
+      'Nexus Code Mobile',
+    ])
     await expect(dossier.getByRole('link', { name: /Repository/ })).toHaveAttribute(
       'href',
       /github\.com/,

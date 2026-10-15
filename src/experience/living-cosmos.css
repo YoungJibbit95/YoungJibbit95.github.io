@@ -141,6 +141,52 @@ html:has(.atlas-v3[data-cosmos='preview']) {
 .atlas-v3[data-cosmos='preview'] .observatory-dossier h3 {
   scroll-margin-block: 16px;
 }
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system {
+  margin-block: 24px;
+  padding-left: 14px;
+  border-left: 1px solid #7257b8;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system h4 {
+  margin: 0 0 12px;
+  color: #e9edf4;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system__core {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system__core strong {
+  color: #d8c8ff;
+  font-weight: 500;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system dl {
+  margin: 16px 0;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system dl > div {
+  margin: 0;
+  padding-block: 9px;
+  border-top: 1px solid #30334f;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system dt {
+  color: #e9edf4;
+  font-size: 0.875rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system dd {
+  color: #b2b6ce;
+  margin-top: 2px;
+  font-size: 0.875rem;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system__reading {
+  margin: 0;
+  color: #c2c5d9;
+  text-wrap: pretty;
+}
 .atlas-v3[data-cosmos='preview'] :is(button, a, summary) {
   touch-action: manipulation;
   -webkit-tap-highlight-color: #a891ff35;
