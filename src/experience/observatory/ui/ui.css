@@ -1,0 +1,321 @@
+/* Nonmodal explorer sits above editorial layer 1, below the existing skip-link layer 3. */
+.observatory-explorer {
+  position: absolute;
+  z-index: 2;
+  right: max(28px, 4vw, env(safe-area-inset-right));
+  bottom: max(16px, calc(env(safe-area-inset-bottom) + 8px));
+  width: min(26rem, calc(100% - 56px));
+  color: var(--atlas-paper);
+  font-size: 0.8rem;
+  pointer-events: auto;
+  text-align: left;
+}
+.observatory-explorer__bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+.observatory-explorer__trigger-label {
+  min-width: 0;
+  text-align: left;
+}
+.observatory-explorer__trigger-label small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 11rem;
+  font-size: 0.65rem;
+  color: var(--atlas-muted);
+}
+.atlas-v3 .observatory-explorer button,
+.observatory-explorer__actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--atlas-edge);
+  background: #101923;
+  color: var(--atlas-paper);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1.4;
+  box-shadow: none;
+}
+.atlas-v3 .observatory-explorer button:hover,
+.observatory-explorer__actions a:hover,
+.observatory-explorer__results a:hover,
+.observatory-explorer__results a[aria-current='location'] {
+  background: #193139;
+  color: var(--atlas-cyan);
+  border-color: #537f88;
+  box-shadow: none;
+}
+.observatory-explorer__count {
+  color: var(--atlas-muted);
+  font-variant-numeric: tabular-nums;
+}
+.observatory-explorer__panel {
+  margin-top: 8px;
+  background: #0c131c;
+  border: 1px solid #3a4b60;
+}
+.observatory-explorer__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px 8px 18px;
+}
+.observatory-explorer__heading h2 {
+  font-size: 0.94rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+.atlas-v3 .observatory-explorer__heading button {
+  border: 0;
+  background: transparent;
+  padding: 10px;
+}
+.observatory-explorer__body {
+  max-height: min(54dvh, 36rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  padding: 8px 18px 24px;
+  scroll-padding-block: 12px;
+}
+.observatory-explorer p {
+  margin: 0 0 14px;
+  line-height: 1.65;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+.observatory-explorer h3 {
+  margin: 12px 0;
+  font-size: 1rem;
+  text-wrap: balance;
+}
+.observatory-explorer__level {
+  color: var(--atlas-cyan);
+  font-size: 0.69rem;
+}
+.observatory-explorer__muted,
+.observatory-explorer__eyebrow {
+  color: var(--atlas-muted);
+}
+.observatory-explorer__eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+}
+.observatory-explorer label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  font-size: 0.75rem;
+}
+.observatory-explorer input,
+.observatory-explorer select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 9px 10px;
+  border: 1px solid #58697d;
+  border-radius: 0;
+  background: #111e2b;
+  color: var(--atlas-paper);
+  font: inherit;
+  font-size: 1rem;
+}
+.observatory-explorer input::placeholder {
+  color: #a5b4c8;
+  opacity: 1;
+  font-size: 0.8rem;
+}
+.observatory-explorer form > button[type='submit'] {
+  margin-top: 8px;
+}
+.observatory-explorer :is(select, summary):focus-visible {
+  outline: 2px solid var(--atlas-cyan);
+  outline-offset: 3px;
+}
+.observatory-explorer summary {
+  min-height: 44px;
+  padding-block: 14px;
+  cursor: pointer;
+  color: var(--atlas-paper);
+}
+.observatory-explorer summary:hover {
+  color: var(--atlas-cyan);
+}
+.observatory-explorer__filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 12px;
+  margin-bottom: 10px;
+}
+.observatory-explorer__result-count {
+  margin-top: 15px !important;
+  color: var(--atlas-muted);
+  font-size: 0.73rem;
+}
+.observatory-explorer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.observatory-explorer__results a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 58px;
+  padding: 10px;
+  margin-inline: -10px;
+  text-decoration: none;
+}
+.observatory-explorer__results strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.observatory-explorer__results small {
+  display: block;
+  margin-top: 3px;
+  color: var(--atlas-muted);
+  font-size: 0.68rem;
+}
+.observatory-explorer__regions,
+.observatory-explorer__relations {
+  margin-top: 14px;
+  border-top: 1px solid var(--atlas-edge);
+}
+.observatory-explorer__regions > div {
+  margin-block: 16px 24px;
+}
+.observatory-explorer__regions p,
+.observatory-explorer__relations p {
+  color: var(--atlas-muted);
+  font-size: 0.76rem;
+}
+.observatory-explorer__relations li {
+  margin-bottom: 10px;
+}
+.atlas-v3 .observatory-explorer__relations button {
+  display: grid;
+  width: 100%;
+  gap: 4px;
+  text-align: left;
+}
+.observatory-explorer__relations small {
+  color: var(--atlas-muted);
+}
+.atlas-v3 .observatory-explorer button[aria-pressed='true'] {
+  border-color: var(--atlas-cyan);
+  background: #193139;
+}
+.observatory-explorer__edge {
+  margin-top: 20px;
+}
+.observatory-explorer__edge a,
+.observatory-evidence a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.observatory-explorer__empty {
+  padding-block: 10px 20px;
+}
+.observatory-dossier {
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--atlas-edge);
+}
+.observatory-dossier h3 {
+  font-size: 1.65rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+.observatory-dossier__question {
+  color: var(--atlas-cyan);
+}
+.observatory-dossier dl {
+  margin: 20px 0;
+}
+.observatory-dossier dl > div {
+  margin-block: 12px;
+}
+.observatory-dossier dt {
+  color: var(--atlas-muted);
+  font-size: 0.69rem;
+}
+.observatory-dossier dd {
+  margin: 4px 0 0;
+  line-height: 1.6;
+}
+.observatory-explorer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.observatory-evidence {
+  margin-top: 14px;
+}
+.observatory-evidence li {
+  margin-bottom: 12px;
+}
+@media (max-width: 767px) {
+  /* The open sheet covers these controls; exclude their obscured Tab targets too. */
+  .observatory-explorer[data-expanded='true'] ~ .atlas-v3__controls {
+    visibility: hidden;
+  }
+  .observatory-explorer {
+    left: max(20px, env(safe-area-inset-left));
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(16px, calc(env(safe-area-inset-bottom) + 8px));
+    width: auto;
+  }
+  .observatory-explorer__bar {
+    gap: 5px;
+  }
+  .atlas-v3 .observatory-explorer__bar button {
+    font-size: 0.68rem;
+    padding-inline: 9px;
+    gap: 6px;
+  }
+  .observatory-explorer__bar > button:first-child {
+    min-width: 0;
+    flex: 1;
+  }
+  .observatory-explorer__bar > button:first-child > svg {
+    display: none;
+  }
+  .observatory-explorer__panel {
+    max-height: 45dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  .observatory-explorer__body {
+    max-height: none;
+    min-height: 0;
+    padding-inline: 14px;
+  }
+  .observatory-explorer__heading {
+    padding-left: 14px;
+    flex-shrink: 0;
+  }
+  .observatory-explorer__filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atlas-v3 .observatory-explorer button {
+    transition: none;
+  }
+}

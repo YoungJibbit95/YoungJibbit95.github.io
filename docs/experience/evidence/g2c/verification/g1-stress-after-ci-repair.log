@@ -1,0 +1,14 @@
+
+Running 3 tests using 1 worker
+
+(node:78568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\experience.render.spec.ts:133:1 › two consecutive world changes render real frames in one persistent canvas (8.3s)
+(node:77172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\experience.render.spec.ts:133:1 › two consecutive world changes render real frames in one persistent canvas (8.9s)
+(node:76952) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [chromium] › tests\experience.render.spec.ts:133:1 › two consecutive world changes render real frames in one persistent canvas (13.5s)
+
+  3 passed (33.6s)

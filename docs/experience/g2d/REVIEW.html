@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>G2-D · Drei Orte, drei Richtungen</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, sans-serif;
+        color: #252723;
+        background: #eeeee7;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      header,
+      main,
+      footer {
+        width: min(1480px, 100%);
+        margin: auto;
+        padding: 26px 32px;
+      }
+      header {
+        border-bottom: 1px solid #bdc0b5;
+      }
+      .eyebrow {
+        font: 11px monospace;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-size: clamp(28px, 3.2vw, 48px);
+        font-weight: 500;
+        letter-spacing: -0.055em;
+        margin: 12px 0;
+      }
+      header p {
+        max-width: 880px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+      }
+      select {
+        min-height: 44px;
+        border: 1px solid #747d6a;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        padding: 8px 32px 8px 12px;
+      }
+      a {
+        color: inherit;
+        text-underline-offset: 3px;
+      }
+      a:focus-visible,
+      select:focus-visible {
+        outline: 3px solid #755234;
+        outline-offset: 4px;
+      }
+      .comparison {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+      article {
+        min-width: 0;
+      }
+      .identifier {
+        font: 12px monospace;
+        color: #655c4e;
+      }
+      h2 {
+        font-weight: 500;
+        font-size: clamp(20px, 1.7vw, 28px);
+        letter-spacing: -0.045em;
+        margin: 8px 0;
+      }
+      .concept {
+        font-size: 13px;
+        min-height: 42px;
+        line-height: 1.5;
+        margin: 6px 0 18px;
+      }
+      .shot {
+        display: block;
+        background: #dddcd0;
+        border: 1px solid #b9bcaf;
+      }
+      .shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .caption {
+        font-size: 11px;
+        margin: 9px 0 22px;
+      }
+      .assessment {
+        font-size: 13px;
+        line-height: 1.65;
+      }
+      .assessment p {
+        margin: 10px 0;
+      }
+      .assessment strong {
+        font-weight: 650;
+      }
+      .links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 13px;
+      }
+      .links a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+      }
+      footer {
+        font-size: 14px;
+        line-height: 1.6;
+        border-top: 1px solid #bdc0b5;
+      }
+      footer p {
+        max-width: 980px;
+      }
+      footer strong {
+        font-weight: 650;
+      }
+      body[data-size='390'] .comparison {
+        max-width: 1220px;
+        margin: auto;
+      }
+      @media (max-width: 760px) {
+        header,
+        main,
+        footer {
+          padding: 22px 18px;
+        }
+        .comparison {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .concept {
+          min-height: 0;
+        }
+      }
+    </style>
+  </head>
+  <body data-size="1440">
+    <header>
+      <div class="eyebrow">YoungJibbit95 / G2-D / Menschlicher Design-Checkpoint</div>
+      <h1>Drei Orte. Eine offene Richtungsentscheidung.</h1>
+      <p>
+        Alle Aufnahmen stammen aus funktionierenden R3F-Browserprototypen. Gleiche Viewports,
+        dieselben sieben Projekte und eine echte Nexus-Entdeckung. Keine Mockups. Die
+        Produktionsgestaltung ist noch nicht ersetzt.
+      </p>
+      <div class="controls">
+        <label
+          >Ansicht
+          <select id="scene">
+            <option value="overview">Sternwarte · Übersicht</option>
+            <option value="discovery">Nexus · Entdeckung</option>
+            <option value="origin">Origin · Einstieg</option>
+          </select></label
+        >
+        <label
+          >Viewport
+          <select id="size">
+            <option value="1440">Desktop · 1440 × 900</option>
+            <option value="390">Mobile · 390 × 844</option>
+          </select></label
+        >
+      </div>
+    </header>
+    <main>
+      <div class="comparison">
+        <article data-direction="a">
+          <div class="identifier">A / Kalkstein · Kupfer · Schwellen</div>
+          <h2>The Aperture Archive</h2>
+          <p class="concept">
+            Ein monumentales Archiv: Projektkammern öffnen sich hinter gebauten Schwellen.
+          </p>
+          <a class="shot" href="../evidence/g2d/a/observatory-overview-1440.png" target="_blank"
+            ><img
+              src="../evidence/g2d/a/observatory-overview-1440.png"
+              alt="Richtung A, Sternwarte am Desktop"
+          /></a>
+          <p class="caption">Echte Browseraufnahme · Anklicken für volle Auflösung</p>
+          <div class="assessment">
+            <p>
+              <strong>Stärke:</strong> Klare Schwellen, starke Perspektive und zusammengehörige
+              Origin-/Projektarchitektur.
+            </p>
+            <p>
+              <strong>Grenze:</strong> Kammern und Oberflächen wirken noch wie ein
+              Ausstellungsmodell; die persönliche Geschichte braucht mehr sichtbare Details.
+            </p>
+          </div>
+          <div class="links">
+            <a href="DIRECTION_A.md">Entwurf &amp; Nachweise</a
+            ><a href="http://127.0.0.1:3011/experiments/g2d-design/direction-a/">Prototyp öffnen</a>
+          </div>
+        </article>
+        <article data-direction="b">
+          <div class="identifier">B / Mineralschichten · Höfe · Gelber Weg</div>
+          <h2>Schnittwerk</h2>
+          <p class="concept">
+            Eine helle Landschaft: Der Weg führt durch Einschnitte zu den inneren Schichten der
+            Projekte.
+          </p>
+          <a class="shot" href="../evidence/g2d/b/observatory-overview-1440.png" target="_blank"
+            ><img
+              src="../evidence/g2d/b/observatory-overview-1440.png"
+              alt="Richtung B, Sternwarte am Desktop"
+          /></a>
+          <p class="caption">Echte Browseraufnahme · Anklicken für volle Auflösung</p>
+          <div class="assessment">
+            <p>
+              <strong>Stärke:</strong> Kohärenteste Gesamtlandschaft, gute Orientierung und eine
+              verständliche räumliche Öffnung.
+            </p>
+            <p>
+              <strong>Grenze:</strong> Noch Architekturmodell statt vollständig erlebter Landschaft;
+              Licht und Materialien brauchen mehr Eigenheit.
+            </p>
+          </div>
+          <div class="links">
+            <a href="DIRECTION_B.md">Entwurf &amp; Nachweise</a
+            ><a href="http://127.0.0.1:3012/experiments/g2d-design/direction-b/">Prototyp öffnen</a>
+          </div>
+        </article>
+        <article data-direction="c">
+          <div class="identifier">C / Dunkles Grün · Holz · Apparaturen</div>
+          <h2>Werkstatt nach Mitternacht</h2>
+          <p class="concept">
+            Ein persönlicher Arbeitsort: Jedes Projekt wird zu einer eigenen, untersuchbaren
+            Apparatur.
+          </p>
+          <a class="shot" href="../evidence/g2d/c/c-overview-1440.png" target="_blank"
+            ><img
+              src="../evidence/g2d/c/c-overview-1440.png"
+              alt="Richtung C, Sternwarte am Desktop"
+          /></a>
+          <p class="caption">Echte Browseraufnahme · Anklicken für volle Auflösung</p>
+          <div class="assessment">
+            <p>
+              <strong>Stärke:</strong> Persönlicher Maßstab, deutliche Objektidentitäten und warme
+              materielle Nähe.
+            </p>
+            <p>
+              <strong>Grenze:</strong> Werkbank-Reihung und Ausstellungseindruck; weniger
+              Monumentalität und derzeit höhere Renderkosten.
+            </p>
+          </div>
+          <div class="links">
+            <a href="DIRECTION_C.md">Entwurf &amp; Nachweise</a
+            ><a href="http://127.0.0.1:3013/experiments/g2d-design/direction-c/">Prototyp öffnen</a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer>
+      <p>
+        <strong>Empfehlung: B als räumliche Grundrichtung.</strong> Der zusammenhängende Ort und die
+        mobile Entdeckung tragen am weitesten. Persönliche Werkstattdetails aus C könnten B später
+        gezielt ergänzen, ohne drei Formensprachen beliebig zu vermischen. Alle drei sind
+        Entscheidungsprototypen; keine Richtung erhält durch grüne Tests eine gestalterische
+        Abnahme.
+      </p>
+      <p>
+        <strong>Deine Entscheidung:</strong> A, B, C, eine konkret benannte Kombination – oder eine
+        andere Richtung. Abschnitt 4 deines G2-D-Auftrags verlangt diese Wahl vor dem großflächigen
+        Umbau von Origin und Observatory. G3 bleibt gesperrt.
+      </p>
+    </footer>
+    <script>
+      const files = {
+        a: {
+          overview: 'observatory-overview',
+          discovery: 'nexus-discovery',
+          origin: 'origin-overview',
+        },
+        b: {
+          overview: 'observatory-overview',
+          discovery: 'observatory-discovery',
+          origin: 'origin-overview',
+        },
+        c: { overview: 'c-overview', discovery: 'c-discovery', origin: 'c-origin' },
+      }
+      const scenes = { overview: 'Sternwarte', discovery: 'Nexus-Entdeckung', origin: 'Origin' }
+      const scene = document.getElementById('scene')
+      const size = document.getElementById('size')
+      const query = new URLSearchParams(location.search)
+      if (query.has('scene') && Object.hasOwn(scenes, query.get('scene')))
+        scene.value = query.get('scene')
+      if (['1440', '390'].includes(query.get('size'))) size.value = query.get('size')
+      function update() {
+        document.body.dataset.size = size.value
+        for (const article of document.querySelectorAll('[data-direction]')) {
+          const direction = article.dataset.direction
+          const src = `../evidence/g2d/${direction}/${files[direction][scene.value]}-${size.value}.png`
+          article.querySelector('.shot').href = src
+          article.querySelector('img').src = src
+          article.querySelector('img').alt =
+            `Richtung ${direction.toUpperCase()}, ${scenes[scene.value]}, ${size.value} Pixel`
+        }
+        history.replaceState(null, '', `?scene=${scene.value}&size=${size.value}`)
+      }
+      scene.addEventListener('change', update)
+      size.addEventListener('change', update)
+      update()
+    </script>
+  </body>
+</html>

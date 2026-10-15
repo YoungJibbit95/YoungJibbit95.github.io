@@ -1,0 +1,350 @@
+/* Scoped to the review slice. Shared camera controls and semantic content retain their roles. */
+/* Keep the provisional regular-Atlas overlay from painting before this query
+   variant hydrates. Geometry stays reserved; the static project list is readable. */
+html[data-cosmos-pending] .atlas-v3:not([data-cosmos='preview']) .atlas-v3__overlay,
+html[data-cosmos-pending] .atlas-v3:not([data-cosmos='preview']) .observatory-explorer {
+  visibility: hidden;
+}
+html:has(.atlas-v3[data-cosmos='preview']) {
+  color-scheme: dark;
+  background: #070914;
+}
+.atlas-v3[data-cosmos='preview'] {
+  --atlas-ink: #070914;
+  --atlas-paper: #e9edf4;
+  --atlas-cyan: #78e8e8;
+  --atlas-muted: #b2b6ce;
+  --atlas-edge: #454666;
+  color-scheme: dark;
+}
+.atlas-v3[data-cosmos='preview'] :is(button, a, input, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #a891ff;
+  outline-offset: 4px;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__header {
+  background: #070914;
+  border-color: #22243b;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__brand span {
+  color: #a891ff;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__world-nav a[aria-current='page'] {
+  border-color: #a891ff;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__intro {
+  top: 30px;
+  left: 4%;
+  max-width: 28rem;
+  padding: 0;
+  background: none;
+  text-shadow: 0 2px 24px #070914;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__intro h1 {
+  font-size: clamp(2rem, 2.8vw, 2.9rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1.08;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__intro h1 em {
+  color: #b7a4ef;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__intro > p {
+  max-width: 40ch;
+  margin-top: 12px;
+  color: #c2c5d9;
+  font-size: 0.82rem;
+  text-shadow: 0 2px 8px #070914;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__world-label {
+  top: 36px;
+  right: 4%;
+  bottom: auto;
+  background: #070914c9;
+  border-right: 1px solid #7257b8;
+  padding: 10px 16px;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__gesture {
+  color: #b2b6ce;
+  background: #070914de;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__controls button,
+.atlas-v3[data-cosmos='preview'] .observatory-explorer button,
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__actions a {
+  color: #e9edf4;
+  background: #0b1025f5;
+  border-color: #454666;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__controls button:hover:not(:disabled),
+.atlas-v3[data-cosmos='preview'] .observatory-explorer button:hover:not(:disabled),
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__actions a:hover,
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__results a:hover,
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__results a[aria-current='location'],
+.atlas-v3[data-cosmos='preview'] .observatory-explorer button[aria-pressed='true'] {
+  color: #e9edf4;
+  background: #252044;
+  border-color: #a891ff;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer .schnittwerk-discover {
+  color: #f1edff;
+  background: #332653;
+  border-color: #8c73c5;
+  padding-block: 14px;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer .schnittwerk-discover:hover {
+  background: #48366f;
+  color: #fff;
+  border-color: #c4b2ff;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__panel {
+  color: #e9edf4;
+  background: #0b1025fa;
+  border-color: #454666;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 6px;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__bar > button {
+  min-width: 44px;
+  min-height: 48px;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer .schnittwerk-discover {
+  padding: 10px 14px;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__trigger {
+  padding-inline: 12px;
+  gap: 7px;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer__body {
+  font-size: 0.875rem;
+  scroll-behavior: auto;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-explorer-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  margin-bottom: 16px;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-explorer-navigation a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #c9baff;
+  font-size: 0.75rem;
+  text-underline-offset: 4px;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-dossier h3 {
+  scroll-margin-block: 16px;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system {
+  margin-block: 24px;
+  padding-left: 14px;
+  border-left: 1px solid #7257b8;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system h4 {
+  margin: 0 0 12px;
+  color: #e9edf4;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system__core {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system__core strong {
+  color: #d8c8ff;
+  font-weight: 500;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system dl {
+  margin: 16px 0;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system dl > div {
+  margin: 0;
+  padding-block: 9px;
+  border-top: 1px solid #30334f;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system dt {
+  color: #e9edf4;
+  font-size: 0.875rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system dd {
+  color: #b2b6ce;
+  margin-top: 2px;
+  font-size: 0.875rem;
+}
+.atlas-v3[data-cosmos='preview'] .cosmos-nexus-system__reading {
+  margin: 0;
+  color: #c2c5d9;
+  text-wrap: pretty;
+}
+.atlas-v3[data-cosmos='preview'] :is(button, a, summary) {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: #a891ff35;
+}
+.atlas-v3[data-cosmos='preview'] :is(button, a):active {
+  border-color: #c4b2ff;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer input,
+.atlas-v3[data-cosmos='preview'] .observatory-explorer select {
+  color: #e9edf4;
+  background: #11172e;
+  border-color: #555875;
+}
+.atlas-v3[data-cosmos='preview'] .observatory-explorer input::placeholder {
+  color: #b2b6ce;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__fallback {
+  color: #e9edf4;
+  background: #0b1025;
+  border-color: #454666;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__loading > span {
+  background: #a891ff;
+}
+.atlas-v3[data-cosmos='preview'] .atlas-v3__loading small,
+.atlas-v3[data-cosmos='preview'] .atlas-v3__insight p,
+.atlas-v3[data-cosmos='preview'] .atlas-v3__project-list p {
+  color: #b2b6ce;
+}
+.atlas-v3[data-cosmos='preview']
+  :is(.atlas-v3__wayfinding, .atlas-v3__projects, .atlas-v3__footer) {
+  border-color: #454666;
+}
+@media (max-width: 900px) {
+  .atlas-v3[data-cosmos='preview'] {
+    --cosmos-control-bottom: max(12px, calc(env(safe-area-inset-bottom) + 8px));
+    --cosmos-inline-left: max(16px, env(safe-area-inset-left));
+    --cosmos-inline-right: max(16px, env(safe-area-inset-right));
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__intro {
+    top: 20px;
+    left: var(--cosmos-inline-left);
+    max-width: calc(100% - var(--cosmos-inline-left) - var(--cosmos-inline-right));
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__intro h1 {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1.12;
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__intro > p {
+    max-width: 31ch;
+    font-size: 0.76rem;
+    margin-top: 10px;
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__world-label {
+    top: auto;
+    bottom: calc(var(--cosmos-control-bottom) + 116px);
+    right: var(--cosmos-inline-right);
+    min-width: 0;
+    padding: 5px 10px;
+  }
+  .atlas-v3[data-cosmos='preview']:has(.atlas-v3__intro[data-focused='true'])
+    .atlas-v3__world-label {
+    top: 20px;
+    bottom: auto;
+  }
+  .atlas-v3[data-cosmos='preview'] .observatory-explorer {
+    left: var(--cosmos-inline-left);
+    right: var(--cosmos-inline-right);
+    bottom: calc(var(--cosmos-control-bottom) + 52px);
+    width: auto;
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__controls {
+    left: var(--cosmos-inline-left);
+    right: var(--cosmos-inline-right);
+    bottom: var(--cosmos-control-bottom);
+    display: grid;
+    grid-template-columns: auto auto 44px 44px;
+    gap: 6px;
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__controls button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+    margin: 0;
+    font-size: 0.71rem;
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__gesture {
+    display: none;
+  }
+  .atlas-v3[data-cosmos='preview'] .observatory-explorer[data-expanded='true'] {
+    bottom: var(--cosmos-control-bottom);
+  }
+  .atlas-v3[data-cosmos='preview']
+    .observatory-explorer[data-expanded='true']
+    .observatory-explorer__bar {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .atlas-v3[data-cosmos='preview']
+    .observatory-explorer[data-expanded='true']
+    .schnittwerk-discover {
+    display: none;
+  }
+  .atlas-v3[data-cosmos='preview']
+    .observatory-explorer[data-expanded='true']
+    .observatory-explorer__trigger {
+    flex: 0 0 auto;
+  }
+  /* Obscured camera buttons leave both the hit-test and keyboard focus order. */
+  .atlas-v3[data-cosmos='preview']
+    .observatory-explorer[data-expanded='true']
+    ~ .atlas-v3__controls {
+    visibility: hidden;
+  }
+  .atlas-v3[data-cosmos='preview'] .observatory-explorer__panel {
+    display: flex;
+    flex-direction: column;
+    max-height: min(68dvh, calc(100dvh - 160px));
+  }
+  .atlas-v3[data-cosmos='preview'] .observatory-explorer__heading {
+    flex-shrink: 0;
+    padding-left: 14px;
+  }
+  .atlas-v3[data-cosmos='preview'] .observatory-explorer__body {
+    min-height: 0;
+    max-height: none;
+    padding-inline: 14px;
+  }
+  .atlas-v3[data-cosmos='preview'] .observatory-explorer__filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 621px) and (max-width: 900px) {
+  .atlas-v3[data-cosmos='preview'] .observatory-explorer,
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__controls {
+    left: auto;
+    width: min(30rem, calc(100% - var(--cosmos-inline-left) - var(--cosmos-inline-right)));
+  }
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__world-label {
+    top: 20px;
+    bottom: auto;
+  }
+}
+@media (max-width: 359px) {
+  .atlas-v3[data-cosmos='preview'] .observatory-explorer .schnittwerk-discover {
+    padding-inline: 10px;
+    font-size: 0.75rem;
+  }
+  .atlas-v3[data-cosmos='preview'] .observatory-explorer__trigger {
+    padding-inline: 9px;
+    gap: 5px;
+  }
+  .atlas-v3[data-cosmos='preview'] .observatory-explorer__trigger > svg {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atlas-v3[data-cosmos='preview'] .atlas-v3__intro {
+    transition: none;
+  }
+}

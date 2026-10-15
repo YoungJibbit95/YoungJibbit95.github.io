@@ -1,0 +1,184 @@
+{
+  "capturedAt": "2026-10-11T16:19:02.411Z",
+  "methodology": "Three alternating paired repeats, unchanged manifested builds, dedicated quiet window. Lighthouse simulated mobile plus separate real CDP 4xCPU/150ms/1.6Mbps runs with full actual scene, pixels and successful physical keyboard camera input. Camera rest includes authored easing; not INP. Identity transport both ports.",
+  "sources": {
+    "baseline": "c2e338cf723f1ec6e20b4493175a8783ac95b405",
+    "candidate": "bc52793241a23a60a2b116570f126febbbc7f138"
+  },
+  "groups": {
+    "observatory": {
+      "baseline": {
+        "first-contentful-paint": {
+          "median": 4459.17625,
+          "min": 4458.44375,
+          "max": 4459.202499999999,
+          "samples": [4459.202499999999, 4459.17625, 4458.44375]
+        },
+        "largest-contentful-paint": {
+          "median": 5352.6325,
+          "min": 4859.8115,
+          "max": 5424.643,
+          "samples": [5424.643, 4859.8115, 5352.6325]
+        },
+        "total-blocking-time": {
+          "median": 1107.5,
+          "min": 1077.5,
+          "max": 1189,
+          "samples": [1189, 1107.5, 1077.5]
+        },
+        "cumulative-layout-shift": {
+          "median": 0.01458080194410693,
+          "min": 0.01458080194410693,
+          "max": 0.01458080194410693,
+          "samples": [0.01458080194410693, 0.01458080194410693, 0.01458080194410693]
+        },
+        "speed-index": {
+          "median": 5757.866664717674,
+          "min": 5636.027361108543,
+          "max": 5763.07627662181,
+          "samples": [5757.866664717674, 5763.07627662181, 5636.027361108543]
+        },
+        "score": {
+          "median": 44,
+          "min": 43,
+          "max": 46,
+          "samples": [43, 46, 44]
+        },
+        "longestSimulatedTask": {
+          "median": 1034,
+          "min": 985,
+          "max": 1128,
+          "samples": [1128, 1034, 985]
+        },
+        "actualFcp": {
+          "median": 3264,
+          "min": 3120,
+          "max": 3264,
+          "samples": [3264, 3120, 3264]
+        },
+        "actualFrameReady": {
+          "median": 10476.39999999851,
+          "min": 10431.60000000149,
+          "max": 10541.5,
+          "samples": [10541.5, 10431.60000000149, 10476.39999999851]
+        },
+        "actualCameraRestFromNavigation": {
+          "median": 14361.599999997765,
+          "min": 14308.60000000149,
+          "max": 14445.199999999255,
+          "samples": [14445.199999999255, 14308.60000000149, 14361.599999997765]
+        },
+        "actualInputToCameraRest": {
+          "median": 3873.599999997765,
+          "min": 3865.10000000149,
+          "max": 3890.5,
+          "samples": [3890.5, 3865.10000000149, 3873.599999997765]
+        },
+        "actualLongestTask": {
+          "median": 414,
+          "min": 194,
+          "max": 447,
+          "samples": [414, 194, 447]
+        },
+        "browserTransferBytes": {
+          "median": 1584638,
+          "min": 1584638,
+          "max": 1584638,
+          "samples": [1584638, 1584638, 1584638]
+        },
+        "styleLayoutMs": {
+          "median": 894.8479999999998,
+          "min": 855.6759999999997,
+          "max": 921.8840000000001,
+          "samples": [855.6759999999997, 894.8479999999998, 921.8840000000001]
+        }
+      },
+      "candidate": {
+        "first-contentful-paint": {
+          "median": 3008.9219999999996,
+          "min": 3006.3419999999996,
+          "max": 3023.1539999999995,
+          "samples": [3023.1539999999995, 3008.9219999999996, 3006.3419999999996]
+        },
+        "largest-contentful-paint": {
+          "median": 3030.9219999999996,
+          "min": 3024.8419999999996,
+          "max": 3044.1539999999995,
+          "samples": [3044.1539999999995, 3030.9219999999996, 3024.8419999999996]
+        },
+        "total-blocking-time": {
+          "median": 616.5,
+          "min": 553.5,
+          "max": 721,
+          "samples": [721, 616.5, 553.5]
+        },
+        "cumulative-layout-shift": {
+          "median": 0.000355959084582191,
+          "min": 0.000355959084582191,
+          "max": 0.000355959084582191,
+          "samples": [0.000355959084582191, 0.000355959084582191, 0.000355959084582191]
+        },
+        "speed-index": {
+          "median": 4037.7227587040597,
+          "min": 3869.059331364201,
+          "max": 4205.071941325774,
+          "samples": [4205.071941325774, 4037.7227587040597, 3869.059331364201]
+        },
+        "score": {
+          "median": 72,
+          "min": 69,
+          "max": 73,
+          "samples": [69, 72, 73]
+        },
+        "longestSimulatedTask": {
+          "median": 570,
+          "min": 554,
+          "max": 665.0000000000002,
+          "samples": [570, 554, 665.0000000000002]
+        },
+        "actualFcp": {
+          "median": 1452,
+          "min": 1372,
+          "max": 1644,
+          "samples": [1452, 1644, 1372]
+        },
+        "actualFrameReady": {
+          "median": 8339.900000002235,
+          "min": 8323.599999997765,
+          "max": 8483.400000002235,
+          "samples": [8323.599999997765, 8483.400000002235, 8339.900000002235]
+        },
+        "actualCameraRestFromNavigation": {
+          "median": 12226.699999999255,
+          "min": 12190.199999999255,
+          "max": 12365.900000002235,
+          "samples": [12190.199999999255, 12365.900000002235, 12226.699999999255]
+        },
+        "actualInputToCameraRest": {
+          "median": 3868.900000002235,
+          "min": 3854.900000002235,
+          "max": 3874.89999999851,
+          "samples": [3854.900000002235, 3868.900000002235, 3874.89999999851]
+        },
+        "actualLongestTask": {
+          "median": 167,
+          "min": 166,
+          "max": 172,
+          "samples": [166, 172, 167]
+        },
+        "browserTransferBytes": {
+          "median": 1292061,
+          "min": 1292061,
+          "max": 1292061,
+          "samples": [1292061, 1292061, 1292061]
+        },
+        "styleLayoutMs": {
+          "median": 435.992,
+          "min": 377.412,
+          "max": 483.2440000000001,
+          "samples": [483.2440000000001, 435.992, 377.412]
+        }
+      }
+    }
+  }
+}

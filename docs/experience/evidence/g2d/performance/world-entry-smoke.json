@@ -1,0 +1,23 @@
+[
+  {
+    "width": 1440,
+    "hydrationErrors": [],
+    "camera": "physical movement + exact Back pose",
+    "canvas": "persistent"
+  },
+  {
+    "width": 390,
+    "hydrationErrors": [],
+    "camera": "physical movement + exact Back pose",
+    "canvas": "persistent"
+  },
+  {
+    "noJS": "seven source links and honest fallback; no canvas"
+  },
+  {
+    "noWebGL": "seven projects and usable fallback"
+  },
+  {
+    "standaloneObservatory": "bare path, hydration, actual scene and Ctrl-click native focus link pass"
+  }
+]

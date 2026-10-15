@@ -1,0 +1,1933 @@
+[
+  {
+    "label": "origin-baseline-1",
+    "fetchTime": "2026-10-11T16:03:53.628Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 4462.514999999999,
+      "largest-contentful-paint": 4862.218,
+      "total-blocking-time": 1813,
+      "cumulative-layout-shift": 0.01458080194410693,
+      "speed-index": 5694.953070020134
+    },
+    "score": 0.42,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 1769,
+        "startTime": 4862.218
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=origin",
+        "duration": 283,
+        "startTime": 1357.406
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/events-9ce18a08.esm-DGtMUDxf.js",
+        "duration": 125,
+        "startTime": 11494.624
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 74,
+        "startTime": 4105.812
+      },
+      {
+        "url": "Unattributable",
+        "duration": 70,
+        "startTime": 1708.406
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=origin",
+        "duration": 68,
+        "startTime": 1640.406
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 57,
+        "startTime": 11437.624
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 2475.563999999938
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 706.324
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 279.65200000000004
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 32.736000000000004
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 26.831999999999997
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 2.9
+      }
+    ],
+    "actual": {
+      "fcp": 2972,
+      "ready": 10048.39999999851,
+      "inputSent": 10069.699999999255,
+      "cameraChanged": 12335.39999999851,
+      "longTasks": [
+        {
+          "start": 3189.800000000745,
+          "duration": 113
+        },
+        {
+          "start": 3307.39999999851,
+          "duration": 54
+        },
+        {
+          "start": 3916.89999999851,
+          "duration": 170
+        },
+        {
+          "start": 4087.800000000745,
+          "duration": 114
+        },
+        {
+          "start": 9039.800000000745,
+          "duration": 161
+        },
+        {
+          "start": 9291.699999999255,
+          "duration": 167
+        },
+        {
+          "start": 9742.800000000745,
+          "duration": 56
+        },
+        {
+          "start": 9798.89999999851,
+          "duration": 131
+        },
+        {
+          "start": 9941.60000000149,
+          "duration": 93
+        },
+        {
+          "start": 10258.199999999255,
+          "duration": 144
+        },
+        {
+          "start": 10529.5,
+          "duration": 53
+        },
+        {
+          "start": 10655.39999999851,
+          "duration": 81
+        },
+        {
+          "start": 10745.300000000745,
+          "duration": 107
+        },
+        {
+          "start": 10887.39999999851,
+          "duration": 74
+        },
+        {
+          "start": 10979.199999999255,
+          "duration": 79
+        },
+        {
+          "start": 11059.800000000745,
+          "duration": 118
+        },
+        {
+          "start": 11293.60000000149,
+          "duration": 61
+        },
+        {
+          "start": 11355.5,
+          "duration": 163
+        },
+        {
+          "start": 11528.300000000745,
+          "duration": 160
+        },
+        {
+          "start": 11762.199999999255,
+          "duration": 72
+        },
+        {
+          "start": 11901.5,
+          "duration": 74
+        },
+        {
+          "start": 12095.699999999255,
+          "duration": 154
+        }
+      ],
+      "pixels": {
+        "lit": 843,
+        "shades": 68
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "origin-baseline-2",
+    "fetchTime": "2026-10-11T16:06:16.956Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 4454.005,
+      "largest-contentful-paint": 4852.406,
+      "total-blocking-time": 1704.5,
+      "cumulative-layout-shift": 0.01458080194410693,
+      "speed-index": 5612.119838342219
+    },
+    "score": 0.42,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 1649,
+        "startTime": 4852.406
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=origin",
+        "duration": 295,
+        "startTime": 1411.8020000000001
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/events-9ce18a08.esm-DGtMUDxf.js",
+        "duration": 134,
+        "startTime": 11363.207999999999
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 75,
+        "startTime": 4099.604
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=origin",
+        "duration": 61,
+        "startTime": 1706.8020000000001
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 59,
+        "startTime": 11304.207999999999
+      },
+      {
+        "url": "Unattributable",
+        "duration": 58,
+        "startTime": 1353.8020000000001
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 2402.2359999999476
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 722.112
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 313.45599999999865
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 46.24800000000001
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 39.49599999999999
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 30.320000000000004
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 3.4080000000000004
+      }
+    ],
+    "actual": {
+      "fcp": 2984,
+      "ready": 10183.199999999255,
+      "inputSent": 10201.10000000149,
+      "cameraChanged": 12790.5,
+      "longTasks": [
+        {
+          "start": 3179.60000000149,
+          "duration": 141
+        },
+        {
+          "start": 3344.400000002235,
+          "duration": 66
+        },
+        {
+          "start": 3869.900000002235,
+          "duration": 56
+        },
+        {
+          "start": 4010.5,
+          "duration": 196
+        },
+        {
+          "start": 4207.300000000745,
+          "duration": 129
+        },
+        {
+          "start": 9159,
+          "duration": 139
+        },
+        {
+          "start": 9381.300000000745,
+          "duration": 138
+        },
+        {
+          "start": 9824.60000000149,
+          "duration": 58
+        },
+        {
+          "start": 9883.300000000745,
+          "duration": 143
+        },
+        {
+          "start": 10039.900000002235,
+          "duration": 115
+        },
+        {
+          "start": 10220.60000000149,
+          "duration": 58
+        },
+        {
+          "start": 10564.699999999255,
+          "duration": 100
+        },
+        {
+          "start": 10764.10000000149,
+          "duration": 97
+        },
+        {
+          "start": 10914,
+          "duration": 96
+        },
+        {
+          "start": 11041.199999999255,
+          "duration": 50
+        },
+        {
+          "start": 11091.5,
+          "duration": 141
+        },
+        {
+          "start": 11233.5,
+          "duration": 50
+        },
+        {
+          "start": 11342.300000000745,
+          "duration": 78
+        },
+        {
+          "start": 11422.699999999255,
+          "duration": 70
+        },
+        {
+          "start": 11494.199999999255,
+          "duration": 173
+        },
+        {
+          "start": 11676.199999999255,
+          "duration": 65
+        },
+        {
+          "start": 11759.300000000745,
+          "duration": 81
+        },
+        {
+          "start": 11841.5,
+          "duration": 98
+        },
+        {
+          "start": 11949,
+          "duration": 239
+        },
+        {
+          "start": 12189,
+          "duration": 85
+        },
+        {
+          "start": 12339.900000002235,
+          "duration": 89
+        },
+        {
+          "start": 12429.300000000745,
+          "duration": 182
+        },
+        {
+          "start": 12675.800000000745,
+          "duration": 102
+        }
+      ],
+      "pixels": {
+        "lit": 839,
+        "shades": 69
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "origin-baseline-3",
+    "fetchTime": "2026-10-11T16:08:09.018Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 4458.9325,
+      "largest-contentful-paint": 4861.119,
+      "total-blocking-time": 2081.5,
+      "cumulative-layout-shift": 0.01458080194410693,
+      "speed-index": 5835.746527509625
+    },
+    "score": 0.41,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 2045,
+        "startTime": 4861.119
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=origin",
+        "duration": 303,
+        "startTime": 1361.373
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/events-9ce18a08.esm-DGtMUDxf.js",
+        "duration": 115,
+        "startTime": 11767.491999999998
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=origin",
+        "duration": 88,
+        "startTime": 1664.373
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 76,
+        "startTime": 4107.746
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 58,
+        "startTime": 11709.491999999998
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 51,
+        "startTime": 4056.746
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 2743.5239999999108
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 788.76
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 289.7840000000002
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 41.26399999999997
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 31.008000000000003
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 3.572
+      }
+    ],
+    "actual": {
+      "fcp": 3180,
+      "ready": 10292.20000000298,
+      "inputSent": 10307,
+      "cameraChanged": 12902.5,
+      "longTasks": [
+        {
+          "start": 3176.7000000029802,
+          "duration": 268
+        },
+        {
+          "start": 3468,
+          "duration": 59
+        },
+        {
+          "start": 3986.2000000029802,
+          "duration": 50
+        },
+        {
+          "start": 4037.400000002235,
+          "duration": 54
+        },
+        {
+          "start": 4127.900000002235,
+          "duration": 318
+        },
+        {
+          "start": 9259.10000000149,
+          "duration": 172
+        },
+        {
+          "start": 9538.5,
+          "duration": 197
+        },
+        {
+          "start": 10066.300000000745,
+          "duration": 126
+        },
+        {
+          "start": 10202.10000000149,
+          "duration": 71
+        },
+        {
+          "start": 10473.300000000745,
+          "duration": 79
+        },
+        {
+          "start": 10670.60000000149,
+          "duration": 69
+        },
+        {
+          "start": 10750.70000000298,
+          "duration": 91
+        },
+        {
+          "start": 10985.400000002235,
+          "duration": 167
+        },
+        {
+          "start": 11153.10000000149,
+          "duration": 151
+        },
+        {
+          "start": 11376.400000002235,
+          "duration": 157
+        },
+        {
+          "start": 11534.70000000298,
+          "duration": 102
+        },
+        {
+          "start": 11637.800000000745,
+          "duration": 76
+        },
+        {
+          "start": 11726.300000000745,
+          "duration": 57
+        },
+        {
+          "start": 11851.10000000149,
+          "duration": 196
+        },
+        {
+          "start": 12051.300000000745,
+          "duration": 332
+        },
+        {
+          "start": 12434.800000000745,
+          "duration": 230
+        },
+        {
+          "start": 12665.300000000745,
+          "duration": 162
+        }
+      ],
+      "pixels": {
+        "lit": 840,
+        "shades": 69
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "origin-candidate-1",
+    "fetchTime": "2026-10-11T16:04:09.237Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 3019.9399999999996,
+      "largest-contentful-paint": 3037.4399999999996,
+      "total-blocking-time": 1027.5,
+      "cumulative-layout-shift": 0,
+      "speed-index": 4058.196378574222
+    },
+    "score": 0.65,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 1000,
+        "startTime": 3054.9399999999996
+      },
+      {
+        "url": "http://127.0.0.1:4184/atlas/?atlas=preview&world=origin",
+        "duration": 153,
+        "startTime": 803.97
+      },
+      {
+        "url": "Unattributable",
+        "duration": 146,
+        "startTime": 656.97
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/events-9ce18a08.esm-CahgKaeB.js",
+        "duration": 112,
+        "startTime": 8920.91
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 77,
+        "startTime": 4054.9399999999996
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 56,
+        "startTime": 8864.91
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 1643.5959999999561
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 392.376
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 377.77600000000047
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 22.16000000000001
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 7.731999999999996
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 7.247999999999999
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 2.412
+      }
+    ],
+    "actual": {
+      "fcp": 1336,
+      "ready": 8441.400000002235,
+      "inputSent": 8470.20000000298,
+      "cameraChanged": 10892.60000000149,
+      "longTasks": [
+        {
+          "start": 2172.5,
+          "duration": 91
+        },
+        {
+          "start": 2350.5,
+          "duration": 209
+        },
+        {
+          "start": 7352.20000000298,
+          "duration": 154
+        },
+        {
+          "start": 7605.20000000298,
+          "duration": 175
+        },
+        {
+          "start": 8106.60000000149,
+          "duration": 173
+        },
+        {
+          "start": 8291.400000002235,
+          "duration": 97
+        },
+        {
+          "start": 8927.60000000149,
+          "duration": 69
+        },
+        {
+          "start": 9183.900000002235,
+          "duration": 85
+        },
+        {
+          "start": 9269.70000000298,
+          "duration": 158
+        },
+        {
+          "start": 9431.300000000745,
+          "duration": 115
+        },
+        {
+          "start": 9547,
+          "duration": 88
+        },
+        {
+          "start": 9636.20000000298,
+          "duration": 54
+        },
+        {
+          "start": 9690.800000000745,
+          "duration": 103
+        },
+        {
+          "start": 9796.10000000149,
+          "duration": 81
+        },
+        {
+          "start": 9879,
+          "duration": 98
+        },
+        {
+          "start": 9979,
+          "duration": 92
+        },
+        {
+          "start": 10072.70000000298,
+          "duration": 57
+        },
+        {
+          "start": 10145.5,
+          "duration": 73
+        },
+        {
+          "start": 10224.900000002235,
+          "duration": 147
+        },
+        {
+          "start": 10390.400000002235,
+          "duration": 75
+        },
+        {
+          "start": 10469.20000000298,
+          "duration": 235
+        }
+      ],
+      "pixels": {
+        "lit": 826,
+        "shades": 70
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "origin-candidate-2",
+    "fetchTime": "2026-10-11T16:06:01.818Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 3007.2619999999997,
+      "largest-contentful-paint": 3024.2619999999997,
+      "total-blocking-time": 1131,
+      "cumulative-layout-shift": 0,
+      "speed-index": 4166.945659419902
+    },
+    "score": 0.64,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 1086,
+        "startTime": 3151.2619999999997
+      },
+      {
+        "url": "http://127.0.0.1:4184/atlas/?atlas=preview&world=origin",
+        "duration": 145,
+        "startTime": 654.631
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/events-9ce18a08.esm-CahgKaeB.js",
+        "duration": 135,
+        "startTime": 9106.893
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 76,
+        "startTime": 4237.262
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 66,
+        "startTime": 9040.893
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 65,
+        "startTime": 3007.2619999999997
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 1811.0679999999668
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 425.0360000000001
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 266.0720000000005
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 24.67200000000001
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 11.947999999999993
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 9.167999999999997
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 2.888
+      }
+    ],
+    "actual": {
+      "fcp": 1264,
+      "ready": 8309.20000000298,
+      "inputSent": 8324.900000002235,
+      "cameraChanged": 10688.70000000298,
+      "longTasks": [
+        {
+          "start": 1443.800000000745,
+          "duration": 84
+        },
+        {
+          "start": 2183.5,
+          "duration": 83
+        },
+        {
+          "start": 2347.300000000745,
+          "duration": 208
+        },
+        {
+          "start": 7358.300000000745,
+          "duration": 144
+        },
+        {
+          "start": 7591.20000000298,
+          "duration": 138
+        },
+        {
+          "start": 8051.10000000149,
+          "duration": 118
+        },
+        {
+          "start": 8179.20000000298,
+          "duration": 102
+        },
+        {
+          "start": 8769.900000002235,
+          "duration": 58
+        },
+        {
+          "start": 8916.5,
+          "duration": 55
+        },
+        {
+          "start": 9080.10000000149,
+          "duration": 91
+        },
+        {
+          "start": 9259.300000000745,
+          "duration": 106
+        },
+        {
+          "start": 9366.20000000298,
+          "duration": 75
+        },
+        {
+          "start": 9624.10000000149,
+          "duration": 117
+        },
+        {
+          "start": 9796.70000000298,
+          "duration": 100
+        },
+        {
+          "start": 9913.900000002235,
+          "duration": 118
+        },
+        {
+          "start": 10213.5,
+          "duration": 92
+        },
+        {
+          "start": 10371.800000000745,
+          "duration": 149
+        },
+        {
+          "start": 10546.400000002235,
+          "duration": 63
+        }
+      ],
+      "pixels": {
+        "lit": 829,
+        "shades": 69
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "origin-candidate-3",
+    "fetchTime": "2026-10-11T16:08:25.849Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 3006.366,
+      "largest-contentful-paint": 3024.366,
+      "total-blocking-time": 863,
+      "cumulative-layout-shift": 0.0001487590204224082,
+      "speed-index": 3975.618370096433
+    },
+    "score": 0.67,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 821,
+        "startTime": 3082.366
+      },
+      {
+        "url": "http://127.0.0.1:4184/atlas/?atlas=preview&world=origin",
+        "duration": 158,
+        "startTime": 738.183
+      },
+      {
+        "url": "Unattributable",
+        "duration": 129,
+        "startTime": 608.183
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/events-9ce18a08.esm-CahgKaeB.js",
+        "duration": 128,
+        "startTime": 8767.548999999999
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 91,
+        "startTime": 3903.366
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 61,
+        "startTime": 8706.548999999999
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 1511.4159999999708
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 397.04400000000004
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 367.9280000000014
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 19.892
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 10.99999999999999
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 7.327999999999999
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 2.208
+      }
+    ],
+    "actual": {
+      "fcp": 1464,
+      "ready": 8433.20000000298,
+      "inputSent": 8451.60000000149,
+      "cameraChanged": 10957.60000000149,
+      "longTasks": [
+        {
+          "start": 2199.10000000149,
+          "duration": 84
+        },
+        {
+          "start": 2366.2000000029802,
+          "duration": 212
+        },
+        {
+          "start": 7405.70000000298,
+          "duration": 196
+        },
+        {
+          "start": 7697.60000000149,
+          "duration": 149
+        },
+        {
+          "start": 8167.70000000298,
+          "duration": 135
+        },
+        {
+          "start": 8313.60000000149,
+          "duration": 79
+        },
+        {
+          "start": 8613.300000000745,
+          "duration": 70
+        },
+        {
+          "start": 8688,
+          "duration": 85
+        },
+        {
+          "start": 8791.300000000745,
+          "duration": 73
+        },
+        {
+          "start": 8943.300000000745,
+          "duration": 67
+        },
+        {
+          "start": 9011.10000000149,
+          "duration": 68
+        },
+        {
+          "start": 9244,
+          "duration": 64
+        },
+        {
+          "start": 9377.300000000745,
+          "duration": 78
+        },
+        {
+          "start": 9553.60000000149,
+          "duration": 134
+        },
+        {
+          "start": 9701.300000000745,
+          "duration": 69
+        },
+        {
+          "start": 9776.900000002235,
+          "duration": 64
+        },
+        {
+          "start": 10111,
+          "duration": 84
+        },
+        {
+          "start": 10243.70000000298,
+          "duration": 143
+        },
+        {
+          "start": 10408.300000000745,
+          "duration": 61
+        },
+        {
+          "start": 10557.10000000149,
+          "duration": 74
+        },
+        {
+          "start": 10704.400000002235,
+          "duration": 81
+        }
+      ],
+      "pixels": {
+        "lit": 830,
+        "shades": 69
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "observatory-baseline-1",
+    "fetchTime": "2026-10-11T16:04:59.269Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 4461.8724999999995,
+      "largest-contentful-paint": 5414.347,
+      "total-blocking-time": 1150.5,
+      "cumulative-layout-shift": 0.01458080194410693,
+      "speed-index": 5707.285736334306
+    },
+    "score": 0.43,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 1097,
+        "startTime": 4865.847
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=observatory",
+        "duration": 356,
+        "startTime": 1468.949
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/events-9ce18a08.esm-DGtMUDxf.js",
+        "duration": 164,
+        "startTime": 10927.795999999998
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=observatory",
+        "duration": 120,
+        "startTime": 1824.949
+      },
+      {
+        "url": "Unattributable",
+        "duration": 112,
+        "startTime": 1355.949
+      },
+      {
+        "url": "Unattributable",
+        "duration": 112,
+        "startTime": 1944.949
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 79,
+        "startTime": 4111.898
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 67,
+        "startTime": 10766.795999999998
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 54,
+        "startTime": 4057.898
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 53,
+        "startTime": 10874.795999999998
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 3043.159999999905
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 977.304
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 536.4440000000001
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 61.907999999999944
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 35.815999999999995
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 27.979999999999983
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 3.0720000000000005
+      }
+    ],
+    "actual": {
+      "fcp": 3188,
+      "ready": 10606.300000000745,
+      "inputSent": 10626.60000000149,
+      "cameraChanged": 14498.800000000745,
+      "longTasks": [
+        {
+          "start": 3141.60000000149,
+          "duration": 159
+        },
+        {
+          "start": 3339,
+          "duration": 128
+        },
+        {
+          "start": 3473,
+          "duration": 59
+        },
+        {
+          "start": 4081.800000000745,
+          "duration": 437
+        },
+        {
+          "start": 9313.300000000745,
+          "duration": 178
+        },
+        {
+          "start": 9586.5,
+          "duration": 179
+        },
+        {
+          "start": 10102.400000002235,
+          "duration": 109
+        },
+        {
+          "start": 10212.300000000745,
+          "duration": 209
+        },
+        {
+          "start": 10775.800000000745,
+          "duration": 66
+        }
+      ],
+      "pixels": {
+        "lit": 361,
+        "shades": 105
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "observatory-baseline-2",
+    "fetchTime": "2026-10-11T16:07:22.056Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 4380.69875,
+      "largest-contentful-paint": 5219.0385,
+      "total-blocking-time": 1082.5,
+      "cumulative-layout-shift": 0.01458080194410693,
+      "speed-index": 5331.285964476332
+    },
+    "score": 0.45,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 965,
+        "startTime": 4767.0385
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 211,
+        "startTime": 4055.3589999999995
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/events-9ce18a08.esm-DGtMUDxf.js",
+        "duration": 167,
+        "startTime": 10733.718
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=observatory",
+        "duration": 100,
+        "startTime": 1414.6795
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 75,
+        "startTime": 4314.3589999999995
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=observatory",
+        "duration": 73,
+        "startTime": 1514.6795
+      },
+      {
+        "url": "Unattributable",
+        "duration": 60,
+        "startTime": 1354.6795
+      },
+      {
+        "url": "Unattributable",
+        "duration": 60,
+        "startTime": 1587.6795
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 60,
+        "startTime": 10534.718
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 56,
+        "startTime": 10677.718
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 2768.4959999999105
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 794.0200000000001
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 404.9400000000005
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 41.15599999999997
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 26.011999999999997
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 23.799999999999976
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 2.7560000000000002
+      }
+    ],
+    "actual": {
+      "fcp": 3280,
+      "ready": 10458.099999997765,
+      "inputSent": 10471.800000000745,
+      "cameraChanged": 14335.699999999255,
+      "longTasks": [
+        {
+          "start": 3228.89999999851,
+          "duration": 239
+        },
+        {
+          "start": 3488.300000000745,
+          "duration": 62
+        },
+        {
+          "start": 4001.699999999255,
+          "duration": 82
+        },
+        {
+          "start": 4145.199999999255,
+          "duration": 210
+        },
+        {
+          "start": 4355.800000000745,
+          "duration": 285
+        },
+        {
+          "start": 9415.39999999851,
+          "duration": 176
+        },
+        {
+          "start": 9690.5,
+          "duration": 167
+        },
+        {
+          "start": 10133.39999999851,
+          "duration": 78
+        },
+        {
+          "start": 10211.800000000745,
+          "duration": 151
+        }
+      ],
+      "pixels": {
+        "lit": 361,
+        "shades": 104
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "observatory-baseline-3",
+    "fetchTime": "2026-10-11T16:09:14.218Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 4457.6425,
+      "largest-contentful-paint": 5387.371,
+      "total-blocking-time": 1103.5,
+      "cumulative-layout-shift": 0.01458080194410693,
+      "speed-index": 5631.141353901832
+    },
+    "score": 0.44,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 1058,
+        "startTime": 4858.371
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=observatory",
+        "duration": 317,
+        "startTime": 1355.4569999999999
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/events-9ce18a08.esm-DGtMUDxf.js",
+        "duration": 163,
+        "startTime": 10925.828000000001
+      },
+      {
+        "url": "http://127.0.0.1:4183/?atlas=preview&world=observatory",
+        "duration": 93,
+        "startTime": 1672.4569999999999
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 84,
+        "startTime": 4104.914
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 66,
+        "startTime": 10719.828000000001
+      },
+      {
+        "url": "Unattributable",
+        "duration": 62,
+        "startTime": 1765.4569999999999
+      },
+      {
+        "url": "http://127.0.0.1:4183/assets/index-pj4W-OZ5.js",
+        "duration": 56,
+        "startTime": 10869.828000000001
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 2991.4039999999
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 859.38
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 333.2719999999996
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 47.00399999999997
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 36.69600000000001
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 30.232
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 2.468
+      }
+    ],
+    "actual": {
+      "fcp": 3076,
+      "ready": 10216.900000002235,
+      "inputSent": 10229.699999999255,
+      "cameraChanged": 14090.199999999255,
+      "longTasks": [
+        {
+          "start": 3240.900000002235,
+          "duration": 147
+        },
+        {
+          "start": 3411.300000000745,
+          "duration": 50
+        },
+        {
+          "start": 4019.10000000149,
+          "duration": 299
+        },
+        {
+          "start": 9124.10000000149,
+          "duration": 154
+        },
+        {
+          "start": 9384.5,
+          "duration": 189
+        },
+        {
+          "start": 9874.5,
+          "duration": 89
+        },
+        {
+          "start": 9964.300000000745,
+          "duration": 166
+        }
+      ],
+      "pixels": {
+        "lit": 361,
+        "shades": 105
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "observatory-candidate-1",
+    "fetchTime": "2026-10-11T16:05:15.245Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 3007.38,
+      "largest-contentful-paint": 3223.38,
+      "total-blocking-time": 513.5,
+      "cumulative-layout-shift": 0.1274731737542985,
+      "speed-index": 3710.4003310429057
+    },
+    "score": 0.69,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 432,
+        "startTime": 3111.38
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/events-9ce18a08.esm-CahgKaeB.js",
+        "duration": 143,
+        "startTime": 8546.07
+      },
+      {
+        "url": "http://127.0.0.1:4184/atlas/?atlas=preview&world=observatory",
+        "duration": 127,
+        "startTime": 605.69
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 106,
+        "startTime": 3584.38
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 65,
+        "startTime": 8347.07
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 64,
+        "startTime": 3007.38
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 1570.7319999999618
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 446.3359999999999
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 269.6560000000001
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 21.176000000000002
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 9.159999999999997
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 7.855999999999999
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 2.624
+      }
+    ],
+    "actual": {
+      "fcp": 1380,
+      "ready": 8478.20000000298,
+      "inputSent": 8488.5,
+      "cameraChanged": 12363.400000002235,
+      "longTasks": [
+        {
+          "start": 1490.4000000022352,
+          "duration": 89
+        },
+        {
+          "start": 2202,
+          "duration": 92
+        },
+        {
+          "start": 2297.5,
+          "duration": 52
+        },
+        {
+          "start": 2387.60000000149,
+          "duration": 279
+        },
+        {
+          "start": 7464.300000000745,
+          "duration": 149
+        },
+        {
+          "start": 7700.70000000298,
+          "duration": 148
+        },
+        {
+          "start": 8144.70000000298,
+          "duration": 70
+        },
+        {
+          "start": 8215.800000000745,
+          "duration": 160
+        }
+      ],
+      "pixels": {
+        "lit": 351,
+        "shades": 116
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "observatory-candidate-2",
+    "fetchTime": "2026-10-11T16:07:06.170Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 3005.912,
+      "largest-contentful-paint": 3226.912,
+      "total-blocking-time": 536,
+      "cumulative-layout-shift": 0.1274731737542985,
+      "speed-index": 3773.3614928994075
+    },
+    "score": 0.68,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 442,
+        "startTime": 3074.912
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/events-9ce18a08.esm-CahgKaeB.js",
+        "duration": 152,
+        "startTime": 8431.868
+      },
+      {
+        "url": "http://127.0.0.1:4184/atlas/?atlas=preview&world=observatory",
+        "duration": 133,
+        "startTime": 604.956
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 103,
+        "startTime": 3554.912
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 71,
+        "startTime": 8319.868
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 69,
+        "startTime": 3005.912
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 1618.25599999996
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 440.052
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 265.8480000000002
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 22.38400000000001
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 10.05199999999999
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 6.611999999999999
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 2.532
+      }
+    ],
+    "actual": {
+      "fcp": 1296,
+      "ready": 8310.5,
+      "inputSent": 8322.60000000149,
+      "cameraChanged": 12194,
+      "longTasks": [
+        {
+          "start": 2180.10000000149,
+          "duration": 95
+        },
+        {
+          "start": 2278.10000000149,
+          "duration": 52
+        },
+        {
+          "start": 2369.60000000149,
+          "duration": 124
+        },
+        {
+          "start": 7266.10000000149,
+          "duration": 147
+        },
+        {
+          "start": 7502.800000000745,
+          "duration": 164
+        },
+        {
+          "start": 7977.300000000745,
+          "duration": 80
+        },
+        {
+          "start": 8058.300000000745,
+          "duration": 160
+        },
+        {
+          "start": 8461.89999999851,
+          "duration": 61
+        }
+      ],
+      "pixels": {
+        "lit": 351,
+        "shades": 117
+      },
+      "errors": []
+    }
+  },
+  {
+    "label": "observatory-candidate-3",
+    "fetchTime": "2026-10-11T16:09:30.745Z",
+    "lighthouseVersion": "13.5.0",
+    "browserVersion": "156.0.8078.4",
+    "metrics": {
+      "first-contentful-paint": 3007.2419999999997,
+      "largest-contentful-paint": 3319.7419999999997,
+      "total-blocking-time": 670,
+      "cumulative-layout-shift": 0,
+      "speed-index": 3945.125198652175
+    },
+    "score": 0.69,
+    "longTasks": [
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 591,
+        "startTime": 3106.2419999999997
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/events-9ce18a08.esm-CahgKaeB.js",
+        "duration": 152,
+        "startTime": 8618.863
+      },
+      {
+        "url": "http://127.0.0.1:4184/atlas/?atlas=preview&world=observatory",
+        "duration": 128,
+        "startTime": 605.621
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 86,
+        "startTime": 3697.2419999999997
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 77,
+        "startTime": 8500.863
+      },
+      {
+        "url": "http://127.0.0.1:4184/assets/ui-DIvFwh8Z.js",
+        "duration": 65,
+        "startTime": 3007.2419999999997
+      }
+    ],
+    "mainthread": [
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 1963.8239999999523
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 415.57600000000014
+      },
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 277.14800000000054
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 29.128000000000018
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 21.843999999999987
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 7.284
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 3.1520000000000006
+      }
+    ],
+    "actual": {
+      "fcp": 1288,
+      "ready": 8404.89999999851,
+      "inputSent": 8415.199999999255,
+      "cameraChanged": 12289.89999999851,
+      "longTasks": [
+        {
+          "start": 1438.3999999985099,
+          "duration": 88
+        },
+        {
+          "start": 2166.800000000745,
+          "duration": 89
+        },
+        {
+          "start": 2259.699999999255,
+          "duration": 51
+        },
+        {
+          "start": 2351.800000000745,
+          "duration": 279
+        },
+        {
+          "start": 7406.300000000745,
+          "duration": 169
+        },
+        {
+          "start": 7668.300000000745,
+          "duration": 154
+        },
+        {
+          "start": 8102.800000000745,
+          "duration": 79
+        },
+        {
+          "start": 8182.199999999255,
+          "duration": 148
+        }
+      ],
+      "pixels": {
+        "lit": 351,
+        "shades": 117
+      },
+      "errors": []
+    }
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "focus": [
+    {
+      "tag": "BUTTON",
+      "text": "Schließen",
+      "within": true,
+      "modal": true
+    },
+    {
+      "tag": "A",
+      "text": "Geprüften Quelltext öffnen",
+      "within": true,
+      "modal": true
+    },
+    {
+      "tag": "BODY",
+      "text": "\n    Mobile-BedienlaborInteraktionsprobe für Auswahl, Ansicht und Proj",
+      "within": false,
+      "modal": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Schließen",
+      "within": true,
+      "modal": true
+    },
+    {
+      "tag": "A",
+      "text": "Geprüften Quelltext öffnen",
+      "within": true,
+      "modal": true
+    },
+    {
+      "tag": "BODY",
+      "text": "\n    Mobile-BedienlaborInteraktionsprobe für Auswahl, Ansicht und Proj",
+      "within": false,
+      "modal": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Schließen",
+      "within": true,
+      "modal": true
+    }
+  ],
+  "forcedBackground": {
+    "activeTag": "A",
+    "insideDialog": true
+  }
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "path": "experiments/g2d-design/direction-a/main.tsx",
+    "sha256": "c5622c655732e0390adb743c3cfa5a225f3e0abcce21a88fc481af8d5540aaf9"
+  },
+  {
+    "path": "experiments/g2d-design/direction-a/style.css",
+    "sha256": "4f16fddec463f09adf35c27faa7dec7f8e9e899099cd5095259c25d3eedb7a7f"
+  },
+  {
+    "path": "experiments/g2d-design/direction-b/main.tsx",
+    "sha256": "bc4313db64505a7e7bd6aa083d31b3aa2f6054a45befb93e68d117bbcf6a604f"
+  },
+  {
+    "path": "experiments/g2d-design/direction-b/style.css",
+    "sha256": "ce0e157cf418d291af98779838f0dfad1cea381461bce1589da25510a44412e7"
+  },
+  {
+    "path": "experiments/g2d-design/direction-c/main.tsx",
+    "sha256": "3baa75aaf5e28669ac1559641c07440ccffcd8a267361d6d84eb5e98cc2084f8"
+  },
+  {
+    "path": "experiments/g2d-design/direction-c/style.css",
+    "sha256": "0ce2f2c861e800c1a91e7c8da08a36a94a9f894b325fe4452d01dc2a9cd187f2"
+  },
+  {
+    "path": "experiments/g2d-design/mobile/MobileJourneyShelf.tsx",
+    "sha256": "309e4f87da1d64de152ec7780921ef8f8da562e9e64762f00aeb3c3fc0041e7a"
+  },
+  {
+    "path": "experiments/g2d-design/mobile/mobile-shelf.css",
+    "sha256": "267d8cc03ea0ab42a631ec272b0e9dcf411c85d8346d28da17a168289cd15ebe"
+  }
+]

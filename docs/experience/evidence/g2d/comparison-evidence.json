@@ -1,0 +1,128 @@
+[
+  {
+    "width": "1440",
+    "scene": "overview",
+    "images": [
+      {
+        "src": "../evidence/g2d/a/observatory-overview-1440.png",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "src": "../evidence/g2d/b/observatory-overview-1440.png",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "src": "../evidence/g2d/c/c-overview-1440.png",
+        "width": 1440,
+        "height": 900
+      }
+    ]
+  },
+  {
+    "width": "1440",
+    "scene": "discovery",
+    "images": [
+      {
+        "src": "../evidence/g2d/a/nexus-discovery-1440.png",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "src": "../evidence/g2d/b/observatory-discovery-1440.png",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "src": "../evidence/g2d/c/c-discovery-1440.png",
+        "width": 1440,
+        "height": 900
+      }
+    ]
+  },
+  {
+    "width": "1440",
+    "scene": "origin",
+    "images": [
+      {
+        "src": "../evidence/g2d/a/origin-overview-1440.png",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "src": "../evidence/g2d/b/origin-overview-1440.png",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "src": "../evidence/g2d/c/c-origin-1440.png",
+        "width": 1440,
+        "height": 900
+      }
+    ]
+  },
+  {
+    "width": "390",
+    "scene": "overview",
+    "images": [
+      {
+        "src": "../evidence/g2d/a/observatory-overview-390.png",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "src": "../evidence/g2d/b/observatory-overview-390.png",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "src": "../evidence/g2d/c/c-overview-390.png",
+        "width": 390,
+        "height": 844
+      }
+    ]
+  },
+  {
+    "width": "390",
+    "scene": "discovery",
+    "images": [
+      {
+        "src": "../evidence/g2d/a/nexus-discovery-390.png",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "src": "../evidence/g2d/b/observatory-discovery-390.png",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "src": "../evidence/g2d/c/c-discovery-390.png",
+        "width": 390,
+        "height": 844
+      }
+    ]
+  },
+  {
+    "width": "390",
+    "scene": "origin",
+    "images": [
+      {
+        "src": "../evidence/g2d/a/origin-overview-390.png",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "src": "../evidence/g2d/b/origin-overview-390.png",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "src": "../evidence/g2d/c/c-origin-390.png",
+        "width": 390,
+        "height": 844
+      }
+    ]
+  }
+]

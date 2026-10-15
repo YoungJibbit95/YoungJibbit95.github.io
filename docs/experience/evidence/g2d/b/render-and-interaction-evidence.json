@@ -1,0 +1,215 @@
+{
+  "date": "2026-10-11T16:01:42.873Z",
+  "method": "Actual Chromium SwiftShader Canvas captures at DPR1. Pixel counts come directly from WebGL readPixels, not DOM screenshots. Isolated visual prototype, not integrated production or a lab performance benchmark.",
+  "evidence": [
+    {
+      "name": "observatory-overview-1440",
+      "metrics": {
+        "calls": 126,
+        "triangles": 78410,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [100.055145152459, 71.0601370455573, 135.04957191626048],
+        "target": [-13, 1, -21],
+        "sampledColoredPixels": 51840,
+        "sampledColorBuckets": 80,
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "observatory-approach-1440",
+      "metrics": {
+        "calls": 106,
+        "triangles": 74690,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [20.001729382161724, 32.000977193950206, 63.001407226568276],
+        "target": [-20, 4, 12],
+        "sampledColoredPixels": 51840,
+        "sampledColorBuckets": 85,
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "observatory-discovery-1440",
+      "metrics": {
+        "calls": 89,
+        "triangles": 71006,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [9.219003143877568, 29.09260379761075, 47.302495779833635],
+        "target": [-20, 4, 12],
+        "sampledColoredPixels": 51840,
+        "sampledColorBuckets": 106,
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "axe-discovery-1440",
+      "violations": []
+    },
+    {
+      "name": "drag-and-idle-1440",
+      "positionBeforeDrag": [99.78653964745077, 70.95219845782017, 134.7573374771534],
+      "positionAfterDrag": [-28.656450133633747, 20.896538396507903, 182.38142326439092],
+      "frameBefore": 177,
+      "frameAfter": 177
+    },
+    {
+      "name": "origin-overview-1440",
+      "metrics": {
+        "calls": 46,
+        "triangles": 65646,
+        "geometries": 34,
+        "textures": 2,
+        "programs": 5,
+        "position": [79.0000127773717, 47.00000638868584, 108.00002341632864],
+        "target": [-1, 7, -10],
+        "sampledColoredPixels": 51840,
+        "sampledColorBuckets": 54,
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "origin-open-1440",
+      "metrics": {
+        "calls": 46,
+        "triangles": 65646,
+        "geometries": 34,
+        "textures": 2,
+        "programs": 5,
+        "position": [21.011189490986474, 20.004867823587468, 49.019908422536254],
+        "target": [0, 9, -29],
+        "sampledColoredPixels": 51840,
+        "sampledColorBuckets": 58,
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "world-return-1440",
+      "persistentCanvas": true,
+      "errors": []
+    },
+    {
+      "name": "observatory-overview-390",
+      "metrics": {
+        "calls": 107,
+        "triangles": 74702,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [42.30465867916471, 62.137678927591466, 121.22616581016679],
+        "target": [-15, 13, -7],
+        "sampledColoredPixels": 13167,
+        "sampledColorBuckets": 77,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "name": "observatory-approach-390",
+      "metrics": {
+        "calls": 79,
+        "triangles": 70146,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [14.01011869537568, 48.00890116934208, 85.0120428474729],
+        "target": [-20, 1, 12],
+        "sampledColoredPixels": 13167,
+        "sampledColorBuckets": 75,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "name": "observatory-discovery-390",
+      "metrics": {
+        "calls": 77,
+        "triangles": 70122,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [10.001719348102114, 57.99648032913099, 76.00366794261784],
+        "target": [-20, 1, 12],
+        "sampledColoredPixels": 13167,
+        "sampledColorBuckets": 88,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "name": "axe-discovery-390",
+      "violations": []
+    },
+    {
+      "name": "drag-and-idle-390",
+      "positionBeforeDrag": [41.95789868322443, 62.02260320741538, 120.9369637169491],
+      "positionAfterDrag": [16.631412497474827, 26.969300580989646, 137.3548142068444],
+      "frameBefore": 172,
+      "frameAfter": 172
+    },
+    {
+      "name": "origin-overview-390",
+      "metrics": {
+        "calls": 46,
+        "triangles": 65646,
+        "geometries": 34,
+        "textures": 2,
+        "programs": 5,
+        "position": [18.99997714899967, 40.00000458803455, 143.99999068425788],
+        "target": [0, 7, -13],
+        "sampledColoredPixels": 13167,
+        "sampledColorBuckets": 58,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "name": "origin-open-390",
+      "metrics": {
+        "calls": 46,
+        "triangles": 65646,
+        "geometries": 34,
+        "textures": 2,
+        "programs": 5,
+        "position": [2.0023497807805875, 18.003466896668186, 54.022073606379514],
+        "target": [0, 9, -29],
+        "sampledColoredPixels": 13167,
+        "sampledColorBuckets": 58,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "name": "world-return-390",
+      "persistentCanvas": true,
+      "errors": []
+    },
+    {
+      "name": "reduced-motion-390",
+      "sameDestination": true,
+      "metrics": {
+        "calls": 77,
+        "triangles": 70122,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [9.999999999999996, 58.00000000000001, 75.99999999999999],
+        "target": [-20, 1, 12],
+        "sampledColoredPixels": 13167,
+        "sampledColorBuckets": 87,
+        "width": 390,
+        "height": 844
+      }
+    }
+  ]
+}

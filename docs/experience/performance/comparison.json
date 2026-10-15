@@ -1,0 +1,965 @@
+{
+  "baseline-gzip": {
+    "metrics": {
+      "first-contentful-paint": {
+        "median": 4240.085,
+        "min": 4234.0675,
+        "max": 4245.8775,
+        "samples": 3
+      },
+      "largest-contentful-paint": {
+        "median": 4422.902,
+        "min": 4411.281,
+        "max": 4426.253000000001,
+        "samples": 3
+      },
+      "total-blocking-time": {
+        "median": 1996.5,
+        "min": 1758.5,
+        "max": 2184,
+        "samples": 3
+      },
+      "cumulative-layout-shift": {
+        "median": 0.01458080194410693,
+        "min": 0,
+        "max": 0.01458080194410693,
+        "samples": 3
+      },
+      "speed-index": {
+        "median": 5172.913066431949,
+        "min": 4961.964074200441,
+        "max": 5195.028846075296,
+        "samples": 3
+      },
+      "score": {
+        "median": 45,
+        "min": 44,
+        "max": 46,
+        "samples": 3
+      },
+      "downloadBytes": {
+        "median": 1570801,
+        "min": 1570801,
+        "max": 1570801,
+        "samples": 3
+      },
+      "decodedJavaScriptBytes": {
+        "median": 1201006,
+        "min": 1201006,
+        "max": 1201006,
+        "samples": 3
+      },
+      "mainThreadScriptParseCompileMs": {
+        "median": 3.468,
+        "min": 2.9640000000000004,
+        "max": 3.744,
+        "samples": 3
+      },
+      "scriptEvaluationMs": {
+        "median": 2628.0639999999507,
+        "min": 2325.683999999961,
+        "max": 2761.659999999945,
+        "samples": 3
+      },
+      "styleLayoutMs": {
+        "median": 1550.3319999999999,
+        "min": 1437.644,
+        "max": 1589.9440000000002,
+        "samples": 3
+      },
+      "longestTaskMs": {
+        "median": 1760,
+        "min": 1561,
+        "max": 1926,
+        "samples": 3
+      },
+      "backgroundParseStreamingMs": {
+        "median": 67.13199999999999,
+        "min": 61.666999999999994,
+        "max": 70.01400000000001,
+        "samples": 3
+      }
+    },
+    "readiness": {
+      "ready": {
+        "median": 12085.099999997765,
+        "min": 11854.699999999255,
+        "max": 12604.89999999851,
+        "samples": 3
+      },
+      "cameraChanged": {
+        "median": 14939.699999999255,
+        "min": 14274.199999999255,
+        "max": 15168.699999999255,
+        "samples": 3
+      },
+      "inputToPoseRestMs": {
+        "median": 2544.300000000745,
+        "min": 2398.800000000745,
+        "max": 2839.60000000149,
+        "samples": 3
+      },
+      "contextCreationMs": {
+        "median": 18.600000001490116,
+        "min": 17.400000002235174,
+        "max": 25.5,
+        "samples": 3
+      },
+      "shaderProgramCallsMs": {
+        "median": 2.8000000044703484,
+        "min": 2.099999997764826,
+        "max": 3.5000000037252903,
+        "samples": 3
+      }
+    }
+  },
+  "baseline-identity": {
+    "metrics": {
+      "first-contentful-paint": {
+        "median": 4235.935,
+        "min": 4231.445,
+        "max": 4252.717500000001,
+        "samples": 3
+      },
+      "largest-contentful-paint": {
+        "median": 4415.121999999999,
+        "min": 4406.934,
+        "max": 4437.661,
+        "samples": 3
+      },
+      "total-blocking-time": {
+        "median": 1925.5,
+        "min": 1918.999999999999,
+        "max": 2425,
+        "samples": 3
+      },
+      "cumulative-layout-shift": {
+        "median": 0,
+        "min": 0,
+        "max": 0.01458080194410693,
+        "samples": 3
+      },
+      "speed-index": {
+        "median": 5066.219400146268,
+        "min": 5033.429963748969,
+        "max": 5388.20309335186,
+        "samples": 3
+      },
+      "score": {
+        "median": 45,
+        "min": 44,
+        "max": 45,
+        "samples": 3
+      },
+      "downloadBytes": {
+        "median": 1570202,
+        "min": 1570202,
+        "max": 1570202,
+        "samples": 3
+      },
+      "decodedJavaScriptBytes": {
+        "median": 1201006,
+        "min": 1201006,
+        "max": 1201006,
+        "samples": 3
+      },
+      "mainThreadScriptParseCompileMs": {
+        "median": 3.0560000000000005,
+        "min": 3.0160000000000005,
+        "max": 3.3120000000000003,
+        "samples": 3
+      },
+      "scriptEvaluationMs": {
+        "median": 2494.2359999999526,
+        "min": 2474.1639999999416,
+        "max": 3050.303999999936,
+        "samples": 3
+      },
+      "styleLayoutMs": {
+        "median": 1538.5599999999997,
+        "min": 1414.4000000000003,
+        "max": 1630.0680000000007,
+        "samples": 3
+      },
+      "longestTaskMs": {
+        "median": 1718,
+        "min": 1682,
+        "max": 2210,
+        "samples": 3
+      },
+      "backgroundParseStreamingMs": {
+        "median": 56.625000000000014,
+        "min": 53.45700000000001,
+        "max": 67.82900000000001,
+        "samples": 3
+      }
+    },
+    "readiness": {
+      "ready": {
+        "samples": 0
+      },
+      "cameraChanged": {
+        "samples": 0
+      },
+      "inputToPoseRestMs": {
+        "samples": 0
+      },
+      "contextCreationMs": {
+        "samples": 0
+      },
+      "shaderProgramCallsMs": {
+        "samples": 0
+      }
+    }
+  },
+  "containment-gzip": {
+    "metrics": {
+      "first-contentful-paint": {
+        "samples": 0
+      },
+      "largest-contentful-paint": {
+        "samples": 0
+      },
+      "total-blocking-time": {
+        "samples": 0
+      },
+      "cumulative-layout-shift": {
+        "samples": 0
+      },
+      "speed-index": {
+        "samples": 0
+      },
+      "score": {
+        "samples": 0
+      },
+      "downloadBytes": {
+        "samples": 0
+      },
+      "decodedJavaScriptBytes": {
+        "samples": 0
+      },
+      "mainThreadScriptParseCompileMs": {
+        "samples": 0
+      },
+      "scriptEvaluationMs": {
+        "samples": 0
+      },
+      "styleLayoutMs": {
+        "samples": 0
+      },
+      "longestTaskMs": {
+        "samples": 0
+      },
+      "backgroundParseStreamingMs": {
+        "samples": 0
+      }
+    },
+    "readiness": {
+      "ready": {
+        "median": 10100.5,
+        "min": 10032.800000000745,
+        "max": 10263.60000000149,
+        "samples": 3
+      },
+      "cameraChanged": {
+        "median": 12544.10000000149,
+        "min": 12507.70000000298,
+        "max": 12647.699999999255,
+        "samples": 3
+      },
+      "inputToPoseRestMs": {
+        "median": 2427.300000000745,
+        "min": 2311.199999999255,
+        "max": 2460.60000000149,
+        "samples": 3
+      },
+      "contextCreationMs": {
+        "median": 15.099999997764826,
+        "min": 14.799999997019768,
+        "max": 23.49999999627471,
+        "samples": 3
+      },
+      "shaderProgramCallsMs": {
+        "median": 2.0000000037252903,
+        "min": 2,
+        "max": 2.5000000074505806,
+        "samples": 3
+      }
+    }
+  },
+  "containment-identity": {
+    "metrics": {
+      "first-contentful-paint": {
+        "median": 4233.265,
+        "min": 4225.2225,
+        "max": 4239.46,
+        "samples": 3
+      },
+      "largest-contentful-paint": {
+        "median": 4493.667,
+        "min": 4409.118,
+        "max": 4511.952,
+        "samples": 3
+      },
+      "total-blocking-time": {
+        "median": 2425,
+        "min": 2034.5,
+        "max": 2707.5,
+        "samples": 3
+      },
+      "cumulative-layout-shift": {
+        "median": 0.01458080194410693,
+        "min": 0.01458080194410693,
+        "max": 0.01458080194410693,
+        "samples": 3
+      },
+      "speed-index": {
+        "median": 4860.977336473532,
+        "min": 4631.466143301246,
+        "max": 5277.799017103609,
+        "samples": 3
+      },
+      "score": {
+        "median": 44,
+        "min": 43,
+        "max": 45,
+        "samples": 3
+      },
+      "downloadBytes": {
+        "median": 1570299,
+        "min": 1570299,
+        "max": 1570299,
+        "samples": 3
+      },
+      "decodedJavaScriptBytes": {
+        "median": 1201006,
+        "min": 1201006,
+        "max": 1201006,
+        "samples": 3
+      },
+      "mainThreadScriptParseCompileMs": {
+        "median": 3.024,
+        "min": 2.7,
+        "max": 3.384000000000001,
+        "samples": 3
+      },
+      "scriptEvaluationMs": {
+        "median": 2900.9959999999305,
+        "min": 2476.747999999952,
+        "max": 3298.391999999954,
+        "samples": 3
+      },
+      "styleLayoutMs": {
+        "median": 717.092,
+        "min": 702.304,
+        "max": 896.6479999999998,
+        "samples": 3
+      },
+      "longestTaskMs": {
+        "median": 2136,
+        "min": 1724,
+        "max": 2340,
+        "samples": 3
+      },
+      "backgroundParseStreamingMs": {
+        "median": 65.251,
+        "min": 47.879999999999995,
+        "max": 70.79299999999999,
+        "samples": 3
+      }
+    },
+    "readiness": {
+      "ready": {
+        "samples": 0
+      },
+      "cameraChanged": {
+        "samples": 0
+      },
+      "inputToPoseRestMs": {
+        "samples": 0
+      },
+      "contextCreationMs": {
+        "samples": 0
+      },
+      "shaderProgramCallsMs": {
+        "samples": 0
+      }
+    }
+  },
+  "deferred-gzip": {
+    "metrics": {
+      "first-contentful-paint": {
+        "samples": 0
+      },
+      "largest-contentful-paint": {
+        "samples": 0
+      },
+      "total-blocking-time": {
+        "samples": 0
+      },
+      "cumulative-layout-shift": {
+        "samples": 0
+      },
+      "speed-index": {
+        "samples": 0
+      },
+      "score": {
+        "samples": 0
+      },
+      "downloadBytes": {
+        "samples": 0
+      },
+      "decodedJavaScriptBytes": {
+        "samples": 0
+      },
+      "mainThreadScriptParseCompileMs": {
+        "samples": 0
+      },
+      "scriptEvaluationMs": {
+        "samples": 0
+      },
+      "styleLayoutMs": {
+        "samples": 0
+      },
+      "longestTaskMs": {
+        "samples": 0
+      },
+      "backgroundParseStreamingMs": {
+        "samples": 0
+      }
+    },
+    "readiness": {
+      "ready": {
+        "median": 11479.699999999255,
+        "min": 11320.300000000745,
+        "max": 11485.300000000745,
+        "samples": 3
+      },
+      "cameraChanged": {
+        "median": 14020.10000000149,
+        "min": 13993.800000000745,
+        "max": 14067.10000000149,
+        "samples": 3
+      },
+      "inputToPoseRestMs": {
+        "median": 2568.400000002235,
+        "min": 2521.300000000745,
+        "max": 2656.5,
+        "samples": 3
+      },
+      "contextCreationMs": {
+        "median": 18.299999997019768,
+        "min": 17.30000000447035,
+        "max": 18.799999997019768,
+        "samples": 3
+      },
+      "shaderProgramCallsMs": {
+        "median": 2.400000002235174,
+        "min": 1.800000000745058,
+        "max": 2.9999999925494194,
+        "samples": 3
+      }
+    }
+  },
+  "deferred-identity": {
+    "metrics": {
+      "first-contentful-paint": {
+        "median": 4402.08,
+        "min": 4068.3059999999996,
+        "max": 6787.854000000001,
+        "samples": 3
+      },
+      "largest-contentful-paint": {
+        "median": 9542.928,
+        "min": 9517.472000000002,
+        "max": 9674.112000000001,
+        "samples": 3
+      },
+      "total-blocking-time": {
+        "median": 2065.384,
+        "min": 1123.5000000000005,
+        "max": 3384,
+        "samples": 3
+      },
+      "cumulative-layout-shift": {
+        "median": 0,
+        "min": 0,
+        "max": 0.01458080194410693,
+        "samples": 3
+      },
+      "speed-index": {
+        "median": 5256.66516592225,
+        "min": 5202.578074896166,
+        "max": 6787.854000000001,
+        "samples": 3
+      },
+      "score": {
+        "median": 35,
+        "min": 34,
+        "max": 36,
+        "samples": 3
+      },
+      "downloadBytes": {
+        "median": 1571912,
+        "min": 1571912,
+        "max": 1571912,
+        "samples": 3
+      },
+      "decodedJavaScriptBytes": {
+        "median": 1202106,
+        "min": 1202106,
+        "max": 1202106,
+        "samples": 3
+      },
+      "mainThreadScriptParseCompileMs": {
+        "median": 3.020000000000001,
+        "min": 3.0160000000000005,
+        "max": 4.784,
+        "samples": 3
+      },
+      "scriptEvaluationMs": {
+        "median": 2957.247999999944,
+        "min": 2574.8679999999404,
+        "max": 3934.9399999999537,
+        "samples": 3
+      },
+      "styleLayoutMs": {
+        "median": 1336.4359999999997,
+        "min": 1330.7719999999997,
+        "max": 1888.4,
+        "samples": 3
+      },
+      "longestTaskMs": {
+        "median": 2119,
+        "min": 1774.000000000001,
+        "max": 2955,
+        "samples": 3
+      },
+      "backgroundParseStreamingMs": {
+        "median": 61.597,
+        "min": 47.848000000000006,
+        "max": 73.59100000000001,
+        "samples": 3
+      }
+    },
+    "readiness": {
+      "ready": {
+        "samples": 0
+      },
+      "cameraChanged": {
+        "samples": 0
+      },
+      "inputToPoseRestMs": {
+        "samples": 0
+      },
+      "contextCreationMs": {
+        "samples": 0
+      },
+      "shaderProgramCallsMs": {
+        "samples": 0
+      }
+    }
+  },
+  "integrated-observatory": {
+    "metrics": {
+      "first-contentful-paint": {
+        "median": 4453.27625,
+        "min": 4451.17,
+        "max": 4453.75375,
+        "samples": 3
+      },
+      "largest-contentful-paint": {
+        "median": 5282.0315,
+        "min": 5262.604,
+        "max": 5314.8045,
+        "samples": 3
+      },
+      "total-blocking-time": {
+        "median": 904.5,
+        "min": 863,
+        "max": 988,
+        "samples": 3
+      },
+      "cumulative-layout-shift": {
+        "median": 0.01458080194410693,
+        "min": 0.01458080194410693,
+        "max": 0.01458080194410693,
+        "samples": 3
+      },
+      "speed-index": {
+        "median": 5434.077940313749,
+        "min": 5324.96595444509,
+        "max": 5491.282683516033,
+        "samples": 3
+      },
+      "score": {
+        "median": 47,
+        "min": 46,
+        "max": 48,
+        "samples": 3
+      },
+      "downloadBytes": {
+        "median": 1584363,
+        "min": 1584363,
+        "max": 1584363,
+        "samples": 3
+      },
+      "decodedJavaScriptBytes": {
+        "median": 1208028,
+        "min": 1208028,
+        "max": 1208028,
+        "samples": 3
+      },
+      "mainThreadScriptParseCompileMs": {
+        "median": 2.6360000000000006,
+        "min": 2.5719999999999996,
+        "max": 3.2880000000000003,
+        "samples": 3
+      },
+      "scriptEvaluationMs": {
+        "median": 2526.7879999999323,
+        "min": 2461.287999999928,
+        "max": 2652.5479999999084,
+        "samples": 3
+      },
+      "styleLayoutMs": {
+        "median": 752.32,
+        "min": 733.6879999999999,
+        "max": 760.6120000000003,
+        "samples": 3
+      },
+      "longestTaskMs": {
+        "median": 865,
+        "min": 832,
+        "max": 927,
+        "samples": 3
+      },
+      "backgroundParseStreamingMs": {
+        "median": 54.708,
+        "min": 54.241,
+        "max": 66.462,
+        "samples": 3
+      }
+    },
+    "readiness": {
+      "ready": {
+        "median": 10524.60000000149,
+        "min": 10142.79999999702,
+        "max": 10588.599999997765,
+        "samples": 3
+      },
+      "cameraChanged": {
+        "median": 14411.199999999255,
+        "min": 14021,
+        "max": 14472.39999999851,
+        "samples": 3
+      },
+      "inputToPoseRestMs": {
+        "median": 3870.5,
+        "min": 3863.60000000149,
+        "max": 3872.199999999255,
+        "samples": 3
+      },
+      "contextCreationMs": {
+        "median": 17.600000001490116,
+        "min": 13.899999998509884,
+        "max": 20.80000000447035,
+        "samples": 3
+      },
+      "shaderProgramCallsMs": {
+        "median": 2.6999999955296516,
+        "min": 2.600000001490116,
+        "max": 3.3999999947845936,
+        "samples": 3
+      }
+    }
+  },
+  "integrated-origin": {
+    "metrics": {
+      "first-contentful-paint": {
+        "median": 4459.325000000001,
+        "min": 4452.71,
+        "max": 4473.2775,
+        "samples": 3
+      },
+      "largest-contentful-paint": {
+        "median": 4874.152,
+        "min": 4860.39,
+        "max": 4879.933,
+        "samples": 3
+      },
+      "total-blocking-time": {
+        "median": 2064.5,
+        "min": 1936.5,
+        "max": 2734,
+        "samples": 3
+      },
+      "cumulative-layout-shift": {
+        "median": 0.01458080194410693,
+        "min": 0.01458080194410693,
+        "max": 0.01458080194410693,
+        "samples": 3
+      },
+      "speed-index": {
+        "median": 5888.92449301697,
+        "min": 5836.759221853739,
+        "max": 5903.320370127045,
+        "samples": 3
+      },
+      "score": {
+        "median": 41,
+        "min": 40,
+        "max": 41,
+        "samples": 3
+      },
+      "downloadBytes": {
+        "median": 1600696,
+        "min": 1600696,
+        "max": 1600696,
+        "samples": 3
+      },
+      "decodedJavaScriptBytes": {
+        "median": 1224361,
+        "min": 1224361,
+        "max": 1224361,
+        "samples": 3
+      },
+      "mainThreadScriptParseCompileMs": {
+        "median": 3.216,
+        "min": 2.8360000000000003,
+        "max": 3.2520000000000002,
+        "samples": 3
+      },
+      "scriptEvaluationMs": {
+        "median": 2734.911999999907,
+        "min": 2671.8479999999377,
+        "max": 3466.9039999999145,
+        "samples": 3
+      },
+      "styleLayoutMs": {
+        "median": 881.3679999999999,
+        "min": 746.2080000000002,
+        "max": 972.3000000000002,
+        "samples": 3
+      },
+      "longestTaskMs": {
+        "median": 2027,
+        "min": 1864,
+        "max": 2682,
+        "samples": 3
+      },
+      "backgroundParseStreamingMs": {
+        "median": 60.998,
+        "min": 52.482,
+        "max": 74.579,
+        "samples": 3
+      }
+    },
+    "readiness": {
+      "ready": {
+        "median": 10139.39999999851,
+        "min": 10088.29999999702,
+        "max": 10260,
+        "samples": 3
+      },
+      "cameraChanged": {
+        "median": 12769.5,
+        "min": 12454,
+        "max": 12860.300000000745,
+        "samples": 3
+      },
+      "inputToPoseRestMs": {
+        "median": 2480.10000000149,
+        "min": 2358.800000000745,
+        "max": 2706.5,
+        "samples": 3
+      },
+      "contextCreationMs": {
+        "median": 15.199999995529652,
+        "min": 14.299999997019768,
+        "max": 15.599999997764826,
+        "samples": 3
+      },
+      "shaderProgramCallsMs": {
+        "median": 2.5,
+        "min": 2,
+        "max": 2.5999999903142452,
+        "samples": 3
+      }
+    }
+  },
+  "preload-gzip": {
+    "metrics": {
+      "first-contentful-paint": {
+        "samples": 0
+      },
+      "largest-contentful-paint": {
+        "samples": 0
+      },
+      "total-blocking-time": {
+        "samples": 0
+      },
+      "cumulative-layout-shift": {
+        "samples": 0
+      },
+      "speed-index": {
+        "samples": 0
+      },
+      "score": {
+        "samples": 0
+      },
+      "downloadBytes": {
+        "samples": 0
+      },
+      "decodedJavaScriptBytes": {
+        "samples": 0
+      },
+      "mainThreadScriptParseCompileMs": {
+        "samples": 0
+      },
+      "scriptEvaluationMs": {
+        "samples": 0
+      },
+      "styleLayoutMs": {
+        "samples": 0
+      },
+      "longestTaskMs": {
+        "samples": 0
+      },
+      "backgroundParseStreamingMs": {
+        "samples": 0
+      }
+    },
+    "readiness": {
+      "ready": {
+        "median": 11070.800000000745,
+        "min": 10483.29999999702,
+        "max": 11545.10000000149,
+        "samples": 3
+      },
+      "cameraChanged": {
+        "median": 13448.599999997765,
+        "min": 13248.29999999702,
+        "max": 13904.5,
+        "samples": 3
+      },
+      "inputToPoseRestMs": {
+        "median": 2366.099999997765,
+        "min": 2346.300000000745,
+        "max": 2743.7999999970198,
+        "samples": 3
+      },
+      "contextCreationMs": {
+        "median": 15.5,
+        "min": 13.600000001490116,
+        "max": 21.300000000745058,
+        "samples": 3
+      },
+      "shaderProgramCallsMs": {
+        "median": 2.5000000074505806,
+        "min": 1.5999999977648258,
+        "max": 3.5999999940395355,
+        "samples": 3
+      }
+    }
+  },
+  "preload-identity": {
+    "metrics": {
+      "first-contentful-paint": {
+        "median": 6704.53625,
+        "min": 6701.625,
+        "max": 6718.477499999999,
+        "samples": 3
+      },
+      "largest-contentful-paint": {
+        "median": 9350.6435,
+        "min": 9343.95,
+        "max": 9364.172999999999,
+        "samples": 3
+      },
+      "total-blocking-time": {
+        "median": 992.5,
+        "min": 900,
+        "max": 1320.5,
+        "samples": 3
+      },
+      "cumulative-layout-shift": {
+        "median": 0,
+        "min": 0,
+        "max": 0.01458080194410693,
+        "samples": 3
+      },
+      "speed-index": {
+        "median": 6704.53625,
+        "min": 6701.625,
+        "max": 6718.477499999999,
+        "samples": 3
+      },
+      "score": {
+        "median": 37,
+        "min": 34,
+        "max": 38,
+        "samples": 3
+      },
+      "downloadBytes": {
+        "median": 1571863,
+        "min": 1571863,
+        "max": 1571863,
+        "samples": 3
+      },
+      "decodedJavaScriptBytes": {
+        "median": 1202057,
+        "min": 1202057,
+        "max": 1202057,
+        "samples": 3
+      },
+      "mainThreadScriptParseCompileMs": {
+        "median": 3.1960000000000006,
+        "min": 2.8600000000000003,
+        "max": 3.244,
+        "samples": 3
+      },
+      "scriptEvaluationMs": {
+        "median": 2361.827999999957,
+        "min": 2112.5559999999623,
+        "max": 2957.555999999935,
+        "samples": 3
+      },
+      "styleLayoutMs": {
+        "median": 1370.0240000000001,
+        "min": 1310.6719999999998,
+        "max": 1646.1240000000003,
+        "samples": 3
+      },
+      "longestTaskMs": {
+        "median": 1628,
+        "min": 1368,
+        "max": 2152,
+        "samples": 3
+      },
+      "backgroundParseStreamingMs": {
+        "median": 61.843,
+        "min": 53.852000000000004,
+        "max": 67.70599999999997,
+        "samples": 3
+      }
+    },
+    "readiness": {
+      "ready": {
+        "samples": 0
+      },
+      "cameraChanged": {
+        "samples": 0
+      },
+      "inputToPoseRestMs": {
+        "samples": 0
+      },
+      "contextCreationMs": {
+        "samples": 0
+      },
+      "shaderProgramCallsMs": {
+        "samples": 0
+      }
+    }
+  }
+}

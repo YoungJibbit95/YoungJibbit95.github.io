@@ -1,0 +1,13 @@
+{
+  "nativeHref": "/atlas/observatory/?atlas=preview&world=observatory&focus=cerebri&q=Rust",
+  "popupUrl": "http://127.0.0.1:4184/atlas/observatory/?atlas=preview&world=observatory&focus=cerebri&q=Rust",
+  "filters": {
+    "query": "Rust",
+    "category": "",
+    "technology": "",
+    "status": "",
+    "cluster": ""
+  },
+  "visibleIds": ["cerebri"],
+  "result": "PASS: real Explorer Ctrl-click retains static entry, focus, query and rendered world"
+}

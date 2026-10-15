@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Living Cosmos · Galactic Atlas Refinement</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: system-ui, sans-serif;
+        background: #080b18;
+        color: #e9edf4;
+      }
+      body {
+        margin: 0 auto;
+        max-width: 1500px;
+        padding: 36px 24px 80px;
+        line-height: 1.55;
+      }
+      h1 {
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 1.1;
+        font-weight: 500;
+        letter-spacing: -0.045em;
+      }
+      h2 {
+        margin-top: 48px;
+        font-weight: 500;
+      }
+      p {
+        max-width: 80ch;
+        color: #bfc5db;
+      }
+      a {
+        color: #bfaaff;
+        text-underline-offset: 4px;
+      }
+      a:focus-visible {
+        outline: 3px solid #78e8e8;
+        outline-offset: 4px;
+      }
+      nav {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        padding: 10px 0;
+      }
+      figure {
+        margin: 0;
+        min-width: 0;
+      }
+      figcaption {
+        padding: 10px 0 20px;
+        color: #bfc5db;
+        font-size: 0.9rem;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid #303754;
+        box-sizing: border-box;
+      }
+      .pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .scene {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(220px, 1fr);
+        gap: 20px;
+        align-items: start;
+      }
+      .mobile {
+        max-width: 800px;
+      }
+      .note {
+        border-left: 2px solid #aa8eef;
+        padding-left: 18px;
+      }
+      @media (max-width: 650px) {
+        .pair,
+        .scene {
+          grid-template-columns: 1fr;
+        }
+        .scene figure:last-child {
+          max-width: 390px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p>G2-D · Nebelraum · 14. Oktober 2026</p>
+    <h1>Eine klarere Sternkarte.<br />Mehr Raum für die Entdeckung.</h1>
+    <p>
+      Begrenzter Folgepass am bestehenden Cosmic Slice. Alle Bilder zeigen echte Browserpixel aus
+      derselben React-Three-Fiber-Anwendung. Keine Mockups, keine Bildmontage. Die sechs finalen
+      Szenen zeigen den Code-Checkpoint <code>4bf2ece</code>.
+    </p>
+    <p class="note">
+      Visuelle Freigabe offen: Labels, mobile Bedienung und Nexus-Detail sind verbessert. Die
+      Desktopkarte wirkt zusammenhängender, aber noch nicht überzeugend monumental. Technisch
+      bestandene Prüfungen entscheiden diese Gestaltungsfrage nicht.
+    </p>
+    <nav aria-label="Bildreview">
+      <a href="#before">Vorher / Nachher</a><a href="#macro">Macro</a
+      ><a href="#approach">Annäherung</a><a href="#detail">Geöffneter Nexus</a
+      ><a href="REPORT.md">Abnahmebericht</a>
+    </nav>
+    <h2 id="before">Derselbe Desktopausschnitt · vorher und nachher</h2>
+    <div class="pair">
+      <figure>
+        <a href="../evidence/cosmos-macro-1440.png"
+          ><img
+            src="../evidence/cosmos-macro-1440.png"
+            alt="Vorher: große Überschrift, kompakte Projektgruppe vor einer rechten violetten Wolke"
+        /></a>
+        <figcaption>Baseline e21dd2a · 1440 × 900</figcaption>
+      </figure>
+      <figure>
+        <a href="evidence/cosmos-macro-1440.png"
+          ><img
+            src="evidence/cosmos-macro-1440.png"
+            alt="Nachher: sieben separate Namen, kleinerer Titel und diagonales galaktisches Band"
+        /></a>
+        <figcaption>
+          Refinement · unveränderte Kamerapose, klare Namen und komponierte Tiefenebenen
+        </figcaption>
+      </figure>
+    </div>
+    <h2>Mehr sichtbarer Kosmos auf Mobile</h2>
+    <div class="pair mobile">
+      <figure>
+        <a href="../evidence/cosmos-macro-390.png"
+          ><img
+            src="../evidence/cosmos-macro-390.png"
+            alt="Vorher: drei Reihen mobiler Steuerung"
+            loading="lazy"
+        /></a>
+        <figcaption>Baseline · 390 × 844</figcaption>
+      </figure>
+      <figure>
+        <a href="evidence/cosmos-macro-390.png"
+          ><img
+            src="evidence/cosmos-macro-390.png"
+            alt="Nachher: kompakte zwei Reihen mit Nexus-Hauptaktion und Kamerasteuerung"
+            loading="lazy"
+        /></a>
+        <figcaption>Refinement · 112 px Bedienzone einschließlich unterem Abstand</figcaption>
+      </figure>
+    </div>
+    <h2 id="macro">01 · Galaktische Macro-Übersicht</h2>
+    <p>
+      Gleiche sieben Projekte, gleiche Koordinaten. 2.800 Sterne liegen in echten räumlichen
+      Schichten. Die entfernte Sternlinse ist eine künstlerische Landmarke. Das diagonale Band
+      besteht weiterhin aus kameraorientierten Nebelflächen, nicht aus volumetrischem Gas.
+    </p>
+    <div class="scene">
+      <figure>
+        <a href="evidence/cosmos-macro-1440.png"
+          ><img
+            src="evidence/cosmos-macro-1440.png"
+            alt="Finale galaktische Übersicht bei 1440 Pixeln"
+            loading="lazy"
+        /></a>
+        <figcaption>1440 × 900 · alle sieben Namen im Bild</figcaption>
+      </figure>
+      <figure>
+        <a href="evidence/cosmos-macro-390.png"
+          ><img
+            src="evidence/cosmos-macro-390.png"
+            alt="Finale mobile Übersicht mit Nexus als Ankunftspunkt"
+            loading="lazy"
+        /></a>
+        <figcaption>390 × 844 · Nexus als erster Orientierungspunkt</figcaption>
+      </figure>
+    </div>
+    <h2 id="approach">02 · Nexus-Annäherung</h2>
+    <p>
+      Die vier Segel bleiben zunächst geschlossen. Andere Systeme und entfernte Beziehungslinien
+      treten bei dieser Nahansicht zurück; die normale freie Erkundung bleibt erhalten.
+    </p>
+    <div class="scene">
+      <figure>
+        <a href="evidence/cosmos-nexus-approach-1440.png"
+          ><img
+            src="evidence/cosmos-nexus-approach-1440.png"
+            alt="Nexus-Annäherung am Desktop mit vier geschlossenen Segeln"
+            loading="lazy"
+        /></a>
+        <figcaption>1440 × 900 · Annäherung</figcaption>
+      </figure>
+      <figure>
+        <a href="evidence/cosmos-nexus-approach-390.png"
+          ><img
+            src="evidence/cosmos-nexus-approach-390.png"
+            alt="Nexus-Annäherung auf Mobile"
+            loading="lazy"
+        /></a>
+        <figcaption>390 × 844 · Annäherung</figcaption>
+      </figure>
+    </div>
+    <h2 id="detail">03 · Vier Clients, ein Kern</h2>
+    <p>
+      Die tatsächliche Kameradistanz öffnet dieselben vier Segel. Lichtwege enden an den sichtbaren
+      Clientmodulen. Alle vier Namen und @nexus/core bleiben auf beiden Größen vollständig sichtbar.
+    </p>
+    <div class="scene">
+      <figure>
+        <a href="evidence/cosmos-nexus-detail-1440.png"
+          ><img
+            src="evidence/cosmos-nexus-detail-1440.png"
+            alt="Geöffneter Nexus mit zentralem Kern und vier benannten Clients am Desktop"
+            loading="lazy"
+        /></a>
+        <figcaption>1440 × 900 · geöffnetes System</figcaption>
+      </figure>
+      <figure>
+        <a href="evidence/cosmos-nexus-detail-390.png"
+          ><img
+            src="evidence/cosmos-nexus-detail-390.png"
+            alt="Geöffneter Nexus mit fünf lesbaren Namen auf Mobile"
+            loading="lazy"
+        /></a>
+        <figcaption>390 × 844 · geöffnetes System</figcaption>
+      </figure>
+    </div>
+    <h2>Bedienbarkeit bei 320 und 768 Pixeln</h2>
+    <p>
+      Zusätzliche echte UI-Aufnahmen aus der vollständigen Root-Suite auf Code-Checkpoint 4bf2ece,
+      nach der letzten Nebelpolitur. Sie belegen Dossier, Touch-Flächen und Layout. Labels werden
+      auf vier Breiten automatisch geprüft.
+    </p>
+    <div class="pair">
+      <figure>
+        <a href="evidence/mobile/cosmos-dossier-320.png"
+          ><img
+            src="evidence/mobile/cosmos-dossier-320.png"
+            alt="Lesbares und scrollbar begrenztes Nexus-Dossier bei 320 Pixeln"
+            loading="lazy"
+            style="max-width: 320px"
+        /></a>
+        <figcaption>
+          320 × 640 · Dossier mit erreichbarem Schließen und nativer Textliste
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="evidence/mobile/cosmos-ui-768.png"
+          ><img
+            src="evidence/mobile/cosmos-ui-768.png"
+            alt="Tablet-Übersicht mit rechts begrenzter Bedienzone"
+            loading="lazy"
+            style="max-width: 500px"
+        /></a>
+        <figcaption>768 × 1024 · kompakte Tablet-Steuerung</figcaption>
+      </figure>
+    </div>
+    <p>
+      Dieser Checkpoint endet hier zur visuellen Nutzerentscheidung. Origin-Storyboard und weitere
+      Detailwelten gehören nicht zu diesem Auftrag.
+    </p>
+  </body>
+</html>

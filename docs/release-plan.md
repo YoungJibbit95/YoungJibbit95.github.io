@@ -6,7 +6,7 @@ Jede Etappe endet mit einem verwendbaren Stand, einer Prüfung im Produktionsbui
 | ------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | 0.1     | Visuelle Grundlage und persönliche Vorstellung | Vollständiger Einstieg, Projektauswahl, kuratierte Projekttexte, eigene Illustrationen, Denkweise, Persönlichkeit und GitHub Pages |
 | 0.2     | Nexus als erste ausführliche Geschichte        | Echte aktuelle Aufnahmen und eine animierte Erklärung vom einzelnen Gedanken zu verbundenen Clients                                |
-| 0.3     | Portfolio Atlas                                | Persönlicher Entwicklungsweg, Nexus- und Cerebri-Geschichten, Stack und Arbeitsweise mit erklärenden Weltraum-Szenen               |
+| 0.3     | Cerebri nachvollziehbar machen                 | Ein kleines überprüfbares Planungsbeispiel mit Konflikten, Regeln und sichtbarer Freigabegrenze                                    |
 | 0.4     | Engines und eigene Welten                      | Individuelle Szenen für Engine-Schichten und Spielwelten, ergänzt durch echtes Projektmaterial                                     |
 
 ## Qualitätskriterien je Etappe
@@ -30,10 +30,4 @@ Der persönliche Einstieg stellt YoungJibbit95 und die Lust am Verstehen in den 
 
 Die Nexus-Geschichte erklärt in drei anwählbaren Kapiteln den ersten Gedanken, den Arbeitskontext und den gemeinsamen Runtime-Kern. Unveränderte Produktaufnahmen zeigen Nexus Main v6 Beta. Animationen zeichnen Zusammenhänge und öffnen die Architektur; reduzierte und ausgeschaltete Bewegung zeigen denselben Inhalt.
 
-## Release 0.3
-
-Die Website wird als durchscrollbarer Portfolio-Atlas aufgebaut. Die Entstehungsgeschichten von Nexus und Cerebri bleiben erhalten und werden persönlicher, klarer formuliert. Weitere Ebenen zeigen den Tech-Stack und die Denk- und Arbeitsweise.
-
-Der Einstieg erklärt den Weg von Web- und UI-Projekten zu Nexus, Cerebri und eigenen Engines. Nexus wechselt zwischen Workspace und gemeinsamer Grundlage. Bei Cerebri zeigt ein vereinfachtes Planungsbeispiel den Unterschied zwischen einem Konflikt und einem zeitlich passenden Vorschlag.
-
-Glow, Blur, Sternenfeld und räumliche Übergänge verbinden die Ebenen. Reduzierte und ausgeschaltete Bewegung bleiben vollständig nutzbar. Die folgenden Etappen werden auf dieser Richtung aufgebaut, statt wieder lange einzelne Product Pages zu ergänzen.
+Die ausführliche Cerebri-Szene folgt in Release 0.3.

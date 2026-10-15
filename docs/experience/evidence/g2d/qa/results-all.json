@@ -1,0 +1,808 @@
+[
+  {
+    "name": "a-390",
+    "status": "PASS",
+    "entry": {
+      "calls": 82,
+      "triangles": 55352,
+      "geometries": 24,
+      "textures": 5,
+      "frame": 4,
+      "eye": [-21, 10.300000000000004, 31],
+      "target": [-2, 6.1, -1],
+      "world": "observatory",
+      "scale": "overview",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true,
+      "position": [-21, 10.300000000000004, 31]
+    },
+    "discovery": {
+      "calls": 56,
+      "triangles": 41742,
+      "geometries": 34,
+      "textures": 15,
+      "frame": 72,
+      "eye": [-9.2, 5.700000000000001, 26.6],
+      "target": [-10, 4.8, 3.3],
+      "world": "observatory",
+      "scale": "detail",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true,
+      "position": [-9.2, 5.700000000000001, 26.6]
+    },
+    "gestures": {
+      "entry": {
+        "calls": 82,
+        "triangles": 55352,
+        "geometries": 24,
+        "textures": 5,
+        "frame": 4,
+        "eye": [-21, 10.300000000000004, 31],
+        "target": [-2, 6.1, -1],
+        "world": "observatory",
+        "scale": "overview",
+        "selected": "nexus",
+        "canvasCount": 1,
+        "sleeping": true,
+        "position": [-21, 10.300000000000004, 31]
+      },
+      "pinched": {
+        "calls": 81,
+        "triangles": 55340,
+        "geometries": 24,
+        "textures": 5,
+        "frame": 41,
+        "eye": [-18.85064896203811, 9.812349704582289, 27.25091185770702],
+        "target": [-2.056686012737296, 6.1, -1.0336573200627694],
+        "world": "observatory",
+        "scale": "overview",
+        "selected": "nexus",
+        "canvasCount": 1,
+        "sleeping": false,
+        "position": [-18.85064896203811, 9.812349704582289, 27.25091185770702]
+      },
+      "dragged": {
+        "calls": 111,
+        "triangles": 36668,
+        "geometries": 27,
+        "textures": 8,
+        "frame": 67,
+        "eye": [-31.40761564964541, 12.732224034255925, 12.763487554219141],
+        "target": [-2.056686012737296, 6.1, -1.0336573200627694],
+        "world": "observatory",
+        "scale": "overview",
+        "selected": "nexus",
+        "canvasCount": 1,
+        "sleeping": true,
+        "position": [-31.40761564964541, 12.732224034255925, 12.763487554219141]
+      },
+      "pinchDelta": -4.348428276338112
+    },
+    "keyboard": "Physical camera target changed from ArrowRight",
+    "reading": "Modal trap, inert stage, Escape, opener focus checked",
+    "entryTargets": [],
+    "discoveryTargets": [],
+    "axe": [],
+    "idleFrameDelta": 0,
+    "worldCycles": [],
+    "errors": []
+  },
+  {
+    "name": "a-768",
+    "status": "PASS",
+    "entry": {
+      "calls": 149,
+      "triangles": 56126,
+      "geometries": 27,
+      "textures": 8,
+      "frame": 4,
+      "eye": [-36, 22.599999999999994, 43],
+      "target": [16, 5.7, -8],
+      "world": "observatory",
+      "scale": "overview",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true,
+      "position": [-36, 22.599999999999994, 43]
+    },
+    "discovery": {
+      "calls": 40,
+      "triangles": 14110,
+      "geometries": 35,
+      "textures": 16,
+      "frame": 61,
+      "eye": [-4.5, 5.700000000000001, 22.8],
+      "target": [-12, 4.8, 3.3],
+      "world": "observatory",
+      "scale": "detail",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true,
+      "position": [-4.5, 5.700000000000001, 22.8]
+    },
+    "gestures": {
+      "entry": {
+        "calls": 149,
+        "triangles": 56126,
+        "geometries": 27,
+        "textures": 8,
+        "frame": 4,
+        "eye": [-36, 22.599999999999994, 43],
+        "target": [16, 5.7, -8],
+        "world": "observatory",
+        "scale": "overview",
+        "selected": "nexus",
+        "canvasCount": 1,
+        "sleeping": true,
+        "position": [-36, 22.599999999999994, 43]
+      },
+      "pinched": {
+        "calls": 139,
+        "triangles": 56006,
+        "geometries": 27,
+        "textures": 8,
+        "frame": 39,
+        "eye": [-30.03275666591707, 20.63773688139772, 37.006506088649516],
+        "target": [15.929510661460549, 5.7, -8.07187148243238],
+        "world": "observatory",
+        "scale": "overview",
+        "selected": "nexus",
+        "canvasCount": 1,
+        "sleeping": false,
+        "position": [-30.03275666591707, 20.63773688139772, 37.006506088649516]
+      },
+      "dragged": {
+        "calls": 154,
+        "triangles": 50894,
+        "geometries": 28,
+        "textures": 9,
+        "frame": 56,
+        "eye": [-44.63327082518621, 25.333207900164417, 9.659438542464352],
+        "target": [15.929510661460549, 5.7, -8.07187148243238],
+        "world": "observatory",
+        "scale": "overview",
+        "selected": "nexus",
+        "canvasCount": 1,
+        "sleeping": true,
+        "position": [-44.63327082518621, 25.333207900164417, 9.659438542464352]
+      },
+      "pinchDelta": -8.681607256916465
+    },
+    "keyboard": "Physical camera target changed from ArrowRight",
+    "reading": "Modal trap, inert stage, Escape, opener focus checked",
+    "entryTargets": [
+      {
+        "name": "YjsE",
+        "x": 616.734375,
+        "y": 866,
+        "width": 42.921875,
+        "height": 44,
+        "right": 659.65625,
+        "bottom": 910,
+        "visible": true
+      }
+    ],
+    "discoveryTargets": [
+      {
+        "name": "YjsE",
+        "x": 616.734375,
+        "y": 866,
+        "width": 42.921875,
+        "height": 44,
+        "right": 659.65625,
+        "bottom": 910,
+        "visible": true
+      }
+    ],
+    "axe": null,
+    "idleFrameDelta": 0,
+    "worldCycles": [],
+    "errors": []
+  },
+  {
+    "name": "a-1440",
+    "status": "PASS",
+    "entry": {
+      "calls": 167,
+      "triangles": 56332,
+      "geometries": 28,
+      "textures": 9,
+      "frame": 4,
+      "eye": [-36, 22.599999999999994, 43],
+      "target": [16, 5.7, -8],
+      "world": "observatory",
+      "scale": "overview",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true,
+      "position": [-36, 22.599999999999994, 43]
+    },
+    "discovery": {
+      "calls": 68,
+      "triangles": 48702,
+      "geometries": 35,
+      "textures": 16,
+      "frame": 9,
+      "eye": [-4.5, 5.700000000000001, 22.8],
+      "target": [-12, 4.8, 3.3],
+      "world": "observatory",
+      "scale": "detail",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true,
+      "position": [-4.5, 5.700000000000001, 22.8]
+    },
+    "gestures": null,
+    "keyboard": "Physical camera target changed from ArrowRight",
+    "reading": "Modal trap, inert stage, Escape, opener focus checked",
+    "entryTargets": [
+      {
+        "name": "YjsE",
+        "x": 1288.734375,
+        "y": 742,
+        "width": 42.921875,
+        "height": 44,
+        "right": 1331.65625,
+        "bottom": 786,
+        "visible": true
+      }
+    ],
+    "discoveryTargets": [
+      {
+        "name": "YjsE",
+        "x": 1288.734375,
+        "y": 742,
+        "width": 42.921875,
+        "height": 44,
+        "right": 1331.65625,
+        "bottom": 786,
+        "visible": true
+      }
+    ],
+    "axe": null,
+    "idleFrameDelta": 0,
+    "worldCycles": [
+      {
+        "calls": 167,
+        "triangles": 56332,
+        "geometries": 28,
+        "textures": 10,
+        "frame": 15,
+        "eye": [-36, 22.599999999999994, 43],
+        "target": [16, 5.7, -8],
+        "world": "observatory",
+        "scale": "overview",
+        "selected": "nexus",
+        "canvasCount": 1,
+        "sleeping": true,
+        "position": [-36, 22.599999999999994, 43]
+      },
+      {
+        "calls": 167,
+        "triangles": 56332,
+        "geometries": 28,
+        "textures": 10,
+        "frame": 19,
+        "eye": [-36, 22.599999999999994, 43],
+        "target": [16, 5.7, -8],
+        "world": "observatory",
+        "scale": "overview",
+        "selected": "nexus",
+        "canvasCount": 1,
+        "sleeping": true,
+        "position": [-36, 22.599999999999994, 43]
+      },
+      {
+        "calls": 167,
+        "triangles": 56332,
+        "geometries": 28,
+        "textures": 10,
+        "frame": 23,
+        "eye": [-36, 22.599999999999994, 43],
+        "target": [16, 5.7, -8],
+        "world": "observatory",
+        "scale": "overview",
+        "selected": "nexus",
+        "canvasCount": 1,
+        "sleeping": true,
+        "position": [-36, 22.599999999999994, 43]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "name": "b-390",
+    "status": "PASS",
+    "entry": {
+      "calls": 107,
+      "triangles": 74702,
+      "geometries": 126,
+      "textures": 2,
+      "programs": 4,
+      "position": [42, 61.99999999999999, 121],
+      "target": [-15, 13, -7],
+      "sampledColoredPixels": 13167,
+      "sampledColorBuckets": 80,
+      "width": 390,
+      "height": 844,
+      "frame": 2
+    },
+    "discovery": {
+      "calls": 77,
+      "triangles": 70122,
+      "geometries": 126,
+      "textures": 2,
+      "programs": 4,
+      "position": [9.999999999999996, 58.00000000000001, 75.99999999999999],
+      "target": [-20, 1, 12],
+      "sampledColoredPixels": 13167,
+      "sampledColorBuckets": 87,
+      "width": 390,
+      "height": 844,
+      "frame": 75
+    },
+    "gestures": {
+      "entry": {
+        "calls": 107,
+        "triangles": 74702,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [42, 61.99999999999999, 121],
+        "target": [-15, 13, -7],
+        "sampledColoredPixels": 13167,
+        "sampledColorBuckets": 80,
+        "width": 390,
+        "height": 844,
+        "frame": 2
+      },
+      "pinched": {
+        "calls": 101,
+        "triangles": 74630,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [31.032958186029617, 52.88955468159761, 97.36568476566093],
+        "target": [-15.369177618029024, 13, -6.835600591971451],
+        "sampledColoredPixels": 13167,
+        "sampledColorBuckets": 77,
+        "width": 390,
+        "height": 844,
+        "frame": 36
+      },
+      "dragged": {
+        "calls": 81,
+        "triangles": 58150,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [-34.70443020859237, 62.90678793363674, 101.50485423436503],
+        "target": [-15.369177618029024, 13, -6.835600591971451],
+        "sampledColoredPixels": 13167,
+        "sampledColorBuckets": 66,
+        "width": 390,
+        "height": 844,
+        "frame": 70
+      },
+      "pinchDelta": -27.598799938476645
+    },
+    "keyboard": "Native buttons activate destinations; free keyboard camera not checked",
+    "reading": "Seven-project register, Escape, opener focus checked",
+    "entryTargets": [
+      {
+        "name": "YoungJibbit95.",
+        "x": 20,
+        "y": 24.5,
+        "width": 117.59375,
+        "height": 24,
+        "right": 137.59375,
+        "bottom": 48.5,
+        "visible": true
+      },
+      {
+        "name": "Ursprung",
+        "x": 232.09375,
+        "y": 17,
+        "width": 64.125,
+        "height": 39,
+        "right": 296.21875,
+        "bottom": 56,
+        "visible": true
+      },
+      {
+        "name": "Sternwarte",
+        "x": 296.21875,
+        "y": 17,
+        "width": 73.78125,
+        "height": 39,
+        "right": 370,
+        "bottom": 56,
+        "visible": true
+      }
+    ],
+    "discoveryTargets": [
+      {
+        "name": "YoungJibbit95.",
+        "x": 20,
+        "y": 24.5,
+        "width": 117.59375,
+        "height": 24,
+        "right": 137.59375,
+        "bottom": 48.5,
+        "visible": true
+      },
+      {
+        "name": "Ursprung",
+        "x": 232.09375,
+        "y": 17,
+        "width": 64.125,
+        "height": 39,
+        "right": 296.21875,
+        "bottom": 56,
+        "visible": true
+      },
+      {
+        "name": "Sternwarte",
+        "x": 296.21875,
+        "y": 17,
+        "width": 73.78125,
+        "height": 39,
+        "right": 370,
+        "bottom": 56,
+        "visible": true
+      }
+    ],
+    "axe": [],
+    "idleFrameDelta": 0,
+    "worldCycles": [],
+    "errors": []
+  },
+  {
+    "name": "b-768",
+    "status": "PASS",
+    "entry": {
+      "calls": 126,
+      "triangles": 78410,
+      "geometries": 126,
+      "textures": 2,
+      "programs": 4,
+      "position": [100.00000000000001, 70.99999999999997, 135],
+      "target": [-13, 1, -21],
+      "sampledColoredPixels": 31458,
+      "sampledColorBuckets": 85,
+      "width": 768,
+      "height": 1024,
+      "frame": 2
+    },
+    "discovery": {
+      "calls": 65,
+      "triangles": 62598,
+      "geometries": 126,
+      "textures": 2,
+      "programs": 4,
+      "position": [8.999999999999993, 29, 47],
+      "target": [-20, 4, 12],
+      "sampledColoredPixels": 31458,
+      "sampledColorBuckets": 102,
+      "width": 768,
+      "height": 1024,
+      "frame": 70
+    },
+    "gestures": {
+      "entry": {
+        "calls": 126,
+        "triangles": 78410,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [100.00000000000001, 70.99999999999997, 135],
+        "target": [-13, 1, -21],
+        "sampledColoredPixels": 31458,
+        "sampledColorBuckets": 85,
+        "width": 768,
+        "height": 1024,
+        "frame": 2
+      },
+      "pinched": {
+        "calls": 122,
+        "triangles": 78362,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [78.61784098571249, 57.985138445087244, 106.26524174065726],
+        "target": [-13.37245512228569, 1, -20.730208789626396],
+        "sampledColoredPixels": 31458,
+        "sampledColorBuckets": 90,
+        "width": 768,
+        "height": 1024,
+        "frame": 33
+      },
+      "dragged": {
+        "calls": 124,
+        "triangles": 78386,
+        "geometries": 126,
+        "textures": 2,
+        "programs": 4,
+        "position": [7.269589782744376, 69.36559097655251, 130.0586036372836],
+        "target": [-13.37245512228569, 1, -20.730208789626396],
+        "sampledColoredPixels": 31458,
+        "sampledColorBuckets": 90,
+        "width": 768,
+        "height": 1024,
+        "frame": 64
+      },
+      "pinchDelta": -38.105881027268794
+    },
+    "keyboard": "Native buttons activate destinations; free keyboard camera not checked",
+    "reading": "Seven-project register, Escape, opener focus checked",
+    "entryTargets": [
+      {
+        "name": "YoungJibbit95.",
+        "x": 25.34375,
+        "y": 23.5,
+        "width": 150.25,
+        "height": 32,
+        "right": 175.59375,
+        "bottom": 55.5,
+        "visible": true
+      },
+      {
+        "name": "Ursprung",
+        "x": 279.796875,
+        "y": 18,
+        "width": 91.25,
+        "height": 43,
+        "right": 371.046875,
+        "bottom": 61,
+        "visible": true
+      },
+      {
+        "name": "Sternwarte",
+        "x": 378.046875,
+        "y": 18,
+        "width": 103.53125,
+        "height": 43,
+        "right": 481.578125,
+        "bottom": 61,
+        "visible": true
+      }
+    ],
+    "discoveryTargets": [
+      {
+        "name": "Nexus↗",
+        "x": 340.78125,
+        "y": 221.01173400878906,
+        "width": 86.4375,
+        "height": 43.99998474121094,
+        "right": 427.21875,
+        "bottom": 265.01171875,
+        "visible": true
+      },
+      {
+        "name": "YoungJibbit95.",
+        "x": 25.34375,
+        "y": 23.5,
+        "width": 150.25,
+        "height": 32,
+        "right": 175.59375,
+        "bottom": 55.5,
+        "visible": true
+      },
+      {
+        "name": "Ursprung",
+        "x": 279.796875,
+        "y": 18,
+        "width": 91.25,
+        "height": 43,
+        "right": 371.046875,
+        "bottom": 61,
+        "visible": true
+      },
+      {
+        "name": "Sternwarte",
+        "x": 378.046875,
+        "y": 18,
+        "width": 103.53125,
+        "height": 43,
+        "right": 481.578125,
+        "bottom": 61,
+        "visible": true
+      }
+    ],
+    "axe": null,
+    "idleFrameDelta": 0,
+    "worldCycles": [],
+    "errors": []
+  },
+  {
+    "name": "b-1440",
+    "status": "FAIL",
+    "error": "AssertionError [ERR_ASSERTION]: Resources must not grow across identical world cycles\n    at file:///F:/Coding/Portfolio%20Website/experiments/g2d-design/qa/check.mjs:248:11\n    at async record (file:///F:/Coding/Portfolio%20Website/experiments/g2d-design/qa/check.mjs:19:46)\n    at async file:///F:/Coding/Portfolio%20Website/experiments/g2d-design/qa/check.mjs:117:9"
+  },
+  {
+    "name": "c-390",
+    "status": "PASS",
+    "entry": {
+      "position": [7.9999999999999964, 24.000000000000007, 72],
+      "target": [-18, 14, 8],
+      "calls": 143,
+      "triangles": 26416,
+      "geometries": 180,
+      "textures": 10,
+      "frame": 37
+    },
+    "discovery": {
+      "position": [-2.9999999999999982, 20, 53],
+      "target": [-18, 12, 8],
+      "calls": 155,
+      "triangles": 28426,
+      "geometries": 247,
+      "textures": 17,
+      "frame": 102
+    },
+    "gestures": {
+      "entry": {
+        "position": [7.9999999999999964, 24.000000000000007, 72],
+        "target": [-18, 14, 8],
+        "calls": 143,
+        "triangles": 26416,
+        "geometries": 180,
+        "textures": 10,
+        "frame": 37
+      },
+      "pinched": {
+        "position": [2.9507936668960717, 22.140916699112527, 60.189450210581214],
+        "target": [-18.215598655625456, 14, 8.087586953847842],
+        "calls": 129,
+        "triangles": 26236,
+        "geometries": 180,
+        "textures": 10,
+        "frame": 71
+      },
+      "dragged": {
+        "position": [-32.369414499775914, 27.537089998073355, 61.427524942628345],
+        "target": [-18.215598655625456, 14, 8.087586953847842],
+        "calls": 220,
+        "triangles": 43132,
+        "geometries": 247,
+        "textures": 17,
+        "frame": 98
+      },
+      "pinchDelta": -12.976348171221957
+    },
+    "keyboard": "Physical camera target changed from ArrowRight",
+    "reading": null,
+    "entryTargets": [],
+    "discoveryTargets": [],
+    "axe": [],
+    "idleFrameDelta": 0,
+    "worldCycles": [],
+    "errors": []
+  },
+  {
+    "name": "c-768",
+    "status": "PASS",
+    "entry": {
+      "position": [7.9999999999999964, 24.000000000000007, 72],
+      "target": [-18, 14, 8],
+      "calls": 182,
+      "triangles": 29336,
+      "geometries": 199,
+      "textures": 12,
+      "frame": 37
+    },
+    "discovery": {
+      "position": [-2.9999999999999982, 20, 53],
+      "target": [-18, 12, 8],
+      "calls": 181,
+      "triangles": 29324,
+      "geometries": 251,
+      "textures": 17,
+      "frame": 93
+    },
+    "gestures": {
+      "entry": {
+        "position": [7.9999999999999964, 24.000000000000007, 72],
+        "target": [-18, 14, 8],
+        "calls": 182,
+        "triangles": 29336,
+        "geometries": 199,
+        "textures": 12,
+        "frame": 37
+      },
+      "pinched": {
+        "position": [2.990968645369911, 22.140807493078192, 60.17231485808271],
+        "target": [-18.175131964359714, 14, 8.071147360521135],
+        "calls": 182,
+        "triangles": 29336,
+        "geometries": 199,
+        "textures": 12,
+        "frame": 69
+      },
+      "dragged": {
+        "position": [-25.813595091865636, 26.532363173182663, 62.9649193706355],
+        "target": [-18.175131964359714, 14, 8.071147360521135],
+        "calls": 247,
+        "triangles": 45916,
+        "geometries": 251,
+        "textures": 17,
+        "frame": 89
+      },
+      "pinchDelta": -12.977110426213294
+    },
+    "keyboard": "Physical camera target changed from ArrowRight",
+    "reading": null,
+    "entryTargets": [],
+    "discoveryTargets": [],
+    "axe": null,
+    "idleFrameDelta": 0,
+    "worldCycles": [],
+    "errors": []
+  },
+  {
+    "name": "c-1440",
+    "status": "PASS",
+    "entry": {
+      "position": [74, 52.999999999999986, 95],
+      "target": [0, 11, -53],
+      "calls": 252,
+      "triangles": 49386,
+      "geometries": 252,
+      "textures": 18,
+      "frame": 37
+    },
+    "discovery": {
+      "position": [-3.0000000000000018, 19.999999999999996, 37],
+      "target": [-18, 12, 8],
+      "calls": 228,
+      "triangles": 39054,
+      "geometries": 252,
+      "textures": 18,
+      "frame": 41
+    },
+    "gestures": null,
+    "keyboard": "Physical camera target changed from ArrowRight",
+    "reading": null,
+    "entryTargets": [],
+    "discoveryTargets": [],
+    "axe": null,
+    "idleFrameDelta": 0,
+    "worldCycles": [
+      {
+        "position": [74, 52.999999999999986, 95],
+        "target": [0, 11, -53],
+        "calls": 252,
+        "triangles": 49386,
+        "geometries": 252,
+        "textures": 18,
+        "frame": 45
+      },
+      {
+        "position": [74, 52.999999999999986, 95],
+        "target": [0, 11, -53],
+        "calls": 252,
+        "triangles": 49386,
+        "geometries": 252,
+        "textures": 18,
+        "frame": 49
+      },
+      {
+        "position": [74, 52.999999999999986, 95],
+        "target": [0, 11, -53],
+        "calls": 252,
+        "triangles": 49386,
+        "geometries": 252,
+        "textures": 18,
+        "frame": 53
+      }
+    ],
+    "errors": []
+  },
+  {
+    "name": "mobile-shelf",
+    "status": "FAIL",
+    "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(await page.evaluate(() => !!document.activeElement?.closest('dialog')))\n\n    at file:///F:/Coding/Portfolio%20Website/experiments/g2d-design/qa/check.mjs:289:11\n    at async record (file:///F:/Coding/Portfolio%20Website/experiments/g2d-design/qa/check.mjs:19:46)\n    at async file:///F:/Coding/Portfolio%20Website/experiments/g2d-design/qa/check.mjs:274:5"
+  }
+]

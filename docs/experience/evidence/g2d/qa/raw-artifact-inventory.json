@@ -1,0 +1,206 @@
+[
+  {
+    "name": "a-discovery-1440.png",
+    "bytes": 737220,
+    "sha256": "4423a7de2d8353b79b916ab230495f31e438c771eb043114370a7aaa79a86a1a",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\a-discovery-1440.png"
+  },
+  {
+    "name": "a-discovery-390.png",
+    "bytes": 157643,
+    "sha256": "bd01ff34f33466e500a7621f5e4545e1a62f34f92ed52246a475ca28d7a94f5c",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\a-discovery-390.png"
+  },
+  {
+    "name": "a-discovery-768.png",
+    "bytes": 500260,
+    "sha256": "62eb41004a9613f157bff86670a85df2584066a5c2c2b3ee4a26e49786d2b5d9",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\a-discovery-768.png"
+  },
+  {
+    "name": "a-discovery-repaired-768.png",
+    "bytes": 468585,
+    "sha256": "69e850ff2c49c510b4a3e43c9c75def13472513d119f17569523822399500891",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\a-discovery-repaired-768.png"
+  },
+  {
+    "name": "a-entry-1440.png",
+    "bytes": 531293,
+    "sha256": "c3f40f2806490bb50cc2cba87f12640403272b1b6227b06565e394cbc8202d11",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\a-entry-1440.png"
+  },
+  {
+    "name": "a-entry-390.png",
+    "bytes": 162194,
+    "sha256": "349bea9a1aceef346de4085a6d72317cada87cab0ec432d1125737c9134e848a",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\a-entry-390.png"
+  },
+  {
+    "name": "a-entry-768.png",
+    "bytes": 360312,
+    "sha256": "15319fb49cbf56ccbdb7fbf95e5783278198ec996460d6da97a6b09d630ee591",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\a-entry-768.png"
+  },
+  {
+    "name": "a-final-refresh.log",
+    "bytes": 3203,
+    "sha256": "343faee59c1281f511adc1a119ffc794af4c85998fa22b1e9bd46161a8a24224",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\a-final-refresh.log"
+  },
+  {
+    "name": "a-touch-390.png",
+    "bytes": 167729,
+    "sha256": "d4347f83e3b50567ef057774b93d38bc68a0d3ee3a85869c4ae8b68b0853659c",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\a-touch-390.png"
+  },
+  {
+    "name": "a-touch-768.png",
+    "bytes": 350874,
+    "sha256": "ae1b69b3f82e4a1a582d085fe1efa3f0930b645f6779276c981dad47c4312d0b",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\a-touch-768.png"
+  },
+  {
+    "name": "b-discovery-1440.png",
+    "bytes": 418935,
+    "sha256": "f388d18583d669eebc4a085c41f0b2c68df4bab89a3415e85484d7faca4ed102",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\b-discovery-1440.png"
+  },
+  {
+    "name": "b-discovery-390.png",
+    "bytes": 137025,
+    "sha256": "70f156d1698219a66c9add23851eba6e0a9f5c929781f219d2e99972c9b473e9",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\b-discovery-390.png"
+  },
+  {
+    "name": "b-discovery-768.png",
+    "bytes": 284439,
+    "sha256": "fba6929985d0a607e6d180ccc7958e45ce26e028dd39e37d4cca6ebcd019f665",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\b-discovery-768.png"
+  },
+  {
+    "name": "b-edge.log",
+    "bytes": 119,
+    "sha256": "7f42c3163c0e31f2e9cf138dc3bd0f16882d6dd3dd2249a1de8ee618c27e66f7",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\b-edge.log"
+  },
+  {
+    "name": "b-entry-1440.png",
+    "bytes": 296294,
+    "sha256": "3f58f8f0b74693e3af27b8da7691c57c2c2401a596bd657ffa73c80e9d635db7",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\b-entry-1440.png"
+  },
+  {
+    "name": "b-entry-390.png",
+    "bytes": 141611,
+    "sha256": "f59e6142ebf5fdd28f867d58b5a29c041fecc35ba2cab3ab4b85acae1e90ce5e",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\b-entry-390.png"
+  },
+  {
+    "name": "b-entry-768.png",
+    "bytes": 227866,
+    "sha256": "174b5ca2290d27f9b16ef10a364f9cc002d31bc0b955ee09b121d9685810e3a4",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\b-entry-768.png"
+  },
+  {
+    "name": "b-final-refresh.log",
+    "bytes": 184,
+    "sha256": "314ab8de2e30ad2bbe9849a81c34c5ac78abc1ba9bd66f9203e19d47d156a756",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\b-final-refresh.log"
+  },
+  {
+    "name": "b-touch-390.png",
+    "bytes": 127352,
+    "sha256": "156c3d72448391115aa6683422f3ca1eabb57f89ced8452bdecec0b05bd35f84",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\b-touch-390.png"
+  },
+  {
+    "name": "b-touch-768.png",
+    "bytes": 227772,
+    "sha256": "6b41ebcedd9e1ef46d66b1ad4559d7cb6f97c97f6b74cbfdad75878820844299",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\b-touch-768.png"
+  },
+  {
+    "name": "c-discovery-1440.png",
+    "bytes": 295618,
+    "sha256": "fdf140bfb9bc70a43dcd952578b68848c6e287061dcf9b3b648b43dd7ead9db1",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\c-discovery-1440.png"
+  },
+  {
+    "name": "c-discovery-390.png",
+    "bytes": 106322,
+    "sha256": "895ccfac7e5b33ea5f2ec2fdab738d9745be77435214c52f5f3b3d2005a26c6a",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\c-discovery-390.png"
+  },
+  {
+    "name": "c-discovery-768.png",
+    "bytes": 196184,
+    "sha256": "62ad0486ff3b95010d1102b476e6e6daec6b41dc3220c9eef16caca23a834024",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\c-discovery-768.png"
+  },
+  {
+    "name": "c-entry-1440.png",
+    "bytes": 361107,
+    "sha256": "8c420f8c2f38f9526c1840c76f8b539bdee757b2a64e12fbd43a5b27f74633ab",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\c-entry-1440.png"
+  },
+  {
+    "name": "c-entry-390.png",
+    "bytes": 111042,
+    "sha256": "91a2a6e82a48b1894b2a8c955181109383a0c88fe005711bf3b4a1878c2dac86",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\c-entry-390.png"
+  },
+  {
+    "name": "c-entry-768.png",
+    "bytes": 215522,
+    "sha256": "5340c165891d456bfe4389e1674a523d275b75ab50c453762517521dc89af34b",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\c-entry-768.png"
+  },
+  {
+    "name": "c-refresh.log",
+    "bytes": 1426,
+    "sha256": "db02197ad6589c7c54dac403df4ae6ad0d5cf28d68535b09329dd6ea1b3335ab",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\c-refresh.log"
+  },
+  {
+    "name": "c-touch-390.png",
+    "bytes": 137325,
+    "sha256": "82b54f552282167c4e6519196f3c658217afbe0254530249b4332a9ca3812b31",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\c-touch-390.png"
+  },
+  {
+    "name": "c-touch-768.png",
+    "bytes": 272469,
+    "sha256": "0f262499cc44d679578d05ed13ae1cb6b9e66c8de7ea4bc15ec8cbd6781a78d4",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\c-touch-768.png"
+  },
+  {
+    "name": "check.log",
+    "bytes": 798,
+    "sha256": "ef8c03b6cc2515ed52b97f6e594b2522d38b1727da6c00fcaaa483ff78a992c4",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\check.log"
+  },
+  {
+    "name": "diagnose.log",
+    "bytes": 3131,
+    "sha256": "1774be7eb09d20fa959f6740b872cc70122e601ba2172abe6193587b3ca1c59c",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\diagnose.log"
+  },
+  {
+    "name": "final-b-shelf.log",
+    "bytes": 259,
+    "sha256": "c33c136be9d4116c7b94d1d362e5a1f7a28b64a2873f35efce02c8c17fea899f",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\final-b-shelf.log"
+  },
+  {
+    "name": "mobile-reader-390.png",
+    "bytes": 67184,
+    "sha256": "a9f37a3d392bbc27925853d3592e9002c263ab208bb3ca7dd0cd0dbe317b8caf",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\mobile-reader-390.png"
+  },
+  {
+    "name": "repaired-b-shelf.log",
+    "bytes": 227,
+    "sha256": "44fc599d04034ad9e56100504920d1d5d969c7f7fe8361ce5340a58e6dbcd785",
+    "archive": "F:\\Coding\\Portfolio Website\\.verification\\g2d\\qa-raw\\repaired-b-shelf.log"
+  }
+]

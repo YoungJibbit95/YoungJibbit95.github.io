@@ -4,3 +4,4 @@ playwright-report
 test-results
 .verification
 package-lock.json
+.agents/skills

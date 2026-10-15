@@ -1,0 +1,342 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "name": "origin-overview",
+    "metrics": {
+      "calls": 38,
+      "triangles": 8668,
+      "geometries": 4,
+      "textures": 3,
+      "frame": 2,
+      "eye": [28.999999999999996, 15.999999999999998, 36],
+      "target": [-3, 7.6, -2],
+      "world": "origin",
+      "scale": "overview",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 1132,
+      "dark": 1235,
+      "shades": 98,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "name": "origin-open",
+    "metrics": {
+      "calls": 37,
+      "triangles": 8656,
+      "geometries": 4,
+      "textures": 3,
+      "frame": 4,
+      "eye": [13, 7.800000000000002, 20],
+      "target": [1, 7.1, -5],
+      "world": "origin",
+      "scale": "approach",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 4880,
+      "dark": 5676,
+      "shades": 120,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "name": "observatory-overview",
+    "metrics": {
+      "calls": 167,
+      "triangles": 56332,
+      "geometries": 28,
+      "textures": 9,
+      "frame": 6,
+      "eye": [-36, 22.599999999999994, 43],
+      "target": [16, 5.7, -8],
+      "world": "observatory",
+      "scale": "overview",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 970,
+      "dark": 4395,
+      "shades": 121,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "name": "nexus-approach",
+    "metrics": {
+      "calls": 73,
+      "triangles": 55244,
+      "geometries": 28,
+      "textures": 9,
+      "frame": 8,
+      "eye": [0.6000000000000014, 7.5000000000000036, 28],
+      "target": [-10, 5, 3.5],
+      "world": "observatory",
+      "scale": "approach",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 2026,
+      "dark": 6727,
+      "shades": 140,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "name": "nexus-discovery",
+    "metrics": {
+      "calls": 68,
+      "triangles": 48702,
+      "geometries": 35,
+      "textures": 16,
+      "frame": 11,
+      "eye": [-4.5, 5.700000000000001, 22.8],
+      "target": [-12, 4.8, 3.3],
+      "world": "observatory",
+      "scale": "detail",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 1338,
+      "dark": 7572,
+      "shades": 215,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "name": "nexus-reading",
+    "metrics": {
+      "calls": 68,
+      "triangles": 48702,
+      "geometries": 35,
+      "textures": 16,
+      "frame": 12,
+      "eye": [-4.5, 5.700000000000001, 22.8],
+      "target": [-12, 4.8, 3.3],
+      "world": "observatory",
+      "scale": "detail",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 1338,
+      "dark": 7572,
+      "shades": 215,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 1440,
+    "interactions": {
+      "realPointerDrag": true,
+      "keyboardCamera": true,
+      "keyboardActivation": true,
+      "exactBackPose": true,
+      "truthfulSource": true,
+      "modalFocusTrapAndEscape": true,
+      "demandIdleFrameDelta": 0,
+      "horizontalOverflow": false
+    },
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "name": "origin-overview",
+    "metrics": {
+      "calls": 35,
+      "triangles": 8632,
+      "geometries": 4,
+      "textures": 3,
+      "frame": 2,
+      "eye": [20.999999999999996, 12.400000000000006, 43],
+      "target": [2, 8.7, 0],
+      "world": "origin",
+      "scale": "overview",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 4059,
+      "dark": 3991,
+      "shades": 90,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "name": "origin-open",
+    "metrics": {
+      "calls": 34,
+      "triangles": 8620,
+      "geometries": 4,
+      "textures": 3,
+      "frame": 4,
+      "eye": [7, 7.4, 23],
+      "target": [3, 7, -4],
+      "world": "origin",
+      "scale": "approach",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 9519,
+      "dark": 15639,
+      "shades": 115,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "name": "observatory-overview",
+    "metrics": {
+      "calls": 82,
+      "triangles": 55352,
+      "geometries": 24,
+      "textures": 5,
+      "frame": 6,
+      "eye": [-21, 10.300000000000004, 31],
+      "target": [-2, 6.1, -1],
+      "world": "observatory",
+      "scale": "overview",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 3058,
+      "dark": 8973,
+      "shades": 120,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "name": "nexus-approach",
+    "metrics": {
+      "calls": 49,
+      "triangles": 41728,
+      "geometries": 24,
+      "textures": 5,
+      "frame": 8,
+      "eye": [-8.4, 7.5, 31.3],
+      "target": [-10, 5, 3.5],
+      "world": "observatory",
+      "scale": "approach",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 3704,
+      "dark": 8810,
+      "shades": 100,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "name": "nexus-discovery",
+    "metrics": {
+      "calls": 56,
+      "triangles": 41742,
+      "geometries": 31,
+      "textures": 12,
+      "frame": 11,
+      "eye": [-9.2, 5.700000000000001, 26.6],
+      "target": [-10, 4.8, 3.3],
+      "world": "observatory",
+      "scale": "detail",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 2912,
+      "dark": 11332,
+      "shades": 207,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "name": "nexus-reading",
+    "metrics": {
+      "calls": 56,
+      "triangles": 41742,
+      "geometries": 31,
+      "textures": 12,
+      "frame": 12,
+      "eye": [-9.2, 5.700000000000001, 26.6],
+      "target": [-10, 4.8, 3.3],
+      "world": "observatory",
+      "scale": "detail",
+      "selected": "nexus",
+      "canvasCount": 1,
+      "sleeping": true
+    },
+    "pixels": {
+      "copper": 2912,
+      "dark": 11332,
+      "shades": 207,
+      "sampledPixels": 36000,
+      "domMasked": true
+    }
+  },
+  {
+    "width": 390,
+    "interactions": {
+      "realPointerDrag": true,
+      "keyboardCamera": true,
+      "keyboardActivation": true,
+      "exactBackPose": true,
+      "truthfulSource": true,
+      "modalFocusTrapAndEscape": true,
+      "demandIdleFrameDelta": 0,
+      "horizontalOverflow": false
+    },
+    "errors": []
+  }
+]

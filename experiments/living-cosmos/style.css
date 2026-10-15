@@ -1,0 +1,223 @@
+:root {
+  font-family: 'Manrope Variable', sans-serif;
+  color: #e9edf4;
+  background: #070914;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #a891ff;
+  outline-offset: 5px;
+}
+main {
+  min-height: 100dvh;
+}
+.cosmos-stage {
+  position: fixed;
+  inset: 0;
+}
+header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  padding: 30px 42px;
+  font-size: 13px;
+}
+header > a:first-child {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+header > span {
+  color: #b6b2d1;
+}
+header > a:last-child {
+  margin-left: auto;
+}
+.cosmos-intro {
+  position: absolute;
+  z-index: 2;
+  left: 42px;
+  bottom: 118px;
+  width: 310px;
+  pointer-events: none;
+}
+.cosmos-intro > p:first-child {
+  font-family: 'JetBrains Mono', monospace;
+  color: #c0b4df;
+  font-size: 11px;
+}
+h1 {
+  font-size: clamp(42px, 4.3vw, 64px);
+  letter-spacing: -3px;
+  line-height: 1.04;
+  font-weight: 500;
+  margin: 16px 0 20px;
+}
+.cosmos-description {
+  font-size: 14px;
+  color: #c8c7da;
+  max-width: 260px;
+  line-height: 1.6;
+}
+.cosmos-intro button {
+  margin-top: 16px;
+  padding: 13px 17px;
+  background: #171932e8;
+  border: 1px solid #8581b16b;
+  color: #eef4ff;
+  border-radius: 5px;
+  font-size: 13px;
+  pointer-events: auto;
+}
+.cosmos-intro button span {
+  margin-left: 28px;
+}
+.cosmos-intro button:hover {
+  background: #292445;
+  border-color: #a891ff;
+}
+.cosmos-tools {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  bottom: 28px;
+  right: 36px;
+}
+.cosmos-tools button {
+  border: 1px solid #8581b14a;
+  background: #0b1024ed;
+  color: #cbd2e7;
+  border-radius: 4px;
+  padding: 10px 13px;
+  font-size: 11px;
+}
+.cosmos-tools button[aria-pressed='true'] {
+  border-color: #a891ff;
+  color: #f1ecff;
+}
+.cosmos-note {
+  position: absolute;
+  z-index: 2;
+  left: 42px;
+  bottom: 26px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #b5b7cd;
+}
+.cosmos-label {
+  display: block;
+  color: #e5e9f4;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-shadow: 0 1px 9px #070914;
+  pointer-events: none;
+}
+.cosmos-dossier {
+  position: absolute;
+  right: 42px;
+  top: 32%;
+  width: 256px;
+  z-index: 2;
+  padding: 24px;
+  background: linear-gradient(120deg, #111731eb, #0b1024dd);
+  border-left: 1px solid #8271b5;
+}
+.cosmos-dossier span {
+  font-size: 11px;
+  color: #bdb1db;
+}
+.cosmos-dossier h2 {
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+}
+.cosmos-dossier p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #c4c8df;
+}
+.cosmos-dossier a {
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 16px;
+}
+@media (max-width: 767px) {
+  header {
+    padding: 24px;
+    gap: 22px;
+  }
+  header > a:first-child {
+    font-size: 16px;
+  }
+  header > a:last-child {
+    display: none;
+  }
+  header > span {
+    margin-left: auto;
+    font-size: 11px;
+  }
+  .cosmos-intro {
+    left: 24px;
+    bottom: 105px;
+    width: 260px;
+  }
+  h1 {
+    font-size: 44px;
+    letter-spacing: -2px;
+    margin: 12px 0 16px;
+  }
+  .cosmos-description {
+    font-size: 12px;
+    max-width: 235px;
+  }
+  .cosmos-intro > p:first-child {
+    font-size: 10px;
+  }
+  .cosmos-intro button {
+    margin-top: 10px;
+    min-height: 44px;
+  }
+  .cosmos-tools {
+    left: 24px;
+    right: auto;
+    bottom: 25px;
+    gap: 6px;
+  }
+  .cosmos-tools button {
+    min-height: 44px;
+    font-size: 10px;
+    padding: 8px 11px;
+  }
+  .cosmos-note {
+    display: none;
+  }
+  .cosmos-dossier {
+    display: none;
+  }
+  .cosmos-label {
+    font-size: 11px;
+  }
+}

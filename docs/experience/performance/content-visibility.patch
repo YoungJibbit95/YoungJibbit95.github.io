@@ -1,0 +1,14 @@
+diff --git a/src/styles.css b/src/styles.css
+index 86de8e9..e9b25de 100644
+--- a/src/styles.css
++++ b/src/styles.css
+@@ -2486,3 +2486,9 @@
+     }
+   }
+ }
++
++/* Skip layout of offscreen prerendered chapters while retaining semantic content. */
++.portfolio #inhalt > section:not(.hero) {
++  content-visibility: auto;
++  contain-intrinsic-size: auto 1000px;
++}

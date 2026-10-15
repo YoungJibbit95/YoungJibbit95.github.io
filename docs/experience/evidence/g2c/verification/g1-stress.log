@@ -1,0 +1,16 @@
+[WebServer] (node:82484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:82204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\experience.render.spec.ts:133:1 › two consecutive world changes render real frames in one persistent canvas (16.0s)
+(node:62076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\experience.render.spec.ts:133:1 › two consecutive world changes render real frames in one persistent canvas (8.9s)
+(node:61536) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [chromium] › tests\experience.render.spec.ts:133:1 › two consecutive world changes render real frames in one persistent canvas (9.3s)
+
+  3 passed (39.4s)

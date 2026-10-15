@@ -1,0 +1,88 @@
+{
+  "version": "1.3.26",
+  "at": "2026-10-11T11:11:49.663Z",
+  "browser": "156.0.8078.4",
+  "gzipBytes": 5431,
+  "cases": [
+    {
+      "mobile": false,
+      "reduced": false,
+      "enabled": false,
+      "idleCallbacksPer500ms": 0,
+      "stageScrollDelta": 0,
+      "projectHash": "#atlas-projects",
+      "cleanup": true,
+      "pass": true
+    },
+    {
+      "mobile": false,
+      "reduced": false,
+      "enabled": true,
+      "idleCallbacksPer500ms": 30,
+      "stageScrollDelta": 0,
+      "projectHash": "#atlas-projects",
+      "cleanup": true,
+      "pass": true
+    },
+    {
+      "mobile": false,
+      "reduced": true,
+      "enabled": false,
+      "idleCallbacksPer500ms": 0,
+      "stageScrollDelta": 0,
+      "projectHash": "#atlas-projects",
+      "cleanup": true,
+      "pass": true
+    },
+    {
+      "mobile": false,
+      "reduced": true,
+      "enabled": true,
+      "idleCallbacksPer500ms": 31,
+      "stageScrollDelta": 0,
+      "projectHash": "#atlas-projects",
+      "cleanup": true,
+      "pass": true
+    },
+    {
+      "mobile": true,
+      "reduced": false,
+      "enabled": false,
+      "idleCallbacksPer500ms": 0,
+      "stageScrollDelta": 0,
+      "projectHash": "#atlas-projects",
+      "cleanup": true,
+      "pass": true
+    },
+    {
+      "mobile": true,
+      "reduced": false,
+      "enabled": true,
+      "idleCallbacksPer500ms": 30,
+      "stageScrollDelta": 0,
+      "projectHash": "#atlas-projects",
+      "cleanup": true,
+      "pass": true
+    },
+    {
+      "mobile": true,
+      "reduced": true,
+      "enabled": false,
+      "idleCallbacksPer500ms": 0,
+      "stageScrollDelta": 0,
+      "projectHash": "#atlas-projects",
+      "cleanup": true,
+      "pass": true
+    },
+    {
+      "mobile": true,
+      "reduced": true,
+      "enabled": true,
+      "idleCallbacksPer500ms": 30,
+      "stageScrollDelta": 0,
+      "projectHash": "#atlas-projects",
+      "cleanup": true,
+      "pass": true
+    }
+  ]
+}

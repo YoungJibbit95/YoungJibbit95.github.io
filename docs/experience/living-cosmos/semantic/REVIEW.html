@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Nexus · ein Stern, vier Apps</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: clamp(20px, 4vw, 64px);
+        background: #070914;
+        color: #e9edf4;
+        font:
+          16px/1.6 system-ui,
+          sans-serif;
+      }
+      main {
+        max-width: 1440px;
+        margin: auto;
+      }
+      h1 {
+        max-width: 24ch;
+        font-size: clamp(30px, 4vw, 54px);
+        line-height: 1.1;
+        font-weight: 550;
+        letter-spacing: -0.04em;
+      }
+      p {
+        max-width: 76ch;
+        color: #bdbbd2;
+      }
+      a {
+        color: #abdfe8;
+        text-underline-offset: 4px;
+      }
+      a:focus-visible {
+        outline: 2px solid #a891ff;
+        outline-offset: 5px;
+      }
+      section {
+        margin-top: 56px;
+      }
+      h2 {
+        font-size: 24px;
+        font-weight: 500;
+      }
+      figure {
+        margin: 0;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #101726;
+        border: 1px solid #32324c;
+      }
+      figcaption {
+        margin: 10px 0 30px;
+        color: #bdbbd2;
+        font-size: 14px;
+      }
+      .pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .mobile {
+        max-width: 828px;
+      }
+      .eyebrow {
+        color: #a891ff;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+      }
+      @media (max-width: 640px) {
+        .pair {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">LIVING COSMOS · G2-D · 15. OKTOBER 2026</p>
+      <h1>Nexus: ein Stern, vier Apps.</h1>
+      <p>
+        Der gemeinsame Runtime-Kern wird zum zentralen Stern. Vier unterscheidbare App-Welten öffnen
+        sich bei echter Kameraannäherung und legen ihre Core-Verbindungen frei. Die Nebelraum-Basis
+        bleibt erhalten.
+      </p>
+      <p>
+        Dies sind echte lokale Browseraufnahmen. Die Bilder zeigen die Vorschau; die visuelle
+        Nutzerfreigabe steht aus. Kein G3, Merge oder Produktionsdeploy.
+      </p>
+      <p>
+        <a href="NEXUS_REDESIGN_REPORT.md">Redesign-Bericht und Prüfergebnisse</a> ·
+        <a href="PROJECT_SEMANTIC_LANGUAGE.md">Sieben Projektidentitäten</a> ·
+        <a href="EXPLODED_VIEW_FRAMEWORK.md">Exploded-View-Vertrag</a> ·
+        <a href="../refinement/REVIEW.html">Vorheriger Bildstand</a>
+      </p>
+      <section>
+        <h2>Desktop · 1440 × 900</h2>
+        <figure>
+          <a href="evidence/cosmos-nexus-approach-1440.png"
+            ><img
+              src="evidence/cosmos-nexus-approach-1440.png"
+              alt="Nexus vor der Öffnung: zentraler Stern und vier umliegende App-Körper im Nebelraum"
+              width="1440"
+              height="900"
+          /></a>
+          <figcaption>
+            Annäherung · Die vier Anwendungen bilden ein zusammengehöriges Sternensystem.
+          </figcaption>
+        </figure>
+        <figure>
+          <a href="evidence/cosmos-nexus-detail-1440.png"
+            ><img
+              src="evidence/cosmos-nexus-detail-1440.png"
+              alt="Geöffnete Nexus-Struktur mit Core, vier benannten Apps und ihren Verbindungen"
+              width="1440"
+              height="900"
+              loading="lazy"
+          /></a>
+          <figcaption>
+            Detail · Auffächerung, geöffnete App-Hüllen und vier nachvollziehbare Beziehungen zum
+            Core.
+          </figcaption>
+        </figure>
+      </section>
+      <section>
+        <h2>Mobile · 390 × 844</h2>
+        <div class="pair mobile">
+          <figure>
+            <a href="evidence/cosmos-nexus-approach-390.png"
+              ><img
+                src="evidence/cosmos-nexus-approach-390.png"
+                alt="Nexus-Annäherung auf einem 390 Pixel breiten Bildschirm"
+                width="390"
+                height="844"
+                loading="lazy"
+            /></a>
+            <figcaption>Annäherung · Bestehende Kamera und kompakte Bedienzone.</figcaption>
+          </figure>
+          <figure>
+            <a href="evidence/cosmos-nexus-detail-390.png"
+              ><img
+                src="evidence/cosmos-nexus-detail-390.png"
+                alt="Geöffnete Nexus-App-Welten mit mobilen Beschriftungen"
+                width="390"
+                height="844"
+                loading="lazy"
+            /></a>
+            <figcaption>
+              Detail · Derselbe Aufbau und derselbe Erkenntnisgewinn bei reduzierter Bewegung.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <section>
+        <h2>Was die Öffnung erklärt</h2>
+        <p>
+          Nexus Main und Nexus Mobile sind die Workspace-Familie; Nexus Code und Nexus Code Mobile
+          die Editor-Familie. Alle vier verwenden <code>@nexus/core</code>. Körpergrößen und
+          Abstände sind kuratierte Gestaltung, keine Nutzungs- oder Leistungsmetriken. Die Linien
+          behaupten keinen laufenden Sync.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
